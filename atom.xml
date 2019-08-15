@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>小 man</title>
+  <title>茶白</title>
   <icon>https://www.gravatar.com/avatar/f27b936c2ac428d82177b6d3626c8e3a</icon>
   
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>http://xiaoman.ren/</id>
   
   <author>
-    <name>小 man</name>
+    <name>茶白</name>
     <email>zhuangbudong@gmail.com</email>
   </author>
   
