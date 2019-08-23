@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiaoman.ren/"/>
-  <updated>2019-08-21T15:39:32.625Z</updated>
+  <updated>2019-08-23T02:32:05.000Z</updated>
   <id>http://xiaoman.ren/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux 下配置 Android Studio 中文输入</title>
+    <link href="http://xiaoman.ren/2019/08/23/Linux-%E4%B8%8B%E9%85%8D%E7%BD%AE-Android-Studio-%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5/"/>
+    <id>http://xiaoman.ren/2019/08/23/Linux-下配置-Android-Studio-中文输入/</id>
+    <published>2019-08-23T02:26:28.000Z</published>
+    <updated>2019-08-23T02:32:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的电脑是深度 Ubuntu， 效果和 Windows 很像，个人不喜欢 Windows 的原因很简单，盗版太多。</p><p>虽然 Ubuntu 下很多软件都会受到限制，但我是一个软件工程师，常用的开发工具可以使用，就可以了。</p><p>最近一直困扰我的一个问题就是， 每当我给 Android Studio 升级时，就会遇到无法输入中文的情况，每次上网查询，总是磕磕绊绊，今儿将方法记录下来，以备以后需要是好找。</p><p>首先，打开 Android Studio 的文件目录 <code>/android-stdio/bin/</code> ，使用 Vi 命令打开文件 <code>studio.sh</code>，</p><p>在文件的开头，输入下面这一串</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export XMODIFIERS=@im=fcitx</span><br><span class="line">export QT_IM_MODULE=fcitx</span><br><span class="line">export GTK_IM_MODULE=&quot;fcitx&quot;</span><br></pre></td></tr></table></figure><p>然后 :wq 保存退出。</p><p>接着重启 Android Studio 就可以了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我的电脑是深度 Ubuntu， 效果和 Windows 很像，个人不喜欢 Windows 的原因很简单，盗版太多。&lt;/p&gt;
+&lt;p&gt;虽然 Ubuntu 下很多软件都会受到限制，但我是一个软件工程师，常用的开发工具可以使用，就可以了。&lt;/p&gt;
+&lt;p&gt;最近一直困扰我的一个问题就是
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Android 获取 View 的宽高</title>
