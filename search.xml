@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[OKHttp 重定向拦截器]]></title>
+    <url>%2F2020%2F02%2F20%2FOKHttp-%E9%87%8D%E5%AE%9A%E5%90%91%E6%8B%A6%E6%88%AA%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷： okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。 okhttp默认不支持跨协议的重定向，比如http重定向到https 为了解决这两个问题写了这个拦截器 1234567891011121314151617181920class RedirectInterceptor implements Interceptor &#123; @Override public Response intercept(Chain chain) throws IOException &#123; Request request = chain.request(); HttpUrl beforeUrl = request.url(); Response response = chain.proceed(request); HttpUrl afterUrl = response.request().url(); //1.根据url判断是否是重定向 if(!beforeUrl.equals(afterUrl)) &#123; //处理两种情况 1、跨协议 2、原先不是GET请求。 if (!beforeUrl.scheme().equals(afterUrl.scheme())||!request.method().equals("GET")) &#123; //重新请求 Request newRequest = request.newBuilder().url(response.request().url()).build(); response = chain.proceed(newRequest); &#125; &#125; return response; &#125;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Android 常用工具和插件]]></title>
+    <url>%2F2020%2F02%2F20%2FAndroid-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%92%8C%E6%8F%92%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[Android 开发必备插件和工具Android Studio 插件 插件名 注释 Alibaba Java Coding Guidelines 阿里的代码规范检查插件，用来检查代码中是否符合驼峰命名、if else, switch els default 等语法糖的健壮性；以及单方法行数不超过 80 行，提醒”单一职责原则“等； Android Parcelable code generator 序列化 Po 类时，可以快速生成序列化代码 CodeGlance 代码预览图，在编辑窗口右侧有一个当前代码的缩略图，可以当做滚动条使用，可以快速定位代码 DataBase Navigator 支持 Oracle、MySQL、SQLite、PostgreSQL 以及任何符合 JDBC 的数据库；增强我们对数据库数据的读取，定位问题 FindBugs-IDEA 可以分析现存代码中容易引起异常的部分，并提供修改建议 GsonFormater 将 xml 和 json 转换位 pojo 类，可以快速生成数据源 Markdown 语言工具，通过语法糖，可以快速生成 HTML 的预览窗，写出 GitHub 风格的技术文档 Markdown Navigator Markdown 预览工具，可以观察实时渲染的 HTML 文档 Android Resource Tools 1. 可以为 layout.xml 中 带 id 的 View 生成变量及 findViewById 代码2. 使用 Google 对 strings.xml 进行翻译（需要配置镜像） 3. 颜色渲染器支持 RGB 和 ARGB，方便配置透明度 Codota 模版代码查找器，可以输入关键词，搜索出相关的业务代码，比如，搜索 FileOutputSrteam 则会有 以及在编译时，会给予相关的代码块提示 GoodFormatter 保证大家代码格式化风格一致，避免因不同，导致 git 合并是出现大量修改； ButterknifePlugin 快速生成 butternkife 的注入代码，前提需要引入 butterknife JsonViewer 可以替换 postman 的插件，用来调试接口 — — codata 123456789101112public void zipFile(File srcFile, File zipFile) throws IOException &#123; try (FileInputStream fis = new FileInputStream(srcFile); ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipFile))) &#123; zos.putNextEntry(new ZipEntry(srcFile.getName())); int len; byte[] buffer = new byte[1024]; while ((len = fis.read(buffer)) &gt; 0) &#123; zos.write(buffer, 0, len); &#125; zos.closeEntry(); &#125;&#125; AndroidResourceTools JsonViewer 开发工具除必要 AS 之外，需要以下工具, Mac 用户可以通过 XClient 下载破解版软件 工具 注释 Sublime Text 3 文本编辑器，除正常的编辑功能外，丰富的插件库让它比 editplus、plus++等文本编辑更强大；PrettyJson 插件可以快速将字符串格式化为 JSON 格式，无需再去在线找 json 格式化；也可以校验 json 的合法性；支持列编辑，快速修改 Markdown 可以用来写 Markdown 文件，但不支持渲染Sublime Text 3 下载地址 Postman 接口调试工具，也可以用上面推荐的 JsonViewerPostman 下载地址 Fiddler、Charles 抓包调试工具，可抓包，修改参数调试接口，任选Fiddler 下载地址Charles 下载地址 Markdown Windows 可使用 Typora, Mac 可以使用 MWeb Pro，生成技术类文档使用，马克飞象双平台都可以（Chrome 插件，需要友好访问）Typora 下载地址MWeb Pro 下载地址 Vysor Android 设备同屏工具，可将设备同步到电脑上，方便截图，分享屏幕等，需要友好访问Vysor 下载地址 XMind 脑图工具，用来写结构XMind 下载地址 Beyond Compare 文件比较器，比较两组文件的差异BeyondCompare 下载地址 Dash 源码查看器， 也可以使用在线的 Android 社区 PxCook 云协作设计工具，可生成相应的前端代码，自动测量尺寸等，支持 Photoshop、Sketch、Adobe XD。PxCook 下载地址 — —]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[清香木养殖（四）]]></title>
+    <url>%2F2019%2F10%2F17%2F%E6%B8%85%E9%A6%99%E6%9C%A8%E5%85%BB%E6%AE%96%EF%BC%88%E5%9B%9B%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[丢了···································· T_T]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Linux 下配置 Android Studio 中文输入]]></title>
     <url>%2F2019%2F08%2F23%2FLinux-%E4%B8%8B%E9%85%8D%E7%BD%AE-Android-Studio-%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%2F</url>
     <content type="text"><![CDATA[我的电脑是深度 Ubuntu， 效果和 Windows 很像，个人不喜欢 Windows 的原因很简单，盗版太多。 虽然 Ubuntu 下很多软件都会受到限制，但我是一个软件工程师，常用的开发工具可以使用，就可以了。 最近一直困扰我的一个问题就是， 每当我给 Android Studio 升级时，就会遇到无法输入中文的情况，每次上网查询，总是磕磕绊绊，今儿将方法记录下来，以备以后需要是好找。 首先，打开 Android Studio 的文件目录 /android-stdio/bin/ ，使用 Vi 命令打开文件 studio.sh， 在文件的开头，输入下面这一串 123export XMODIFIERS=@im=fcitxexport QT_IM_MODULE=fcitxexport GTK_IM_MODULE=&quot;fcitx&quot; 然后 :wq 保存退出。 接着重启 Android Studio 就可以了。]]></content>

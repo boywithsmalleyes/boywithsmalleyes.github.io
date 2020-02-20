@@ -378,6 +378,526 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/02/20/OKHttp-重定向拦截器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/20/OKHttp-重定向拦截器/" class="post-title-link" itemprop="url">OKHttp 重定向拦截器</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-20 17:05:21 / Modified: 17:07:19" itemprop="dateCreated datePublished" datetime="2020-02-20T17:05:21+08:00">2020-02-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用-OKHttp-进行重定向拦截处理"><a href="#使用-OKHttp-进行重定向拦截处理" class="headerlink" title="使用 OKHttp 进行重定向拦截处理"></a>使用 OKHttp 进行重定向拦截处理</h1><p>okhttp重定向存在两个缺陷：</p>
+<ol>
+<li><p>okhttp处理301,302重定向时，会把请求方式设置为GET<br>这样会丢失原来Post请求中的参数。</p>
+</li>
+<li><p>okhttp默认不支持跨协议的重定向，比如http重定向到https</p>
+</li>
+</ol>
+<p>为了解决这两个问题写了这个拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedirectInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Request request = chain.request();</span><br><span class="line">        HttpUrl beforeUrl = request.url();</span><br><span class="line">        Response response = chain.proceed(request);</span><br><span class="line">        HttpUrl afterUrl = response.request().url();</span><br><span class="line">        <span class="comment">//1.根据url判断是否是重定向</span></span><br><span class="line">        <span class="keyword">if</span>(!beforeUrl.equals(afterUrl)) &#123;</span><br><span class="line">            <span class="comment">//处理两种情况 1、跨协议 2、原先不是GET请求。</span></span><br><span class="line">            <span class="keyword">if</span> (!beforeUrl.scheme().equals(afterUrl.scheme())||!request.method().equals(<span class="string">"GET"</span>)) &#123;</span><br><span class="line">                <span class="comment">//重新请求</span></span><br><span class="line">                Request newRequest = request.newBuilder().url(response.request().url()).build();</span><br><span class="line">                response = chain.proceed(newRequest);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/02/20/Android-常用工具和插件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/20/Android-常用工具和插件/" class="post-title-link" itemprop="url">Android 常用工具和插件</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-20 17:04:13 / Modified: 17:09:52" itemprop="dateCreated datePublished" datetime="2020-02-20T17:04:13+08:00">2020-02-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Android-开发必备插件和工具"><a href="#Android-开发必备插件和工具" class="headerlink" title="Android 开发必备插件和工具"></a>Android 开发必备插件和工具</h1><h2 id="Android-Studio-插件"><a href="#Android-Studio-插件" class="headerlink" title="Android Studio 插件"></a>Android Studio 插件</h2><table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alibaba Java Coding Guidelines</td>
+<td>阿里的代码规范检查插件，用来检查代码中是否符合驼峰命名、if else, switch els default 等语法糖的健壮性；以及单方法行数不超过 80 行，提醒”单一职责原则“等；</td>
+</tr>
+<tr>
+<td>Android Parcelable code generator</td>
+<td>序列化 Po 类时，可以快速生成序列化代码</td>
+</tr>
+<tr>
+<td>CodeGlance</td>
+<td>代码预览图，在编辑窗口右侧有一个当前代码的缩略图，可以当做滚动条使用，可以快速定位代码</td>
+</tr>
+<tr>
+<td>DataBase Navigator</td>
+<td>支持 Oracle、MySQL、SQLite、PostgreSQL 以及任何符合 JDBC 的数据库；增强我们对数据库数据的读取，定位问题</td>
+</tr>
+<tr>
+<td>FindBugs-IDEA</td>
+<td>可以分析现存代码中容易引起异常的部分，并提供修改建议</td>
+</tr>
+<tr>
+<td>GsonFormater</td>
+<td>将 xml 和 json 转换位 pojo 类，可以快速生成数据源</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td>语言工具，通过语法糖，可以快速生成 HTML 的预览窗，写出 GitHub 风格的技术文档</td>
+</tr>
+<tr>
+<td>Markdown Navigator</td>
+<td>Markdown 预览工具，可以观察实时渲染的 HTML 文档</td>
+</tr>
+<tr>
+<td>Android Resource Tools</td>
+<td>1. 可以为 layout.xml 中 带 id 的 View 生成变量及 findViewById 代码<br>2. 使用 Google 对 strings.xml 进行翻译（需要配置镜像）    <br>3. 颜色渲染器支持 RGB 和 ARGB，方便配置透明度</td>
+</tr>
+<tr>
+<td>Codota</td>
+<td>模版代码查找器，可以输入关键词，搜索出相关的业务代码，比如，搜索 FileOutputSrteam 则会有     以及在编译时，会给予相关的代码块提示</td>
+</tr>
+<tr>
+<td>GoodFormatter</td>
+<td>保证大家代码格式化风格一致，避免因不同，导致 git 合并是出现大量修改；</td>
+</tr>
+<tr>
+<td>ButterknifePlugin</td>
+<td>快速生成 butternkife 的注入代码，前提需要引入 butterknife</td>
+</tr>
+<tr>
+<td>JsonViewer</td>
+<td>可以替换 postman 的插件，用来调试接口</td>
+</tr>
+<tr>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/02/20/Android-常用工具和插件/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/10/17/清香木养殖（四）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/17/清香木养殖（四）/" class="post-title-link" itemprop="url">清香木养殖（四）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-17 17:11:50" itemprop="dateCreated datePublished" datetime="2019-10-17T17:11:50+08:00">2019-10-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-02-20 17:13:37" itemprop="dateModified" datetime="2020-02-20T17:13:37+08:00">2020-02-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>丢了···································· T_T</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/23/Linux-下配置-Android-Studio-中文输入/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1487,487 +2007,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/05/04/清香木养殖（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/04/清香木养殖（一）/" class="post-title-link" itemprop="url">清香木养殖（一）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-04 21:54:08 / Modified: 22:52:51" itemprop="dateCreated datePublished" datetime="2019-05-04T21:54:08+08:00">2019-05-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>激动的心，颤抖的手，京东上面动动手。<br>哈哈，很久就有想养一个绿植的想法，经过了半年的挣扎，终于在 3 天前动起了手，入手一株<strong>清香木</strong>，据老板说，清香木可以散发出香味，充满整个房间，香气四溢（还未鉴定，刚收到，正怀着激动的心在写）。</p>
-<p><img src="https://raw.githubusercontent.com/boywithsmalleyes/static_file/master/images/WechatIMG68.jpeg" alt="清香木"></p>
-<p>其实对这枝有一点小失望，就是个头太小，不过没关系，咱俩熬呗，早晚你会长大的。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/04/清香木养殖（一）/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/30/OkHttp-Intercept/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/30/OkHttp-Intercept/" class="post-title-link" itemprop="url">OkHttp Intercept</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-30 20:42:02" itemprop="dateCreated datePublished" datetime="2019-04-30T20:42:02+08:00">2019-04-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-23 22:36:03" itemprop="dateModified" datetime="2019-06-23T22:36:03+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子</p>
-<p>要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法.</p>
-<p>这里介绍两种 Interceptor 的实例</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/30/OkHttp-Intercept/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/17/多个-ssh-公钥提交代码到不同平台/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/17/多个-ssh-公钥提交代码到不同平台/" class="post-title-link" itemprop="url">多个 ssh 公钥提交代码到不同平台</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-17 22:09:21" itemprop="dateCreated datePublished" datetime="2019-04-17T22:09:21+08:00">2019-04-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-23 22:35:50" itemprop="dateModified" datetime="2019-06-23T22:35:50+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>作为一个技术开发人员，免不了在 <code>github</code> 以及 <code>gitlab</code> 以及其他 <code>git</code> 平台上进行代码管理；<br>工作中您可能使用 <code>svn</code> （这不在我们的讨论范围）,也有可能使用 <code>git</code>, 生活中，您可能会将一些内容分享到你的 <code>github</code> 上， 供大家参阅。</p>
-<p><code>git</code> 创建版本库很容易， <code>clone</code> 代码也仅仅是简单的一句 <code>git clone https://github.com/xxxx.git</code>，异或是 <code>git clone git@github.com:xxxxx.git</code>；当然，使用 <code>https</code> 的方式简单易操作（本人认为是一个傻瓜相机），但是通过使用 <code>https</code> 的方式，经常会遇到需要输入账号和密码的情况，这大大的加大了安全问题，虽然某 dear 的图形化工具，会帮助我们 remeber 账号和密码，避免了重复输入，但这不在我们的讨论范围（个人很鄙视使用图形化界面的），接下来要说的就是使用 <code>SSH</code> 的方式来处理 <code>git</code> 的版本管理。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/17/多个-ssh-公钥提交代码到不同平台/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2011,7 +2055,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2129,7 +2173,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
