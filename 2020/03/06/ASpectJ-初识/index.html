@@ -140,17 +140,17 @@
 
 
 
-  <meta name="description" content="丢了···································· T_T">
+  <meta name="description" content="首先我们先来了解一下 AOP AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能  面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代">
 <meta property="og:type" content="article">
-<meta property="og:title" content="清香木养殖（四）">
-<meta property="og:url" content="http://xiaoman.ren/2019/10/17/清香木养殖（四）/index.html">
+<meta property="og:title" content="ASpectJ 初识">
+<meta property="og:url" content="http://xiaoman.ren/2020/03/06/ASpectJ-初识/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="丢了···································· T_T">
+<meta property="og:description" content="首先我们先来了解一下 AOP AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能  面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-20T09:13:37.992Z">
+<meta property="og:updated_time" content="2020-03-06T08:45:31.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清香木养殖（四）">
-<meta name="twitter:description" content="丢了···································· T_T">
+<meta name="twitter:title" content="ASpectJ 初识">
+<meta name="twitter:description" content="首先我们先来了解一下 AOP AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能  面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代">
 
 
 
@@ -160,7 +160,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/2019/10/17/清香木养殖（四）/">
+  <link rel="canonical" href="http://xiaoman.ren/2020/03/06/ASpectJ-初识/">
 
 
 
@@ -170,7 +170,7 @@
   };
 </script>
 
-  <title>清香木养殖（四） | 茶白</title>
+  <title>ASpectJ 初识 | 茶白</title>
   
 
 
@@ -381,7 +381,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/10/17/清香木养殖（四）/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/03/06/ASpectJ-初识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -398,7 +398,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">清香木养殖（四）
+          <h1 class="post-title" itemprop="name headline">ASpectJ 初识
 
               
             
@@ -424,24 +424,12 @@
                 
               
 
-              <time title="Created: 2019-10-17 17:11:50" itemprop="dateCreated datePublished" datetime="2019-10-17T17:11:50+08:00">2019-10-17</time>
+              <time title="Created: 2020-03-06 10:41:22 / Modified: 16:45:31" itemprop="dateCreated datePublished" datetime="2020-03-06T10:41:22+08:00">2020-03-06</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-02-20 17:13:37" itemprop="dateModified" datetime="2020-02-20T17:13:37+08:00">2020-02-20</time>
               
             
           </span>
@@ -475,7 +463,71 @@
       
 
       
-        <p>丢了···································· T_T</p>
+        <h2 id="首先我们先来了解一下-AOP"><a href="#首先我们先来了解一下-AOP" class="headerlink" title="首先我们先来了解一下 AOP"></a>首先我们先来了解一下 AOP</h2><blockquote>
+<p>AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能</p>
+</blockquote>
+<p>面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代码中。这样我们的服务模块更加简洁，因为他们只包含了主要关注点的代码，而次要的功能或者说是辅助的功能被转移到切面中。</p>
+<h2 id="AOP-术语"><a href="#AOP-术语" class="headerlink" title="AOP 术语"></a>AOP 术语</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">别名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Advice</td>
+<td style="text-align:center">通知</td>
+<td>切面的具体行为，要执行的代码</td>
+</tr>
+<tr>
+<td style="text-align:center">PointCut</td>
+<td style="text-align:center">切点</td>
+<td>通知被应用的具体位置</td>
+</tr>
+<tr>
+<td style="text-align:center">Join Point</td>
+<td style="text-align:center">连接点</td>
+<td>程序运行时，能够应用通知的所有点</td>
+</tr>
+<tr>
+<td style="text-align:center">Aspect</td>
+<td style="text-align:center">切面</td>
+<td>什么时候在什么地方做什么事情，是切点和通知的结合</td>
+</tr>
+<tr>
+<td style="text-align:center">Target</td>
+<td style="text-align:center">目标对象</td>
+<td>被切入功能的目标对象</td>
+</tr>
+<tr>
+<td style="text-align:center">Introduction</td>
+<td style="text-align:center">引入</td>
+<td>将新的方法或属性引入到现有的类中</td>
+</tr>
+<tr>
+<td style="text-align:center">Weaving</td>
+<td style="text-align:center">织入</td>
+<td>将切面应用到目标对象并创建新的代理对象的过程</td>
+</tr>
+</tbody>
+</table>
+<p>AOP 底层通过使用动态代理实现，包含两种方式：</p>
+<ol>
+<li>使用 JDK 动态代理实现</li>
+<li>使用 cglib 实现</li>
+</ol>
+<p><strong>通知类型</strong></p>
+<ol>
+<li>前置通知(Befor)：在方法之前执行</li>
+<li>后置通知(After)：在方法之后执行</li>
+<li>异常通知(AfterThrowing)：方法出现异常执行</li>
+<li>最终通知(AfterReturning)：在后置之后执行</li>
+<li>环绕通知(Around)：在方法之前和之后执行</li>
+</ol>
+<h2 id="AspectJ"><a href="#AspectJ" class="headerlink" title="AspectJ"></a>AspectJ</h2><p>AspectJ 实际是对 AOP 编程思想的一个实践，目前用的比较火，它是一种集合和 Java 完全一样的语言，而且完全兼容 Java。</p>
+<p>先写到这里！</p>
 
       
     </div>
@@ -510,7 +562,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2019/10/17/清香木养殖（四）/" title="清香木养殖（四）">http://xiaoman.ren/2019/10/17/清香木养殖（四）/</a>
+    <a href="http://xiaoman.ren/2020/03/06/ASpectJ-初识/" title="ASpectJ 初识">http://xiaoman.ren/2020/03/06/ASpectJ-初识/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -530,8 +582,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/23/Linux-下配置-Android-Studio-中文输入/" rel="next" title="Linux 下配置 Android Studio 中文输入">
-                <i class="fa fa-chevron-left"></i> Linux 下配置 Android Studio 中文输入
+              <a href="/2020/02/20/OKHttp-重定向拦截器/" rel="next" title="OKHttp 重定向拦截器">
+                <i class="fa fa-chevron-left"></i> OKHttp 重定向拦截器
               </a>
             
           </div>
@@ -539,10 +591,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/20/Android-常用工具和插件/" rel="prev" title="Android 常用工具和插件">
-                Android 常用工具和插件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -586,8 +634,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -707,6 +764,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先我们先来了解一下-AOP"><span class="nav-number">1.</span> <span class="nav-text">首先我们先来了解一下 AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP-术语"><span class="nav-number">2.</span> <span class="nav-text">AOP 术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AspectJ"><span class="nav-number">3.</span> <span class="nav-text">AspectJ</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

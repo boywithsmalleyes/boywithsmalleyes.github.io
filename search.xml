@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ASpectJ 初识]]></title>
+    <url>%2F2020%2F03%2F06%2FASpectJ-%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[首先我们先来了解一下 AOP AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能 面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代码中。这样我们的服务模块更加简洁，因为他们只包含了主要关注点的代码，而次要的功能或者说是辅助的功能被转移到切面中。 AOP 术语 key 别名 描述 Advice 通知 切面的具体行为，要执行的代码 PointCut 切点 通知被应用的具体位置 Join Point 连接点 程序运行时，能够应用通知的所有点 Aspect 切面 什么时候在什么地方做什么事情，是切点和通知的结合 Target 目标对象 被切入功能的目标对象 Introduction 引入 将新的方法或属性引入到现有的类中 Weaving 织入 将切面应用到目标对象并创建新的代理对象的过程 AOP 底层通过使用动态代理实现，包含两种方式： 使用 JDK 动态代理实现 使用 cglib 实现 通知类型 前置通知(Befor)：在方法之前执行 后置通知(After)：在方法之后执行 异常通知(AfterThrowing)：方法出现异常执行 最终通知(AfterReturning)：在后置之后执行 环绕通知(Around)：在方法之前和之后执行 AspectJAspectJ 实际是对 AOP 编程思想的一个实践，目前用的比较火，它是一种集合和 Java 完全一样的语言，而且完全兼容 Java。 先写到这里！]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[OKHttp 重定向拦截器]]></title>
     <url>%2F2020%2F02%2F20%2FOKHttp-%E9%87%8D%E5%AE%9A%E5%90%91%E6%8B%A6%E6%88%AA%E5%99%A8%2F</url>
     <content type="text"><![CDATA[使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷： okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。 okhttp默认不支持跨协议的重定向，比如http重定向到https 为了解决这两个问题写了这个拦截器 1234567891011121314151617181920class RedirectInterceptor implements Interceptor &#123; @Override public Response intercept(Chain chain) throws IOException &#123; Request request = chain.request(); HttpUrl beforeUrl = request.url(); Response response = chain.proceed(request); HttpUrl afterUrl = response.request().url(); //1.根据url判断是否是重定向 if(!beforeUrl.equals(afterUrl)) &#123; //处理两种情况 1、跨协议 2、原先不是GET请求。 if (!beforeUrl.scheme().equals(afterUrl.scheme())||!request.method().equals("GET")) &#123; //重新请求 Request newRequest = request.newBuilder().url(response.request().url()).build(); response = chain.proceed(newRequest); &#125; &#125; return response; &#125;&#125;]]></content>
@@ -173,6 +178,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[sitemap]]></title>
+    <url>%2Fsitemap%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[schedule]]></title>
     <url>%2Fschedule%2Findex.html</url>
     <content type="text"></content>
@@ -180,11 +190,6 @@
   <entry>
     <title><![CDATA[tags]]></title>
     <url>%2Ftags%2Findex.html</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[sitemap]]></title>
-    <url>%2Fsitemap%2Findex.html</url>
     <content type="text"></content>
   </entry>
 </search>

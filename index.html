@@ -378,6 +378,213 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/03/06/ASpectJ-初识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/03/06/ASpectJ-初识/" class="post-title-link" itemprop="url">ASpectJ 初识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-03-06 10:41:22 / Modified: 16:45:31" itemprop="dateCreated datePublished" datetime="2020-03-06T10:41:22+08:00">2020-03-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="首先我们先来了解一下-AOP"><a href="#首先我们先来了解一下-AOP" class="headerlink" title="首先我们先来了解一下 AOP"></a>首先我们先来了解一下 AOP</h2><blockquote>
+<p>AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能</p>
+</blockquote>
+<p>面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代码中。这样我们的服务模块更加简洁，因为他们只包含了主要关注点的代码，而次要的功能或者说是辅助的功能被转移到切面中。</p>
+<h2 id="AOP-术语"><a href="#AOP-术语" class="headerlink" title="AOP 术语"></a>AOP 术语</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">别名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Advice</td>
+<td style="text-align:center">通知</td>
+<td>切面的具体行为，要执行的代码</td>
+</tr>
+<tr>
+<td style="text-align:center">PointCut</td>
+<td style="text-align:center">切点</td>
+<td>通知被应用的具体位置</td>
+</tr>
+<tr>
+<td style="text-align:center">Join Point</td>
+<td style="text-align:center">连接点</td>
+<td>程序运行时，能够应用通知的所有点</td>
+</tr>
+<tr>
+<td style="text-align:center">Aspect</td>
+<td style="text-align:center">切面</td>
+<td>什么时候在什么地方做什么事情，是切点和通知的结合</td>
+</tr>
+<tr>
+<td style="text-align:center">Target</td>
+<td style="text-align:center">目标对象</td>
+<td>被切入功能的目标对象</td>
+</tr>
+<tr>
+<td style="text-align:center">Introduction</td>
+<td style="text-align:center">引入</td>
+<td>将新的方法或属性引入到现有的类中</td>
+</tr>
+<tr>
+<td style="text-align:center">Weaving</td>
+<td style="text-align:center">织入</td>
+<td>将切面应用到目标对象并创建新的代理对象的过程</td>
+</tr>
+</tbody>
+</table>
+<p>AOP 底层通过使用动态代理实现，包含两种方式：</p>
+<ol>
+<li>使用 JDK 动态代理实现</li>
+<li>使用 cglib 实现</li>
+</ol>
+<p><strong>通知类型</strong></p>
+<ol>
+<li>前置通知(Befor)：在方法之前执行</li>
+<li>后置通知(After)：在方法之后执行</li>
+<li>异常通知(AfterThrowing)：方法出现异常执行</li>
+<li>最终通知(AfterReturning)：在后置之后执行</li>
+<li>环绕通知(Around)：在方法之前和之后执行</li>
+</ol>
+<h2 id="AspectJ"><a href="#AspectJ" class="headerlink" title="AspectJ"></a>AspectJ</h2><p>AspectJ 实际是对 AOP 编程思想的一个实践，目前用的比较火，它是一种集合和 Java 完全一样的语言，而且完全兼容 Java。</p>
+<p>先写到这里！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/02/20/OKHttp-重定向拦截器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1848,169 +2055,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/05/08/清香木养殖（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/08/清香木养殖（二）/" class="post-title-link" itemprop="url">清香木养殖（二）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-08 11:02:23" itemprop="dateCreated datePublished" datetime="2019-05-08T11:02:23+08:00">2019-05-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-23 22:33:59" itemprop="dateModified" datetime="2019-06-23T22:33:59+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>心心切切,每天都会关注它的变化,可惜心急吃不得热豆腐;经过了几天, 发现它有一些枯叶和干枝,你是在向我宣战吗?????上网查询了一下发现其实是植物在更换了环境之后,需要一段时间的适应,枯叶干枝属于正常现象, 哈哈哈,还好你不是嫌弃我的小屋.</p>
-<p>记得高中那会,每天都在书本的海洋里飘荡,生物学自在其中,嘴边也总是在背诵着植物的”光合作用”,”呼吸作用”,这些知识早已深深铭记在心中,刻印在脑海,挥之不去.</p>
-<p>植物白天进行光合作用,吸收二氧化碳,释放氧气;夜晚呼吸作用吸收氧气,释放二氧化碳.这些知识让我认识了世界,然而并没有让我认识他.起初还是傻乎乎的每天出门上班时,把花放在窗台上,打开窗子,让他沐浴阳光,接受洗礼;可最近在浏览一些网站时,注意到一句话让我困惑不已—-“给予植物充足的光照,可以放在阳台上,但要避免太阳光直射”. 我懵了,我真的懵了, 既然都选择放在窗台上,难道窗台上的阳关就不是太阳直射了嘛????? 我很困惑, 爱琢磨的我在想, 窗台上有玻璃,Uh… 难道是隔着一层玻璃就不算直射了吗,, 哎, 这个问题,到现在我也没有想清楚.在经过不断的查询我发现其实植物进行光合作用并不是之可以有太阳光才可以.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/08/清香木养殖（二）/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2059,7 +2103,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
