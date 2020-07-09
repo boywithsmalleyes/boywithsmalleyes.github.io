@@ -378,6 +378,456 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/07/09/RecyclerView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/09/RecyclerView/" class="post-title-link" itemprop="url">RecyclerView</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-07-09 20:33:30 / Modified: 20:34:20" itemprop="dateCreated datePublished" datetime="2020-07-09T20:33:30+08:00">2020-07-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="RechclerView-总结"><a href="#RechclerView-总结" class="headerlink" title="RechclerView 总结"></a>RechclerView 总结</h1><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/image-20200709164241306.png?raw=true" alt="image-20200709164241306"></p>
+<p>Recycler View： 负责将 Datas 展示在自己身上，其本身是一个 ViewGroup，只认识 View，因此需要一个 Adapter 来将 Datas 的内容转换为 View</p>
+<p>Adapter： 负责翻译，将 Datas 内容，转换为 View，方便 RecyclerView 展示</p>
+<p>ViewHolder： RecyclerView 只会与 ViewHolder 进行交互，因此 ViewHolder 充当中间件，来将 Datas 的内容传递给  RecyclerView</p>
+<p>LayoutManager：负责布局，RecyclerView 将其子 View 的布局管理，交给它来完成</p>
+<p>Recycler：负责管理 View 的生命周期，LayoutManager 只管负责 View 的布局任务，对其回收交给了 Recycler 来处理，避免造成不必要的错误</p>
+<p>ItemAnimator： 负责动画，当 RecyclerView 中的数据发生变化（增、删等）都会通过它来完成平滑的过渡</p>
+<h2 id="RecyclerView-的绘制"><a href="#RecyclerView-的绘制" class="headerlink" title="RecyclerView 的绘制"></a>RecyclerView 的绘制</h2><p>RecyclerView 无疑也是一个 View ，View 的绘制同样逃离不了三大步骤 <code>onMeasure()</code> <code>onLayout()</code> <code>onDraw()</code> </p>
+<h3 id="onMeasure"><a href="#onMeasure" class="headerlink" title="onMeasure"></a>onMeasure</h3><p>LayoutManager 负责 RecyclerView 的绘制，其有一个 <code>mAutoMeasure</code> 属性，用来控制是否开启自动测量，开启情况下，布局交由 <code>RecyclerView</code> 使用一套默认的测量机制；否则，自定义的 LayoutManager 需要重写 <code>onMeasure</code> 来处理自身的测量工作。</p>
+<ul>
+<li><p>自动测量原理：</p>
+<p>当 RecyclerView 的宽高都为 <code>EXACTLY</code> 时， 可以直接设置对应的宽高，然后返回，结束测量</p>
+<p>如果宽高都不时 <code>EXACTLY</code> 则会在 <code>onMeasure</code> 中开始布局的处理。</p>
+<p>RecyclerView.State 这个类封装了当前 RecyclerView 的信息。State 中的一个变量 <code>mLayoutStep</code> 记录了 RecyclerView  当前的布局状态</p>
+<ul>
+<li>STEP_START</li>
+<li>STEP_LAYOUT</li>
+<li>STEP_ANIMATIONS</li>
+</ul>
+<p>对应的， RecyclerView 的布局过程也分为三步，STEP_START 表示开始布局，对应需要调用 <code>dispatchLayoutStep1()</code> 来执行第一步布局，结束后， <code>mLayoutStep</code> 变为 STEP_LAYOUT ，表示接下来需要调用 <code>dispatchLayoutStep2()</code> 进行布局，结束后 <code>mLayoutStep</code> 变为 STEP_ANIMATIONS, 继续执行第三步 <code>dispatchLayoutStep3()</code></p>
+<ul>
+<li>dispatchLayoutStep1:  负责记录状态</li>
+<li>dispatchLayoutStep2：负责布局</li>
+<li>dispatchLayoutStep3：与 step1 比较，根据变化来触发动画</li>
+</ul>
+<h3 id="onLayout"><a href="#onLayout" class="headerlink" title="onLayout"></a>onLayout</h3></li>
+</ul>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    TraceCompat.beginSection(TRACE_ON_LAYOUT_TAG);</span><br><span class="line">    dispatchLayout();</span><br><span class="line">    TraceCompat.endSection();</span><br><span class="line">    mFirstLayoutComplete = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispatchLayout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mState.mIsMeasuring = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(mState.mLayoutStep == State.STEP_START) &#123;</span><br><span class="line">        dispatchLayoutStep1();</span><br><span class="line">        mLayout.setExactMeasureSpecsFrom(<span class="keyword">this</span>);</span><br><span class="line">        dispatchLayoutStep2();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(mAdapterHelper.hasUpdates() </span><br><span class="line">              || mLayout.getWidth() != getWidth() </span><br><span class="line">              || mLayout.getHeight() != getHeight()) &#123;</span><br><span class="line">        <span class="comment">// first 2 steps are done in onMeasure but looks like we have to run again due to changed size</span></span><br><span class="line">        mLayout.setExactMeasureSpecsFrom(<span class="keyword">this</span>);</span><br><span class="line">        dispatchLayoutStep2();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// always make sure we sync them (to ensure mode is exact)</span></span><br><span class="line">        mLayout.setExactMeasureSpecsFrom(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    dispatchLayoutStep3();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  通过 <code>dispatchLayout</code> 可以验证RecyclerView 的 layout三步走原则，如果在 <code>onMeasure</code> 中已经完成了 step1 和 step2 ，则只会执行 step3，否则，会在 <code>onLayout</code> 中依次触发三步走。</p>
+<h4 id="dispatchLayoutStep1"><a href="#dispatchLayoutStep1" class="headerlink" title="dispatchLayoutStep1"></a>dispatchLayoutStep1</h4>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dispatchLayoutStep1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(mState.mRunSimpleAnimations) &#123;</span><br><span class="line">        <span class="keyword">int</span> count = mChildHelper.getChildCount();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> ViewHolder holder = getChildViewHolderInt(mChildHelper.getChildAt(i));</span><br><span class="line">            <span class="keyword">final</span> ItemHolderInfo animationInfo = mItemAnimator.recordPreLayoutInformation(mState, holder, ItemAnimator.buildAdapterChangeFlagsForAnimations(holder), holder.getUnmodifiedPayloads());</span><br><span class="line">            mViewInfoStore.addToPreLayout(holder, animationInfo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    mState.mLayoutStep = State.STEP_LAYOUT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  step 的第一步目的就是记录 View 的状态，先遍历当前所有 View，一次进行处理，mItemAnimator 会根据每个 View 的信息，封装一个 ItemHolderInfo, 这个 ItemHolderInfo 中主要包含的就是 View 的位置状态等。然后将 ItemHodlerInfo 存入 mViewInfoStore 中。在进入第二步后， View 的信息就将被改变</p>
+<h4 id="dispatchLayoutStep2"><a href="#dispatchLayoutStep2" class="headerlink" title="dispatchLayoutStep2"></a>dispatchLayoutStep2</h4>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dispatchLayoutStep2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    mLayout.onLayoutChildren(mRecycler, mState);</span><br><span class="line">    </span><br><span class="line">    mState.mLayoutStep = State.STATE_ANIMATIONS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  layout 的第二步就是真正的布局 View。RecyclerView 的真正布局是由 LayoutManger 来负责的，其主要工作也在 LayoutManager 中。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">onLayoutChildren</span><span class="params">(RecyclerView.Recycler recycler, RecyclerView.State state)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(!mAnchorInfo.mValid </span><br><span class="line">      || mPendingScrollPosition != NO_POSITION </span><br><span class="line">      || mPendingSavedState != <span class="keyword">null</span>) &#123;</span><br><span class="line">        updateAnchorInfoForLayout(recycler, state, mAnchorInfo);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(mAnchorInfo.mLayoutFromEnd) &#123;</span><br><span class="line">        firstLayoutDirection = mShouldReverseLayout </span><br><span class="line">            ? LayoutState.ITEM_DIRECTIONTAIL</span><br><span class="line">            : LayoutState.ITEM_DIRECTION_HEAD;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        firstLayoutDirection = mShouldReverseLayout </span><br><span class="line">            ? LayoutState.ITEM_DIRECTION_HEAD</span><br><span class="line">            : LayoutState.ITEM_DIRECTION_TAIL;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    onAnchorReady(recycler, state, mAnchorInfo, firstLayoutDirection);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(mAnchorInfo.mLayoutFromEnd) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// fill towards end</span></span><br><span class="line">        updateLayouStateToFillEnd(mAnchorInfo);</span><br><span class="line">        fill(recycler, mLayoutState, state, <span class="keyword">false</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// fill towards start</span></span><br><span class="line">        updateLayoutStateToFillStart(mAnchorInfo);</span><br><span class="line">        fill(recycler, mLayoutState, state, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  流程很负责，大致流程如下</p>
+<ul>
+<li>找到 anchor点</li>
+<li>根据 anchor 一直向前布局，直到填充满 anchor 点前面的所有区域</li>
+<li><p>根据 anchor 一直向后布局，直到填充满 anchor 点后面的所有区域</p>
+<p>anchor 点的寻找是由 <code>updateAnchorInfoForLayout</code> 函数负责。向下追踪会看到 <code>updateAnchorFromChildren</code>  方法，其内容为，先寻找被 focus 的 child， 找到以此 child 作为 anchor ，否则根据布局方向寻找最合适的 child 来作为 anchor，如果找到则将 child 的信息复制给 anchorInfo 。 <code>anchorInfo</code> 主要记录的信息就是 View 的物理位置与 Adapter 中的位置。找到后返回 true，否则返回 false，交给上一步函数做处理。</p>
+<p>继续当找到 anchor 后，会根据 anchor 来布局，通过 fill 方法来完成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fill</span><span class="params">(RecyclerView.Recycler recycler, LayoutState layoutState, RecyclerView.state state, <span class="keyword">boolean</span> stopOnFocusable)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> start = layoutState.mAvailable;</span><br><span class="line">    <span class="keyword">if</span>(layoutState.mScrollingOffset != LayoutState.SCROLLING_OFFSET_NaN) &#123;</span><br><span class="line">        recycleByLayoutState(recycler, layoutState);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> remainingSpace = layoutState.mAvailable + layoutState.mExtra;</span><br><span class="line">    LayoutChunkResult layoutChunkResult = mLayoutChunkResult;</span><br><span class="line">    <span class="keyword">while</span>((layoutState.mInfinite || remainingSpace &gt; <span class="number">0</span>)</span><br><span class="line">         &amp;&amp; layoutState.hasMore(state)) &#123;</span><br><span class="line">        layoutChunk(recycler, state, layoutState, layoutChunkResult);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> start-layoutState.mAvailable;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>recycleByLayoutState</strong> 这个函数，会根据当前信息对不需要的 View 进行回收:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">recycleByLayoutState</span><span class="params">(RecyclerView.Recycler recycler, LayoutState layoutState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(layoutState.mLayoutDirection == LayoutState.LAYOUT_START) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        recycleViewsFromStart(recycler, layoutState.mScrollingOffset);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继续看 <code>recycleViewsFromStart</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">recycleViewsFromStart</span><span class="params">(RecyclerView.Recycler recycler, <span class="keyword">int</span> dt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> limit = dt;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> childCount = getChildCount();</span><br><span class="line">    <span class="keyword">if</span>(mShouldReverseLayout) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++)&#123;</span><br><span class="line">            View child = getChildAt(i);</span><br><span class="line">            <span class="keyword">if</span>(mOrientationHelper.getDecoratedEnd(child) &gt; limit</span><br><span class="line">              || mOrientationHelper.getTransformedEndWithDecoration(child) &gt; limit) &#123;</span><br><span class="line">        recycleChildren(recycler, <span class="number">0</span>, i);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数的作用时遍历所有的子 View ,找出逃离边界的 View 进行回收，回收函数在 <code>recycleChildren</code> 里，而这函数又调用了 <code>removeAndRecycleViewAt</code> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAndRecycleViewAt</span><span class="params">(<span class="keyword">int</span> index, Recycler recycler)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> View view = getChildAt(index);</span><br><span class="line">    removeViewAt(index);</span><br><span class="line">    recycler.recycleView(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数先调用 <code>removeViewAt</code> ，将 View 从 RecyclerView 中移除，紧接着是 recycler 执行了 View 的回收逻辑。在 fill 函数的一开始会去回收逃离出屏幕的 view。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>((layoutState.mInfinite || remainningSpace &gt; <span class="number">0</span>) </span><br><span class="line">     &amp;&amp; layoutState.hasMore(state)) &#123;</span><br><span class="line">    layoutChunk(recycler, state, layoutState, layoutChunkResult);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只要又剩余空间，就会执行 layoutChunk 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">layoutChunk</span><span class="params">(RecyclerView.Recycler recycler, RecyclerView.State stat, LayoutState layoutState, LayoutCHunkResult result)</span></span>&#123;</span><br><span class="line">    View view = layoutState.next(recycler);</span><br><span class="line">    </span><br><span class="line">    LayoutParams params = (LayoutParams) view.getLayoutParams();</span><br><span class="line">    <span class="keyword">if</span>(layoutState.mScrapList == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(mShouldReverseLayout == (layoutState.mLayoutDirection == LayoutState.LAYOUT_START)) &#123;</span><br><span class="line">            addView(view);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            addView(view, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    layoutDecoratedWithMargins(view, left, top, right, bottom);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 layoutState 的 next 方法返回了一个 view， 凭空变出一个 View， 很神奇</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">View <span class="title">next</span><span class="params">(RecyclerView.Recycler recycler )</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> View view = recycler.getViewForPosition(mCurrentPosition);</span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见 view 的获取逻辑也是由 recycler 来负责， 所以我们只需要清楚 recycler 可以根据位置返回一个 View 即可。</p>
+<p>我们在看 layoutChunk 对刚刚生成的 View 的处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(mShouldReverseLayout == (layoutState.mLayoutDirectoin == LayoutState.LAYOUT_STATE)) &#123;</span><br><span class="line">    addView(view);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    addView(view, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>明显的调用了 addView 方法，虽然这个方法是 LayoutManager 的，但是这个方法最终会多次辗转调用到 Recycler View 的 addView 方法，将 view 添加到 RecyclerView 中。</p>
+<p>dispatchLayoutStep2 整个布局过程，完成了对 子 View 的测量与布局</p>
+<h4 id="dispatchLayoutStep3"><a href="#dispatchLayoutStep3" class="headerlink" title="dispatchLayoutStep3"></a>dispatchLayoutStep3</h4><p>最后一步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dispatchLayoutStep3</span><span class="params">()</span></span>&#123;</span><br><span class="line">    mState.mLayoutStep = State.STEP_START;</span><br><span class="line">    <span class="keyword">if</span>(mState.mRunSimpleAnimations) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = mChildHelper.getChildCount() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">final</span> ItemHolderInfo animationInfo = mItemAnimator.recordPostLayoutInformation(mState, holder);</span><br><span class="line">            mViewInfoStore.addToPostLayout(holder, animationInfo);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        mViewInfoStore.process(mViewInfoProcessCallback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里是与第一步呼应的，此时子 View 都已布局完成，所以子 View 的信息都发生了变化。第一步出现的 mViewInfoStore 和 mItemAnimator 再次登场，这次 mItemAnimator 调用的是 recordPostLayoutInformation 方法，而 mViewInfoStore 调用的是 addToPostLayout 方法，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addToPostLayout</span><span class="params">(ViewHolder holder, ItemHolderInfo info)</span> </span>&#123;</span><br><span class="line">    InfoRecord record = mLayoutHolderMap.get(holder);</span><br><span class="line">    <span class="keyword">if</span>(record == <span class="keyword">null</span> ) &#123;</span><br><span class="line">        record = InfoRecord.obtain();</span><br><span class="line">        mLayoutHolderMap.put(holder, record);</span><br><span class="line">    &#125;</span><br><span class="line">    record.postInfo = info;record.flags |= FLAT_POST;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后 mViewInfoStore 调用了 process 方法，根据 mViewInfoStore 中的 View 信息，来执行动画逻辑。</p>
+</li>
+</ul>
+<h3 id="缓存逻辑"><a href="#缓存逻辑" class="headerlink" title="缓存逻辑"></a>缓存逻辑</h3><p>  RecyclerView 的缓存时分为多级的，但其实真个逻辑很好理解，</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">View <span class="title">getViewForPosition</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">boolean</span> dryRun)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> fromScrap = <span class="keyword">false</span>;</span><br><span class="line">    ViewHolder holder = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(mState.isPreLayout()) &#123;</span><br><span class="line">        holder = getChangedScrapViewForPosition(position);</span><br><span class="line">		fromScrap = holder != <span class="keyword">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(hoder == <span class="keyword">null</span>) &#123;</span><br><span class="line">        hodler = getScrapViewForPosition(position, INVALID_TYPE, dryRun);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(holder == <span class="keyword">null</span> )&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> offsetPosition = mAdapterHelper.findPositionOffset(position);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> type = mAdapter.getItemViewType(offsetPosition);</span><br><span class="line">        <span class="keyword">if</span>(mAdapter.hasStableIds())&#123;</span><br><span class="line">            holder = getScrapViewForId(mAdapter.getItemId(offsetPosition), type, dryRun);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(holder == <span class="keyword">null</span> &amp;&amp; mViewCacheExtension != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">final</span> View view = mViewCacheExtension.getViewForPositionAndType(<span class="keyword">this</span>, position, type);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(holder == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// fallback to recycler</span></span><br><span class="line">            holder = getRecyclerViewPool().getRecyclerView(type);</span><br><span class="line">            <span class="keyword">if</span>(holder != <span class="keyword">null</span>)&#123;</span><br><span class="line">                holder.resetInternal();</span><br><span class="line">                <span class="keyword">if</span>(FORCE_INVALIDATE_DISPLAY_LIST)&#123;</span><br><span class="line">                    invalidateDisplayListInt(holder);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(holder == <span class="keyword">null</span> )&#123;</span><br><span class="line">            holder = mAdapter.createViewHolder(RecyclerView.<span class="keyword">this</span>, type);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 生成 LayoutParams 的代码</span></span><br><span class="line">    <span class="keyword">return</span> holder.itemView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取 View 的逻辑可以整理为</p>
+<ul>
+<li>搜索 mChangedScrap， 如果找到则返回相应的 holder</li>
+<li>搜索 mAttachedScrap与 mCachedViews， 如果找到且 holder 有效则返回相应的 holder</li>
+<li>如果设置了 mViewCacheExtension, 对其调用 getViewForPositionAndType 方法进行获取，若返回结果则生成对应的 holder</li>
+<li>搜索 mRecyclerPool, 如果找到则返回 Holder</li>
+<li>如果上述过程都没有找到对饮的 holder, 则执行 Adapter.createViewHolder(); 创建新的 ViewHolder 实例</li>
+</ul>
+<p>对于 View 的回收</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">recycleViewHolderInternal</span><span class="params">(ViewHolder holder )</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(holder.isRecyclable()) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!holder.hasAnyOfTheFlags(VieHolder.FLAG_INVALID | ViewHolder.FLAG_REMOVED) | ViewHolder.FLAG_UPDATE) &#123;</span><br><span class="line">            <span class="keyword">int</span> cachedViewSize = mCachedViews.size();</span><br><span class="line">            <span class="keyword">if</span>(cachedViewSize &gt;= mViewCacheMax &amp;&amp; cachedViewSize &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                recycleCachedViewAt(<span class="number">0</span>);</span><br><span class="line">                cachedViewSize--;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(cachedViewSize &lt; mViewCacheMax) &#123;</span><br><span class="line">                mCachedViews.add(holder);</span><br><span class="line">                cached = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(!cached) &#123;</span><br><span class="line">            addViewHolderToRecycledViewPool(holder);</span><br><span class="line">            recycled = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>回收没有创建复杂，只涉及到两次缓存， mCachedViews 和 mRecyclerPool , mCachedViews 相当于一个先进先出的数据结构，当有信的 View 需要缓存时，都会将新的 View 存入到 mCachedViews， 而 mCachedView  则会移除头部元素，并将头部元素存储在 mRecyclerPool 中， 即 mCachedViews 相当于一级缓存， mRecyclerPool 相当于二级缓存，。并且 mRecyclerPool  时可以多个 RecyclerView 共享的。</p>
+<h2 id="与-AdapterView-比较"><a href="#与-AdapterView-比较" class="headerlink" title="与 AdapterView 比较"></a>与 AdapterView 比较</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">index</th>
+<th style="text-align:center">AdapterView</th>
+<th style="text-align:center">RecyclerView</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Simple click listener</td>
+<td style="text-align:center">OnItemTouchListener</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Simple Divider</td>
+<td style="text-align:center">ItemDecoration</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">ListView and GridView</td>
+<td style="text-align:center">LinearLayoutManager<br>GridLayoutManager..</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">RecyclerBin</td>
+<td style="text-align:center">Recycler</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">Header and Footer</td>
+<td style="text-align:center">Partial refresh</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>点击事件</p>
+<p>ListView 原生提供了Item 点击、长安的事件，而 RecyclerView  则需要使用 onTouchListener 相对比较复杂</p>
+</li>
+<li><p>分割线</p>
+<p>ListView  可以很轻松设施 Divider 属性来显示 item 之间的分割线，</p>
+<p>RecyclerView 需要自己实现 ItemDecoration ，两者比较，前者使用更简单，后者定制性更强</p>
+</li>
+<li><p>布局类型</p>
+<p>AdapterView 提供了 ListView 和 GridView 两种， RecyclerView 提供了 LinearLayoutManger 和 GirdLayoutManager。相比较 RecyclerView 更换布局方式更轻松，AdapterView 则需要更换一个 View。</p>
+</li>
+<li><p>缓存方式</p>
+<p>ListView 使用了 RecyclerBin 类负责视图的缓存，RecyclerView 使用 Recycler 进行缓存，原理基本一致</p>
+</li>
+</ul>
+<p><strong>不同点</strong></p>
+<ul>
+<li><p>局部刷新</p>
+<p>ListView 中想局部刷新某个 item 需要自己来编写刷新逻辑， 而 RecyclerView 中可以通过 <code>notifyItemChanged(position)</code> 来完成，甚至可以通过 <code>notifyItemChanged(position, payload)</code> 传入一个 payload 信息来刷新单个 item 中的特定内容。</p>
+</li>
+<li><p>动画</p>
+<p>RecyclerView 内部通过 ItemAnimation 类完成了动画操作，而 ListView 做动画比较困难</p>
+</li>
+<li><p>嵌套布局</p>
+<p>RecyclerView 实现了 <code>NestedScrollingChild</code> 接口，可以和一切嵌套组件很好的工作</p>
+</li>
+</ul>
+<p><strong>ListView 原生特点</strong></p>
+<ul>
+<li><p>头部与尾部支持</p>
+<p>ListView 原生支持头部和尾部的添加，虽然 RecyclerView 可以通过定义不同的 Type 来坐支持，但实际应用中，封装不好会造成问题。因为 Adapter 中的数据位置与物理数据位置发生了偏移、</p>
+</li>
+<li><p>多选</p>
+<p>支持多选和单选的 ListView 更方便</p>
+</li>
+<li><p>多数据源支持</p>
+<p>ListView 提供了 Cursor Adapter， ArrayAdapter 可以很方便从数据库或者数组中获取数据。</p>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<p>RecyclerView 的最大特点就是灵活，正是因为灵活，也牺牲了很多便利性，而 AdapterView 比较刻板，原生方法给与开发很多便利。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/03/11/Android-Q-文件权限适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/03/11/Android-Q-文件权限适配/" class="post-title-link" itemprop="url">Android Q 文件权限适配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-03-11 20:11:41 / Modified: 20:37:13" itemprop="dateCreated datePublished" datetime="2020-03-11T20:11:41+08:00">2020-03-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着 Android Q 的发布，随之而来的适配工作也在暗潮涌动，这里说一下 Android Q 文件存储；<br>Android Q 在外部存储设备中为每个应用提供了一个“沙盒”，任何其他应用都无法直接访问您的沙盒文件。由于文件是您应用的私有文件，因此您不在需要任何权限即可在外部存储设备中访问和保存自己的设备。这次更新有效的保证了用户文件的隐私性，也赚少了对应应用所需要的权限数量。</p>
+<p>“沙盒”就是应用的专属文件，并且访问这个文件夹无需任何权限。Google 推荐应用的沙盒内存储文件地址为<br><code>Context.getExternalFilesDir()</code> 下的文件夹。需要传入以下参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Environment.DIRECTORY_MUSIC</span><br><span class="line">Environment.DIRECTORY_PODCASTS</span><br><span class="line">Environment.DIRECTORY_RINGTONES</span><br><span class="line">Environment.DIRECTORY_ALARMS</span><br><span class="line">Environment.DIRECTORY_NOTIFICATIONS</span><br><span class="line">Environment.DIRECTORY_PICUTRES</span><br><span class="line">Environment.DIRECTORY_MOVIES</span><br></pre></td></tr></table></figure>
+<p>可根据具体需要，传入不通的参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取一个文件通过文件夹类型</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fileName</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> boxType</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> defaultPath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> FileNotFoundException</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">default</span> File <span class="title">getFile</span><span class="params">(String fileName, String boxType, String defaultPath)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">    File file;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.Q) &#123;</span><br><span class="line">        file = getCurrentContext().getExternalFilesDir(boxType + File.separator + fileName);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        file = <span class="keyword">new</span> File(defaultPath + fileName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (file == <span class="keyword">null</span> || !file.exists()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> file;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>以上代码未经测试，忘见谅</strong></p>
+<p>接下来说一下如何使用系统公共文件，比如相册，相机，下载目录等，这里以访问相册为例：</p>
+<p>访问沙盒外(其他应用)的文件系统时，依然需要申请文件权限，<code>Manifest.permission.READ_EXTERNAL_STORAGE</code> 和 <code>Manifest.permission.WRITE_EXTERNAL_STORAGE</code> </p>
+<p>我们来看一下获取相册资源的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Uri contentUri = MediaStore.Files.getContentUri(<span class="string">"external"</span>);</span><br><span class="line">            <span class="keyword">final</span> String sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED + <span class="string">" DESC"</span>;</span><br><span class="line">            <span class="keyword">final</span> String selection =</span><br><span class="line">                    <span class="string">"("</span> + MediaStore.Files.FileColumns.MEDIA_TYPE + <span class="string">"=?"</span></span><br><span class="line">                            + <span class="string">" OR "</span></span><br><span class="line">                            + MediaStore.Files.FileColumns.MEDIA_TYPE + <span class="string">"=?)"</span></span><br><span class="line">                            + <span class="string">" AND "</span></span><br><span class="line">                            + MediaStore.MediaColumns.SIZE + <span class="string">"&gt;0"</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">final</span> String[] selectionAllArgs = &#123;String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)&#125;;</span><br><span class="line"></span><br><span class="line">            ContentResolver contentResolver = mContext.getContentResolver();</span><br><span class="line">            String[] projections;</span><br><span class="line">            projections = <span class="keyword">new</span> String[]&#123;MediaStore.Files.FileColumns._ID, MediaStore.MediaColumns.DATA,</span><br><span class="line">                    MediaStore.MediaColumns.DISPLAY_NAME, MediaStore.MediaColumns.DATE_MODIFIED,</span><br><span class="line">                    MediaStore.MediaColumns.MIME_TYPE, MediaStore.MediaColumns.WIDTH, MediaStore</span><br><span class="line">                    .MediaColumns.HEIGHT, MediaStore.MediaColumns.SIZE&#125;;</span><br><span class="line"></span><br><span class="line">            Cursor cursor = contentResolver.query(contentUri, projections, selection, selectionAllArgs, sortOrder);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (cursor != <span class="keyword">null</span> &amp;&amp; cursor.moveToFirst()) &#123;</span><br><span class="line">                        <span class="keyword">int</span> pathIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DATA);</span><br><span class="line">                        <span class="keyword">int</span> mimeTypeIndex = cursor.getColumnIndex(MediaStore.MediaColumns.MIME_TYPE);</span><br><span class="line">                        <span class="keyword">int</span> sizeIndex = cursor.getColumnIndex(MediaStore.MediaColumns.SIZE);</span><br><span class="line">                        <span class="keyword">int</span> widthIndex = cursor.getColumnIndex(MediaStore.MediaColumns.WIDTH);</span><br><span class="line">                        <span class="keyword">int</span> heightIndex = cursor.getColumnIndex(MediaStore.MediaColumns.HEIGHT);</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">do</span> &#123;</span><br><span class="line">                            <span class="keyword">long</span> size = cursor.getLong(sizeIndex);</span><br><span class="line">                            <span class="keyword">if</span> (size &lt; <span class="number">1</span>) &#123;</span><br><span class="line">                                <span class="keyword">continue</span>;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            String type = cursor.getString(mimeTypeIndex);</span><br><span class="line">                            String path = cursor.getString(pathIndex);</span><br><span class="line">                            <span class="keyword">if</span> (TextUtils.isEmpty(path) || TextUtils.isEmpty(type)) &#123;</span><br><span class="line">                                <span class="keyword">continue</span>;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">int</span> width = cursor.getInt(widthIndex);</span><br><span class="line">                            <span class="keyword">int</span> height = cursor.getInt(heightIndex);</span><br><span class="line">                            <span class="keyword">if</span> (width &lt; <span class="number">1</span> || height &lt; <span class="number">1</span>) &#123;</span><br><span class="line">                                <span class="keyword">continue</span>;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            File file = <span class="keyword">new</span> File(path);</span><br><span class="line">                            <span class="keyword">if</span> (!file.exists() || !file.isFile()) &#123;</span><br><span class="line">                                <span class="keyword">continue</span>;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            File parentFile = file.getParentFile();</span><br><span class="line">                            <span class="keyword">if</span> (parentFile != <span class="keyword">null</span>) &#123;</span><br><span class="line">                                images.add(path);</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                        &#125; <span class="keyword">while</span> (cursor.moveToNext());</span><br><span class="line"></span><br><span class="line">                        cursor.close();</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过上述代码，我们就可以用图片加载工具将图片显示出来，但需要注意的是，我们需要在<code>AndroidManifest.xml</code> 中的 <code>&lt;application&gt;</code> 标签中加入 <code>android:requestLegacyExternalStorage=&quot;true&quot;</code> </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/03/06/ASpectJ-初识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1729,332 +2179,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/01/Handler 线程通信基础流程/" class="post-title-link" itemprop="url">Handler 线程通信基础流程</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-08-01 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-01T21:54:08+08:00">2019-08-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-15 20:31:50" itemprop="dateModified" datetime="2019-08-15T20:31:50+08:00">2019-08-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
-<h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Looper 在构造函数里做了两件事儿：</p>
-<ol>
-<li>将线程对象指向了创建的 Looper 的线程</li>
-<li>创建了一个新的  MessageQueue</li>
-</ol>
-<p>分析完构造函数后，看下面两个方法</p>
-<ol>
-<li>looper.loop()</li>
-<li>looper.prepare()</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/01/Handler 线程通信基础流程/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/06/23/清香木养殖（三）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/23/清香木养殖（三）/" class="post-title-link" itemprop="url">清香木养殖（三）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-06-23 19:49:19 / Modified: 22:34:03" itemprop="dateCreated datePublished" datetime="2019-06-23T19:49:19+08:00">2019-06-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>距离上一次更新已经过去一个半月了，请不要担心，他还在！<br>作为绿植小白，真真切切的体验养殖的快乐、与惊心动魄的时候，是不会想起来要记录博客的。</p>
-<p>这次写这篇文章的目的，依然还是要记录一下它的成长，遭遇，以及一些养殖过程中的经验。好啦，天也不早了，咱也得弄点干货了。</p>
-<p>绿植小白，在上手清香木后，查询到的一些养殖的理论知识，在这一个半月的时间里得到了很严峻的挑战。继上次为它替换了新家之后，它就不在是从前的那个可爱的孩子了，淘气的狠；现在造的（东北话，本人东北滴，意思是将自己的身体，外表，或其他弄得破败不堪）还能可看出点模样来。</p>
-<p>这段时间，它经历的掉叶、枯黄、旱涝。哈哈，你们有没有感觉到他很可怜。但不论怎样，他现在正在茁壮的成长中，已经逃离了法海。</p>
-<p>现在的它，虽然已经没有了挡住的枝繁叶茂，但也没有像我这没程序员一样，寸草不生。那我们就接下来就还是说说它的养殖注意事项吧：</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/23/清香木养殖（三）/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2103,7 +2227,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

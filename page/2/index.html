@@ -378,6 +378,332 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/01/Handler 线程通信基础流程/" class="post-title-link" itemprop="url">Handler 线程通信基础流程</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-01 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-01T21:54:08+08:00">2019-08-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-15 20:31:50" itemprop="dateModified" datetime="2019-08-15T20:31:50+08:00">2019-08-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
+<h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Looper 在构造函数里做了两件事儿：</p>
+<ol>
+<li>将线程对象指向了创建的 Looper 的线程</li>
+<li>创建了一个新的  MessageQueue</li>
+</ol>
+<p>分析完构造函数后，看下面两个方法</p>
+<ol>
+<li>looper.loop()</li>
+<li>looper.prepare()</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/01/Handler 线程通信基础流程/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/06/23/清香木养殖（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/23/清香木养殖（三）/" class="post-title-link" itemprop="url">清香木养殖（三）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-23 19:49:19 / Modified: 22:34:03" itemprop="dateCreated datePublished" datetime="2019-06-23T19:49:19+08:00">2019-06-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>距离上一次更新已经过去一个半月了，请不要担心，他还在！<br>作为绿植小白，真真切切的体验养殖的快乐、与惊心动魄的时候，是不会想起来要记录博客的。</p>
+<p>这次写这篇文章的目的，依然还是要记录一下它的成长，遭遇，以及一些养殖过程中的经验。好啦，天也不早了，咱也得弄点干货了。</p>
+<p>绿植小白，在上手清香木后，查询到的一些养殖的理论知识，在这一个半月的时间里得到了很严峻的挑战。继上次为它替换了新家之后，它就不在是从前的那个可爱的孩子了，淘气的狠；现在造的（东北话，本人东北滴，意思是将自己的身体，外表，或其他弄得破败不堪）还能可看出点模样来。</p>
+<p>这段时间，它经历的掉叶、枯黄、旱涝。哈哈，你们有没有感觉到他很可怜。但不论怎样，他现在正在茁壮的成长中，已经逃离了法海。</p>
+<p>现在的它，虽然已经没有了挡住的枝繁叶茂，但也没有像我这没程序员一样，寸草不生。那我们就接下来就还是说说它的养殖注意事项吧：</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/06/23/清香木养殖（三）/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/05/08/清香木养殖（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1662,333 +1988,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Android-在一个应用中启动另外一个应用/" class="post-title-link" itemprop="url">Android 在一个应用中启动另外一个应用</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:45:20" itemprop="dateCreated datePublished" datetime="2019-04-16T17:45:20+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:56:42" itemprop="dateModified" datetime="2019-04-17T21:56:42+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Android-在一个应用中启动另外一个应用"><a href="#Android-在一个应用中启动另外一个应用" class="headerlink" title="Android 在一个应用中启动另外一个应用"></a>Android 在一个应用中启动另外一个应用</h1><p>Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动.</p>
-<p>综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习中总结的如何通过一个 APP 去启动另外一个 APP 的方式.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/Android-在一个应用中启动另外一个应用/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-Studio-Dependencies-Library-Resolve/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Android-Studio-Dependencies-Library-Resolve/" class="post-title-link" itemprop="url">Android Studio Dependencies Library Resolve</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:44:39" itemprop="dateCreated datePublished" datetime="2019-04-16T17:44:39+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:55:09" itemprop="dateModified" datetime="2019-04-17T21:55:09+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在使用 Android Studio 开发时,使用 Gradle 脚本构建项目, 同 Maven 一样,所引用的包之间也存在着相互依赖的关系, 当你使用某个包之后,发现有包版本冲突, 那么解决方案就来了.</p>
-<p>先说点不正经的:</p>
-<ol>
-<li>你可以把你自己引入的包去掉,使用依赖包</li>
-<li>放弃治疗</li>
-</ol>
-<p>哈哈,言归正传:</p>
-<p>当我们引入的包之间存在冲突(不是同一个)的关系时, 也就是说,我们需要保留一个项目依赖包使用,那么我们需要在 <code>build.gradle</code> 中将我们不需要的包删除掉.</p>
-<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子:"></a>举个栗子:</h2><p>当我使用 <code>com.squareup.retrofit2:adapter-rxjava:2.1.0</code> 时, 它默认依赖使用 <code>RxJava 1.5.0</code> 版本. 当我使用 <code>io.reactivex.rxjava2:rxjava:2.0.6</code> 时, 就会引起包冲突.</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h2><p>build.gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile fileTree(include: [&apos;*.jar&apos;], dir: &apos;libs&apos;)</span><br><span class="line"></span><br><span class="line">    compile (&apos;com.squareup.retrofit2:adapter-rxjava:2.1.0&apos;)&#123;</span><br><span class="line">        exclude group: &apos;io.reactivex&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    compile &apos;io.reactivex.rxjava2:rxjava:2.0.6&apos;</span><br><span class="line">    compile &apos;io.reactivex.rxjava2:rxandroid:2.0.1&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2037,7 +2036,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
