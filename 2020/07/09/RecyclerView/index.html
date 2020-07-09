@@ -148,7 +148,7 @@
 <meta property="og:description" content="RechclerView 总结 Recycler View： 负责将 Datas 展示在自己身上，其本身是一个 ViewGroup，只认识 View，因此需要一个 Adapter 来将 Datas 的内容转换为 View Adapter： 负责翻译，将 Datas 内容，转换为 View，方便 RecyclerView 展示 ViewHolder： RecyclerView 只会与 ViewHol">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/image-20200709164241306.png?raw=true">
-<meta property="og:updated_time" content="2020-07-09T12:34:20.217Z">
+<meta property="og:updated_time" content="2020-07-09T12:36:43.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RecyclerView">
 <meta name="twitter:description" content="RechclerView 总结 Recycler View： 负责将 Datas 展示在自己身上，其本身是一个 ViewGroup，只认识 View，因此需要一个 Adapter 来将 Datas 的内容转换为 View Adapter： 负责翻译，将 Datas 内容，转换为 View，方便 RecyclerView 展示 ViewHolder： RecyclerView 只会与 ViewHol">
@@ -426,7 +426,7 @@
                 
               
 
-              <time title="Created: 2020-07-09 20:33:30 / Modified: 20:34:20" itemprop="dateCreated datePublished" datetime="2020-07-09T20:33:30+08:00">2020-07-09</time>
+              <time title="Created: 2020-07-09 20:33:30 / Modified: 20:36:43" itemprop="dateCreated datePublished" datetime="2020-07-09T20:33:30+08:00">2020-07-09</time>
             
 
             
@@ -472,6 +472,7 @@
 <p>LayoutManager：负责布局，RecyclerView 将其子 View 的布局管理，交给它来完成</p>
 <p>Recycler：负责管理 View 的生命周期，LayoutManager 只管负责 View 的布局任务，对其回收交给了 Recycler 来处理，避免造成不必要的错误</p>
 <p>ItemAnimator： 负责动画，当 RecyclerView 中的数据发生变化（增、删等）都会通过它来完成平滑的过渡</p>
+<a id="more"></a>
 <h2 id="RecyclerView-的绘制"><a href="#RecyclerView-的绘制" class="headerlink" title="RecyclerView 的绘制"></a>RecyclerView 的绘制</h2><p>RecyclerView 无疑也是一个 View ，View 的绘制同样逃离不了三大步骤 <code>onMeasure()</code> <code>onLayout()</code> <code>onDraw()</code> </p>
 <h3 id="onMeasure"><a href="#onMeasure" class="headerlink" title="onMeasure"></a>onMeasure</h3><p>LayoutManager 负责 RecyclerView 的绘制，其有一个 <code>mAutoMeasure</code> 属性，用来控制是否开启自动测量，开启情况下，布局交由 <code>RecyclerView</code> 使用一套默认的测量机制；否则，自定义的 LayoutManager 需要重写 <code>onMeasure</code> 来处理自身的测量工作。</p>
 <ul>
