@@ -378,6 +378,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/09/17/Lifecycle-源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/09/17/Lifecycle-源码分析/" class="post-title-link" itemprop="url">Lifecycle 源码分析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-09-17 00:00:39 / Modified: 00:15:50" itemprop="dateCreated datePublished" datetime="2020-09-17T00:00:39+08:00">2020-09-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="开始是废话（翻译自源码）"><a href="#开始是废话（翻译自源码）" class="headerlink" title="开始是废话（翻译自源码）"></a>开始是废话（翻译自源码）</h2><p>定义了一个 Android 生命周期的对象。 <code>Fragment</code>和<code>FragmentActivity</code>类实现<code>LifecycleOwner</code>接口， 并可以通过 <code>getLifecycle()</code> 方法来访问生命周期。 我们也可以实现<code>LifecycleOwner</code>在自己的类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在此类事件后分发 LifecycleOwner 的相关方法的返回时。 </span></span><br><span class="line">Lifecycle.Event.ON_CREATE ， Lifecycle.Event.ON_START ， Lifecycle.Event.ON_RESUME</span><br><span class="line"><span class="comment">// 在此类事件在之前分派LifecycleOwner被称为的相关方法。 例如， Lifecycle.Event.ON_START后会被分派onStart回报， Lifecycle.Event.ON_STOP之前将派出onStop被调用。 这给你一定的保证在其国家的主人在不在。</span></span><br><span class="line">Lifecycle.Event.ON_PAUSE ， Lifecycle.Event.ON_STOP ， Lifecycle.Event.ON_DESTROY</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/09/17/Lifecycle-源码分析/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/07/09/RecyclerView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1869,173 +2019,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/04/Android 内存管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/04/Android 内存管理/" class="post-title-link" itemprop="url">Android 内存管理</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-08-04 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-04T21:54:08+08:00">2019-08-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-12 16:11:48" itemprop="dateModified" datetime="2019-08-12T16:11:48+08:00">2019-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>内存管理的目的就是我们在开发中怎么有效的避免我们的应用程序出现内存泄露问题。内存泄露简短粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不被使用，导致 GC 不能回收。</p>
-<h2 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h2><p>Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配和堆式分配。对应的三种存储策略使用的内存空间主要分别是静态存储区（方法区）、栈区和堆区。</p>
-<ul>
-<li>静态存储区（方法区）：主要存放静态数据，全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。</li>
-<li>栈区：当方法被执行时，方法体内的局部变量（其中包括基础数据类型、对象引用）都在栈上创建，并在方法执行结束时这些局部变量所持有的内存将会自动被释放。因此栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。</li>
-<li>堆区：又称动态内存分配，通常就是在程序运行时直接 new 出来的内存，也就是对象的实例。这部分内存在不使用时，将会由 Java 垃圾回收器负责回收。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/04/Android 内存管理/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2084,7 +2067,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2117,7 +2100,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
