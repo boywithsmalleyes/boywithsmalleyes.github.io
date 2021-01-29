@@ -148,7 +148,7 @@
 <meta property="og:site_name" content="茶白">
 <meta property="og:description" content="翻译自官网文档 Room 是一个关系映射对象库，可以使我们很方便的访问 App 数据库  Database: 注解用来标记问数据库，该类须继承 RoomDatabase,运行时，可以通过 Room.databaseBuilder 或者获取他的实例 Room.inMemoryDatabasebuilder Entity: 将 Model 或 pojo 类，标记为数据库行，每个 Entity 都会创建">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.312Z">
+<meta property="og:updated_time" content="2021-01-29T16:04:45.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Room">
 <meta name="twitter:description" content="翻译自官网文档 Room 是一个关系映射对象库，可以使我们很方便的访问 App 数据库  Database: 注解用来标记问数据库，该类须继承 RoomDatabase,运行时，可以通过 Room.databaseBuilder 或者获取他的实例 Room.inMemoryDatabasebuilder Entity: 将 Model 或 pojo 类，标记为数据库行，每个 Entity 都会创建">
@@ -429,6 +429,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:04:45" itemprop="dateModified" datetime="2021-01-30T00:04:45+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -467,6 +483,7 @@
 <li><strong>Entity:</strong> 将 Model 或 pojo 类，标记为数据库行，每个 Entity 都会创建一个数据库表来保存项目。实体类必须在 Database#entities  数组中引用。除非另有说明，否则 Entity 的每个字段（及其父类）都将 Entity 保留在数据库中</li>
 <li><strong>Dao:</strong> 将类或接口标记为数据访问对象。数据访问对象负责定义访问数据库的方法。带有注释的类 Database 必须具有一个带有 0 个参数的抽象方法，并返回带有 Dao 注释的类。</li>
 </ul>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File: User.java</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> uid;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"last_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="comment">// Room 请求 set 和 get 方法去访问数据</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// File: UserDao.java</span></span><br><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user"</span>) </span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">loadAll</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user where uid in (:userIds)"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">loadAllByUserId</span><span class="params">(<span class="keyword">int</span>... userIds)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user where name like :first and last_name like :last limit 1"</span>)</span><br><span class="line">    <span class="function">User <span class="title">loadOneByNameAndLastName</span><span class="params">(String first, String last)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertAll</span><span class="params">(User... users)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Delete</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(User user)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// File: AppDatabse.java</span></span><br><span class="line"><span class="meta">@Database</span>(entities = &#123;User.java&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> UserDao <span class="title">userDao</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 AppDatabase 实例</span></span><br><span class="line">AppDatabse db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, <span class="string">"database_name"</span>).build();</span><br></pre></td></tr></table></figure>
 <p>一旦 Room 在编译期，就开始检测注解，扫描所有可以访问的表/</p>
 <p>可以通过使用 <code>InvalidtaionTracker</code> 类来观察一个数据表的变化。</p>

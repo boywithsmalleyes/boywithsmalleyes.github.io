@@ -140,19 +140,19 @@
 
 
 
-  <meta name="description" content="应用架构指南 当您在自己喜欢的社交网络应用中分享照片时会发生什么： 该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的 相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用 最后，用户返回社交网络应用并分享照片    此过程中，用户随时可能会被电话或通知打断。处理之后，用户希望能够">
+  <meta name="description" content="应用架构指南 当您在自己喜欢的社交网络应用中分享照片时会发生什么： 该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的 相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用 最后，用户返回社交网络应用并分享照片">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 架构组件">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Jetpack/Android架构组件/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="应用架构指南 当您在自己喜欢的社交网络应用中分享照片时会发生什么： 该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的 相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用 最后，用户返回社交网络应用并分享照片    此过程中，用户随时可能会被电话或通知打断。处理之后，用户希望能够">
+<meta property="og:description" content="应用架构指南 当您在自己喜欢的社交网络应用中分享照片时会发生什么： 该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的 相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用 最后，用户返回社交网络应用并分享照片">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developer.android.com/topic/libraries/architecture/images/final-architecture.png">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.313Z">
+<meta property="og:updated_time" content="2021-01-29T16:04:41.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 架构组件">
-<meta name="twitter:description" content="应用架构指南 当您在自己喜欢的社交网络应用中分享照片时会发生什么： 该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的 相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用 最后，用户返回社交网络应用并分享照片    此过程中，用户随时可能会被电话或通知打断。处理之后，用户希望能够">
+<meta name="twitter:description" content="应用架构指南 当您在自己喜欢的社交网络应用中分享照片时会发生什么： 该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的 相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用 最后，用户返回社交网络应用并分享照片">
 <meta name="twitter:image" content="https://developer.android.com/topic/libraries/architecture/images/final-architecture.png">
 
 
@@ -431,6 +431,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:04:41" itemprop="dateModified" datetime="2021-01-30T00:04:41+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -466,11 +482,11 @@
 <li>当您在自己喜欢的社交网络应用中分享照片时会发生什么：<ol>
 <li>该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的</li>
 <li>相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用</li>
-<li>最后，用户返回社交网络应用并分享照片</li>
+<li>最后，用户返回社交网络应用并分享照片<a id="more"></a>
+此过程中，用户随时可能会被电话或通知打断。处理之后，用户希望能够返回并继续分享照片。这种应用跳跃行为再移动设备上很常见，因此应用必须正确处理这些流程。</li>
 </ol>
 </li>
 </ul>
-<p>此过程中，用户随时可能会被电话或通知打断。处理之后，用户希望能够返回并继续分享照片。这种应用跳跃行为再移动设备上很常见，因此应用必须正确处理这些流程。</p>
 <p>移动设备的资源也是有限的，因此操作系统可能会随时终止某些应用进程，一边为新的进程腾出空间</p>
 <p>因此，不应该再应用组件中存储任何应用数据或状态，并且应用组件不应相互依赖</p>
 <h2 id="常见架构原则"><a href="#常见架构原则" class="headerlink" title="常见架构原则"></a>常见架构原则</h2><h3 id="分离关注点"><a href="#分离关注点" class="headerlink" title="分离关注点"></a>分离关注点</h3><p>常见错误是再 <code>activity</code> 和 <code>fragment</code> 中编写所有代码。这些基于界面的类应仅包含处理界面的操作系统交互的逻辑。您应使用这些类尽可能的保持精简，这样可以避免许多生命周期相关的问题</p>

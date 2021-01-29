@@ -140,17 +140,17 @@
 
 
 
-  <meta name="description" content="Java 中文件 Copy 的几种方式Java.io利用 java.io 类库。直接为源文件创建一个 FileInputStream 负责读取，然后再为目标文件创建一个 FileOutputStream 负责写入: 12345678910111213public static void copyFileByStream(File source, File target) throws IOExce">
+  <meta name="description" content="Java 中文件 Copy 的几种方式Java.io利用 java.io 类库。直接为源文件创建一个 FileInputStream 负责读取，然后再为目标文件创建一个 FileOutputStream 负责写入:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="茶白">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Java/Java 中文件 Copy 的几种方式/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="Java 中文件 Copy 的几种方式Java.io利用 java.io 类库。直接为源文件创建一个 FileInputStream 负责读取，然后再为目标文件创建一个 FileOutputStream 负责写入: 12345678910111213public static void copyFileByStream(File source, File target) throws IOExce">
+<meta property="og:description" content="Java 中文件 Copy 的几种方式Java.io利用 java.io 类库。直接为源文件创建一个 FileInputStream 负责读取，然后再为目标文件创建一个 FileOutputStream 负责写入:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.307Z">
+<meta property="og:updated_time" content="2021-01-29T16:04:12.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="茶白">
-<meta name="twitter:description" content="Java 中文件 Copy 的几种方式Java.io利用 java.io 类库。直接为源文件创建一个 FileInputStream 负责读取，然后再为目标文件创建一个 FileOutputStream 负责写入: 12345678910111213public static void copyFileByStream(File source, File target) throws IOExce">
+<meta name="twitter:description" content="Java 中文件 Copy 的几种方式Java.io利用 java.io 类库。直接为源文件创建一个 FileInputStream 负责读取，然后再为目标文件创建一个 FileOutputStream 负责写入:">
 
 
 
@@ -428,6 +428,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:04:12" itemprop="dateModified" datetime="2021-01-30T00:04:12+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -459,8 +475,7 @@
       
 
       
-        <h1 id="Java-中文件-Copy-的几种方式"><a href="#Java-中文件-Copy-的几种方式" class="headerlink" title="Java 中文件 Copy 的几种方式"></a>Java 中文件 Copy 的几种方式</h1><h2 id="Java-io"><a href="#Java-io" class="headerlink" title="Java.io"></a>Java.io</h2><p>利用 <code>java.io</code> 类库。直接为源文件创建一个 <code>FileInputStream</code> 负责读取，然后再为目标文件创建一个 <code>FileOutputStream</code> 负责写入:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByStream</span><span class="params">(File source, File target)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    InputStream is = <span class="keyword">null</span>;</span><br><span class="line">    OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        is = <span class="keyword">new</span> FileInputStream(source);</span><br><span class="line">        os = <span class="keyword">new</span> FileOutputStream(target);</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> length;</span><br><span class="line">        <span class="keyword">while</span>((length = is.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            os.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="Java-中文件-Copy-的几种方式"><a href="#Java-中文件-Copy-的几种方式" class="headerlink" title="Java 中文件 Copy 的几种方式"></a>Java 中文件 Copy 的几种方式</h1><h2 id="Java-io"><a href="#Java-io" class="headerlink" title="Java.io"></a>Java.io</h2><p>利用 <code>java.io</code> 类库。直接为源文件创建一个 <code>FileInputStream</code> 负责读取，然后再为目标文件创建一个 <code>FileOutputStream</code> 负责写入:<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByStream</span><span class="params">(File source, File target)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    InputStream is = <span class="keyword">null</span>;</span><br><span class="line">    OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        is = <span class="keyword">new</span> FileInputStream(source);</span><br><span class="line">        os = <span class="keyword">new</span> FileOutputStream(target);</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> length;</span><br><span class="line">        <span class="keyword">while</span>((length = is.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            os.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="Java-nio"><a href="#Java-nio" class="headerlink" title="Java.nio"></a>Java.nio</h2><p>利用 <code>java.nio</code> 类库提供的 transferTo 或 transferFrom  方法实现</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByChannel</span><span class="params">(File source, File target)</span> throw IOException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>(FileChannel sc = <span class="keyword">new</span> FileInputStream(source).getChannel();</span><br><span class="line">       FileChannel tc = <span class="keyword">new</span> FileOutputStream(target).getChannel();) &#123;</span><br><span class="line">        <span class="keyword">long</span> count = sc.size();</span><br><span class="line">        <span class="keyword">while</span>(count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">long</span> transferred = sc.transferTo(sc.position(), count, tc);</span><br><span class="line">            count -= transferred;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Java-nio-file-File-copy"><a href="#Java-nio-file-File-copy" class="headerlink" title="Java.nio.file.File.copy"></a>Java.nio.file.File.copy</h2><p>关于 Copy 效率的问题，其实与操作系统和配置有关，总体来说 nio  transferTo/transferFrom 的方式可能更快，因为它更能利用现代操作系统底层机制，避免不必要拷贝和上下文切换。</p>
@@ -518,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/29/Android 基础/适配/Android 屏幕适配/" rel="next" title="Android 屏幕适配">
-                <i class="fa fa-chevron-left"></i> Android 屏幕适配
+              <a href="/2021/01/29/Java/Java 中堆和栈的区别/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -528,8 +543,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/01/29/Java/Java 内存管理/" rel="prev" title="Java 内存管理">
-                Java 内存管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/01/29/Java/Java-异常/" rel="prev" title="Java 异常">
+                Java 异常 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

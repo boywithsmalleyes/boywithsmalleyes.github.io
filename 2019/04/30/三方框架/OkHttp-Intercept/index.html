@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例">
+  <meta name="description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子">
 <meta name="keywords" content="三方框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OkHttp Intercept">
 <meta property="og:url" content="http://xiaoman.ren/2019/04/30/三方框架/OkHttp-Intercept/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例">
+<meta property="og:description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.359Z">
+<meta property="og:updated_time" content="2021-01-29T16:05:15.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OkHttp Intercept">
-<meta name="twitter:description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子 要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法. 这里介绍两种 Interceptor 的实例">
+<meta name="twitter:description" content="OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子">
 
 
 
@@ -442,7 +442,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2021-01-29 23:54:28" itemprop="dateModified" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+                <time title="Modified: 2021-01-30 00:05:15" itemprop="dateModified" datetime="2021-01-30T00:05:15+08:00">2021-01-30</time>
               
             
           </span>
@@ -477,9 +477,10 @@
 
       
         <p>OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子</p>
+<a id="more"></a>
 <p>要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法.</p>
 <p>这里介绍两种 Interceptor 的实例</p>
-<a id="more"></a>
+<!-- more -->
 <h2 id="Log-日志-LogInterceptor"><a href="#Log-日志-LogInterceptor" class="headerlink" title="Log 日志 (LogInterceptor)"></a>Log 日志 (LogInterceptor)</h2><p>Log 在开发调试中的重要性, 不言而喻, 一个好的日志数据,能够为开发时提供很多帮助,可以通过 Log 来获取当前程序的执行状态, 顺序等等.</p>
 <p>这里介绍的 Log 日志拦截器,主要是负责在网络请求时,截获请求中的信息,并将请求信息以 Log 的方式输出到控制台上,可展现当前请求地址,请求参数,以及请求结果等.</p>
 <p>话不多说, 上代码.</p>

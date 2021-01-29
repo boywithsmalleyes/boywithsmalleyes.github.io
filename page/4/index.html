@@ -1526,12 +1526,24 @@
                 
               
 
-              <time title="Created: 2021-01-04 19:44:57 / Modified: 19:45:12" itemprop="dateCreated datePublished" datetime="2021-01-04T19:44:57+08:00">2021-01-04</time>
+              <time title="Created: 2021-01-04 19:44:57" itemprop="dateCreated datePublished" datetime="2021-01-04T19:44:57+08:00">2021-01-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:02:42" itemprop="dateModified" datetime="2021-01-30T00:02:42+08:00">2021-01-30</time>
               
             
           </span>
@@ -1566,24 +1578,20 @@
 
       
         
+          <h1 id="Android-Room"><a href="#Android-Room" class="headerlink" title="Android Room"></a>Android Room</h1><p><a href="https://developer.android.com/reference/android/arch/persistence/room/package-summary?hl=zh-cn" target="_blank" rel="noopener">翻译自官网文档</a></p>
+<p>Room 是一个关系映射对象库，可以使我们很方便的访问 App 数据库<br>
+          <!--noindex-->
           
-            <h1 id="Android-Room"><a href="#Android-Room" class="headerlink" title="Android Room"></a>Android Room</h1><p><a href="https://developer.android.com/reference/android/arch/persistence/room/package-summary?hl=zh-cn" target="_blank" rel="noopener">翻译自官网文档</a></p>
-<p>Room 是一个关系映射对象库，可以使我们很方便的访问 App 数据库</p>
-<ul>
-<li><strong>Database:</strong> 注解用来标记问数据库，该类须继承 RoomDatabase,运行时，可以通过 Room.databaseBuilder 或者获取他的实例 Room.inMemoryDatabasebuilder</li>
-<li><strong>Entity:</strong> 将 Model 或 pojo 类，标记为数据库行，每个 Entity 都会创建一个数据库表来保存项目。实体类必须在 Database#entities  数组中引用。除非另有说明，否则 Entity 的每个字段（及其父类）都将 Entity 保留在数据库中</li>
-<li><strong>Dao:</strong> 将类或接口标记为数据访问对象。数据访问对象负责定义访问数据库的方法。带有注释的类 Database 必须具有一个带有 0 个参数的抽象方法，并返回带有 Dao 注释的类。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File: User.java</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> uid;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"last_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="comment">// Room 请求 set 和 get 方法去访问数据</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// File: UserDao.java</span></span><br><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user"</span>) </span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">loadAll</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user where uid in (:userIds)"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">loadAllByUserId</span><span class="params">(<span class="keyword">int</span>... userIds)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user where name like :first and last_name like :last limit 1"</span>)</span><br><span class="line">    <span class="function">User <span class="title">loadOneByNameAndLastName</span><span class="params">(String first, String last)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertAll</span><span class="params">(User... users)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Delete</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(User user)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// File: AppDatabse.java</span></span><br><span class="line"><span class="meta">@Database</span>(entities = &#123;User.java&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> UserDao <span class="title">userDao</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 AppDatabase 实例</span></span><br><span class="line">AppDatabse db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, <span class="string">"database_name"</span>).build();</span><br></pre></td></tr></table></figure>
-<p>一旦 Room 在编译期，就开始检测注解，扫描所有可以访问的表/</p>
-<p>可以通过使用 <code>InvalidtaionTracker</code> 类来观察一个数据表的变化。</p>
-<p>Room 允许通过 <code>Query</code>  方法返回一个 <code>LiveData</code> 类型的数据。它会自动观察相关数据表，一旦发生数据改变，就会触发 <code>LiveData</code> 的观察者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LiveData 会自动分发数据表的改变</span></span><br><span class="line"><span class="meta">@Query</span>(<span class="string">"Select * from user order by name limit 5"</span>) </span><br><span class="line"><span class="keyword">public</span> LiveData&lt;List&lt;User&gt;&gt; loadFirstFiveUsers();</span><br></pre></td></tr></table></figure>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/04/Android-Room/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1680,12 +1688,24 @@
                 
               
 
-              <time title="Created: 2020-07-09 20:33:30 / Modified: 20:36:43" itemprop="dateCreated datePublished" datetime="2020-07-09T20:33:30+08:00">2020-07-09</time>
+              <time title="Created: 2020-07-09 20:33:30" itemprop="dateCreated datePublished" datetime="2020-07-09T20:33:30+08:00">2020-07-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:02:52" itemprop="dateModified" datetime="2021-01-30T00:02:52+08:00">2021-01-30</time>
               
             
           </span>
@@ -1721,12 +1741,6 @@
       
         
           <h1 id="RechclerView-总结"><a href="#RechclerView-总结" class="headerlink" title="RechclerView 总结"></a>RechclerView 总结</h1><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/image-20200709164241306.png?raw=true" alt="image-20200709164241306"></p>
-<p>Recycler View： 负责将 Datas 展示在自己身上，其本身是一个 ViewGroup，只认识 View，因此需要一个 Adapter 来将 Datas 的内容转换为 View</p>
-<p>Adapter： 负责翻译，将 Datas 内容，转换为 View，方便 RecyclerView 展示</p>
-<p>ViewHolder： RecyclerView 只会与 ViewHolder 进行交互，因此 ViewHolder 充当中间件，来将 Datas 的内容传递给  RecyclerView</p>
-<p>LayoutManager：负责布局，RecyclerView 将其子 View 的布局管理，交给它来完成</p>
-<p>Recycler：负责管理 View 的生命周期，LayoutManager 只管负责 View 的布局任务，对其回收交给了 Recycler 来处理，避免造成不必要的错误</p>
-<p>ItemAnimator： 负责动画，当 RecyclerView 中的数据发生变化（增、删等）都会通过它来完成平滑的过渡</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1998,12 +2012,24 @@
                 
               
 
-              <time title="Created: 2020-03-06 10:41:22 / Modified: 16:45:31" itemprop="dateCreated datePublished" datetime="2020-03-06T10:41:22+08:00">2020-03-06</time>
+              <time title="Created: 2020-03-06 10:41:22" itemprop="dateCreated datePublished" datetime="2020-03-06T10:41:22+08:00">2020-03-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:02:57" itemprop="dateModified" datetime="2021-01-30T00:02:57+08:00">2021-01-30</time>
               
             
           </span>
@@ -2038,77 +2064,22 @@
 
       
         
-          
-            <h2 id="首先我们先来了解一下-AOP"><a href="#首先我们先来了解一下-AOP" class="headerlink" title="首先我们先来了解一下 AOP"></a>首先我们先来了解一下 AOP</h2><blockquote>
+          <h2 id="首先我们先来了解一下-AOP"><a href="#首先我们先来了解一下-AOP" class="headerlink" title="首先我们先来了解一下 AOP"></a>首先我们先来了解一下 AOP</h2><blockquote>
 <p>AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能</p>
 </blockquote>
-<p>面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代码中。这样我们的服务模块更加简洁，因为他们只包含了主要关注点的代码，而次要的功能或者说是辅助的功能被转移到切面中。</p>
-<h2 id="AOP-术语"><a href="#AOP-术语" class="headerlink" title="AOP 术语"></a>AOP 术语</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">key</th>
-<th style="text-align:center">别名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Advice</td>
-<td style="text-align:center">通知</td>
-<td>切面的具体行为，要执行的代码</td>
-</tr>
-<tr>
-<td style="text-align:center">PointCut</td>
-<td style="text-align:center">切点</td>
-<td>通知被应用的具体位置</td>
-</tr>
-<tr>
-<td style="text-align:center">Join Point</td>
-<td style="text-align:center">连接点</td>
-<td>程序运行时，能够应用通知的所有点</td>
-</tr>
-<tr>
-<td style="text-align:center">Aspect</td>
-<td style="text-align:center">切面</td>
-<td>什么时候在什么地方做什么事情，是切点和通知的结合</td>
-</tr>
-<tr>
-<td style="text-align:center">Target</td>
-<td style="text-align:center">目标对象</td>
-<td>被切入功能的目标对象</td>
-</tr>
-<tr>
-<td style="text-align:center">Introduction</td>
-<td style="text-align:center">引入</td>
-<td>将新的方法或属性引入到现有的类中</td>
-</tr>
-<tr>
-<td style="text-align:center">Weaving</td>
-<td style="text-align:center">织入</td>
-<td>将切面应用到目标对象并创建新的代理对象的过程</td>
-</tr>
-</tbody>
-</table>
-<p>AOP 底层通过使用动态代理实现，包含两种方式：</p>
-<ol>
-<li>使用 JDK 动态代理实现</li>
-<li>使用 cglib 实现</li>
-</ol>
-<p><strong>通知类型</strong></p>
-<ol>
-<li>前置通知(Befor)：在方法之前执行</li>
-<li>后置通知(After)：在方法之后执行</li>
-<li>异常通知(AfterThrowing)：方法出现异常执行</li>
-<li>最终通知(AfterReturning)：在后置之后执行</li>
-<li>环绕通知(Around)：在方法之前和之后执行</li>
-</ol>
-<h2 id="AspectJ"><a href="#AspectJ" class="headerlink" title="AspectJ"></a>AspectJ</h2><p>AspectJ 实际是对 AOP 编程思想的一个实践，目前用的比较火，它是一种集合和 Java 完全一样的语言，而且完全兼容 Java。</p>
-<p>先写到这里！</p>
-
+<p>面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代码中。这样我们的服务模块更加简洁，因为他们只包含了主要关注点的代码，而次要的功能或者说是辅助的功能被转移到切面中。<br>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/03/06/ASpectJ-初识/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -2222,7 +2193,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2021-01-29 23:54:28" itemprop="dateModified" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+                <time title="Modified: 2021-01-30 00:05:19" itemprop="dateModified" datetime="2021-01-30T00:05:19+08:00">2021-01-30</time>
               
             
           </span>
@@ -2257,21 +2228,21 @@
 
       
         
-          
-            <h1 id="使用-OKHttp-进行重定向拦截处理"><a href="#使用-OKHttp-进行重定向拦截处理" class="headerlink" title="使用 OKHttp 进行重定向拦截处理"></a>使用 OKHttp 进行重定向拦截处理</h1><p>okhttp重定向存在两个缺陷：</p>
+          <h1 id="使用-OKHttp-进行重定向拦截处理"><a href="#使用-OKHttp-进行重定向拦截处理" class="headerlink" title="使用 OKHttp 进行重定向拦截处理"></a>使用 OKHttp 进行重定向拦截处理</h1><p>okhttp重定向存在两个缺陷：</p>
 <ol>
-<li><p>okhttp处理301,302重定向时，会把请求方式设置为GET<br>这样会丢失原来Post请求中的参数。</p>
-</li>
-<li><p>okhttp默认不支持跨协议的重定向，比如http重定向到https</p>
-</li>
-</ol>
-<p>为了解决这两个问题写了这个拦截器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedirectInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Request request = chain.request();</span><br><span class="line">        HttpUrl beforeUrl = request.url();</span><br><span class="line">        Response response = chain.proceed(request);</span><br><span class="line">        HttpUrl afterUrl = response.request().url();</span><br><span class="line">        <span class="comment">//1.根据url判断是否是重定向</span></span><br><span class="line">        <span class="keyword">if</span>(!beforeUrl.equals(afterUrl)) &#123;</span><br><span class="line">            <span class="comment">//处理两种情况 1、跨协议 2、原先不是GET请求。</span></span><br><span class="line">            <span class="keyword">if</span> (!beforeUrl.scheme().equals(afterUrl.scheme())||!request.method().equals(<span class="string">"GET"</span>)) &#123;</span><br><span class="line">                <span class="comment">//重新请求</span></span><br><span class="line">                Request newRequest = request.newBuilder().url(response.request().url()).build();</span><br><span class="line">                response = chain.proceed(newRequest);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li>okhttp处理301,302重定向时，会把请求方式设置为GET<br>这样会丢失原来Post请求中的参数。
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/02/20/三方框架/OKHttp-重定向拦截器/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
 
     
 

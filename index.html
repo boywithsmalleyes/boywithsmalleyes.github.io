@@ -427,6 +427,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:05:31" itemprop="dateModified" datetime="2021-01-30T00:05:31+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -459,90 +475,21 @@
 
       
         
-          
-            <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>是一片物理上连续的大小确定的存储空间</p>
+          <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>是一片物理上连续的大小确定的存储空间</p>
 <p>数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。</p>
-<p>利用索引进行查询速度快，无法真正的删除</p>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>具有连续有序性，可重复性，可扩容性，访问比较便捷</p>
-<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p><strong>原理与特点</strong></p>
-<p>实际上是对数组的一种封装，具备数组存储上空间连续及查找速度快的特性，并且顺序上也连续；但因为顺序上的连续，就造成了其删除和插入数据较慢的特性，因为顺序上的连续，所以在插入和删除时，为保证连续性，需要对数组的内容进行移动，大大增加了数据的操作性。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (index &gt; size || index &lt; <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line"></span><br><span class="line">      ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></span><br><span class="line">      <span class="comment">// 移位操作</span></span><br><span class="line">      System.arraycopy(elementData, index, elementData, index + <span class="number">1</span>,</span><br><span class="line">                       size - index);</span><br><span class="line">      elementData[index] = element;</span><br><span class="line">      size++;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (index &gt;= size)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line"></span><br><span class="line">      modCount++;</span><br><span class="line">      E oldValue = (E) elementData[index];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">          <span class="comment">// 移位操作</span></span><br><span class="line">          System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</span><br><span class="line">                           numMoved);</span><br><span class="line">      elementData[--size] = <span class="keyword">null</span>; <span class="comment">// clear to let GC do its work</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> oldValue;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>扩容机制：</strong></p>
-<p><code>ArrayList</code> 的默认长度是 10， 当数据总量超过容器时，会进行一次扩容操作，且每次扩容 50%。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="comment">// oldCapacity &gt;&gt; 1 等价于  oldCapacity / 2</span></span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>是系统为我们提供的在物理上不连续，逻辑上连续的一个假象的数据片段。其内部实现是通过链表的方式，没一个元素都被封装成一个双向 <code>node</code> 节点，并绑定前一个和下一个节点的方式，来保证物理上连续。</p>
-<p>因采用链表的结构，因此也灭有长度限制，也不存在扩容机制，可以无限长。</p>
-<p>因此，他不向数组的可以快速定位数据，当获取数据时，需要根据节点位置，遍历才能获得，因此其查询速度很慢</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    checkElementIndex(index);</span><br><span class="line">    <span class="keyword">return</span> node(index).item;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 从前面查找</span></span><br><span class="line">    <span class="keyword">if</span> (index &lt; (size &gt;&gt; <span class="number">1</span>)) &#123;</span><br><span class="line">        Node&lt;E&gt; x = first;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">            x = x.next;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 从后面查找</span></span><br><span class="line">        Node&lt;E&gt; x = last;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--)</span><br><span class="line">            x = x.prev;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但他的插入和删除就很方便，插入和删除时，只需要断开链表，重新将新数据的头尾互相指向即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">//插入数据</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index == size)</span><br><span class="line">            linkLast(element);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="comment">// 插入时，有时也需要遍历，这里可以忽略</span></span><br><span class="line">            linkBefore(element, node(index));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">linkLast</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Node&lt;E&gt; l = last;</span><br><span class="line">        <span class="keyword">final</span> Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;&gt;(l, e, <span class="keyword">null</span>);</span><br><span class="line">        last = newNode;</span><br><span class="line">        <span class="keyword">if</span> (l == <span class="keyword">null</span>)</span><br><span class="line">            first = newNode;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            l.next = newNode;</span><br><span class="line">        size++;</span><br><span class="line">        modCount++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">linkBefore</span><span class="params">(E e, Node&lt;E&gt; succ)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// assert succ != null;</span></span><br><span class="line">        <span class="keyword">final</span> Node&lt;E&gt; pred = succ.prev;</span><br><span class="line">        <span class="keyword">final</span> Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;&gt;(pred, e, succ);</span><br><span class="line">        succ.prev = newNode;</span><br><span class="line">        <span class="keyword">if</span> (pred == <span class="keyword">null</span>)</span><br><span class="line">            first = newNode;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            pred.next = newNode;</span><br><span class="line">        size++;</span><br><span class="line">        modCount++;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 移除数据</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> E <span class="title">unlinkFirst</span><span class="params">(Node&lt;E&gt; f)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// assert f == first &amp;&amp; f != null;</span></span><br><span class="line">        <span class="keyword">final</span> E element = f.item;</span><br><span class="line">        <span class="keyword">final</span> Node&lt;E&gt; next = f.next;</span><br><span class="line">        f.item = <span class="keyword">null</span>;</span><br><span class="line">        f.next = <span class="keyword">null</span>; <span class="comment">// help GC</span></span><br><span class="line">        first = next;</span><br><span class="line">        <span class="keyword">if</span> (next == <span class="keyword">null</span>)</span><br><span class="line">            last = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            next.prev = <span class="keyword">null</span>;</span><br><span class="line">        size--;</span><br><span class="line">        modCount++;</span><br><span class="line">        <span class="keyword">return</span> element;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Unlinks non-null last node l.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> E <span class="title">unlinkLast</span><span class="params">(Node&lt;E&gt; l)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// assert l == last &amp;&amp; l != null;</span></span><br><span class="line">        <span class="keyword">final</span> E element = l.item;</span><br><span class="line">        <span class="keyword">final</span> Node&lt;E&gt; prev = l.prev;</span><br><span class="line">        l.item = <span class="keyword">null</span>;</span><br><span class="line">        l.prev = <span class="keyword">null</span>; <span class="comment">// help GC</span></span><br><span class="line">        last = prev;</span><br><span class="line">        <span class="keyword">if</span> (prev == <span class="keyword">null</span>)</span><br><span class="line">            first = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            prev.next = <span class="keyword">null</span>;</span><br><span class="line">        size--;</span><br><span class="line">        modCount++;</span><br><span class="line">        <span class="keyword">return</span> element;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>和 ArrayList 几乎一样，区别在于 Vector 是线程安全的，在插入、删除等操作，其方法都是 <code>synchronized</code>，因此性能比 <code>ArrayList</code> 差，每次扩容申请双倍空间也可以自定义。</p>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>具有不可重复性，无序性，<em>不可查找的特点</em></p>
-<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p><code>HashSet</code> 的内部使用 <code>HashMap</code> 来存储数据，即 <code>add</code> 时，将元素当作 <code>HashMap</code> 的 <code>Key</code> 来使用，这也符合 <code>Set</code> 集合不可重复性的特点。</p>
-<p>此类集合不可以直接获取容器中的 value， 可通过遍历 <em>迭代器</em>  来获取全部元素。但不能多线程操作，此类容器都是可快速失败的，即当我们正在遍历时，如果原数据被修改，则会立即停止，并抛出 <code>ConCurrentException</code> 。</p>
-<h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3><p>同样根据 hashCode 来决定元素的存储位置，同时又具有 链表的特点，在迭代遍历时，可以获取到列表顺序。</p>
-<p><strong>List 和 Set 的区别</strong></p>
-<ul>
-<li>是否允许数据元素重复存在，在 List 中允许插入重复的元素，Set 集合不允许</li>
-<li>元素的先后存放顺序 List 是一个有序的集合，会保留元素的插入顺序， Set 是无序集合</li>
-<li>List 可以通过下标来访问元素， 而 Set 不能</li>
-</ul>
-<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p><strong>数组</strong> 和 <strong>单链表</strong> 的组合， 数组用来存储 key，链表用来存储实际的 value</p>
-<h3 id="put-K-key-V-value"><a href="#put-K-key-V-value" class="headerlink" title="put(K key, V value);"></a>put(K key, V value);</h3><p>当存放一个数值时，会先对 key 值进行 hash 运算得到 Hash 值，</p>
-<p>当链表为空时，通过 <code>resize()</code> 函数帮我创建一个新链表，默认长度为 16 （1 &lt;&lt; 4，为 2 的次幂数，这里和扩容机制有关）；(由于 Hash Map 的长度机制限制，所以 table 的初始化工作，在 put 真正使用这个数据时才去创建，避免了性能上的损耗)</p>
-<p>当链表不为空，通过 hash 值，从数组中获取到对应的节点对象，如果对象为空，则创建一个新的节点；如果节点不为空，说明这个 key 被赋值过，因此将新的 value 赋值给该节点。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 装箱过程，计算 hash 值的过程。</span></span><br><span class="line"><span class="comment">* </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> h;</span><br><span class="line">        <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent, <span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">        Node&lt;K, V&gt;[] tab;</span><br><span class="line">        Node&lt;K, V&gt; p;</span><br><span class="line">        <span class="keyword">int</span> n, i;</span><br><span class="line">        <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">            n = (tab = resize()).length;</span><br><span class="line">     	<span class="comment">// tab[i = (n - 1) &amp; hash] </span></span><br><span class="line">    	<span class="comment">// n 是数组的长度，经过 &amp; 和 hash 值的位运算（模运算：求余数的运算，等价于=&gt; （hash % n）），获得该元素在数组中的索引</span></span><br><span class="line">        <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)</span><br><span class="line">            tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            Node&lt;K, V&gt; e;</span><br><span class="line">            K k;</span><br><span class="line">            <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                e = p;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                e = ((TreeNode&lt;K, V&gt;) p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value);</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        p.next = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">                        <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                            treeifyBin(tab, hash);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                            ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    p = e;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; <span class="comment">// existing mapping for key</span></span><br><span class="line">                V oldValue = e.value;</span><br><span class="line">                <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)</span><br><span class="line">                    e.value = value;</span><br><span class="line">                afterNodeAccess(e);</span><br><span class="line">                <span class="keyword">return</span> oldValue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ++modCount;</span><br><span class="line">        <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        afterNodeInsertion(evict);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Hash-碰撞-冲突"><a href="#Hash-碰撞-冲突" class="headerlink" title="Hash 碰撞/冲突"></a><strong>Hash 碰撞/冲突</strong></h3><p>在求模运算过程中，存在多对一的情况，即不同的 Hash 值，可能会计算出相同的索引值</p>
-<p><strong>解决方案</strong>：</p>
-<p><strong>链表法：</strong> 当发生 Hash 碰撞/冲突，即不同的 hash 值，最终计算出了相同的索引值，如果索引对应的位置数据为 null， 则直接创建新节点，如果不为 null， 则采用前插/后插的方案，插入到链表当中，当通过 <code>get()</code> 函数获取数据时，拿到一个链表，就遍历，找到 <code>hash</code> 值相同的那个节点，并返回。</p>
-<p><strong>避免冲突</strong>：</p>
-<p>阈值，为保证在尽可能长的情况下，保证 hash 不会冲突。即当发生时，就扩容。</p>
-<p><strong>扩容方案：</strong></p>
-<p>加载因子：<code>loadFactor</code> 默认值是 0.75</p>
-<p>阈值：与加载因子有关，通过加载因子和 HashMap 的长度计算而来，有阈值就一定会有浪费，因此 25% 的内存内浪费掉，在 Android  使用空间换时间。</p>
-<p>HashMap 的默认长度是 16，其长度，一定是 2 的次幂，目的是为了减少 Hash 的碰撞。</p>
-<blockquote>
-<p>比如：</p>
-<p>length1 = 10，(非 2 的次幂)，对应的二进制数是 1001</p>
-<p>length2 = 16(2 的 4 次幂)，对应的二进制数是 1111</p>
-<p>当产生一个 hash 值，为 6（0110）时， (n - 1) &amp; hash ，length1 位运算之后的结果是 0000， length2 位运算之后的结果是 0110</p>
-<p>当产生一个 hash 值，为 7（0111）时， (n - 1) &amp; hash ，length1 位运算之后的结果是 0001， length2 位运算之后的结果是 0111</p>
-<p>由此我们可以看出，影响运算结果的因素是 (1001) 中间的两位数字，而使用 (1111) 计算的结果，与四位数字都有关系（也就是说 数字 1 不会影响结果的计算），因此使用 2 的次幂为长度的目的就是为了减少 Hash 值的碰撞</p>
-</blockquote>
-<p>当链表长度，以及其他索引对应的链表总长度大于阈值时，开始扩容。</p>
-<p>当扩容发生时，HashMap 的长度就发生了变化，扩容前的数据的模运算就发生了改变，因此在扩容后，需要使用新的长度对所有的原有数据，进行 hash 计算，因此会发生性能上的损耗。因此在使用时，我们要尽量避免 HashMap 发生扩容。</p>
-<p>开发时，需要我们去尽量评估容量，当我们创建一个 HashMap，并传入一个非 2 的次幂值时，系统会帮我们寻找一个比当前值大的最近的 2 的次幂值，来给 HashMap 作为初始值。</p>
-<h2 id="SparseArray"><a href="#SparseArray" class="headerlink" title="SparseArray"></a>SparseArray</h2><p><strong>原理与特点</strong></p>
-<p>由 <strong>双数组</strong> 构成，两个数组分别存储 <code>Key</code> 和  <code>Value</code> ，并一一对应。</p>
-<p>查询速度快，删除快，插入慢（随着数据越来越大，插入的性能也会提升）</p>
-<p>通过获取 key 的索引找到其对应的 value 值，也就具备了 <strong>查询速度快</strong> 的特点（也是数组的特点）</p>
-<p>删除元素时，仅将元素标记位 <strong>“DELETE”</strong> 状态，不发生移位等操作，因此速度上会比 <code>ArrayList</code> 快</p>
-<p>因为是标记为 “DELETE” ，因此算法是可以达到复用，再利用二分查找，被标记为 “DELETE” 的数据，可以直接复用，不会涉及到数组的位移，因此会越用越快。</p>
-<p>缺点是，Key 只能是 <code>int</code> 类型数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, E value)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// 二分查找，快速定位传入的 key 所在位置</span></span><br><span class="line">       <span class="keyword">int</span> i = ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line">       <span class="comment">// 如果存在，直接替换同位置数据</span></span><br><span class="line">       <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">           mValues[i] = value;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">// 不存在时，如果当前位置被标记为 DELETE 状态（未被使用），则直接给 key 和 value 数组赋值</span></span><br><span class="line">           i = ~i;</span><br><span class="line">           <span class="keyword">if</span> (i &lt; mSize &amp;&amp; mValues[i] == DELETED) &#123;</span><br><span class="line">               mKeys[i] = key;</span><br><span class="line">               mValues[i] = value;</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (mGarbage &amp;&amp; mSize &gt;= mKeys.length) &#123;</span><br><span class="line">               gc();</span><br><span class="line">               <span class="comment">// Search again because indices may have changed.</span></span><br><span class="line">               i = ~ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">// 扩容机制，2倍</span></span><br><span class="line">           mKeys = GrowingArrayUtils.insert(mKeys, mSize, i, key);</span><br><span class="line">           mValues = GrowingArrayUtils.insert(mValues, mSize, i, value);</span><br><span class="line">           mSize++;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] insert(<span class="keyword">int</span>[] array, <span class="keyword">int</span> currentSize, <span class="keyword">int</span> index, <span class="keyword">int</span> element) &#123;</span><br><span class="line">      <span class="keyword">int</span>[] newArray = <span class="keyword">new</span> <span class="keyword">int</span>[growSize(currentSize)];</span><br><span class="line">       System.arraycopy(array, <span class="number">0</span>, newArray, <span class="number">0</span>, index);</span><br><span class="line">       newArray[index] = element;</span><br><span class="line">       System.arraycopy(array, index, newArray, index + <span class="number">1</span>, array.length - index);</span><br><span class="line">       <span class="keyword">return</span> newArray;</span><br><span class="line">   &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">growSize</span><span class="params">(<span class="keyword">int</span> currentSize)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// 2 倍扩容机制</span></span><br><span class="line">       <span class="keyword">return</span> currentSize &lt;= <span class="number">4</span> ? <span class="number">8</span> : currentSize * <span class="number">2</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 移除数据，仅标记 DELETE 状态</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> i = ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (mValues[i] != DELETED) &#123;</span><br><span class="line">               mValues[i] = DELETED;</span><br><span class="line">               mGarbage = <span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>扩容机制：</strong></p>
-<p>同样的，初始长度为 10， 每次扩容，为当前容量的 2 倍。</p>
-<h2 id="ArrayMap"><a href="#ArrayMap" class="headerlink" title="ArrayMap"></a>ArrayMap</h2><p>是Hash Map 和 Sparse Array 的合计，具备他们的双重特性，使用 <code>hashcode</code> 作为 key，弥补了 <code>SparseArray</code> 只能是 <code>int</code> 型。使用双数组的形式，又弥补了 <code>HashMap</code> 的对内存消耗的问题。</p>
-<h2 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h2><p>是 <code>HashMap</code> 的子类， <code>put</code>  和 <code>remove</code> 函数使用的就是 <code>HashMap</code> 的，没有太大却别，主要区别在于 <code>get</code> 函数， <code>LinkedHashMap</code> 在每次 <code>get</code> 出一个数据后，会将这个数据放在链表的尾部。</p>
-<p><code>LinkedHashMap</code> 的应用，在 <code>LRUCache</code> 和 <code>DiskLRUCache</code> 中使用，其算法名称 <em>最少/最小使用算法</em> ，也就是说，利用了 <code>LinkedHashMap</code> 的 <code>get</code> 函数的特性，计算出链表头部的数据被使用的次数最少，当容器长度达到最大值时，就将链表头部的数据移除。</p>
-<h2 id="队列-Queue-和-栈-Stack"><a href="#队列-Queue-和-栈-Stack" class="headerlink" title="队列 Queue 和 栈 Stack"></a>队列 Queue 和 栈 Stack</h2><ul>
-<li>队列的特点是 <em>先入先出</em></li>
-<li>栈的特点是 <em>先入后出</em> </li>
-</ul>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p><strong>特点：</strong> 后进先出； 所有的操作都是围绕栈顶部来完成</p>
-<p>算法的基本思想：</p>
-<p>可以用一个单链表来实现</p>
-<p>只关心上一次的操作</p>
-<p>处理完上一次操作后，能在 O(1) 时间内查找到更前一次的操作</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查找下一个比自己大的数的距离</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stackSwap</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 定义一个栈，用来缓存当前的最大值的索引</span></span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">// 定义一个数组，用来存储对应数据的间距</span></span><br><span class="line">    <span class="keyword">int</span>[] interval = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">       	<span class="keyword">if</span>(!stack.empty())&#123;</span><br><span class="line">            <span class="comment">// 因为会对栈进行操作，长度会改变，如果不先取，会导致循环跳位</span></span><br><span class="line">            <span class="keyword">int</span> size = stack.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j  = <span class="number">0</span>; j &lt; size; j++) &#123;</span><br><span class="line">                <span class="comment">// 拿出栈顶数据的索引</span></span><br><span class="line">                <span class="keyword">int</span> topIndex = stack.peek();</span><br><span class="line">                <span class="keyword">if</span>(nums[i] &gt; num[topIndex]) &#123;</span><br><span class="line">                    interval[topIndex] = i - topIndex;</span><br><span class="line">                    stack.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果为空，或者栈顶数据比但前数据大，则将数据直接压入</span></span><br><span class="line">        <span class="comment">// 或找不到一个比当前数据大的数据时，将当前数据压入栈</span></span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>和栈不同，队列的最大特点是先进先出（FIFO），就好像按顺序排队一样。对于队列的数据来说，我们只允许在队尾查看和添加数据，在队头查看和删除数据。</p>
-<p>实现：可以借助双链表来实现队列。双链表的头指针允许在队头查看和删除数据，而双链表的尾指针允许我们在队尾查看和添加数据。</p>
-<p>应用场景：直观来看，当我们需要按照一定的顺序来处理数据，而该数据的数据量在不断地变化的时候，则需要队列来帮助解题。在算法面试题当中，广度优先搜索（Breadth-First Search）是运用队列最多的地方。</p>
-
+<p>利用索引进行查询速度快，无法真正的删除<br>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/数据结构/数据结构/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -643,6 +590,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:05:27" itemprop="dateModified" datetime="2021-01-30T00:05:27+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -675,71 +638,25 @@
 
       
         
-          
-            <h2 id="高频数据结构和算法"><a href="#高频数据结构和算法" class="headerlink" title="高频数据结构和算法"></a>高频数据结构和算法</h2><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+          <h2 id="高频数据结构和算法"><a href="#高频数据结构和算法" class="headerlink" title="高频数据结构和算法"></a>高频数据结构和算法</h2><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
 <li>数组/字符串</li>
 <li>链表</li>
 <li>栈</li>
 <li>队列</li>
 <li>双端队列</li>
-<li>树</li>
-</ul>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>优点： 可以在 O（1） 的时间里根据下标查询某个元素</p>
-<p>缺点：</p>
-<ul>
-<li>构建时必须时一段连续的空间</li>
-<li>查询某个元素是否存在时，需要遍历整个数组，耗费O(n) 的时间</li>
-<li>删除和添加某个元素时，同样需要耗费O(n) 的时间</li>
-</ul>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p><strong>单链表：</strong> 链表中的每个元素实际上时一个单独的对象，而所有对象都通过每个元素中的引用字段链接在一起</p>
-<p><strong>双链表：</strong> 与单链表不同的时，双链表的每个节点中都含有<strong>两个引用字段</strong></p>
-<p><strong>优点：</strong> </p>
-<ul>
-<li>灵活的内存空间</li>
-<li>能在 O(1) 时间内删除或添加元素</li>
-</ul>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>查询元素需要O(n)时间</li>
-</ul>
-<p><strong>解题技巧：</strong></p>
-<ol>
-<li>利用快慢指针（有时需要3个）</li>
-<li>构建一个虚假的链表头</li>
-</ol>
-<p><strong>练习：</strong></p>
-<p>eg: k 个一组反转链表 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;null</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设 k = 3</span></span><br><span class="line">prev = <span class="keyword">null</span>;</span><br><span class="line">curr = head;</span><br><span class="line">n = k;</span><br><span class="line"><span class="keyword">while</span>(curr &amp;&amp; n-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    next = curr.next;</span><br><span class="line">    curr.next = prev;</span><br><span class="line">    prev = curr;</span><br><span class="line">    curr = next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p><strong>特点：</strong> 后进先出； 所有的操作都是围绕栈顶部来完成</p>
-<p>算法的基本思想：</p>
-<p>可以用一个单链表来实现</p>
-<p>只关心上一次的操作</p>
-<p>处理完上一次操作后，能在 O(1) 时间内查找到更前一次的操作</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查找下一个比自己大的数的距离</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stackSwap</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 定义一个栈，用来缓存当前的最大值的索引</span></span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">// 定义一个数组，用来存储对应数据的间距</span></span><br><span class="line">    <span class="keyword">int</span>[] interval = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">       	<span class="keyword">if</span>(!stack.empty())&#123;</span><br><span class="line">            <span class="comment">// 因为会对栈进行操作，长度会改变，如果不先取，会导致循环跳位</span></span><br><span class="line">            <span class="keyword">int</span> size = stack.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j  = <span class="number">0</span>; j &lt; size; j++) &#123;</span><br><span class="line">                <span class="comment">// 拿出栈顶数据的索引</span></span><br><span class="line">                <span class="keyword">int</span> topIndex = stack.peek();</span><br><span class="line">                <span class="keyword">if</span>(nums[i] &gt; num[topIndex]) &#123;</span><br><span class="line">                    interval[topIndex] = i - topIndex;</span><br><span class="line">                    stack.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果为空，或者栈顶数据比但前数据大，则将数据直接压入</span></span><br><span class="line">        <span class="comment">// 或找不到一个比当前数据大的数据时，将当前数据压入栈</span></span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>和栈不同，队列的最大特点是先进先出（FIFO），就好像按顺序排队一样。对于队列的数据来说，我们只允许在队尾查看和添加数据，在队头查看和删除数据。</p>
-<p>实现：可以借助双链表来实现队列。双链表的头指针允许在队头查看和删除数据，而双链表的尾指针允许我们在队尾查看和添加数据。</p>
-<p>应用场景：直观来看，当我们需要按照一定的顺序来处理数据，而该数据的数据量在不断地变化的时候，则需要队列来帮助解题。在算法面试题当中，广度优先搜索（Breadth-First Search）是运用队列最多的地方。</p>
-<h3 id="双端队列"><a href="#双端队列" class="headerlink" title="双端队列"></a>双端队列</h3><p>可以利用双链表实现</p>
-<p>队列</p>
-<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h3><p>数据像鱼吐泡泡一样，从底部向上浮出</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">maopao</span><span class="params">(<span class="keyword">int</span>[] num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; num.length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">        	<span class="keyword">if</span>(num[j] &gt; num[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                swap(num, j, j + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> src, <span class="keyword">int</span> des)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = num[src];</span><br><span class="line">    num[src] = num[des];</span><br><span class="line">    num[des] = temp;</span><br><span class="line">    System.out.println(Arrays.toString(num));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>向已排列好的数组中插入数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">charu</span><span class="params">(<span class="keyword">int</span>[] num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; num.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> k = i; <span class="comment">// 记录当前最小值的索引</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = (i -<span class="number">1</span>); j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(num[k] &lt; num[j]) &#123;</span><br><span class="line">                swap(num, k, j);</span><br><span class="line">                k = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>先遍历找到集合中的最小值索引，并将其与已排好序的数组最大值进行比较</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">xuanze</span><span class="params">(<span class="keyword">int</span>[] num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> minIndex = i; <span class="comment">// 已排序数组的最大值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; num.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(num[minIndex] &gt; num[j]) &#123;</span><br><span class="line">                minIndex = j; <span class="comment">// 找到未排序部分的最小值索引</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 与已排序部分最大值比较，小则交换</span></span><br><span class="line">        <span class="keyword">if</span>(num[minIndex] &lt; num[i])&#123;</span><br><span class="line">            swap(num, minIndex, i)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h3><p>利用递归方案/循环方案，将一个大的问题，拆分成等价的无限小的事情，最后将最小等价事情的结果合并为最终结果</p>
-<p>利用二叉树，左右两边同时排序，最后将两部分合并再一起</p>
-<p>递归的算法需要注意临界值判断（往往出现再第一行，否则代码将进入死循环，无法退出， StackOverflow）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">guibing</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span>; <span class="comment">// 临界点判断，终止递归</span></span><br><span class="line">    <span class="keyword">int</span> mid = (right + left) &gt;&gt; <span class="number">1</span>; <span class="comment">// 取中间值</span></span><br><span class="line">    guibing(nums, left, mid);</span><br><span class="line">    guibing(nums, mid + <span class="number">1</span>, right);</span><br><span class="line">    merge(nums, left, right, mid);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> start, <span class="keyword">int</span> length, <span class="keyword">int</span> mid)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] copy = nums.clone();</span><br><span class="line">    <span class="comment">// index 是合并时需要的索引值， left, right 是二叉树的左右俩个边界</span></span><br><span class="line">    <span class="keyword">int</span> index = start, left = start, right = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(index &lt;= length) &#123;</span><br><span class="line">	    <span class="keyword">if</span> (left &gt; mid) &#123;</span><br><span class="line">            <span class="comment">// 表明左侧二叉树已经遍历完成，剩下的右侧数据可直接填充</span></span><br><span class="line">            nums[index++] = copy[right++];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(right &gt; length)&#123;</span><br><span class="line">            <span class="comment">// 表明右侧二叉树已经遍历完成，剩下的左侧部分可直接填充</span></span><br><span class="line">            nums[index++] = copy[left++];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(copy[right] &lt; copy[left])&#123;</span><br><span class="line">            <span class="comment">// 右侧数据比左侧数据小，将右侧数据填充</span></span><br><span class="line">            nums[index++] = copy[right++];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 左侧数据比右侧数据小，将左侧数据填充</span></span><br><span class="line">            nums[index++] = copy[left++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(Arrays.toString(nums));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h3><p>同样利用递归的思想。</p>
-<p>先随机选择一个数，然后让比它小的放在左边，大的放在右边</p>
-<p>然后左右两边同时再随机选择一个数，还是小的放左边，大的放右边</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">kuaisu</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(low &gt; high) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> p = partition(nums, low, high);</span><br><span class="line">    kuaisu(nums, low, p - <span class="number">1</span>);</span><br><span class="line">    kuaisu(nums, p + <span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">// 先随机一个索引，然后将他放在最后面。</span></span><br><span class="line">    <span class="comment">// 在定义两个指针</span></span><br><span class="line">    <span class="comment">// i: 用来记录比随机值小的数的个数，也就是最终随机值要倍还原的位置</span></span><br><span class="line">    <span class="comment">// j: 当前第一个值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 先将最小值， copy 到最后一个位置</span></span><br><span class="line">    <span class="keyword">int</span> random = randRang(low, high);</span><br><span class="line">   	swap(num, random, high);</span><br><span class="line">    <span class="comment">// i 用来记录比中间值小的数的个数，也就是最终要将 copy 到最后一个位置的随机数要还原回来的位置</span></span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="comment">// 从左到右用每个数和基准值进行比较，比基准值小，则放到指针 i 的位置，i++, 循环结束后， i 指针之前的数，都比基准值小</span></span><br><span class="line">    <span class="keyword">for</span>(i = low, j = low, j &lt; high, j++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(num[j] &lt; num[high]) &#123;</span><br><span class="line">            <span class="comment">// num[j] 当前值</span></span><br><span class="line">            <span class="comment">// num[high] 随机数，基准值</span></span><br><span class="line">            swap(num, i++, j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将基准值还原到对应位置</span></span><br><span class="line">    swap(num, i, j);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">randRang</span><span class="params">(<span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Random().nextInt(high) % (high - low + <span class="number">1</span>) + low;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li>树
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/数据结构/算法/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ul></div>
 
     
 
@@ -840,6 +757,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:02:08" itemprop="dateModified" datetime="2021-01-30T00:02:08+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -872,100 +805,19 @@
 
       
         
+          <p>Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 <code>Picasso</code> 和 <code>ImageLoader</code> 两套框架。 都各有特色。这里主要还是讲一下 <code>Glide</code> 。<br>
+          <!--noindex-->
           
-            <p>Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 <code>Picasso</code> 和 <code>ImageLoader</code> 两套框架。 都各有特色。这里主要还是讲一下 <code>Glide</code> 。</p>
-<p><strong>基础用法：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Glide.with(<span class="keyword">this</span>).load(url).into(imageView);</span><br></pre></td></tr></table></figure>
-<p>在 Android 开发中，我们通常最简单的使用 <code>Glide</code> 的 代码如上面一样，如此简单的 api, 就可以帮助我们实现加载本地图片，本地 Drawable ， Gif 图，以及 网络图片，那么在这样简单的 API 的背后，其实它帮助了我们完成了很多工作。</p>
-<p>从简单的使用我们入手，可以看到，要想加载一张图片，我们需要一个当前上下文对象，一个图片地址，一个承载图像的 ImageView 容器。那中三个要求，又同时对应着三个函数，<code>with</code> <code>load</code> 和 <code>into</code>，阅读源码，那就是从源码暴漏给我们最直观的地方进入，不然就是一只没头的苍蝇—到处乱飞。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">函数</th>
-<th style="text-align:center">主要功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">with</td>
-<td style="text-align:center">1. 初始化Glide对象<br>2. 创建空白的 Fragment 管理生命周期机制<br>3. 创建一个 RequestManager 管理任务</td>
-</tr>
-<tr>
-<td style="text-align:center">load</td>
-<td style="text-align:center">最终构建出 RequestBuilder ，记录传入的数据</td>
-</tr>
-<tr>
-<td style="text-align:center">into</td>
-<td style="text-align:center">1. runRequest 运行队列/等待队列，执行队列 Reqeust 对象<br>2. 活动缓存<br>3. 内存缓存<br>4. HttpUrlConnection</td>
-</tr>
-</tbody>
-</table>
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><code>Glide</code> 通过 <code>with</code> 函数，给自己的实例化，并创建一个空白的 <code>Fragment</code> 来管理生命周期并绑定 <code>ReqeustManager</code> 。继续通过 <code>load()</code> 函数构建一个 <code>RequestBuilder()</code> 并缓存我们的参数，继续通过 <code>into</code> 创建一个 <code>Request</code> 对象，并记录宽高、采样数据等。继续，在发起请求之前，先检查一下缓存数据, 活动缓存 <code>ActivityResources</code> 有没有数据，再检查内存缓存 <code>LRUResourceCache</code> ，如果两级缓存都未命中，则启动一个异步任务 <code>DecodeJob</code>, 去检查 <code>DiskCache</code> 中有没有本地磁盘缓存数据，如果没有，通过网络请求数据 <code>HttpUrlConnection</code> ，解析 <code>InputStream</code> 进行采样，最终拿到 <code>Bitmap</code>，将 <code>Bitmap</code> 转换成 <code>Drawable</code> 并讲数据缓存到磁盘中。</p>
-<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>从上面的表格中，我们可以看出来 <code>with</code> 函数，就是用来帮我创建 <code>Glide</code> 对象，并创建一个空白的 <code>Fragment</code> 来管理生命周期。其具体的工作流程如图：</p>
-<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_with_sequence.jpg?raw=true" alt="Glide with 时序图"></p>
-<p>由上面的时序图，我们可以顺序的分析，我们一步步去分析。</p>
-<p><strong>Glide.with()</strong></p>
-<p><code>Glide.with()</code> 为提供了多种重构函数，目的是为我们提供它强大的作用域以及满足我们开发过程中各种复杂的情况。同时适配不同版本以及不同的应用场景。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(context).get(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull Activity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(activity).get(activity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull FragmentActivity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(activity).get(activity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull Fragment fragment)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(fragment.getContext()).get(fragment);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull android.app.Fragment fragment)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(fragment.getActivity()).get(fragment);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull View view)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(view.getContext()).get(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>getRetriever</strong>()</p>
-<p><code>getRetriever()</code> 通过 Glide 的 get 函数，帮我们初始化了一个 <code>Glide</code> 对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> RequestManagerRetriever <span class="title">getRetriever</span><span class="params">(@Nullable Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Glide.get(context).getRequestManagerRetriever();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>get(context)</strong></p>
-<p>可以看出，Glide 是一个单例的，向下看时，我们也可看到，对 Glide 的检查很严谨。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Glide glide;</span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Glide <span class="title">get</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (glide == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (Glide.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (glide == <span class="keyword">null</span>) &#123;</span><br><span class="line">                checkAndInitializeGlide(context, annotationGeneratedModule);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> glide;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>checkAndInitializeGlide() &amp; initializeGlide()</strong></p>
-<p>最终通过构造者模式，完成了对 <code>Glide</code> 对象的初始化，同时在构造者中，也对很多 <code>Glide</code> 工作时需要的对象进行了初始化。我们这里只研究主线业务，其它的可以私下看。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">checkAndInitializeGlide</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">if</span> (isInitializing)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(</span><br><span class="line">            <span class="string">"You cannot call Glide.get() in registerComponents(),"</span></span><br><span class="line">            + <span class="string">" use the provided Glide instance instead"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    isInitializing = <span class="keyword">true</span>;</span><br><span class="line">    initializeGlide(context, generatedAppGlideModule);</span><br><span class="line">    isInitializing = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">initializeGlide</span><span class="params">(Context context, GlideBuilder builder, GeneratedAppGlideModule annotationGeneratedModule)</span> </span>&#123;</span><br><span class="line">    Glide glide = builder.build(applicationContext);</span><br><span class="line">    Glide.glide = glide;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>到这里， <code>Glide</code> 的初始化工作已经完成，具体初始化了什么信息，细节的东西，自己需要去认真的阅读源码。</p>
-<p>并且代码按照流程，<code>get()</code> 的深度代码已经完成，程序会逐步回到 <code>getRetriever()</code> 函数中，去执行 <code>getRequestManagerRetriever</code> ， <code>getRequestManagerRetriever</code> <code>是通过</code>Glide 的构造器完成的初始化工作，此时直接返回已经创建好的对象。并继续执行 <code>with()</code>函数 的 <code>get()</code> 去创建 <code>RequestManager</code></p>
-<p><strong>get(Fragment fragment)</strong></p>
-<p>这时候，我们发现，现在代码已经跳转到 <code>RequestManagerRetriever</code> 类中</p>
-<p><strong>RequestManagerRetriever</strong></p>
-<p><code>RequestManagerRetriever</code> 是一个管理类，负责生产 <code>Fragment</code> 对象，根据我们传入的 <code>Context</code> 上下文的定义不同，最终会帮我们创建不同的生命周期管理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RequestManager <span class="title">get</span><span class="params">(@NonNull Fragment fragment)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (Util.isOnBackgroundThread()) &#123;</span><br><span class="line">      <span class="comment">// 创建一个全局作用域的 RequestManager，生命周期很长，容易出现内存问题</span></span><br><span class="line">    <span class="keyword">return</span> get(fragment.getContext().getApplicationContext());</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    FragmentManager fm = fragment.getChildFragmentManager();</span><br><span class="line">    <span class="keyword">return</span> supportFragmentGet(fragment.getContext(), fm, fragment, fragment.isVisible());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> RequestManager <span class="title">get</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (context == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You cannot start a load on a null Context"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (Util.isOnMainThread() &amp;&amp; !(context <span class="keyword">instanceof</span> Application)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (context <span class="keyword">instanceof</span> FragmentActivity) &#123;</span><br><span class="line">      <span class="keyword">return</span> get((FragmentActivity) context);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (context <span class="keyword">instanceof</span> Activity) &#123;</span><br><span class="line">      <span class="keyword">return</span> get((Activity) context);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (context <span class="keyword">instanceof</span> ContextWrapper</span><br><span class="line">        &amp;&amp; ((ContextWrapper) context).getBaseContext().getApplicationContext() != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> get(((ContextWrapper) context).getBaseContext());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">       <span class="comment">// 创建一个全局作用域的 RequestManager，生命周期很长，容易出现内存问题</span></span><br><span class="line">    <span class="keyword">return</span> getApplicationManager(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ol>
-<li><p><strong>如果当前任务工作在后台线程或者传入的 <code>Context</code> 对象是一个 <code>Application</code> 级别的，那 <code>Glide</code> 就会帮我们创建一个和 <code>Application</code> 同生命周期的 <code>RequestManager</code> 对象，这个对象生命周期很长， 如果我们不规范使用的话，这里很容易造成<font color="red">内存的泄漏</font></strong>。 因此我们使用时，尽量不要传入里类似的。</p>
-</li>
-<li><p>如果我们传入的是一个 Fragment 对象， Activity 对象等等，那 <code>Glide</code> 就会帮我们创建个空白的 <code>Fragment</code>， <code>supportFragmentGet</code> 和  <code>fragmentGet</code> 两种方案是用来做 <code>androidX</code> 和 <code>android.app</code>中不同 <code>fragment</code> 的适配</p>
-</li>
-</ol>
-</blockquote>
-<p><strong>supportFragmentGet</strong></p>
-<p>创建管理生命周期的 Fragment, <code>androidx</code> 对应的是 <code>supportFragmentGet()</code> ， <code>android.app</code> 对应的是 <code>fragmentGet()</code>， 这里以 <code>supportFragmentGet()</code> 为例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> RequestManager <span class="title">supportFragmentGet</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull Context context,</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull FragmentManager fm,</span></span></span><br><span class="line"><span class="function"><span class="params">    @Nullable Fragment parentHint,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">boolean</span> isParentVisible)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建/获取当前空白的 Fragment</span></span><br><span class="line">  SupportRequestManagerFragment current =</span><br><span class="line">      getSupportRequestManagerFragment(fm, parentHint, isParentVisible);</span><br><span class="line">    <span class="comment">// 获取空白 Fragment 中的 RequestManager 对象</span></span><br><span class="line">    <span class="comment">// 如果为空，那么就通过工厂创建一个，并绑定回空白的 Fragment 中</span></span><br><span class="line">  RequestManager requestManager = current.getRequestManager();</span><br><span class="line">  <span class="keyword">if</span> (requestManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">    Glide glide = Glide.get(context);</span><br><span class="line">    requestManager =</span><br><span class="line">        factory.build(</span><br><span class="line">            glide, current.getGlideLifecycle(), current.getRequestManagerTreeNode(), context);</span><br><span class="line">    current.setRequestManager(requestManager);</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="comment">// 返回 reqeustManager 对象</span></span><br><span class="line">  <span class="keyword">return</span> requestManager;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> SupportRequestManagerFragment <span class="title">getSupportRequestManagerFragment</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull <span class="keyword">final</span> FragmentManager fm, @Nullable Fragment parentHint, <span class="keyword">boolean</span> isParentVisible)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 从 FragmentManager 中获取当前已经初始化好，并添加到 Fragment/Activity 中我们空白的 SupportRequestFragment </span></span><br><span class="line">  SupportRequestManagerFragment current =</span><br><span class="line">      (SupportRequestManagerFragment) fm.findFragmentByTag(FRAGMENT_TAG);</span><br><span class="line">    <span class="comment">// 如果为空，说明空白的 Fragment 还没有被添加进去</span></span><br><span class="line">  <span class="keyword">if</span> (current == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="comment">// pendingSupportRequestManagerFragments 是一个 HashMap 集合，用来暂存空白 Fragment 对象</span></span><br><span class="line">      <span class="comment">// 由于 Glide 是一个单例对象，在 Glide 的 builder 中，间接的创建了 RequestManagerRetriever 对象，</span></span><br><span class="line">      <span class="comment">// 因此 RequestManagerRetriever 也是一个单例，不同的 Activity/Fragment, 会有多个，因此这里用一个 HashMap 来存储空白 Fragment，</span></span><br><span class="line">      <span class="comment">// 同时，为了保证每个页面只会有一个空白 Fragment，并可以快速定位，所以使用了 HashMap</span></span><br><span class="line">    current = pendingSupportRequestManagerFragments.get(fm); <span class="comment">// 第一保障</span></span><br><span class="line">      <span class="comment">// 如果当前缓存的数据中，仍然没有创建好 Fragment， 那就说明当前的空白 Fragment 还没有被创建</span></span><br><span class="line">    <span class="keyword">if</span> (current == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 创建一个新的空白 Fragment</span></span><br><span class="line">      current = <span class="keyword">new</span> SupportRequestManagerFragment();</span><br><span class="line">      current.setParentFragmentHint(parentHint);</span><br><span class="line">      <span class="keyword">if</span> (isParentVisible) &#123;</span><br><span class="line">          <span class="comment">// 调用生命周期方法，让所有的监听者开始任务（后面会说）</span></span><br><span class="line">        current.getGlideLifecycle().onStart();</span><br><span class="line">      &#125;</span><br><span class="line">        <span class="comment">// 将创建好的 Fragment 存入到集合中</span></span><br><span class="line">      pendingSupportRequestManagerFragments.put(fm, current);</span><br><span class="line">        <span class="comment">// Handler 通知父容器，这里添加了一个 Fragment</span></span><br><span class="line">      fm.beginTransaction().add(current, FRAGMENT_TAG).commitAllowingStateLoss();</span><br><span class="line">        <span class="comment">// 发送一个 handler 消息，将数据从集合中移除，节省内存空间。（第二保障）</span></span><br><span class="line">      handler.obtainMessage(ID_REMOVE_SUPPORT_FRAGMENT_MANAGER, fm).sendToTarget();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> current;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Note:</strong></p>
-<p>这里有一个比较困惑的地方就是，将已经创建好的 <code>Fragment</code> 添加到集合中去后，又通过 <code>Handler</code> 消息，将这个 <code>Fragment</code> 从集合中移除，这是为什么呢？</p>
-<p>其实最终的目的是节省内存空间做的一个优化，通过 Handler来处理是因为，<code>fragment</code> 的添加也是通过 <code>Handler</code> 来完成的，但 <code>Handler</code> 消息的执行时间不能保证，因此通过 <code>Handler</code> 再发一次消息，让移除操作在 <code>Fragment</code> 添加完成之后去执行，就一定能够得到保障。</p>
-<p>只有当 <code>Fragment</code> 被添加进入父容器之后， <code>fm.findFragmentByTag</code> 才能获取到对象。这也是为了保证每个父容器都只有一个空白 <code>Fragment</code> 的两次保障。</p>
-</blockquote>
-<h2 id="类关系图"><a href="#类关系图" class="headerlink" title="类关系图"></a>类关系图</h2><p>至此，with 函数的所有主线业务已经说完了，但究竟 Fragment 是如何监听生命周期变化的呢？我们来看下面这张关系图</p>
-<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_struct.jpg?raw=true" alt="Glide lifecycle"></p>
-<p><strong>SupportRequestManagerFragment</strong> </p>
-<p>内部绑定了 <code>ActivityFragmentLifecycle</code> ，通过 Fragment 生生命周期变化，来引导 <code>RequestManager</code> 完成图片的请求和后续的显示</p>
-<p>我们查看下源码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SupportRequestManagerFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"SupportRMFragment"</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> ActivityFragmentLifecycle lifecycle;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@SuppressLint</span>(<span class="string">"ValidFragment"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">SupportRequestManagerFragment</span><span class="params">(@NonNull ActivityFragmentLifecycle lifecycle)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 构造器创建了 ActivityFramgentLifecycle</span></span><br><span class="line">    <span class="keyword">this</span>.lifecycle = lifecycle;</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 在前面初始化 SupportRequestManagerFragment 的代码中，我们还记得他手动的调用了一下 start 方法吧</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onStart();</span><br><span class="line">    lifecycle.onStart();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onStop();</span><br><span class="line">    lifecycle.onStop();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDestroy();</span><br><span class="line">    lifecycle.onDestroy();</span><br><span class="line">    unregisterFragmentWithRoot();</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="meta">@NonNull</span></span><br><span class="line">  <span class="function">ActivityFragmentLifecycle <span class="title">getGlideLifecycle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lifecycle;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当 Fragment / Activity 已经不可见时，通过生命周期变化，通知业务功能类去停止请求或调用，防止内存泄漏和崩溃。</p>
-<h2 id="load"><a href="#load" class="headerlink" title="load"></a>load</h2><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_load.jpg?raw=true" alt="Glide load"></p>
-<p>我们将 <code>Glide.with(this).load(url).into(view);</code> 拆分开来写，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RequestManager requestManager = Glide.with(<span class="keyword">this</span>);</span><br><span class="line">RequestBuilder requestBuilder = requestManager.load(url);</span><br><span class="line">requestBuilder.into(view);</span><br></pre></td></tr></table></figure>
-<p>可以看出， load 函数，我们传入了一个 <code>String</code> 类型的 <code>Url</code>， 最终返回给我们一个 <code>RequestBuilder</code> 对象。按照上面的时序图，我们简单分析一下可以看出，实际上 <code>RequestBuilder</code> 就是一个构造者，记录我们传入的参数，最终将我们传入的内容转化为一个 <code>Drawable</code> 。</p>
-<p><code>Glide</code> 也为我们提供了丰富的 <code>load api</code>， 我们可以传入 <code>url, bitmap, byte[], Drawable, Uri, File, Integer</code> 等等， <code>RequestBuilder</code> 就是来记录我们传入的具体是一个什么样子的数据，并将他们在展示的时候，最终转化成一个 <code>Drawable</code> 给图片容器，也就是后面我们要说的 <code>into</code> 函数。</p>
-<h2 id="into"><a href="#into" class="headerlink" title="into"></a>into</h2><p>into 的流程相当复杂，流程图已经展示不下，也不清晰。这是一张不完整的时序图。并没有体现网络请求的部分，和缓存的部分。</p>
-<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_into.jpg?raw=true" alt></p>
-<p>但我们先按照这个残图先分析一下。</p>
-<p>当 <code>into(imageview)</code> 被调用后</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ViewTarget&lt;ImageView, TranscodeType&gt; <span class="title">into</span><span class="params">(@NonNull ImageView view)</span> </span>&#123;</span><br><span class="line">    Util.assertMainThread();</span><br><span class="line">    Preconditions.checkNotNull(view);</span><br><span class="line"></span><br><span class="line">    BaseRequestOptions&lt;?&gt; requestOptions = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (!requestOptions.isTransformationSet()</span><br><span class="line">        &amp;&amp; requestOptions.isTransformationAllowed()</span><br><span class="line">        &amp;&amp; view.getScaleType() != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">switch</span> (view.getScaleType()) &#123;</span><br><span class="line">        <span class="keyword">case</span> CENTER_CROP:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalCenterCrop();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> CENTER_INSIDE:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalCenterInside();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> FIT_CENTER:</span><br><span class="line">        <span class="keyword">case</span> FIT_START:</span><br><span class="line">        <span class="keyword">case</span> FIT_END:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalFitCenter();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> FIT_XY:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalCenterInside();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> CENTER:</span><br><span class="line">        <span class="keyword">case</span> MATRIX:</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">          <span class="comment">// Do nothing.</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>Glide 显示对图片进行了解析，获取图片的尺寸等信息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> &lt;Y extends Target&lt;TranscodeType&gt;&gt; <span class="function">Y <span class="title">into</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull Y target,</span></span></span><br><span class="line"><span class="function"><span class="params">    @Nullable RequestListener&lt;TranscodeType&gt; targetListener,</span></span></span><br><span class="line"><span class="function"><span class="params">    BaseRequestOptions&lt;?&gt; options,</span></span></span><br><span class="line"><span class="function"><span class="params">    Executor callbackExecutor)</span> </span>&#123;</span><br><span class="line">  Preconditions.checkNotNull(target);</span><br><span class="line">  <span class="keyword">if</span> (!isModelSet) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must call #load() before calling #into()"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Request request = buildRequest(target, targetListener, options, callbackExecutor);</span><br><span class="line">  Request previous = target.getRequest();</span><br><span class="line">  requestManager.clear(target);</span><br><span class="line">  target.setRequest(request);</span><br><span class="line">  requestManager.track(target, request);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>继续，创建了一个 <code>Request</code> ，这个 <code>Request</code> 的真实对象是 <code>SingleRequest</code> ，并通过 <code>requestManager</code> 执行了这个请求任务。利用三层缓存策略，最终展示了一张图片。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/三方框架/Glide 源码分析/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -1066,6 +918,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:05:06" itemprop="dateModified" datetime="2021-01-30T00:05:06+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -1098,310 +966,23 @@
 
       
         
-          
-            <h1 id="Markdown中公式编辑教程"><a href="#Markdown中公式编辑教程" class="headerlink" title="Markdown中公式编辑教程"></a>Markdown中公式编辑教程</h1><h1 id="markdown中公式编辑教程"><a href="#markdown中公式编辑教程" class="headerlink" title="markdown中公式编辑教程"></a>markdown中公式编辑教程</h1><p>标签： Mathjax 公式编辑 markdown</p>
+          <h1 id="Markdown中公式编辑教程"><a href="#Markdown中公式编辑教程" class="headerlink" title="Markdown中公式编辑教程"></a>Markdown中公式编辑教程</h1><h1 id="markdown中公式编辑教程"><a href="#markdown中公式编辑教程" class="headerlink" title="markdown中公式编辑教程"></a>markdown中公式编辑教程</h1><p>标签： Mathjax 公式编辑 markdown</p>
 <p>一般公式分为两种形式，行内公式和行间公式。</p>
 <ul>
 <li>行内公式：<img src="https://math.jianshu.com/math?formula=\Gamma(z" alt="\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,."> %3D \int_0^\infty t^{z-1}e^{-t}dt\%2C.)</li>
-<li>行间公式：<img src="https://math.jianshu.com/math?formula=\Gamma(z" alt="\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,."> %3D \int_0^\infty t^{z-1}e^{-t}dt\%2C.)</li>
-</ul>
-<p>  对应的代码块为：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ \Gamma(z) = \int_<span class="number">0</span>^\infty t^&#123;z-<span class="number">1</span>&#125;e^&#123;-t&#125;dt\,. $</span><br><span class="line">$$\Gamma(z) = \int_<span class="number">0</span>^\infty t^&#123;z-<span class="number">1</span>&#125;e^&#123;-t&#125;dt\,.$$</span><br></pre></td></tr></table></figure>
-<p>  行内公式是在公式代码块的基础上前面加上<strong>$</strong> ，后面加上<strong>$</strong> 组成的，而行间公式则是在公式代码块前后使用<strong>$$</strong> 和<strong>$$</strong> 。<br>  下面主要介绍数学公式中常用的一些符号。</p>
-<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a><strong>希腊字母</strong></h2><table>
-<thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">大写</th>
-<th style="text-align:center">code</th>
-<th style="text-align:center">小写</th>
-<th style="text-align:center">code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">alpha</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">α</td>
-<td style="text-align:center">\alpha</td>
-</tr>
-<tr>
-<td style="text-align:center">beta</td>
-<td style="text-align:center">B</td>
-<td style="text-align:center">B</td>
-<td style="text-align:center">β</td>
-<td style="text-align:center">\beta</td>
-</tr>
-<tr>
-<td style="text-align:center">gamma</td>
-<td style="text-align:center">Γ</td>
-<td style="text-align:center">\Gamma</td>
-<td style="text-align:center">γ</td>
-<td style="text-align:center">\gamma</td>
-</tr>
-<tr>
-<td style="text-align:center">delta</td>
-<td style="text-align:center">Δ</td>
-<td style="text-align:center">\Delta</td>
-<td style="text-align:center">δ</td>
-<td style="text-align:center">\delta</td>
-</tr>
-<tr>
-<td style="text-align:center">epsilon</td>
-<td style="text-align:center">E</td>
-<td style="text-align:center">E</td>
-<td style="text-align:center">ϵ</td>
-<td style="text-align:center">\epsilon</td>
-</tr>
-<tr>
-<td style="text-align:center">zeta</td>
-<td style="text-align:center">Z</td>
-<td style="text-align:center">Z</td>
-<td style="text-align:center">ζ</td>
-<td style="text-align:center">\zeta</td>
-</tr>
-<tr>
-<td style="text-align:center">eta</td>
-<td style="text-align:center">H</td>
-<td style="text-align:center">H</td>
-<td style="text-align:center">η</td>
-<td style="text-align:center">\eta</td>
-</tr>
-<tr>
-<td style="text-align:center">theta</td>
-<td style="text-align:center">Θ</td>
-<td style="text-align:center">\Theta</td>
-<td style="text-align:center">θ</td>
-<td style="text-align:center">\theta</td>
-</tr>
-<tr>
-<td style="text-align:center">iota</td>
-<td style="text-align:center">I</td>
-<td style="text-align:center">I</td>
-<td style="text-align:center">ι</td>
-<td style="text-align:center">\iota</td>
-</tr>
-<tr>
-<td style="text-align:center">kappa</td>
-<td style="text-align:center">K</td>
-<td style="text-align:center">K</td>
-<td style="text-align:center">κ</td>
-<td style="text-align:center">\kappa</td>
-</tr>
-<tr>
-<td style="text-align:center">lambda</td>
-<td style="text-align:center">Λ</td>
-<td style="text-align:center">\Lambda</td>
-<td style="text-align:center">λ</td>
-<td style="text-align:center">\lambda</td>
-</tr>
-<tr>
-<td style="text-align:center">mu</td>
-<td style="text-align:center">M</td>
-<td style="text-align:center">M</td>
-<td style="text-align:center">μ</td>
-<td style="text-align:center">\mu</td>
-</tr>
-<tr>
-<td style="text-align:center">nu</td>
-<td style="text-align:center">N</td>
-<td style="text-align:center">N</td>
-<td style="text-align:center">ν</td>
-<td style="text-align:center">\nu</td>
-</tr>
-<tr>
-<td style="text-align:center">xi</td>
-<td style="text-align:center">Ξ</td>
-<td style="text-align:center">\Xi</td>
-<td style="text-align:center">ξ</td>
-<td style="text-align:center">\xi</td>
-</tr>
-<tr>
-<td style="text-align:center">omicron</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">ο</td>
-<td style="text-align:center">\omicron</td>
-</tr>
-<tr>
-<td style="text-align:center">pi</td>
-<td style="text-align:center">Π</td>
-<td style="text-align:center">\Pi</td>
-<td style="text-align:center">π</td>
-<td style="text-align:center">\pi</td>
-</tr>
-<tr>
-<td style="text-align:center">rho</td>
-<td style="text-align:center">P</td>
-<td style="text-align:center">P</td>
-<td style="text-align:center">ρ</td>
-<td style="text-align:center">\rho</td>
-</tr>
-<tr>
-<td style="text-align:center">sigma</td>
-<td style="text-align:center">Σ</td>
-<td style="text-align:center">\Sigma</td>
-<td style="text-align:center">σ</td>
-<td style="text-align:center">\sigma</td>
-</tr>
-<tr>
-<td style="text-align:center">tau</td>
-<td style="text-align:center">T</td>
-<td style="text-align:center">T</td>
-<td style="text-align:center">τ</td>
-<td style="text-align:center">\tau</td>
-</tr>
-<tr>
-<td style="text-align:center">upsilon</td>
-<td style="text-align:center">Υ</td>
-<td style="text-align:center">υ</td>
-<td style="text-align:center">\upsilon</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">phi</td>
-<td style="text-align:center">Φ</td>
-<td style="text-align:center">\Phi</td>
-<td style="text-align:center">ϕ</td>
-<td style="text-align:center">\phi</td>
-</tr>
-<tr>
-<td style="text-align:center">chi</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">χ</td>
-<td style="text-align:center">\chi</td>
-</tr>
-<tr>
-<td style="text-align:center">psi</td>
-<td style="text-align:center">Ψ</td>
-<td style="text-align:center">\Psi</td>
-<td style="text-align:center">ψ</td>
-<td style="text-align:center">\psi</td>
-</tr>
-<tr>
-<td style="text-align:center">omega</td>
-<td style="text-align:center">Ω</td>
-<td style="text-align:center">\Omega</td>
-<td style="text-align:center">ω</td>
-<td style="text-align:center">\omega</td>
-</tr>
-</tbody>
-</table>
-<h2 id="上标与下标"><a href="#上标与下标" class="headerlink" title="上标与下标"></a><strong>上标与下标</strong></h2><p>  上标和下标分别使用<code>^</code> 与<code>_</code> ，例如<code>$x_i^2$</code>表示的是：<img src="https://math.jianshu.com/math?formula=x_i^2" alt="x_i^2">。<br>  默认情况下，上、下标符号仅仅对下一个组起作用。一个组即单个字符或者使用<code>{..}</code> 包裹起来的内容。如果使用<code>$10^10$</code> 表示的是<img src="https://math.jianshu.com/math?formula=10^10" alt="10^10">，而<code>$10^{10}$</code> 才是<img src="https://math.jianshu.com/math?formula=10^{10}" alt="10^{10}">。同时，大括号还能消除二义性，如<code>x^5^6</code> 将得到一个错误，必须使用大括号来界定^的结合性，如<code>${x^5}^6$</code> ：<img src="https://math.jianshu.com/math?formula={x^5}^6" alt="{x^5}^6">或者<code>$x^{5^6}$</code> ：<img src="https://math.jianshu.com/math?formula=x^{5^6}" alt="x^{5^6}">。</p>
-<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a><strong>括号</strong></h2><h3 id="小括号与方括号"><a href="#小括号与方括号" class="headerlink" title="小括号与方括号"></a>小括号与方括号</h3><p>  使用原始的<code>( )</code> ，<code>[ ]</code> 即可，如<code>$(2+3)[4+4]$</code> ：<img src="https://math.jianshu.com/math?formula=(2%2B3" alt="(2+3)">) <img src="https://math.jianshu.com/math?formula=[4%2B4]" alt="[4+4]"><br>  使用\left(或\right)使符号大小与邻近的公式相适应（该语句适用于所有括号类型），如<code>$\left(\frac{x}{y}\right)$</code> ：<img src="https://math.jianshu.com/math?formula=\left(\frac{x}{y}\right" alt="\left(\frac{x}{y}\right)">)</p>
-<h3 id="大括号"><a href="#大括号" class="headerlink" title="大括号"></a>大括号</h3><p>  由于大括号<code>{}</code> 被用于分组，因此需要使用<code>\{</code>和<code>\}</code>表示大括号，也可以使用<code>\lbrace</code> 和<code>\rbrace</code>来表示。如<code>$\{a\*b\}:a\∗b$</code> 或<code>$\lbrace a\*b\rbrace :a\*b$</code> 表示<img src="https://math.jianshu.com/math?formula=\{a*b\}%3Aa∗b" alt="\{a*b\}:a∗b">。</p>
-<h3 id="尖括号"><a href="#尖括号" class="headerlink" title="尖括号"></a>尖括号</h3><p>  区分于小于号和大于号，使用<code>\langle</code> 和<code>\rangle</code> 表示左尖括号和右尖括号。如<code>$\langle x \rangle$</code> 表示：<img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/math" alt="\langle x \rangle">。</p>
-<h3 id="上取整"><a href="#上取整" class="headerlink" title="上取整"></a>上取整</h3><p>  使用<code>\lceil</code> 和 <code>\rceil</code> 表示。 如，<code>$\lceil x \rceil$</code>：<img src="https://math.jianshu.com/math?formula=\lceil x \rceil" alt="\lceil x \rceil">。</p>
-<h3 id="下取整"><a href="#下取整" class="headerlink" title="下取整"></a>下取整</h3><p>  使用<code>\lfloor</code> 和 <code>\rfloor</code> 表示。如，<code>$\lfloor x \rfloor$</code>：<img src="https://math.jianshu.com/math?formula=\lfloor x \rfloor" alt="\lfloor x \rfloor">。</p>
-<h2 id="求和与积分"><a href="#求和与积分" class="headerlink" title="求和与积分"></a><strong>求和与积分</strong></h2><h3 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h3><p>  <code>\sum</code> 用来表示求和符号，其下标表示求和下限，上标表示上限。如:<br>  <code>$\sum_{r=1}^n$</code>表示：<img src="https://math.jianshu.com/math?formula=\sum_{r%3D1}^n" alt="\sum_{r=1}^n">。<br>  <code>$$\sum_{r=1}^n$$</code>表示：<img src="https://math.jianshu.com/math?formula=%5Csum_%7Br%3D1%7D%5En" alt="\sum_{r=1}^n"></p>
-<h3 id="积分"><a href="#积分" class="headerlink" title="积分"></a>积分</h3><p>  <code>\int</code> 用来表示积分符号，同样地，其上下标表示积分的上下限。如，<code>$\int_{r=1}^\infty$</code>：<img src="https://math.jianshu.com/math?formula=\int_{r%3D1}^\infty" alt="\int_{r=1}^\infty">。<br>  多重积分同样使用 <strong>int</strong> ，通过 <strong>i</strong> 的数量表示积分导数：<br>  <code>$\iint$</code> ：<img src="https://math.jianshu.com/math?formula=\iint" alt="\iint"><br>  <code>$\iiint$</code> ：<img src="https://math.jianshu.com/math?formula=\iiint" alt="\iiint"><br>  <code>$\iiiint$</code> ：<img src="https://math.jianshu.com/math?formula=\iiiint" alt="\iiiint"></p>
-<h3 id="连乘"><a href="#连乘" class="headerlink" title="连乘"></a>连乘</h3><p>  <code>$\prod {a+b}$</code>，输出：<img src="https://math.jianshu.com/math?formula=\prod {a%2Bb}" alt="\prod {a+b}">。<br>  <code>$\prod_{i=1}^{K}$</code>，输出：<img src="https://math.jianshu.com/math?formula=\prod_{i%3D1}^{K}" alt="\prod_{i=1}^{K}">。<br>  <code>$$\prod_{i=1}^{K}$$</code>，输出：<img src="https://math.jianshu.com/math?formula=%5Cprod_%7Bi%3D1%7D%5E%7BK%7D" alt="\prod_{i=1}^{K}">。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>  与此类似的符号还有，<br>  <code>$\prod$</code> ：<img src="https://math.jianshu.com/math?formula=\prod" alt="\prod"><br>  <code>$\bigcup$</code> ：<img src="https://math.jianshu.com/math?formula=\bigcup" alt="\bigcup"><br>  <code>$\bigcap$</code> ：<img src="https://math.jianshu.com/math?formula=\bigcap" alt="\bigcap"><br>  <code>$arg\,\max_{c_k}$</code>：<img src="https://math.jianshu.com/math?formula=arg\%2C\max_{c_k}" alt="arg\,\max_{c_k}"><br>  <code>$arg\,\min_{c_k}$</code>：<img src="https://math.jianshu.com/math?formula=arg\%2C\min_{c_k}" alt="arg\,\min_{c_k}"><br>  <code>$\mathop {argmin}_{c_k}$</code>：<img src="https://math.jianshu.com/math?formula=\mathop {argmin}_{c_k}" alt="\mathop {argmin}_{c_k}"><br>  <code>$\mathop {argmax}_{c_k}$</code>：<img src="https://math.jianshu.com/math?formula=\mathop {argmax}_{c_k}" alt="\mathop {argmax}_{c_k}"><br>  <code>$\max_{c_k}$</code>：<img src="https://math.jianshu.com/math?formula=\max_{c_k}" alt="\max_{c_k}"><br>  <code>$\min_{c_k}$</code>：<img src="https://math.jianshu.com/math?formula=\min_{c_k}" alt="\min_{c_k}"></p>
-<h2 id="分式与根式"><a href="#分式与根式" class="headerlink" title="分式与根式"></a><strong>分式与根式</strong></h2><h3 id="分式"><a href="#分式" class="headerlink" title="分式"></a>分式</h3><ul>
-<li>第一种，使用<code>\frac ab</code>，<code>\frac</code>作用于其后的两个组<code>a</code> ，<code>b</code> ，结果为<img src="https://math.jianshu.com/math?formula=\frac ab" alt="\frac ab">。如果你的分子或分母不是单个字符，请使用<code>{..}</code>来分组，比如<code>$\frac {a+c+1}{b+c+2}$</code>表示<img src="https://math.jianshu.com/math?formula=\frac {a%2Bc%2B1}{b%2Bc%2B2}" alt="\frac {a+c+1}{b+c+2}">。</li>
-<li>第二种，使用<code>\over</code>来分隔一个组的前后两部分，如<code>{a+1\over b+1}</code>：<img src="https://math.jianshu.com/math?formula={a%2B1\over b%2B1}" alt="{a+1\over b+1}"></li>
-</ul>
-<h3 id="连分数"><a href="#连分数" class="headerlink" title="连分数"></a>连分数</h3><p>  书写连分数表达式时，请使用<code>\cfrac</code>代替<code>\frac</code>或者<code>\over</code>两者效果对比如下：<br>  <code>\frac</code> 表示如下：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$x=a_<span class="number">0</span> + \frac &#123;<span class="number">1</span>^<span class="number">2</span>&#125;&#123;a_1 + \frac &#123;<span class="number">2</span>^<span class="number">2</span>&#125;&#123;a_2 + \frac &#123;<span class="number">3</span>^<span class="number">2</span>&#125;&#123;a_3 + \frac &#123;<span class="number">4</span>^<span class="number">2</span>&#125;&#123;a_4 + ...&#125;&#125;&#125;&#125;$$</span><br></pre></td></tr></table></figure>
-<p>  显示如下：<br><img src="https://math.jianshu.com/math?formula=x%3Da_0 %2B \frac {1^2}{a_1 %2B \frac {2^2}{a_2 %2B \frac {3^2}{a_3 %2B \frac {4^2}{a_4 %2B ...}}}}" alt="x=a_0 + \frac {1^2}{a_1 + \frac {2^2}{a_2 + \frac {3^2}{a_3 + \frac {4^2}{a_4 + ...}}}}"><br>  <code>\cfrac</code> 表示如下：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$x=a_<span class="number">0</span> + \cfrac &#123;<span class="number">1</span>^<span class="number">2</span>&#125;&#123;a_1 + \cfrac &#123;<span class="number">2</span>^<span class="number">2</span>&#125;&#123;a_2 + \cfrac &#123;<span class="number">3</span>^<span class="number">2</span>&#125;&#123;a_3 + \cfrac &#123;<span class="number">4</span>^<span class="number">2</span>&#125;&#123;a_4 + ...&#125;&#125;&#125;&#125;$$</span><br></pre></td></tr></table></figure>
-<p>  显示如下：<br><img src="https://math.jianshu.com/math?formula=x%3Da_0 %2B \cfrac {1^2}{a_1 %2B \cfrac {2^2}{a_2 %2B \cfrac {3^2}{a_3 %2B \cfrac {4^2}{a_4 %2B ...}}}}" alt="x=a_0 + \cfrac {1^2}{a_1 + \cfrac {2^2}{a_2 + \cfrac {3^2}{a_3 + \cfrac {4^2}{a_4 + ...}}}}"></p>
-<h3 id="根式"><a href="#根式" class="headerlink" title="根式"></a>根式</h3><p>  根式使用<code>\sqrt</code> 来表示。<br>  如开4次方：<code>$\sqrt[4]{\frac xy}$</code> ：<img src="https://math.jianshu.com/math?formula=\sqrt[4]{\frac xy}" alt="\sqrt[4]{\frac xy}">。<br>  开平方：<code>$\sqrt {a+b}$</code>：<img src="https://math.jianshu.com/math?formula=\sqrt {a%2Bb}" alt="\sqrt {a+b}">。</p>
-<h2 id="多行表达式"><a href="#多行表达式" class="headerlink" title="多行表达式"></a><strong>多行表达式</strong></h2><h3 id="分类表达式"><a href="#分类表达式" class="headerlink" title="分类表达式"></a>分类表达式</h3><p>  定义函数的时候经常需要分情况给出表达式，使用<code>\begin{cases}…\end{cases}</code> 。其中：</p>
-<ul>
-<li>  使用<code>\\</code> 来分类，</li>
-<li>  使用<code>&amp;</code> 指示需要对齐的位置，</li>
-<li>  使用<code>\</code> +<code>空格</code>表示空格。</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">f(n)</span><br><span class="line">\<span class="keyword">begin</span>&#123;cases&#125;</span><br><span class="line">\cfrac n2, &amp;<span class="keyword">if</span>\ n\ is\ even\\</span><br><span class="line"><span class="number">3</span>n + <span class="number">1</span>, &amp;<span class="keyword">if</span>\  n\ is\ odd</span><br><span class="line">\<span class="keyword">end</span>&#123;cases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  表示:<br><img src="https://math.jianshu.com/math?formula=f(n" alt="f(n) \begin{cases} \cfrac n2, &amp;if\ n\ is\ even\\ 3n + 1, &amp;if\ n\ is\ odd \end{cases}"> \begin{cases} \cfrac n2%2C %26if\ n\ is\ even\ 3n %2B 1%2C %26if\ n\ is\ odd \end{cases})</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">L(Y,f(X)) =</span><br><span class="line">\<span class="keyword">begin</span>&#123;cases&#125;</span><br><span class="line"><span class="number">0</span>, &amp; \text&#123;Y = f(X)&#125;  \\</span><br><span class="line"><span class="number">1</span>, &amp; \text&#123;Y $\neq$ f(X)&#125;</span><br><span class="line">\<span class="keyword">end</span>&#123;cases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  表示:<br><img src="https://math.jianshu.com/math?formula=L(Y%2Cf(X" alt="L(Y,f(X)) = \begin{cases} 0, &amp; \text{Y = f(X)} \\ 1, &amp; \text{Y $\neq$ f(X)} \end{cases}">)%20%3D%20%5Cbegin%7Bcases%7D%200%2C%20%26%20%5Ctext%7BY%20%3D%20f(X)%7D%20%5C%5C%201%2C%20%26%20%5Ctext%7BY%20%24%5Cneq%24%20f(X)%7D%20%5Cend%7Bcases%7D)<br>  如果想分类之间的垂直间隔变大，可以使用<code>\\[2ex]</code> 代替<code>\\</code> 来分隔不同的情况。(<code>3ex,4ex</code> 也可以用，<code>1ex</code> 相当于原始距离）。如下所示：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">L(Y,f(X)) =</span><br><span class="line">\<span class="keyword">begin</span>&#123;cases&#125;</span><br><span class="line"><span class="number">0</span>, &amp; \text&#123;Y = f(X)&#125; \\[<span class="number">5</span>ex]</span><br><span class="line"><span class="number">1</span>, &amp; \text&#123;Y $\neq$ f(X)&#125;</span><br><span class="line">\<span class="keyword">end</span>&#123;cases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  表示：<br><img src="https://math.jianshu.com/math?formula=L(Y%2Cf(X" alt="L(Y,f(X)) = \begin{cases} 0, &amp; \text{Y = f(X)} \\[5ex] 1, &amp; \text{Y $\neq$ f(X)} \end{cases}">)%20%3D%20%5Cbegin%7Bcases%7D%200%2C%20%26%20%5Ctext%7BY%20%3D%20f(X)%7D%20%5C%5C%5B5ex%5D%201%2C%20%26%20%5Ctext%7BY%20%24%5Cneq%24%20f(X)%7D%20%5Cend%7Bcases%7D)</p>
-<h3 id="多行表达式-1"><a href="#多行表达式-1" class="headerlink" title="多行表达式"></a>多行表达式</h3><p>  有时候需要将一行公式分多行进行显示。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;equation&#125;\<span class="keyword">begin</span>&#123;split&#125; </span><br><span class="line">a&amp;=b+c-d \\ </span><br><span class="line">&amp;\quad +e-f\\ </span><br><span class="line">&amp;=g+h\\ </span><br><span class="line">&amp; =i </span><br><span class="line">\<span class="keyword">end</span>&#123;split&#125;\<span class="keyword">end</span>&#123;equation&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  表示：<br><img src="https://math.jianshu.com/math?formula=\begin{equation}\begin{split} a%26%3Db%2Bc-d \\ %26\quad %2Be-f\\ %26%3Dg%2Bh\\ %26 %3Di \end{split}\end{equation}" alt="\begin{equation}\begin{split} a&amp;=b+c-d \\ &amp;\quad +e-f\\ &amp;=g+h\\ &amp; =i \end{split}\end{equation}"><br>  其中<code>begin{equation}</code> 表示开始方程，<code>end{equation}</code> 表示方程结束；<code>begin{split}</code> 表示开始多行公式，<code>end{split}</code> 表示结束；公式中用<code>\\</code> 表示回车到下一行，<code>&amp;</code> 表示对齐的位置。</p>
-<h3 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h3><p>  使用<code>\begin{array}...\end{array}</code> 与<code>\left \{</code> 与<code>\right.</code> 配合表示方程组:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\left \&#123; </span><br><span class="line">\<span class="keyword">begin</span>&#123;array&#125;&#123;c&#125;</span><br><span class="line">a_1x+b_1y+c_1z=d_1 \\ </span><br><span class="line">a_2x+b_2y+c_2z=d_2 \\ </span><br><span class="line">a_3x+b_3y+c_3z=d_3</span><br><span class="line">\<span class="keyword">end</span>&#123;array&#125;</span><br><span class="line">\right.</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  表示：<br><img src="https://math.jianshu.com/math?formula=\left \{ \begin{array}{c} a_1x%2Bb_1y%2Bc_1z%3Dd_1 \\ a_2x%2Bb_2y%2Bc_2z%3Dd_2 \\ a_3x%2Bb_3y%2Bc_3z%3Dd_3 \end{array} \right." alt="\left \{ \begin{array}{c} a_1x+b_1y+c_1z=d_1 \\ a_2x+b_2y+c_2z=d_2 \\ a_3x+b_3y+c_3z=d_3 \end{array} \right."><br>  注意：通常MathJax通过内部策略自己管理公式内部的空间，因此<code>a…b</code> 与<code>a…….b</code> （<code>.</code>表示空格）都会显示为<code>ab</code> 。可以通过在<code>ab</code> 间加入<code>\</code> ,增加些许间隙，<code>\;</code> 增加较宽的间隙，<code>\quad</code> 与<code>\qquad</code> 会增加更大的间隙。</p>
-<h2 id="特殊函数与符号"><a href="#特殊函数与符号" class="headerlink" title="特殊函数与符号"></a><strong>特殊函数与符号</strong></h2><h3 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h3><p>  <code>\snx$</code> : <img src="https://math.jianshu.com/math?formula=sinx" alt="sinx"><br>  <code>\arctanx</code> : <img src="https://math.jianshu.com/math?formula=arctanx" alt="arctanx"></p>
-<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><p>  小于(<code>\lt</code> )：<img src="https://math.jianshu.com/math?formula=\lt" alt="\lt"><br>  大于(<code>\gt</code> )：<img src="https://math.jianshu.com/math?formula=\gt" alt="\gt"><br>  小于等于(<code>\le</code> )：<img src="https://math.jianshu.com/math?formula=\le" alt="\le"><br>  大于等于(<code>\ge</code> )：<img src="https://math.jianshu.com/math?formula=\ge" alt="\ge"><br>  不等于(<code>\ne</code> ) : <img src="https://math.jianshu.com/math?formula=\ne" alt="\ne"><br>  可以在这些运算符前面加上<code>\not</code> ，如<code>\not\lt</code> : <img src="https://math.jianshu.com/math?formula=\not\lt`" alt="\not\lt`"></p>
-<h3 id="集合关系与运算"><a href="#集合关系与运算" class="headerlink" title="集合关系与运算"></a>集合关系与运算</h3><p>  并集(<code>\cup</code> ): <img src="https://math.jianshu.com/math?formula=\cup" alt="\cup"><br>  交集(<code>\cap</code> ): <img src="https://math.jianshu.com/math?formula=\cap" alt="\cap"><br>  差集(<code>\setminus</code> ): <img src="https://math.jianshu.com/math?formula=\setminus" alt="\setminus"><br>  子集(<code>\subset</code> ): <img src="https://math.jianshu.com/math?formula=\subset" alt="\subset"><br>  子集(<code>\subseteq</code> ): <img src="https://math.jianshu.com/math?formula=\subseteq" alt="\subseteq"><br>  非子集(<code>\subsetneq</code> ): <img src="https://math.jianshu.com/math?formula=\subsetneq" alt="\subsetneq"><br>  父集(<code>\supset</code> ): <img src="https://math.jianshu.com/math?formula=\supset" alt="\supset"><br>  属于(<code>\in</code> ): <img src="https://math.jianshu.com/math?formula=\in" alt="\in"><br>  不属于(<code>\notin</code> ): <img src="https://math.jianshu.com/math?formula=\notin" alt="\notin"><br>  空集(<code>\emptyset</code> ): <img src="https://math.jianshu.com/math?formula=\emptyset" alt="\emptyset"><br>  空(<code>\varnothing</code> ): <img src="https://math.jianshu.com/math?formula=\varnothing" alt="\varnothing"></p>
-<h3 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h3><p>  <code>\binom{n+1}{2k}</code> : <img src="https://math.jianshu.com/math?formula=\binom{n%2B1}{2k}" alt="\binom{n+1}{2k}"><br>  <code>{n+1 \choose 2k}</code> : <img src="https://math.jianshu.com/math?formula={n%2B1 \choose 2k}" alt="{n+1 \choose 2k}"></p>
-<h3 id="箭头"><a href="#箭头" class="headerlink" title="箭头"></a>箭头</h3><p>  (<code>\to</code> ):<img src="https://math.jianshu.com/math?formula=\to" alt="\to"><br>  (<code>\rightarrow</code> ): <img src="https://math.jianshu.com/math?formula=\rightarrow" alt="\rightarrow"><br>  (<code>\leftarrow</code> ): <img src="https://math.jianshu.com/math?formula=\leftarrow" alt="\leftarrow"><br>  (<code>\Rightarrow</code> ): <img src="https://math.jianshu.com/math?formula=\Rightarrow" alt="\Rightarrow"><br>  (<code>\Leftarrow</code> ): <img src="https://math.jianshu.com/math?formula=\Leftarrow" alt="\Leftarrow"><br>  (<code>\mapsto</code> ): <img src="https://math.jianshu.com/math?formula=\mapsto" alt="\mapsto"></p>
-<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>  (<code>\land</code> ): <img src="https://math.jianshu.com/math?formula=\land" alt="\land"><br>  (<code>\lor</code> ): <img src="https://math.jianshu.com/math?formula=\lor" alt="\lor"><br>  (<code>\lnot</code> ): <img src="https://math.jianshu.com/math?formula=\lnot" alt="\lnot"><br>  (<code>\forall</code> ): <img src="https://math.jianshu.com/math?formula=\forall" alt="\forall"><br>  (<code>\exists</code> ): <img src="https://math.jianshu.com/math?formula=\exists" alt="\exists"><br>  (<code>\top</code> ): <img src="https://math.jianshu.com/math?formula=\top" alt="\top"><br>  (<code>\bot</code> ): <img src="https://math.jianshu.com/math?formula=\bot" alt="\bot"><br>  (<code>\vdash</code> ): <img src="https://math.jianshu.com/math?formula=\vdash" alt="\vdash"><br>  (<code>\vDash</code> ): <img src="https://math.jianshu.com/math?formula=\vDash" alt="\vDash"></p>
-<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><p>  (<code>\star</code> ): <img src="https://math.jianshu.com/math?formula=\star" alt="\star"><br>  (<code>\ast</code> ): <img src="https://math.jianshu.com/math?formula=\ast" alt="\ast"><br>  (<code>\oplus</code> ): <img src="https://math.jianshu.com/math?formula=\oplus" alt="\oplus"><br>  (<code>\circ</code> ): <img src="https://math.jianshu.com/math?formula=\circ" alt="\circ"><br>  (<code>\bullet</code> ): <img src="https://math.jianshu.com/math?formula=\bullet" alt="\bullet"></p>
-<h3 id="等于"><a href="#等于" class="headerlink" title="等于"></a>等于</h3><p>  (<code>\approx</code> ): <img src="https://math.jianshu.com/math?formula=\approx" alt="\approx"><br>  (<code>\sim</code> ): <img src="https://math.jianshu.com/math?formula=\sim" alt="\sim"><br>  (<code>\equiv</code> ): <img src="https://math.jianshu.com/math?formula=\equiv" alt="\equiv"><br>  (<code>\prec</code> ): <img src="https://math.jianshu.com/math?formula=\prec" alt="\prec"></p>
-<h3 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h3><p>  (<code>\infty</code> ): <img src="https://math.jianshu.com/math?formula=\infty" alt="\infty"><br>  (<code>\aleph_o</code> ): <img src="https://math.jianshu.com/math?formula=\aleph_o" alt="\aleph_o"><br>  (<code>\nabla</code> ): <img src="https://math.jianshu.com/math?formula=\nabla" alt="\nabla"><br>  (<code>\Im</code> ): <img src="https://math.jianshu.com/math?formula=\Im" alt="\Im"><br>  (<code>\Re</code> ): <img src="https://math.jianshu.com/math?formula=\Re" alt="\Re"></p>
-<h3 id="模运算"><a href="#模运算" class="headerlink" title="模运算"></a>模运算</h3><p>  (<code>\pmod</code> ): <img src="https://math.jianshu.com/math?formula=b \pmod n" alt="b \pmod n"><br>  如<code>a \equiv b \pmod n</code> : <img src="https://math.jianshu.com/math?formula=a \equiv b \pmod n" alt="a \equiv b \pmod n"></p>
-<h3 id="点"><a href="#点" class="headerlink" title="点"></a>点</h3><p>  (<code>\ldots</code> ): <img src="https://math.jianshu.com/math?formula=\ldots" alt="\ldots"><br>  (<code>\cdots</code> ): <img src="https://math.jianshu.com/math?formula=\cdots" alt="\cdots"><br>  (<code>\cdot</code> ): <img src="https://math.jianshu.com/math?formula=\cdot" alt="\cdot"><br>  其区别是点的位置不同，<code>\ldots</code> 位置稍低，<code>\cdots</code> 位置居中。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;equation&#125;</span><br><span class="line">a_1+a_2+\ldots+a_n \\ </span><br><span class="line">a_1+a_2+\cdots+a_n</span><br><span class="line">\<span class="keyword">end</span>&#123;equation&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  表示：<br><img src="https://math.jianshu.com/math?formula=\begin{equation} a_1%2Ba_2%2B\ldots%2Ba_n \\ a_1%2Ba_2%2B\cdots%2Ba_n \end{equation}" alt="\begin{equation} a_1+a_2+\ldots+a_n \\ a_1+a_2+\cdots+a_n \end{equation}"></p>
-<h2 id="顶部符号"><a href="#顶部符号" class="headerlink" title="顶部符号"></a><strong>顶部符号</strong></h2><p>  对于单字符，<code>\hat x</code> ：<img src="https://math.jianshu.com/math?formula=\hat x" alt="\hat x"><br>  多字符可以使用<code>\widehat {xy}</code> ：<img src="https://math.jianshu.com/math?formula=\widehat {xy}" alt="\widehat {xy}"><br>  类似的还有:<br>  (<code>\overline x</code> ): <img src="https://math.jianshu.com/math?formula=\overline x" alt="\overline x"><br>  矢量(<code>\vec</code> ): <img src="https://math.jianshu.com/math?formula=\vec x" alt="\vec x"><br>  向量(<code>\overrightarrow {xy}</code> ): <img src="https://math.jianshu.com/math?formula=\overrightarrow {xy}" alt="\overrightarrow {xy}"><br>  (<code>\dot x</code> ): <img src="https://math.jianshu.com/math?formula=\dot x" alt="\dot x"><br>  (<code>\ddot x</code> ): <img src="https://math.jianshu.com/math?formula=\ddot x" alt="\ddot x"><br>  (<code>\dot {\dot x}</code> ): <img src="https://math.jianshu.com/math?formula=\dot {\dot x}" alt="\dot {\dot x}"></p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a><strong>表格</strong></h2><p>  使用<code>\begin{array}{列样式}…\end{array}</code> 这样的形式来创建表格，列样式可以是<code>clr</code> 表示居中，左，右对齐，还可以使用<code>|</code> 表示一条竖线。表格中各行使用<code>\\</code> 分隔，各列使用<code>&amp;</code> 分隔。使用<code>\hline</code> 在本行前加入一条直线。 例如:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;array&#125;&#123;c<span class="params">|lcr&#125;</span></span><br><span class="line"><span class="params">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\</span></span><br><span class="line"><span class="params">\hline</span></span><br><span class="line"><span class="params">1 &amp; 0.24 &amp; 1 &amp; 125 \\</span></span><br><span class="line"><span class="params">2 &amp; -1 &amp; 189 &amp; -8 \\</span></span><br><span class="line"><span class="params">3 &amp; -20 &amp; 2000 &amp; 1+10i \\</span></span><br><span class="line"><span class="params">\<span class="keyword">end</span>&#123;array&#125;</span></span><br><span class="line"><span class="params">$$</span></span><br></pre></td></tr></table></figure>
-<p>  得到：<br><img src="https://math.jianshu.com/math?formula=\begin{array}{c|lcr} n %26 \text{Left} %26 \text{Center} %26 \text{Right} \\ \hline 1 %26 0.24 %26 1 %26 125 \\ 2 %26 -1 %26 189 %26 -8 \\ 3 %26 -20 %26 2000 %26 1%2B10i \\ \end{array}" alt="\begin{array}{c|lcr} n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\ \hline 1 &amp; 0.24 &amp; 1 &amp; 125 \\ 2 &amp; -1 &amp; 189 &amp; -8 \\ 3 &amp; -20 &amp; 2000 &amp; 1+10i \\ \end{array}"></p>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a><strong>矩阵</strong></h2><h3 id="基本内容"><a href="#基本内容" class="headerlink" title="基本内容"></a>基本内容</h3><p>  使用<code>\begin{matrix}…\end{matrix}</code> 这样的形式来表示矩阵，在<code>\begin</code> 与<code>\end</code> 之间加入矩阵中的元素即可。矩阵的行之间使用<code>\\</code> 分隔，列之间使用<code>&amp;</code> 分隔，例如:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;matrix&#125;</span><br><span class="line"><span class="number">1</span> &amp; x &amp; x^<span class="number">2</span> \\</span><br><span class="line"><span class="number">1</span> &amp; y &amp; y^<span class="number">2</span> \\</span><br><span class="line"><span class="number">1</span> &amp; z &amp; z^<span class="number">2</span> \\</span><br><span class="line">\<span class="keyword">end</span>&#123;matrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  得到：<br><img src="https://math.jianshu.com/math?formula=\begin{matrix} 1 %26 x %26 x^2 \\ 1 %26 y %26 y^2 \\ 1 %26 z %26 z^2 \\ \end{matrix}" alt="\begin{matrix} 1 &amp; x &amp; x^2 \\ 1 &amp; y &amp; y^2 \\ 1 &amp; z &amp; z^2 \\ \end{matrix}"></p>
-<h3 id="括号-1"><a href="#括号-1" class="headerlink" title="括号"></a>括号</h3><p>  如果要对矩阵加括号，可以像上文中提到的一样，使用<code>\left</code> 与<code>\right</code> 配合表示括号符号。也可以使用特殊的<code>matrix</code> 。即替换<code>\begin{matrix}…\end{matrix}</code> 中<code>matrix</code> 为<code>pmatrix</code> ，<code>bmatrix</code> ，<code>Bmatrix</code> ，<code>vmatrix</code> , <code>Vmatrix</code> 。</p>
-<ol>
-<li>pmatrix<code>$\begin{pmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{pmatrix}$</code> : <img src="https://math.jianshu.com/math?formula=\begin{pmatrix}1 %26 2 \\ 3 %26 4\\ \end{pmatrix}" alt="\begin{pmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{pmatrix}"></li>
-<li>bmatrix<code>$\begin{bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{bmatrix}$</code> : <img src="https://math.jianshu.com/math?formula=\begin{bmatrix}1 %26 2 \\ 3 %26 4\\ \end{bmatrix}" alt="\begin{bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{bmatrix}"></li>
-<li>Bmatrix<code>$\begin{Bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Bmatrix}$</code> : <img src="https://math.jianshu.com/math?formula=\begin{Bmatrix}1 %26 2 \\ 3 %26 4\\ \end{Bmatrix}" alt="\begin{Bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Bmatrix}"></li>
-<li>vmatrix<code>$\begin{vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{vmatrix}$</code> : <img src="https://math.jianshu.com/math?formula=\begin{vmatrix}1 %26 2 \\ 3 %26 4\\ \end{vmatrix}" alt="\begin{vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{vmatrix}"></li>
-<li>Vmatrix<code>$\begin{Vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Vmatrix}$</code> : <img src="https://math.jianshu.com/math?formula=\begin{Vmatrix}1 %26 2 \\ 3 %26 4\\ \end{Vmatrix}" alt="\begin{Vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Vmatrix}"></li>
-</ol>
-<h3 id="元素省略"><a href="#元素省略" class="headerlink" title="元素省略"></a>元素省略</h3><p>  可以使用<code>\cdots</code> ：⋯，<code>\ddots</code>：⋱ ，<code>\vdots</code>：⋮ 来省略矩阵中的元素，如：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;pmatrix&#125;</span><br><span class="line"><span class="number">1</span>&amp;a_1&amp;a_1^<span class="number">2</span>&amp;\cdots&amp;a_1^n\\</span><br><span class="line"><span class="number">1</span>&amp;a_2&amp;a_2^<span class="number">2</span>&amp;\cdots&amp;a_2^n\\</span><br><span class="line">\vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\</span><br><span class="line"><span class="number">1</span>&amp;a_m&amp;a_m^<span class="number">2</span>&amp;\cdots&amp;a_m^n\\</span><br><span class="line">\<span class="keyword">end</span>&#123;pmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>  表示：<br><img src="https://math.jianshu.com/math?formula=\begin{pmatrix} 1%26a_1%26a_1^2%26\cdots%26a_1^n\\ 1%26a_2%26a_2^2%26\cdots%26a_2^n\\ \vdots%26\vdots%26\vdots%26\ddots%26\vdots\\ 1%26a_m%26a_m^2%26\cdots%26a_m^n\\ \end{pmatrix}" alt="\begin{pmatrix} 1&amp;a_1&amp;a_1^2&amp;\cdots&amp;a_1^n\\ 1&amp;a_2&amp;a_2^2&amp;\cdots&amp;a_2^n\\ \vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\ 1&amp;a_m&amp;a_m^2&amp;\cdots&amp;a_m^n\\ \end{pmatrix}"></p>
-<h3 id="增广矩阵"><a href="#增广矩阵" class="headerlink" title="增广矩阵"></a>增广矩阵</h3><p>  增广矩阵需要使用前面的表格中使用到的<code>\begin{array} ... \end{array}</code> 来实现。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">left</span>[  \begin&#123;array&#125;  &#123;<span class="built_in">c</span> <span class="built_in">c</span> | <span class="built_in">c</span>&#125; %这里的<span class="built_in">c</span>表示数组中元素对其方式：<span class="built_in">c</span>居中、r右对齐、l左对齐，竖线表示<span class="number">2</span>、<span class="number">3</span>列间插入竖线</span><br><span class="line"><span class="number">1</span> &amp; <span class="number">2</span> &amp; <span class="number">3</span> \\</span><br><span class="line">\hline %插入横线，如果去掉\hline就是增广矩阵</span><br><span class="line"><span class="number">4</span> &amp; <span class="number">5</span> &amp; <span class="number">6</span></span><br><span class="line">\end&#123;array&#125;  \<span class="keyword">right</span>]</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>显示为：<br><img src="https://math.jianshu.com/math?formula=\left[ \begin{array} {c c | c} 1 %26 2 %26 3 \\ \hline 4 %26 5 %26 6 \end{array} \right]" alt="\left[ \begin{array} {c c | c} 1 &amp; 2 &amp; 3 \\ \hline 4 &amp; 5 &amp; 6 \end{array} \right]"></p>
-<h2 id="公式标记与引用"><a href="#公式标记与引用" class="headerlink" title="公式标记与引用"></a><strong>公式标记与引用</strong></h2><p>  使用<code>\tag{yourtag}</code> 来标记公式，如果想在之后引用该公式，则还需要加上<code>\label{yourlabel}</code> 在<code>\tag</code> 之后，如<code>$$a = x^2 - y^3 \tag{1}\label{1}$$</code> 显示为：<br><img src="https://math.jianshu.com/math?formula=a %3A%3D x^2 - y^3 \tag{1}\label{311}" alt="a := x^2 - y^3 \tag{1}\label{311}"><br>  如果不需要被引用，只使用<code>\tag{yourtag}</code> ，<code>$$x+y=z\tag{1.1}$$</code>显示为：<br><img src="https://math.jianshu.com/math?formula=x%2By%3Dz\tag{1.1}" alt="x+y=z\tag{1.1}"><br>  <code>\tab{yourtab}</code> 中的内容用于显示公式后面的标记。公式之间通过<code>\label{}</code> 设置的内容来引用。为了引用公式，可以使用<code>\eqref{yourlabel}</code> ，如<code>$$a + y^3 \stackrel{\eqref{1}}= x^2$$</code> 显示为：<br><img src="https://math.jianshu.com/math?formula=a %2B y^3 \stackrel{\eqref{1}}%3D x^2" alt="a + y^3 \stackrel{\eqref{1}}= x^2"></p>
-<p>或者使用<code>\ref{yourlabel}</code> 不带括号引用，如<code>$$a + y^3 \stackrel{\ref{111}}= x^2$$</code> 显示为:<br><img src="https://math.jianshu.com/math?formula=a %2B y^3 \stackrel{\ref{1}}%3D x^2" alt="a + y^3 \stackrel{\ref{1}}= x^2"></p>
-<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a><strong>字体</strong></h2><h3 id="黑板粗体字"><a href="#黑板粗体字" class="headerlink" title="黑板粗体字"></a>黑板粗体字</h3><p>此字体经常用来表示代表实数、整数、有理数、复数的大写字母。<br><code>$\mathbb ABCDEF$</code>：<img src="https://math.jianshu.com/math?formula=\mathbb ABCDEF" alt="\mathbb ABCDEF"><br><code>$\Bbb ABCDEF$</code>：<img src="https://math.jianshu.com/math?formula=\Bbb ABCDEF" alt="\Bbb ABCDEF"></p>
-<h3 id="黑体字"><a href="#黑体字" class="headerlink" title="黑体字"></a>黑体字</h3><p><code>$\mathbf ABCDEFGHIJKLMNOPQRSTUVWXYZ$</code> :<img src="https://math.jianshu.com/math?formula=\mathbf ABCDEFGHIJKLMNOPQRSTUVWXYZ" alt="\mathbf ABCDEFGHIJKLMNOPQRSTUVWXYZ"><br><code>$\mathbf abcdefghijklmnopqrstuvwxyz$</code> :<img src="https://math.jianshu.com/math?formula=\mathbf abcdefghijklmnopqrstuvwxyz" alt="\mathbf abcdefghijklmnopqrstuvwxyz"></p>
-<h3 id="打印机字体"><a href="#打印机字体" class="headerlink" title="打印机字体"></a>打印机字体</h3><p><code>$\mathtt ABCDEFGHIJKLMNOPQRSTUVWXYZ$</code> :<img src="https://math.jianshu.com/math?formula=\mathtt ABCDEFGHIJKLMNOPQRSTUVWXYZ" alt="\mathtt ABCDEFGHIJKLMNOPQRSTUVWXYZ"></p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><strong>参考文档</strong></h2><table>
-<thead>
-<tr>
-<th>#</th>
-<th>链接地址</th>
-<th>文档名称</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><code>blog.csdn.net/dabokele/article/details/79577072</code></td>
-<td><a href="https://blog.csdn.net/dabokele/article/details/79577072" target="_blank" rel="noopener">Mathjax公式教程</a></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>blog.csdn.net/ethmery/article/details/50670297</code></td>
-<td><a href="https://blog.csdn.net/ethmery/article/details/50670297" target="_blank" rel="noopener">基本数学公式语法</a></td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>blog.csdn.net/lilongsy/article/details/79378620</code></td>
-<td><a href="https://blog.csdn.net/lilongsy/article/details/79378620" target="_blank" rel="noopener">常用数学符号的LaTeX表示方法</a></td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>www.mathjax.org</code></td>
-<td><a href="https://www.mathjax.org/" target="_blank" rel="noopener">Beautiful math in all browsers</a></td>
-</tr>
-</tbody>
-</table>
-
+<li>行间公式：<img src="https://math.jianshu.com/math?formula=\Gamma(z" alt="\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,."> %3D \int_0^\infty t^{z-1}e^{-t}dt\%2C.)
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Tools/Markdown 公式/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ul></div>
 
     
 
@@ -1502,6 +1083,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:05:33" itemprop="dateModified" datetime="2021-01-30T00:05:33+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -1534,45 +1131,19 @@
 
       
         
+          <p>自动图床设置，在我们撰写文档时，会自动将图片保存到图库，并转化 URL 展示出来，最终我们在分享 MD 文档时，避免了本地相对目录，无法引用的情况发生。<br>
+          <!--noindex-->
           
-            <p>自动图床设置，在我们撰写文档时，会自动将图片保存到图库，并转化 URL 展示出来，最终我们在分享 MD 文档时，避免了本地相对目录，无法引用的情况发生。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"picBed"</span>: &#123;</span><br><span class="line">    <span class="attr">"uploader"</span>: <span class="string">"github"</span>,</span><br><span class="line">    <span class="attr">"github"</span>: &#123;</span><br><span class="line">      "repo": "ximan/static_file", // 仓库名，格式时 username/reponame</span><br><span class="line">      "token": "23b311ffd49bba5c99377e7aeed5ecc2096beaad", // github token</span><br><span class="line">      "path": "images/", // 自定义存储路径 如： image/</span><br><span class="line">      "branch": "master" // 分支名，默认是 master</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  "picgoPlugins": &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>首先您要有一个 Github 账号</p>
-</li>
-<li><p>新建一个仓库</p>
-<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210128140803755.png" alt="image-20210128140803755"></p>
-</li>
-<li><p>生成一个 token 用于 Picgo 操作您的仓库， </p>
-<ul>
-<li><p>访问 <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">https://github.com/settings/tokens</a></p>
-</li>
-<li><p>然后点击 <code>Generate new token</code></p>
-<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210128141003873.png" alt="image-20210128141003873"></p>
-</li>
-<li><p>勾选 <code>repo</code> 并记录 token</p>
-</li>
-</ul>
-</li>
-<li><p>配置 Picgo， 如上 JSON</p>
-</li>
-</ol>
-<h2 id="Typora-设置如下图"><a href="#Typora-设置如下图" class="headerlink" title="Typora 设置如下图"></a>Typora 设置如下图</h2><p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210128141254331.png" alt="image-20210128141254331"></p>
-<ul>
-<li><p>下载或更新：大约 18m 的 Picgo 插件，点击安装即可</p>
-</li>
-<li><p>点击打开配置文件，会出现一个 json 数据，按照 github 的配置，将数据对应的填入</p>
-</li>
-<li><p>点击验证图片上传选项，验证 github 是否连通</p>
-<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210128141827255.png" alt="image-20210128141827255"></p>
-</li>
-</ul>
-<h2 id="更多配置"><a href="#更多配置" class="headerlink" title="更多配置"></a>更多配置</h2><p>我们也可以配置一些插件，如上 Json 中未开发的部分，具体可参考 <a href="https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html#%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">Typora 文件配置</a> 和 <a href="https://support.typora.io/Upload-Image/" target="_blank" rel="noopener">图片上传工具配置</a></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Tools/Typora 自动图床设置/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 

@@ -140,21 +140,21 @@
 
 
 
-  <meta name="description" content="Android 开发必备插件和工具Android Studio 插件   插件名 注释     Alibaba Java Coding Guidelines 阿里的代码规范检查插件，用来检查代码中是否符合驼峰命名、if else, switch els default 等语法糖的健壮性；以及单方法行数不超过 80 行，提醒”单一职责原则“等；   Android Parcelable code g">
+  <meta name="description" content="Android 开发必备插件和工具Android Studio 插件">
 <meta name="keywords" content="Tools">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 常用工具和插件">
 <meta property="og:url" content="http://xiaoman.ren/2020/02/20/Tools/Android-常用工具和插件/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="Android 开发必备插件和工具Android Studio 插件   插件名 注释     Alibaba Java Coding Guidelines 阿里的代码规范检查插件，用来检查代码中是否符合驼峰命名、if else, switch els default 等语法糖的健壮性；以及单方法行数不超过 80 行，提醒”单一职责原则“等；   Android Parcelable code g">
+<meta property="og:description" content="Android 开发必备插件和工具Android Studio 插件">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/android_resource_tool_variables.png?raw=true">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/android_resource_tools_code.png?raw=true">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/WX20200220-145420.png?raw=true">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.320Z">
+<meta property="og:updated_time" content="2021-01-29T16:05:12.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 常用工具和插件">
-<meta name="twitter:description" content="Android 开发必备插件和工具Android Studio 插件   插件名 注释     Alibaba Java Coding Guidelines 阿里的代码规范检查插件，用来检查代码中是否符合驼峰命名、if else, switch els default 等语法糖的健壮性；以及单方法行数不超过 80 行，提醒”单一职责原则“等；   Android Parcelable code g">
+<meta name="twitter:description" content="Android 开发必备插件和工具Android Studio 插件">
 <meta name="twitter:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/android_resource_tool_variables.png?raw=true">
 
 
@@ -446,7 +446,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2021-01-29 23:54:28" itemprop="dateModified" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+                <time title="Modified: 2021-01-30 00:05:12" itemprop="dateModified" datetime="2021-01-30T00:05:12+08:00">2021-01-30</time>
               
             
           </span>
@@ -480,7 +480,8 @@
       
 
       
-        <h1 id="Android-开发必备插件和工具"><a href="#Android-开发必备插件和工具" class="headerlink" title="Android 开发必备插件和工具"></a>Android 开发必备插件和工具</h1><h2 id="Android-Studio-插件"><a href="#Android-Studio-插件" class="headerlink" title="Android Studio 插件"></a>Android Studio 插件</h2><table>
+        <h1 id="Android-开发必备插件和工具"><a href="#Android-开发必备插件和工具" class="headerlink" title="Android 开发必备插件和工具"></a>Android 开发必备插件和工具</h1><h2 id="Android-Studio-插件"><a href="#Android-Studio-插件" class="headerlink" title="Android Studio 插件"></a>Android Studio 插件</h2><a id="more"></a>
+<table>
 <thead>
 <tr>
 <th>插件名</th>
@@ -554,7 +555,7 @@
 </tr>
 </tbody>
 </table>
-<a id="more"></a>
+<!--more-->
 <p><strong>codata</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipFile</span><span class="params">(File srcFile, File zipFile)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (FileInputStream fis = <span class="keyword">new</span> FileInputStream(srcFile);</span><br><span class="line">        ZipOutputStream zos = <span class="keyword">new</span> ZipOutputStream(<span class="keyword">new</span> FileOutputStream(zipFile))) &#123;</span><br><span class="line">      zos.putNextEntry(<span class="keyword">new</span> ZipEntry(srcFile.getName()));</span><br><span class="line">      <span class="keyword">int</span> len;</span><br><span class="line">      <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">      <span class="keyword">while</span> ((len = fis.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        zos.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">      &#125;</span><br><span class="line">      zos.closeEntry();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>AndroidResourceTools</strong><br><img src="https://github.com/xiaomanwong/static_file/blob/master/images/android_resource_tool_variables.png?raw=true" alt></p>

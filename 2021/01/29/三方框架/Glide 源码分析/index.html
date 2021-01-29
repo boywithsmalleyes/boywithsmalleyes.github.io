@@ -140,22 +140,22 @@
 
 
 
-  <meta name="description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。 基础用法： 1Glide.with(this).load(url).into(imageView); 在 Android 开发中，我们通常最简单的使用 Glide 的 代码如上面一样，如此简单的 api, 就可以帮">
+  <meta name="description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。">
 <meta name="keywords" content="三方框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Glide">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/三方框架/Glide 源码分析/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。 基础用法： 1Glide.with(this).load(url).into(imageView); 在 Android 开发中，我们通常最简单的使用 Glide 的 代码如上面一样，如此简单的 api, 就可以帮">
+<meta property="og:description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_with_sequence.jpg?raw=true">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_struct.jpg?raw=true">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_load.jpg?raw=true">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_into.jpg?raw=true">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.348Z">
+<meta property="og:updated_time" content="2021-01-29T16:02:08.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glide">
-<meta name="twitter:description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。 基础用法： 1Glide.with(this).load(url).into(imageView); 在 Android 开发中，我们通常最简单的使用 Glide 的 代码如上面一样，如此简单的 api, 就可以帮">
+<meta name="twitter:description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。">
 <meta name="twitter:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_with_sequence.jpg?raw=true">
 
 
@@ -434,6 +434,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:02:08" itemprop="dateModified" datetime="2021-01-30T00:02:08+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -465,8 +481,7 @@
       
 
       
-        <p>Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 <code>Picasso</code> 和 <code>ImageLoader</code> 两套框架。 都各有特色。这里主要还是讲一下 <code>Glide</code> 。</p>
-<p><strong>基础用法：</strong></p>
+        <p>Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 <code>Picasso</code> 和 <code>ImageLoader</code> 两套框架。 都各有特色。这里主要还是讲一下 <code>Glide</code> 。<br><a id="more"></a><br><strong>基础用法：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Glide.with(<span class="keyword">this</span>).load(url).into(imageView);</span><br></pre></td></tr></table></figure>
 <p>在 Android 开发中，我们通常最简单的使用 <code>Glide</code> 的 代码如上面一样，如此简单的 api, 就可以帮助我们实现加载本地图片，本地 Drawable ， Gif 图，以及 网络图片，那么在这样简单的 API 的背后，其实它帮助了我们完成了很多工作。</p>
 <p>从简单的使用我们入手，可以看到，要想加载一张图片，我们需要一个当前上下文对象，一个图片地址，一个承载图像的 ImageView 容器。那中三个要求，又同时对应着三个函数，<code>with</code> <code>load</code> 和 <code>into</code>，阅读源码，那就是从源码暴漏给我们最直观的地方进入，不然就是一只没头的苍蝇—到处乱飞。</p>

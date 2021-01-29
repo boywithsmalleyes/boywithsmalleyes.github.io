@@ -1186,168 +1186,21 @@
             
 
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>Crash</strong> 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。</p>
-<p>发生 <strong>Crash</strong> 后需要重新启动应用（有些情况也会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 <strong>Crash</strong> 的放生，在 <strong>Android</strong> 系统中，系统碎片化比较严重，各 <strong>Rom</strong> 之间的差异，设置系统的 BUG ，都可能导致 <strong>Crash</strong> 的发生。</p>
-<p>在 <strong>Android</strong> 应用 中发生 <strong>Crash</strong> 有两种类型： Java 层的 Crash 和 Native 的 Crash。这两种 <strong>Crash</strong> 的监控和获取堆栈信息有所不同。</p>
-<h2 id="Java-Crash"><a href="#Java-Crash" class="headerlink" title="Java Crash"></a>Java Crash</h2><p>Java 的 Crash 监控非常简单，<strong>Java 中的 Thread 定义了一个接口： <code>UncaughtExceptionHandler</code> , 用于处理未捕获的异常导致线程的终止（catch 了的是捕获不到）</strong>，当应用发生了 Crash 的时候，就会走 <code>UNcaughtExceptionHandler.uncaughtException</code> ，该方法中可以获取到异常的信息，我们通过 <code>Thread.setDefaultUncaughtExceptionHandler</code> ，该方法来设置线程的默认异常处理器，我们可以将异常信息保存到本地或者上传到服务器，方便我们快速定位问题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CrashHandler</span> <span class="keyword">implements</span> <span class="title">Thread</span>.<span class="title">UncaughtExceptionHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FILE_NAME_STUFFIX = <span class="string">".trace"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Thread.UncaughtExceptionHandler mDefaultCrashHandler;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Context mContext;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">CrashHandler</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();</span><br><span class="line">        Thread.setDefaultUncaughtExceptionHandler(<span class="keyword">this</span>);</span><br><span class="line">        mContext = context.getApplicationContext();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当程序中有未捕获异常，系统将会调用这个方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">uncaughtException</span><span class="params">(Thread t, Throwable e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 自行处理，可以保存到本地，也可以上传到后台</span></span><br><span class="line">            File file = dealException(e);</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e1) &#123;</span><br><span class="line">            e1.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 交给系统默认程序处理，否则会重复自启动</span></span><br><span class="line">            <span class="keyword">if</span>(mDefaultCrashHandler != <span class="keyword">null</span>) &#123;</span><br><span class="line">                mDefaultCrashHandler.uncaughtException(t, e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 导出异常到 SD 卡</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">private</span> File <span class="title">dealException</span><span class="params">(Thread t, Throwable e)</span> throw Exception </span>&#123;</span><br><span class="line">         String time = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).format(<span class="keyword">new</span> Date());</span><br><span class="line">         File f = <span class="keyword">new</span> File(mContext.getExternalCacheDir().getAbsoluteFile(), <span class="string">"crash_info"</span>);</span><br><span class="line">         <span class="keyword">if</span>(!f.exists()) &#123;</span><br><span class="line">             f.mkdirs();</span><br><span class="line">         &#125;</span><br><span class="line">         File crashFile = <span class="keyword">new</span> File(f, time+ FILE_NAME_SUFFIX);</span><br><span class="line">         <span class="comment">// 向文件中写入数据,可以自定义存储内容，尽量详细方便我们快速定位问题</span></span><br><span class="line">         PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(f)));</span><br><span class="line">         pw.println(time);</span><br><span class="line">         pw.println(<span class="string">"Thread:"</span> + t.getName());</span><br><span class="line">         e.printStackTrace(pw);<span class="comment">// 写入 crash 堆栈</span></span><br><span class="line">         pw.flush();</span><br><span class="line">         pw.close();</span><br><span class="line">         <span class="keyword">return</span> f;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="NDK-Crash"><a href="#NDK-Crash" class="headerlink" title="NDK Crash"></a>NDK Crash</h2><h3 id="Linux-信号机制"><a href="#Linux-信号机制" class="headerlink" title="Linux 信号机制"></a>Linux 信号机制</h3><p>信号机制是 Linux 进程间通信的一种重要方式，Linux 信号一方面用于正常的进程间通信和同步，另一方面还负责监控系统异常及中断。当应用程序运行异常是， Linux 内核将产生错误信号并通知当前进程。当前进程在接收到该错误信号后，可以有三种不同的处理方式：</p>
-<ul>
-<li>忽略该信号</li>
-<li>捕捉该信号并执行对应的信号处理函数（信号处理程序）</li>
-<li>执行该信号的缺省操作（如终止进程）</li>
-</ul>
-<p>当 Linux 应用程序在执行时发生严重错误，一般会导致程序崩溃。其中 Linux 专门提供了一类 crash 信号，在程序接收到该信号时，缺省操作时将崩溃的线程信息记录到核心文件，然后终止进程。</p>
-<p>常见的崩溃信号列表：</p>
-<ul>
-<li><strong>SIGSEGV: </strong> 内存引用无效</li>
-<li><strong>SIGBUS: </strong> 访问内存对象的未定义部分</li>
-<li><strong>SIGFPE: </strong> 算数运算错误</li>
-<li><strong>SIGILL: </strong> 非法指令，如执行垃圾或特权指令</li>
-<li><strong>SIGSYS: </strong> 糟糕的系统调用</li>
-<li><strong>SIGXCPU: </strong> 超过 CPU 时间限制</li>
-<li><strong>SIGXFSZ: </strong> 文件大小限制</li>
-</ul>
-<p>一般出现崩溃信号， Android 系统会默认缺省操作时直接退出程序。但是系统允许我们给某一个进程的某一个特定信号注册一个相应的处理函数（singal） ，即对该信号的默认处理动作进行修改。因此 NDK Crash 的监控可以采用这种信号机制，捕获崩溃信号执行我们自己的信号处理函数，从而捕获 NKD Crash。</p>
-<h3 id="BreakPad"><a href="#BreakPad" class="headerlink" title="BreakPad"></a>BreakPad</h3><p><a href="https://github.com/google/breakpad" target="_blank" rel="noopener">Google breakpad</a> 是一个跨平台的崩溃转储和分析框架和工具的集合。 breakpad 在 Linux 中的实现就是借助了 Linux 信号捕获机制实现的。因为其实现为  C++, 在 Android 中必须要借助 NDK 工具。</p>
-<p> <a href="..\..\技术文档\Crash监控.pdf">Crash监控.pdf</a> </p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java 中堆和栈的区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/01/29/Java/Java 中堆和栈的区别/" class="post-title-link" itemprop="url">Untitled</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:03:56" itemprop="dateModified" datetime="2021-01-30T00:03:56+08:00">2021-01-30</time>
               
-
-              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
-            
-
             
           </span>
 
@@ -1381,229 +1234,19 @@
 
       
         
+          <p><strong>Crash</strong> 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。<br>
+          <!--noindex-->
           
-            <h1 id="Java-中堆和栈的区别"><a href="#Java-中堆和栈的区别" class="headerlink" title="Java 中堆和栈的区别"></a>Java 中堆和栈的区别</h1><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>Java 中堆和栈的区别具体由一下几点</p>
-<h3 id="各司其职"><a href="#各司其职" class="headerlink" title="各司其职"></a>各司其职</h3><p><strong>栈：</strong> 用来存储局部变量和方法调用</p>
-<p><strong>堆： </strong> 用来存储 Java 中的对象，无论是成员变量，局部变量，还是类，他们指向的对象都存储再堆内存中。</p>
-<h3 id="内存："><a href="#内存：" class="headerlink" title="内存："></a>内存：</h3><p><strong>栈：</strong> 内存归属于单个线程，每个线程都会由一个栈内存，其存储的变量只能再其所属线程中可见，即占内存可以理解成线程的私有内存</p>
-<p><strong>堆： </strong> 内存中的对象堆所有线程可见。堆内存中的对象可以被所有线程访问。</p>
-<h3 id="异常错误"><a href="#异常错误" class="headerlink" title="异常错误"></a>异常错误</h3><p>如果栈内存没有可用空间存储方法调用和局部变量， JVM 会抛出 <code>java.lang.StackOverFlowError</code> </p>
-<p>如果堆内存没有可用空间存储 生成的对象，  JVM 会抛出 <code>Java.lang.OutOfMemoryError</code></p>
-<h3 id="空间大小"><a href="#空间大小" class="headerlink" title="空间大小"></a>空间大小</h3><p>栈的内存要远远小于堆内存，如果使用递归的话，那么栈很快就会充满。如果递归没有及时跳出，很可能发生 <code>StackOverFlowError</code> 问题</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Java/Java-异常/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java 内存管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/01/29/Java/Java 内存管理/" class="post-title-link" itemprop="url">Java 内存管理</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对于 Java 程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个 new 操作区写配对的 <code>delete/free</code> 代码，而且不容易出现内存泄漏和内存移除问题，看起来一切由虚拟机管理内存一切都很美好。不过也正是 Java 程序员把内存控制的权力交给了 Java 虚拟机，一旦出现内存泄漏和溢出的问题，如果不了解续集及是怎么使用内存的，排查问题就很艰难。</p>
-<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/java_runtime_data_area.png?raw=true" alt="java runtime"></p>
-<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是一块较小的内存空间，作用是当前线程锁执行的字节码的行号指示器。</p>
-<p>由于 Java 虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现，再任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）知乎执行一条线程中的指令，因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各线程之间的计数器互不影响，独立存储。</p>
-<p>此区域是唯一一个 Java 虚拟机规范中没有任何 <strong>OutOfMemoryError</strong> 情况的区域</p>
-<h3 id="Java-虚拟机栈"><a href="#Java-虚拟机栈" class="headerlink" title="Java 虚拟机栈"></a>Java 虚拟机栈</h3><p>Java 虚拟机栈也是线程私有的，生命周期与线程相同。虚拟机描述的是 Java 方法执行的内存模型：每个方法被执行的时候都会同时创建一个栈帧（Stack Frame）用于存储局部变量表、操作站、动态链接、方法处口等信息。</p>
-<p>每一个方法被调用直到执行完成的过程，就对应一个栈帧再虚拟机栈中从入栈到出栈的过程。</p>
-<p><strong>局部变量表</strong> 存放了编译器可知的各种基本数据类型（boolean, byte, char, short, int, float, long, double），对象引用(Reference类型)。</p>
-<p><strong>StackOverflowError</strong>： 如果虚拟机栈可以动态扩展，当扩展时无法申请到足够的内存时会抛出 <code>StackOverflowError</code> 异常</p>
-<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈锁发挥的作用时相似的，其区别是虚拟机栈为虚拟机执行 Java 方法服务。而本地方法栈则是为虚拟机使用到的 Navite 方法服务。</p>
-<h3 id="Java-堆"><a href="#Java-堆" class="headerlink" title="Java 堆"></a>Java 堆</h3><p>是 Java 虚拟机所管理的内存中最大的一块。Java 堆被所有线程共享的一块内存区域，再虚拟机启动的时候创建。<strong>此区域唯一的目的就是存放对象实例</strong>，几乎所有的对象实例都再这里分配内存。</p>
-<p>Java 堆是垃圾回收器管理的主要区域，因此很多时候也被称做 GC 堆，从内存回收角度看，由于现在收集器基本都是采用 <strong>分代收集算法</strong> ，所以 Java 堆中还可以细分为： 新生代和老生代</p>
-<p>如果从内存分配角度看，线程共享的 Java 堆中可能划分出多个线程私有的分配缓冲区</p>
-<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a><strong>方法区</strong></h3><p>方法区与 Java 堆一样，是哥哥线程共享的内存区域，<strong>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译的代码等数据</strong>。</p>
-<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a><strong>运行时常量池</strong></h3><p>运行时常量池是方法去的一部分 ，用于存放编译器申城的各种字面量和符号引用，这部分内容在类加载后存放到方法区的运行时常量池中。</p>
-<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p><strong>GC</strong> 真正让程序员的生产力得到了释放，但是程序员很难感知到它的存在。在大多数情况下不是很需要关心 GC ，不过如果设计到一些性能优化，问题排查的时候，深入地了解 GC 还是有必要的。</p>
-<h3 id="Java-内存区域"><a href="#Java-内存区域" class="headerlink" title="Java 内存区域"></a>Java 内存区域</h3><ul>
-<li>虚拟机栈：表述的是方法执行时的内存模型，线程私有化，生命周期和线程相同，每个方法被执行的同时都会创建栈帧，主要保存执行方法时的具不变量表、操作数栈、动态链接和方法返回地址等信息。方法执行时入栈，执行完成出栈，出栈就相当于清空了数据，入栈出栈的实际很明确，<strong>这块区域不需要进行 GC</strong></li>
-<li>本地方法栈：与虚拟机栈类似，主要在于虚拟机栈为虚拟机执行Java方法是服务，本地方法栈为虚拟机执行本地方法时服务。<strong>不需要进行 GC</strong></li>
-<li>程序计数器：线程独有，可以看作时当前线程执行的字节码行号。<strong>不需要进行 GC</strong></li>
-<li>本地内存：线程共享区域，本地内存；主要存储类的信息、长廊、静态变量、即使编译器编译后代码，这部分由于时在堆中实现的，受 GC 管理。Java 8 以后，这个区域也不需要GC</li>
-<li>堆：对象实例和水族都是在堆上分配的， GC 也主要堆这两类数据进行回收</li>
-</ul>
-<h4 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h4><h5 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h5><p>最容易想到的一种方式，就是对象被引用一次，再它的头上就加一次引用次数，如果没有被引用（引用次数为0），则此对象可回收。但这种方式存在一个问题：<strong>循环引用</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    Test instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(String name)</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// first</span></span><br><span class="line">        A a = <span class="keyword">new</span> Test(<span class="string">"a"</span>);</span><br><span class="line">        B b = <span class="keyword">new</span> Test(<span class="string">"b"</span>);</span><br><span class="line">        <span class="comment">//second</span></span><br><span class="line">        a.instance = b;</span><br><span class="line">        b.instance = a;</span><br><span class="line">	    <span class="comment">//third</span></span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">        b = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>按照上面的步骤，虽然 a, b 都被置为 null, 但是由于之前他们指向的对象相互引用（引用计数都为1），所以无法收回，也证是无法解决循环引用的问题，现代虚拟机一抛弃这种方法。</p>
-<h5 id="可达性算法"><a href="#可达性算法" class="headerlink" title="可达性算法"></a>可达性算法</h5><p>以一系列叫做 <strong>GC Root</strong> 的对象为起点出发，引出他们指向的下一个节点，再以下个节点为起点，引出此节点的下一个节点。。。（通过 GC Root 传承的一条线就叫引用链），直到所有的节点都遍历完毕，如果相关对象不再任意一个以 GC Root 为起点的引用链上，则这个对象会被判定为垃圾，进行回收。</p>
-<p>但是，一个对象的 <code>finalize</code> 方法给了对象一次垂死挣扎的机会，当对象不可达时，发生 GC 时，会先判断对象是否执行了 <code>finalize</code> 方法，如果未执行，则会先执行 <code>finalize</code> 方法，我们可以再此方法里将当前对象和 GC Root 关联，这样执行 <code>finalize</code> 之后，GC 会再次判断对象是否可达，如果不可达，就回收，可达则不回收。</p>
-<p><strong>注意：</strong> <code>finalize</code> 方法只会执行一次，如果第一次执行 <code>finalize</code> 方法，子对象变成了可达，确定不会回收，但如果对象再次被 GC 则会忽略 <code>finalize</code> 方法，对象会被回收。</p>
-<p><strong>GC Root</strong></p>
-<p>那么，什么样的对象可以作为 GC Root 呢</p>
-<ol>
-<li><p>虚拟机栈（栈帧中的本地变量）中的引用对象</p>
-</li>
-<li><p>方法区中类静态属性引用的对象</p>
-</li>
-<li><p>方法区中常量引用的对象</p>
-</li>
-<li><p>本地方法栈中 JNI 引用的对象</p>
-</li>
-</ol>
-<p><strong>虚拟机栈中的对象</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>a 是栈帧中的本地变量，当 a = null 时，由于此时 a  充当了 GC Root 的作用， a 与原来指向的实例 <code>new Test()</code> 断开连接，所以对象会被回收。</p>
-<p><strong>方法区中类静态属性引用的对象</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Test instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        a.instance = <span class="keyword">new</span> Test();</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当栈帧中的本地变量  <code>a = null</code> 时，由于 a 原来指向的对下个与 GC  Root（变量 instance）断开了连接，所以 a 原来的对象会被回收，而由于我们给 <code>instance</code> 赋值了变量的引用， <code>instance</code> 在此时是类静态属性引用，充当了 GC Root 的作用，它指向的对象依然存活。</p>
-<p><strong>方法区中常量引用的对象</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Test instance = <span class="keyword">new</span> Test();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>常量 <code>instance</code> 指向的对象并不会因为 a 指向的对象被回收而回收</p>
-<p><strong>本地方法栈中的 JNI 引用的对象</strong></p>
-<blockquote>
-<p>所谓本地方法就是一个 java 调用非 java 代码的接口，该方法并非 java 实现的，可能是 C 或 Python 等其他语言。Java 通过 JNI 来调用本地方法，而本地方法是以库文件的形式存放的。</p>
-</blockquote>
-<p>当调用 Java 方法时，虚拟机会创建一个栈帧并压入 Java 栈，而当它调用的是本地方法时，虚拟机会保持 Java 不变，不会再 Java 栈中压入新的帧，虚拟机只是简单的动态连接并直接调用指定的本地方法。</p>
-<h5 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h5><p><strong>步骤</strong>：</p>
-<ol>
-<li>先根据可达性算法 <strong>标记</strong> 出相应的可回收对象</li>
-<li>对可回收对象进行回收</li>
-</ol>
-<p>操作起来很简单，也不需要做数据移动的操作。但是却存在一个问题 –&gt; <strong>内存碎片</strong></p>
-<p>假如我们想在内存中分配一块需要连续内存占用的 4M  或 6M 的内存区域，由于内存碎片的存在，有可能得不到分配。</p>
-<h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h5><p>把堆等分成两块区域 A 和 B， 区域 A 负责分配对象， 区域 B 不非陪，对区域 A 使用标记清楚算法把存活的对象标记出来，然后把区域 A 中存活的对象都复制到 B 区域（同时将存活的对象都一次紧邻排列），最后把 A 区域对象全部清理掉释放出空间。</p>
-<p><strong>问题：</strong></p>
-<p>比如给堆分配了 500M 内存，结果只有 250M 可用 ，空间平白无故减少了一半。另外每此回收都要把存活的对象移动到另外一般，效率很低下。</p>
-<h5 id="标记整理法"><a href="#标记整理法" class="headerlink" title="标记整理法"></a>标记整理法</h5><p>步骤：</p>
-<ol>
-<li>先根据可达性算法 <strong>标记</strong> 出相应的可回收对象</li>
-<li>对可回收对象进行回收</li>
-<li>将所有存活对象都往一端移动，紧邻排列。</li>
-</ol>
-
-          
-        
-      
-    </div>
+    </p></div>
 
     
 
@@ -1704,6 +1347,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:04:12" itemprop="dateModified" datetime="2021-01-30T00:04:12+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -1736,17 +1395,341 @@
 
       
         
+          <h1 id="Java-中文件-Copy-的几种方式"><a href="#Java-中文件-Copy-的几种方式" class="headerlink" title="Java 中文件 Copy 的几种方式"></a>Java 中文件 Copy 的几种方式</h1><h2 id="Java-io"><a href="#Java-io" class="headerlink" title="Java.io"></a>Java.io</h2><p>利用 <code>java.io</code> 类库。直接为源文件创建一个 <code>FileInputStream</code> 负责读取，然后再为目标文件创建一个 <code>FileOutputStream</code> 负责写入:<br>
+          <!--noindex-->
           
-            <h1 id="Java-中文件-Copy-的几种方式"><a href="#Java-中文件-Copy-的几种方式" class="headerlink" title="Java 中文件 Copy 的几种方式"></a>Java 中文件 Copy 的几种方式</h1><h2 id="Java-io"><a href="#Java-io" class="headerlink" title="Java.io"></a>Java.io</h2><p>利用 <code>java.io</code> 类库。直接为源文件创建一个 <code>FileInputStream</code> 负责读取，然后再为目标文件创建一个 <code>FileOutputStream</code> 负责写入:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByStream</span><span class="params">(File source, File target)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    InputStream is = <span class="keyword">null</span>;</span><br><span class="line">    OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        is = <span class="keyword">new</span> FileInputStream(source);</span><br><span class="line">        os = <span class="keyword">new</span> FileOutputStream(target);</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> length;</span><br><span class="line">        <span class="keyword">while</span>((length = is.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            os.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Java-nio"><a href="#Java-nio" class="headerlink" title="Java.nio"></a>Java.nio</h2><p>利用 <code>java.nio</code> 类库提供的 transferTo 或 transferFrom  方法实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByChannel</span><span class="params">(File source, File target)</span> throw IOException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>(FileChannel sc = <span class="keyword">new</span> FileInputStream(source).getChannel();</span><br><span class="line">       FileChannel tc = <span class="keyword">new</span> FileOutputStream(target).getChannel();) &#123;</span><br><span class="line">        <span class="keyword">long</span> count = sc.size();</span><br><span class="line">        <span class="keyword">while</span>(count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">long</span> transferred = sc.transferTo(sc.position(), count, tc);</span><br><span class="line">            count -= transferred;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Java-nio-file-File-copy"><a href="#Java-nio-file-File-copy" class="headerlink" title="Java.nio.file.File.copy"></a>Java.nio.file.File.copy</h2><p>关于 Copy 效率的问题，其实与操作系统和配置有关，总体来说 nio  transferTo/transferFrom 的方式可能更快，因为它更能利用现代操作系统底层机制，避免不必要拷贝和上下文切换。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Java/Java 中文件 Copy 的几种方式/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java 中堆和栈的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/Java 中堆和栈的区别/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:04:17" itemprop="dateModified" datetime="2021-01-30T00:04:17+08:00">2021-01-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Java-中堆和栈的区别"><a href="#Java-中堆和栈的区别" class="headerlink" title="Java 中堆和栈的区别"></a>Java 中堆和栈的区别</h1><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>Java 中堆和栈的区别具体由一下几点<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Java/Java 中堆和栈的区别/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java 内存管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/Java 内存管理/" class="post-title-link" itemprop="url">Java 内存管理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:04:09" itemprop="dateModified" datetime="2021-01-30T00:04:09+08:00">2021-01-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>对于 Java 程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个 new 操作区写配对的 <code>delete/free</code> 代码，而且不容易出现内存泄漏和内存移除问题，看起来一切由虚拟机管理内存一切都很美好。不过也正是 Java 程序员把内存控制的权力交给了 Java 虚拟机，一旦出现内存泄漏和溢出的问题，如果不了解续集及是怎么使用内存的，排查问题就很艰难。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Java/Java 内存管理/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
 
     
 

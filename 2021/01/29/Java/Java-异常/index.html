@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="Crash 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。 发生 Crash 后需要重新启动应用（有些情况也会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 Crash 的放生，在 Android 系统中，系统碎片化比较严重，各 Rom 之间的差异，设置系统的 BUG ，都可能导致 Crash 的发生。 在 Android 应用 中">
+  <meta name="description" content="Crash 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 异常">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Java/Java-异常/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="Crash 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。 发生 Crash 后需要重新启动应用（有些情况也会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 Crash 的放生，在 Android 系统中，系统碎片化比较严重，各 Rom 之间的差异，设置系统的 BUG ，都可能导致 Crash 的发生。 在 Android 应用 中">
+<meta property="og:description" content="Crash 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.309Z">
+<meta property="og:updated_time" content="2021-01-29T16:03:56.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 异常">
-<meta name="twitter:description" content="Crash 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。 发生 Crash 后需要重新启动应用（有些情况也会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 Crash 的放生，在 Android 系统中，系统碎片化比较严重，各 Rom 之间的差异，设置系统的 BUG ，都可能导致 Crash 的发生。 在 Android 应用 中">
+<meta name="twitter:description" content="Crash 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。">
 
 
 
@@ -429,6 +429,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:03:56" itemprop="dateModified" datetime="2021-01-30T00:03:56+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -460,8 +476,7 @@
       
 
       
-        <p><strong>Crash</strong> 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。</p>
-<p>发生 <strong>Crash</strong> 后需要重新启动应用（有些情况也会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 <strong>Crash</strong> 的放生，在 <strong>Android</strong> 系统中，系统碎片化比较严重，各 <strong>Rom</strong> 之间的差异，设置系统的 BUG ，都可能导致 <strong>Crash</strong> 的发生。</p>
+        <p><strong>Crash</strong> 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。<br><a id="more"></a><br>发生 <strong>Crash</strong> 后需要重新启动应用（有些情况也会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 <strong>Crash</strong> 的放生，在 <strong>Android</strong> 系统中，系统碎片化比较严重，各 <strong>Rom</strong> 之间的差异，设置系统的 BUG ，都可能导致 <strong>Crash</strong> 的发生。</p>
 <p>在 <strong>Android</strong> 应用 中发生 <strong>Crash</strong> 有两种类型： Java 层的 Crash 和 Native 的 Crash。这两种 <strong>Crash</strong> 的监控和获取堆栈信息有所不同。</p>
 <h2 id="Java-Crash"><a href="#Java-Crash" class="headerlink" title="Java Crash"></a>Java Crash</h2><p>Java 的 Crash 监控非常简单，<strong>Java 中的 Thread 定义了一个接口： <code>UncaughtExceptionHandler</code> , 用于处理未捕获的异常导致线程的终止（catch 了的是捕获不到）</strong>，当应用发生了 Crash 的时候，就会走 <code>UNcaughtExceptionHandler.uncaughtException</code> ，该方法中可以获取到异常的信息，我们通过 <code>Thread.setDefaultUncaughtExceptionHandler</code> ，该方法来设置线程的默认异常处理器，我们可以将异常信息保存到本地或者上传到服务器，方便我们快速定位问题。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CrashHandler</span> <span class="keyword">implements</span> <span class="title">Thread</span>.<span class="title">UncaughtExceptionHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FILE_NAME_STUFFIX = <span class="string">".trace"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Thread.UncaughtExceptionHandler mDefaultCrashHandler;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Context mContext;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">CrashHandler</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();</span><br><span class="line">        Thread.setDefaultUncaughtExceptionHandler(<span class="keyword">this</span>);</span><br><span class="line">        mContext = context.getApplicationContext();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当程序中有未捕获异常，系统将会调用这个方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">uncaughtException</span><span class="params">(Thread t, Throwable e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 自行处理，可以保存到本地，也可以上传到后台</span></span><br><span class="line">            File file = dealException(e);</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e1) &#123;</span><br><span class="line">            e1.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 交给系统默认程序处理，否则会重复自启动</span></span><br><span class="line">            <span class="keyword">if</span>(mDefaultCrashHandler != <span class="keyword">null</span>) &#123;</span><br><span class="line">                mDefaultCrashHandler.uncaughtException(t, e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 导出异常到 SD 卡</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">private</span> File <span class="title">dealException</span><span class="params">(Thread t, Throwable e)</span> throw Exception </span>&#123;</span><br><span class="line">         String time = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).format(<span class="keyword">new</span> Date());</span><br><span class="line">         File f = <span class="keyword">new</span> File(mContext.getExternalCacheDir().getAbsoluteFile(), <span class="string">"crash_info"</span>);</span><br><span class="line">         <span class="keyword">if</span>(!f.exists()) &#123;</span><br><span class="line">             f.mkdirs();</span><br><span class="line">         &#125;</span><br><span class="line">         File crashFile = <span class="keyword">new</span> File(f, time+ FILE_NAME_SUFFIX);</span><br><span class="line">         <span class="comment">// 向文件中写入数据,可以自定义存储内容，尽量详细方便我们快速定位问题</span></span><br><span class="line">         PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(f)));</span><br><span class="line">         pw.println(time);</span><br><span class="line">         pw.println(<span class="string">"Thread:"</span> + t.getName());</span><br><span class="line">         e.printStackTrace(pw);<span class="comment">// 写入 crash 堆栈</span></span><br><span class="line">         pw.flush();</span><br><span class="line">         pw.close();</span><br><span class="line">         <span class="keyword">return</span> f;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -545,7 +560,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/29/Java/Java 中堆和栈的区别/" rel="next" title>
+              <a href="/2021/01/29/Java/Java 中文件 Copy 的几种方式/" rel="next" title>
                 <i class="fa fa-chevron-left"></i> 
               </a>
             

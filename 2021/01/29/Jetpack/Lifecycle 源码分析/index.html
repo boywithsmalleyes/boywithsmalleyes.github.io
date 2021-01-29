@@ -140,20 +140,20 @@
 
 
 
-  <meta name="description" content="开始是废话（翻译自源码）定义了一个 Android 生命周期的对象。 Fragment和FragmentActivity类实现LifecycleOwner接口， 并可以通过 getLifecycle() 方法来访问生命周期。 我们也可以实现LifecycleOwner在自己的类。 1234// 在此类事件后分发 LifecycleOwner 的相关方法的返回时。 Lifecycle.Event.O">
+  <meta name="description" content="开始是废话（翻译自源码）定义了一个 Android 生命周期的对象。 Fragment和FragmentActivity类实现LifecycleOwner接口， 并可以通过 getLifecycle() 方法来访问生命周期。 我们也可以实现LifecycleOwner在自己的类。">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Lifecycle">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Jetpack/Lifecycle 源码分析/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="开始是废话（翻译自源码）定义了一个 Android 生命周期的对象。 Fragment和FragmentActivity类实现LifecycleOwner接口， 并可以通过 getLifecycle() 方法来访问生命周期。 我们也可以实现LifecycleOwner在自己的类。 1234// 在此类事件后分发 LifecycleOwner 的相关方法的返回时。 Lifecycle.Event.O">
+<meta property="og:description" content="开始是废话（翻译自源码）定义了一个 Android 生命周期的对象。 Fragment和FragmentActivity类实现LifecycleOwner接口， 并可以通过 getLifecycle() 方法来访问生命周期。 我们也可以实现LifecycleOwner在自己的类。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/Lifecycle%20UML.png?raw=true">
 <meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/Lifecycle%20State%20secquece.png?raw=true">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.314Z">
+<meta property="og:updated_time" content="2021-01-29T16:04:30.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Lifecycle">
-<meta name="twitter:description" content="开始是废话（翻译自源码）定义了一个 Android 生命周期的对象。 Fragment和FragmentActivity类实现LifecycleOwner接口， 并可以通过 getLifecycle() 方法来访问生命周期。 我们也可以实现LifecycleOwner在自己的类。 1234// 在此类事件后分发 LifecycleOwner 的相关方法的返回时。 Lifecycle.Event.O">
+<meta name="twitter:description" content="开始是废话（翻译自源码）定义了一个 Android 生命周期的对象。 Fragment和FragmentActivity类实现LifecycleOwner接口， 并可以通过 getLifecycle() 方法来访问生命周期。 我们也可以实现LifecycleOwner在自己的类。">
 <meta name="twitter:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/Lifecycle%20UML.png?raw=true">
 
 
@@ -432,6 +432,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:04:30" itemprop="dateModified" datetime="2021-01-30T00:04:30+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -463,8 +479,7 @@
       
 
       
-        <h2 id="开始是废话（翻译自源码）"><a href="#开始是废话（翻译自源码）" class="headerlink" title="开始是废话（翻译自源码）"></a>开始是废话（翻译自源码）</h2><p>定义了一个 Android 生命周期的对象。 <code>Fragment</code>和<code>FragmentActivity</code>类实现<code>LifecycleOwner</code>接口， 并可以通过 <code>getLifecycle()</code> 方法来访问生命周期。 我们也可以实现<code>LifecycleOwner</code>在自己的类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在此类事件后分发 LifecycleOwner 的相关方法的返回时。 </span></span><br><span class="line">Lifecycle.Event.ON_CREATE ， Lifecycle.Event.ON_START ， Lifecycle.Event.ON_RESUME</span><br><span class="line"><span class="comment">// 在此类事件在之前分派LifecycleOwner被称为的相关方法。 例如， Lifecycle.Event.ON_START后会被分派onStart回报， Lifecycle.Event.ON_STOP之前将派出onStop被调用。 这给你一定的保证在其国家的主人在不在。</span></span><br><span class="line">Lifecycle.Event.ON_PAUSE ， Lifecycle.Event.ON_STOP ， Lifecycle.Event.ON_DESTROY</span><br></pre></td></tr></table></figure>
+        <h2 id="开始是废话（翻译自源码）"><a href="#开始是废话（翻译自源码）" class="headerlink" title="开始是废话（翻译自源码）"></a>开始是废话（翻译自源码）</h2><p>定义了一个 Android 生命周期的对象。 <code>Fragment</code>和<code>FragmentActivity</code>类实现<code>LifecycleOwner</code>接口， 并可以通过 <code>getLifecycle()</code> 方法来访问生命周期。 我们也可以实现<code>LifecycleOwner</code>在自己的类。<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在此类事件后分发 LifecycleOwner 的相关方法的返回时。 </span></span><br><span class="line">Lifecycle.Event.ON_CREATE ， Lifecycle.Event.ON_START ， Lifecycle.Event.ON_RESUME</span><br><span class="line"><span class="comment">// 在此类事件在之前分派LifecycleOwner被称为的相关方法。 例如， Lifecycle.Event.ON_START后会被分派onStart回报， Lifecycle.Event.ON_STOP之前将派出onStop被调用。 这给你一定的保证在其国家的主人在不在。</span></span><br><span class="line">Lifecycle.Event.ON_PAUSE ， Lifecycle.Event.ON_STOP ， Lifecycle.Event.ON_DESTROY</span><br></pre></td></tr></table></figure></p>
 <p>如果您使用Java 8 语言 ，然后使用<code>DefaultLifecycleObserver</code> 观察事件。 需要将<code>&quot;androidx.lifecycle:common-java8:&lt;version&gt;&quot;</code> 增加到你的 <code>build.gradle</code> 文件中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestObserver</span> <span class="keyword">implements</span> <span class="title">DefaultLifecycleObserver</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(LifecycleOwner owner)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// your code</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果你使用的Java 7 语言 ，使用的注解观察生命周期事件。 一旦Java的8语言成为在Android上的主流，注释将被弃用，所以<code>DefaultLifecycleObserver</code>和注释之间，则须偏向 <code>DefaultLifecycleObserver</code>。</p>

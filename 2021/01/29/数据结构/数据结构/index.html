@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="数组是一片物理上连续的大小确定的存储空间 数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。 利用索引进行查询速度快，无法真正的删除 List具有连续有序性，可重复性，可扩容性，访问比较便捷 ArrayList">
+  <meta name="description" content="数组是一片物理上连续的大小确定的存储空间 数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。 利用索引进行查询速度快，无法真正的删除">
 <meta name="keywords" content="数据结构和算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/数据结构/数据结构/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="数组是一片物理上连续的大小确定的存储空间 数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。 利用索引进行查询速度快，无法真正的删除 List具有连续有序性，可重复性，可扩容性，访问比较便捷 ArrayList">
+<meta property="og:description" content="数组是一片物理上连续的大小确定的存储空间 数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。 利用索引进行查询速度快，无法真正的删除">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.359Z">
+<meta property="og:updated_time" content="2021-01-29T16:05:31.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构">
-<meta name="twitter:description" content="数组是一片物理上连续的大小确定的存储空间 数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。 利用索引进行查询速度快，无法真正的删除 List具有连续有序性，可重复性，可扩容性，访问比较便捷 ArrayList">
+<meta name="twitter:description" content="数组是一片物理上连续的大小确定的存储空间 数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。 利用索引进行查询速度快，无法真正的删除">
 
 
 
@@ -429,6 +429,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:05:31" itemprop="dateModified" datetime="2021-01-30T00:05:31+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -462,7 +478,7 @@
       
         <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>是一片物理上连续的大小确定的存储空间</p>
 <p>数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。</p>
-<p>利用索引进行查询速度快，无法真正的删除</p>
+<p>利用索引进行查询速度快，无法真正的删除<br><a id="more"></a></p>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>具有连续有序性，可重复性，可扩容性，访问比较便捷</p>
 <h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p><strong>原理与特点</strong></p>
 <p>实际上是对数组的一种封装，具备数组存储上空间连续及查找速度快的特性，并且顺序上也连续；但因为顺序上的连续，就造成了其删除和插入数据较慢的特性，因为顺序上的连续，所以在插入和删除时，为保证连续性，需要对数组的内容进行移动，大大增加了数据的操作性。</p>
