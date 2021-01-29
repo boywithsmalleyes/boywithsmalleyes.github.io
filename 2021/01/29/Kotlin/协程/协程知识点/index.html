@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="什么是协程 轻量级的线程，并不完全是线程 可以顺序的写异步代码， 降低异步编程带来的负担 更高效，多个协程可以公用一个线程。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的 运行在协程中的可中断的方法不会阻塞当前线程  可中断的方法（suspending functions）可中断的方法有能力中断协程的执行， 当可中断的方法执行完毕后，结者就可以使用它们返回的结果 12val">
+  <meta name="description" content="什么是协程 轻量级的线程，并不完全是线程 可以顺序的写异步代码， 降低异步编程带来的负担 更高效，多个协程可以公用一个线程。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的 运行在协程中的可中断的方法不会阻塞当前线程">
 <meta name="keywords" content="Kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="协程知识点">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程知识点/index.html">
 <meta property="og:site_name" content="茶白">
-<meta property="og:description" content="什么是协程 轻量级的线程，并不完全是线程 可以顺序的写异步代码， 降低异步编程带来的负担 更高效，多个协程可以公用一个线程。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的 运行在协程中的可中断的方法不会阻塞当前线程  可中断的方法（suspending functions）可中断的方法有能力中断协程的执行， 当可中断的方法执行完毕后，结者就可以使用它们返回的结果 12val">
+<meta property="og:description" content="什么是协程 轻量级的线程，并不完全是线程 可以顺序的写异步代码， 降低异步编程带来的负担 更高效，多个协程可以公用一个线程。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的 运行在协程中的可中断的方法不会阻塞当前线程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.320Z">
+<meta property="og:updated_time" content="2021-01-29T16:15:36.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="协程知识点">
-<meta name="twitter:description" content="什么是协程 轻量级的线程，并不完全是线程 可以顺序的写异步代码， 降低异步编程带来的负担 更高效，多个协程可以公用一个线程。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的 运行在协程中的可中断的方法不会阻塞当前线程  可中断的方法（suspending functions）可中断的方法有能力中断协程的执行， 当可中断的方法执行完毕后，结者就可以使用它们返回的结果 12val">
+<meta name="twitter:description" content="什么是协程 轻量级的线程，并不完全是线程 可以顺序的写异步代码， 降低异步编程带来的负担 更高效，多个协程可以公用一个线程。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的 运行在协程中的可中断的方法不会阻塞当前线程">
 
 
 
@@ -429,6 +429,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:15:36" itemprop="dateModified" datetime="2021-01-30T00:15:36+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -464,9 +480,10 @@
 <li><strong>轻量级的线程</strong>，并不完全是线程</li>
 <li>可以<strong>顺序的写异步代码</strong>， 降低异步编程带来的负担</li>
 <li><strong>更高效</strong>，<strong>多个协程可以公用一个线程</strong>。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的</li>
-<li><strong>运行在协程中的可中断的方法不会阻塞当前线程</strong></li>
+<li><strong>运行在协程中的可中断的方法不会阻塞当前线程</strong><a id="more"></a>
+<h2 id="可中断的方法（suspending-functions）"><a href="#可中断的方法（suspending-functions）" class="headerlink" title="可中断的方法（suspending functions）"></a>可中断的方法（suspending functions）</h2></li>
 </ol>
-<h2 id="可中断的方法（suspending-functions）"><a href="#可中断的方法（suspending-functions）" class="headerlink" title="可中断的方法（suspending functions）"></a>可中断的方法（suspending functions）</h2><p><strong>可中断的方法有能力中断协程的执行</strong>， 当可中断的方法执行完毕后，结者就可以使用它们返回的结果</p>
+<p><strong>可中断的方法有能力中断协程的执行</strong>， 当可中断的方法执行完毕后，结者就可以使用它们返回的结果</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> user = <span class="keyword">suspend</span> &#123; userService.doLogin(username, password)&#125;</span><br><span class="line"><span class="keyword">val</span> currentFriends = <span class="keyword">suspend</span> &#123; userService.requestCurrentFriends(user) &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>可中断方法可以运行在相同或不同的线程，取决于使用方式*</li>
