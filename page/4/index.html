@@ -378,7 +378,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-在一个应用中启动另外一个应用/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/View/自定义 ViewGroup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -398,7 +398,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/16/Android-在一个应用中启动另外一个应用/" class="post-title-link" itemprop="url">Android 在一个应用中启动另外一个应用</a>
+                <a href="/2021/01/29/Android 基础/View/自定义 ViewGroup/" class="post-title-link" itemprop="url">自定义 ViewGroup</a>
               
             
           </h1>
@@ -423,25 +423,9 @@
                 
               
 
-              <time title="Created: 2019-04-16 17:45:20" itemprop="dateCreated datePublished" datetime="2019-04-16T17:45:20+08:00">2019-04-16</time>
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:56:42" itemprop="dateModified" datetime="2019-04-17T21:56:42+08:00">2019-04-17</time>
-              
             
           </span>
 
@@ -475,12 +459,37 @@
 
       
         
-          <h1 id="Android-在一个应用中启动另外一个应用"><a href="#Android-在一个应用中启动另外一个应用" class="headerlink" title="Android 在一个应用中启动另外一个应用"></a>Android 在一个应用中启动另外一个应用</h1><p>Android 中,从当前 APP 启动另外一个 APP 的需求,不是很常见, 但确实存在着,比如说在某宝还没有现在这么强大时,支付需要启动他们的 APP. 再比如说,某米的钱包系统,需要和他们的金融 APP 在某些业务上是相互依赖的,需要相互启动.</p>
-<p>综上所述, 从一个 APP 去启动另外一个 APP 的需求还是有它存在的价值.因此,一下是我在工作和学习中总结的如何通过一个 APP 去启动另外一个 APP 的方式.</p>
+          <h2 id="View-Group-的测量布局流程"><a href="#View-Group-的测量布局流程" class="headerlink" title="View Group 的测量布局流程"></a>View Group 的测量布局流程</h2><p><strong>View Group绘制和布局流程中的重点</strong></p>
+<ol>
+<li><p>View 在 <code>onMeasure</code> 方法中进行自我测量和保存。</p>
+</li>
+<li><p>ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置</p>
+</li>
+<li><p>关注 onMeasure 和 onLayout</p>
+</li>
+<li><p>父 View 调用子 View 的layout 方法的时候，会把之前 measure 阶段确定的位置和大小都传递给子 View</p>
+</li>
+<li><p>自定义 View/ViewGroup，只需要关注下面三种需求：</p>
+<ol>
+<li>对于已有的 Android 自带 View，我们只需要重写他的 <code>onMeasure</code> 方法即可,<strong>修改一下这个尺寸就完成需求</strong></li>
+<li>对于 Android 系统没有的，属于我们自定义的 View，需要完全重写 <code>onMeasure</code></li>
+<li>需要重写 <code>onMeasure</code> 和 <code>onLayout</code> 2个方法，来完成一个复杂的 <code>ViewGroup</code> 的测量和布局。</li>
+</ol>
+</li>
+<li><p>onMeasure 的说明</p>
+<p>widthMeasureSpec, heightMeasureSpec  两个参数主要是 父 view 对子view 的尺寸限制</p>
+</li>
+<li><p>理解父 view 对子 view 的限制</p>
+<p>实际上，父 View 对子 View 的限制据大多数就来自于我们开发者所设置的 layout 开头的这些属性。<strong>这些以 layout 开头的属性，都是设置给父 view 看的</strong></p>
+<blockquote>
+<p>父 View 要知道这些属性以后，才知道要对子view 的测量加以什么限制</p>
+</blockquote>
+</li>
+</ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/Android-在一个应用中启动另外一个应用/#more" rel="contents">
+              <a class="btn" href="/2021/01/29/Android 基础/View/自定义 ViewGroup/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -540,7 +549,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-Studio-Dependencies-Library-Resolve/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/原理/Handler 消息机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -560,7 +569,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/16/Android-Studio-Dependencies-Library-Resolve/" class="post-title-link" itemprop="url">Android Studio Dependencies Library Resolve</a>
+                <a href="/2021/01/29/Android 基础/原理/Handler 消息机制/" class="post-title-link" itemprop="url">Handler 消息机制</a>
               
             
           </h1>
@@ -585,25 +594,9 @@
                 
               
 
-              <time title="Created: 2019-04-16 17:44:39" itemprop="dateCreated datePublished" datetime="2019-04-16T17:44:39+08:00">2019-04-16</time>
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:55:09" itemprop="dateModified" datetime="2019-04-17T21:55:09+08:00">2019-04-17</time>
-              
             
           </span>
 
@@ -637,20 +630,20 @@
 
       
         
+          <p>Handler 消息机制，在整个 Android 系统中，有着很重要的地位。</p>
+<p>他可以帮助我们实现，子线程和主线程的跨线程通信；可以帮助我们发送一些延时任务，帮助我们很好的实现一个 App.</p>
+<p>本文旨在对源码进行预览分析。</p>
+<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h2><p>先来一张结构图，让我们清晰的了解一下，我们下面都会分析到哪些内容；也了解一下 <code>Handler</code> 机制的核心秘密。</p>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/Handler%20%E6%9C%BA%E5%88%B6.png?raw=true" alt="Handler 类图"></p>
+          <!--noindex-->
           
-            <p>在使用 Android Studio 开发时,使用 Gradle 脚本构建项目, 同 Maven 一样,所引用的包之间也存在着相互依赖的关系, 当你使用某个包之后,发现有包版本冲突, 那么解决方案就来了.</p>
-<p>先说点不正经的:</p>
-<ol>
-<li>你可以把你自己引入的包去掉,使用依赖包</li>
-<li>放弃治疗</li>
-</ol>
-<p>哈哈,言归正传:</p>
-<p>当我们引入的包之间存在冲突(不是同一个)的关系时, 也就是说,我们需要保留一个项目依赖包使用,那么我们需要在 <code>build.gradle</code> 中将我们不需要的包删除掉.</p>
-<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子:"></a>举个栗子:</h2><p>当我使用 <code>com.squareup.retrofit2:adapter-rxjava:2.1.0</code> 时, 它默认依赖使用 <code>RxJava 1.5.0</code> 版本. 当我使用 <code>io.reactivex.rxjava2:rxjava:2.0.6</code> 时, 就会引起包冲突.</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h2><p>build.gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile fileTree(include: [&apos;*.jar&apos;], dir: &apos;libs&apos;)</span><br><span class="line"></span><br><span class="line">    compile (&apos;com.squareup.retrofit2:adapter-rxjava:2.1.0&apos;)&#123;</span><br><span class="line">        exclude group: &apos;io.reactivex&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    compile &apos;io.reactivex.rxjava2:rxjava:2.0.6&apos;</span><br><span class="line">    compile &apos;io.reactivex.rxjava2:rxandroid:2.0.1&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Android 基础/原理/Handler 消息机制/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -705,7 +698,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/git-command/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/View/RecyclerView 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -725,7 +718,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/16/git-command/" class="post-title-link" itemprop="url">git command</a>
+                <a href="/2021/01/29/Android 基础/View/RecyclerView 总结/" class="post-title-link" itemprop="url">RecyclerView 总结</a>
               
             
           </h1>
@@ -750,25 +743,9 @@
                 
               
 
-              <time title="Created: 2019-04-16 17:43:58" itemprop="dateCreated datePublished" datetime="2019-04-16T17:43:58+08:00">2019-04-16</time>
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-12 23:33:00" itemprop="dateModified" datetime="2019-08-12T23:33:00+08:00">2019-08-12</time>
-              
             
           </span>
 
@@ -802,37 +779,156 @@
 
       
         
-          <h1 id="Git-命令"><a href="#Git-命令" class="headerlink" title="Git 命令"></a>Git 命令</h1><table>
+          
+            <h2 id="List-View-的局限性"><a href="#List-View-的局限性" class="headerlink" title="List View 的局限性"></a>List View 的局限性</h2><ol>
+<li>只有纵向列表一种布局</li>
+<li>没有支持动画的  API</li>
+<li>接口设计和系统不一致<ol>
+<li>setOnItemClickListener()</li>
+<li>setOnItemLongClickListener()</li>
+<li>setSelection()</li>
+</ol>
+</li>
+<li>没有强制实现 ViewHolder</li>
+<li>性能不如 RecyclerView</li>
+</ol>
+<h2 id="RecyclerView-优势"><a href="#RecyclerView-优势" class="headerlink" title="RecyclerView 优势"></a>RecyclerView 优势</h2><ol>
+<li>默认支持 Linear、Grid、Staggered Grid 三种布局</li>
+<li>友好的 ItemAnimator 动画 API</li>
+<li>强制实现 ViewHolder</li>
+<li>解耦的架构设计</li>
+<li>相对 ListView 性能更好</li>
+</ol>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/image-20200709164241306.png?raw=true" alt="image-20200709164241306"></p>
+<p>Recycler View： 负责将 Datas 展示在自己身上，其本身是一个 ViewGroup，只认识 View，因此需要一个 Adapter 来将 Datas 的内容转换为 View</p>
+<p>Adapter： 负责翻译，将 Datas 内容，转换为 View，方便 RecyclerView 展示</p>
+<p>ViewHolder： RecyclerView 只会与 ViewHolder 进行交互，因此 ViewHolder 充当中间件，来将 Datas 的内容传递给  RecyclerView</p>
+<p>LayoutManager：负责布局，RecyclerView 将其子 View 的布局管理，交给它来完成</p>
+<p>Recycler：负责管理 View 的生命周期，LayoutManager 只管负责 View 的布局任务，对其回收交给了 Recycler 来处理，避免造成不必要的错误</p>
+<p>ItemAnimator： 负责动画，当 RecyclerView 中的数据发生变化（增、删等）都会通过它来完成平滑的过渡</p>
+<h2 id="RecyclerView-的绘制"><a href="#RecyclerView-的绘制" class="headerlink" title="RecyclerView 的绘制"></a>RecyclerView 的绘制</h2><p>RecyclerView 无疑也是一个 View ，View 的绘制同样逃离不了三大步骤 <code>onMeasure()</code> <code>onLayout()</code> <code>onDraw()</code> </p>
+<h3 id="onMeasure"><a href="#onMeasure" class="headerlink" title="onMeasure"></a>onMeasure</h3><p>LayoutManager 负责 RecyclerView 的绘制，其有一个 <code>mAutoMeasure</code> 属性，用来控制是否开启自动测量，开启情况下，布局交由 <code>RecyclerView</code> 使用一套默认的测量机制；否则，自定义的 LayoutManager 需要重写 <code>onMeasure</code> 来处理自身的测量工作。</p>
+<h4 id="自动测量原理："><a href="#自动测量原理：" class="headerlink" title="自动测量原理："></a><strong>自动测量原理：</strong></h4><p>当 RecyclerView 的宽高都为 <code>EXACTLY</code> 时， 可以直接设置对应的宽高，然后返回，结束测量</p>
+<p>如果宽高都不时 <code>EXACTLY</code> 则会在 <code>onMeasure</code> 中开始布局的处理。</p>
+<p>RecyclerView.State 这个类封装了当前 RecyclerView 的信息。State 中的一个变量 <code>mLayoutStep</code> 记录了 RecyclerView  当前的布局状态</p>
+<ul>
+<li>STEP_START</li>
+<li>STEP_LAYOUT</li>
+<li>STEP_ANIMATIONS</li>
+</ul>
+<p>对应的， RecyclerView 的布局过程也分为三步，STEP_START 表示开始布局，对应需要调用 <code>dispatchLayoutStep1()</code> 来执行第一步布局，结束后， <code>mLayoutStep</code> 变为 STEP_LAYOUT ，表示接下来需要调用 <code>dispatchLayoutStep2()</code> 进行布局，结束后 <code>mLayoutStep</code> 变为 STEP_ANIMATIONS, 继续执行第三步 <code>dispatchLayoutStep3()</code></p>
+<ul>
+<li><p>dispatchLayoutStep1:  负责记录状态</p>
+</li>
+<li><p>dispatchLayoutStep2：负责布局</p>
+</li>
+<li>dispatchLayoutStep3：与 step1 比较，根据变化来触发动画</li>
+</ul>
+<h3 id="onLayout"><a href="#onLayout" class="headerlink" title="onLayout"></a>onLayout</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    TraceCompat.beginSection(TRACE_ON_LAYOUT_TAG);</span><br><span class="line">    dispatchLayout();</span><br><span class="line">    TraceCompat.endSection();</span><br><span class="line">    mFirstLayoutComplete = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispatchLayout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mState.mIsMeasuring = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(mState.mLayoutStep == State.STEP_START) &#123;</span><br><span class="line">        dispatchLayoutStep1();</span><br><span class="line">        mLayout.setExactMeasureSpecsFrom(<span class="keyword">this</span>);</span><br><span class="line">        dispatchLayoutStep2();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(mAdapterHelper.hasUpdates() </span><br><span class="line">              || mLayout.getWidth() != getWidth() </span><br><span class="line">              || mLayout.getHeight() != getHeight()) &#123;</span><br><span class="line">        <span class="comment">// first 2 steps are done in onMeasure but looks like we have to run again due to changed size</span></span><br><span class="line">        mLayout.setExactMeasureSpecsFrom(<span class="keyword">this</span>);</span><br><span class="line">        dispatchLayoutStep2();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// always make sure we sync them (to ensure mode is exact)</span></span><br><span class="line">        mLayout.setExactMeasureSpecsFrom(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    dispatchLayoutStep3();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 <code>dispatchLayout</code> 可以验证RecyclerView 的 layout三步走原则，如果在 <code>onMeasure</code> 中已经完成了 step1 和 step2 ，则只会执行 step3，否则，会在 <code>onLayout</code> 中依次触发三步走。</p>
+<h4 id="dispatchLayoutStep1"><a href="#dispatchLayoutStep1" class="headerlink" title="dispatchLayoutStep1"></a>dispatchLayoutStep1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dispatchLayoutStep1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(mState.mRunSimpleAnimations) &#123;</span><br><span class="line">        <span class="keyword">int</span> count = mChildHelper.getChildCount();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> ViewHolder holder = getChildViewHolderInt(mChildHelper.getChildAt(i));</span><br><span class="line">            <span class="keyword">final</span> ItemHolderInfo animationInfo = mItemAnimator.recordPreLayoutInformation(mState, holder, ItemAnimator.buildAdapterChangeFlagsForAnimations(holder), holder.getUnmodifiedPayloads());</span><br><span class="line">            mViewInfoStore.addToPreLayout(holder, animationInfo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    mState.mLayoutStep = State.STEP_LAYOUT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>step 的第一步目的就是记录 View 的状态，先遍历当前所有 View，一次进行处理，mItemAnimator 会根据每个 View 的信息，封装一个 ItemHolderInfo, 这个 ItemHolderInfo 中主要包含的就是 View 的位置状态等。然后将 ItemHodlerInfo 存入 mViewInfoStore 中。在进入第二步后， View 的信息就将被改变</p>
+<h4 id="dispatchLayoutStep2"><a href="#dispatchLayoutStep2" class="headerlink" title="dispatchLayoutStep2"></a>dispatchLayoutStep2</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dispatchLayoutStep2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    mLayout.onLayoutChildren(mRecycler, mState);</span><br><span class="line">    </span><br><span class="line">    mState.mLayoutStep = State.STATE_ANIMATIONS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>layout 的第二步就是真正的布局 View。RecyclerView 的真正布局是由 LayoutManger 来负责的，其主要工作也在 LayoutManager 中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">onLayoutChildren</span><span class="params">(RecyclerView.Recycler recycler, RecyclerView.State state)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(!mAnchorInfo.mValid </span><br><span class="line">      || mPendingScrollPosition != NO_POSITION </span><br><span class="line">      || mPendingSavedState != <span class="keyword">null</span>) &#123;</span><br><span class="line">        updateAnchorInfoForLayout(recycler, state, mAnchorInfo);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(mAnchorInfo.mLayoutFromEnd) &#123;</span><br><span class="line">        firstLayoutDirection = mShouldReverseLayout </span><br><span class="line">            ? LayoutState.ITEM_DIRECTIONTAIL</span><br><span class="line">            : LayoutState.ITEM_DIRECTION_HEAD;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        firstLayoutDirection = mShouldReverseLayout </span><br><span class="line">            ? LayoutState.ITEM_DIRECTION_HEAD</span><br><span class="line">            : LayoutState.ITEM_DIRECTION_TAIL;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    onAnchorReady(recycler, state, mAnchorInfo, firstLayoutDirection);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(mAnchorInfo.mLayoutFromEnd) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// fill towards end</span></span><br><span class="line">        updateLayouStateToFillEnd(mAnchorInfo);</span><br><span class="line">        fill(recycler, mLayoutState, state, <span class="keyword">false</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// fill towards start</span></span><br><span class="line">        updateLayoutStateToFillStart(mAnchorInfo);</span><br><span class="line">        fill(recycler, mLayoutState, state, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>流程很负责，大致流程如下</p>
+<ul>
+<li>找到 anchor点</li>
+<li>根据 anchor 一直向前布局，直到填充满 anchor 点前面的所有区域</li>
+<li>根据 anchor 一直向后布局，直到填充满 anchor 点后面的所有区域</li>
+</ul>
+<p>anchor 点的寻找是由 <code>updateAnchorInfoForLayout</code> 函数负责。向下追踪会看到 <code>updateAnchorFromChildren</code>  方法，其内容为，先寻找被 focus 的 child， 找到以此 child 作为 anchor ，否则根据布局方向寻找最合适的 child 来作为 anchor，如果找到则将 child 的信息复制给 anchorInfo 。 <code>anchorInfo</code> 主要记录的信息就是 View 的物理位置与 Adapter 中的位置。找到后返回 true，否则返回 false，交给上一步函数做处理。</p>
+<p>继续当找到 anchor 后，会根据 anchor 来布局，通过 fill 方法来完成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fill</span><span class="params">(RecyclerView.Recycler recycler, LayoutState layoutState, RecyclerView.state state, <span class="keyword">boolean</span> stopOnFocusable)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> start = layoutState.mAvailable;</span><br><span class="line">    <span class="keyword">if</span>(layoutState.mScrollingOffset != LayoutState.SCROLLING_OFFSET_NaN) &#123;</span><br><span class="line">        recycleByLayoutState(recycler, layoutState);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> remainingSpace = layoutState.mAvailable + layoutState.mExtra;</span><br><span class="line">    LayoutChunkResult layoutChunkResult = mLayoutChunkResult;</span><br><span class="line">    <span class="keyword">while</span>((layoutState.mInfinite || remainingSpace &gt; <span class="number">0</span>)</span><br><span class="line">         &amp;&amp; layoutState.hasMore(state)) &#123;</span><br><span class="line">        layoutChunk(recycler, state, layoutState, layoutChunkResult);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> start-layoutState.mAvailable;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>recycleByLayoutState</strong> 这个函数，会根据当前信息对不需要的 View 进行回收:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">recycleByLayoutState</span><span class="params">(RecyclerView.Recycler recycler, LayoutState layoutState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(layoutState.mLayoutDirection == LayoutState.LAYOUT_START) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        recycleViewsFromStart(recycler, layoutState.mScrollingOffset);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继续看 <code>recycleViewsFromStart</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">recycleViewsFromStart</span><span class="params">(RecyclerView.Recycler recycler, <span class="keyword">int</span> dt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> limit = dt;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> childCount = getChildCount();</span><br><span class="line">    <span class="keyword">if</span>(mShouldReverseLayout) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++)&#123;</span><br><span class="line">            View child = getChildAt(i);</span><br><span class="line">            <span class="keyword">if</span>(mOrientationHelper.getDecoratedEnd(child) &gt; limit</span><br><span class="line">              || mOrientationHelper.getTransformedEndWithDecoration(child) &gt; limit) &#123;</span><br><span class="line">        recycleChildren(recycler, <span class="number">0</span>, i);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数的作用时遍历所有的子 View ,找出逃离边界的 View 进行回收，回收函数在 <code>recycleChildren</code> 里，而这函数又调用了 <code>removeAndRecycleViewAt</code> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAndRecycleViewAt</span><span class="params">(<span class="keyword">int</span> index, Recycler recycler)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> View view = getChildAt(index);</span><br><span class="line">    removeViewAt(index);</span><br><span class="line">    recycler.recycleView(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数先调用 <code>removeViewAt</code> ，将 View 从 RecyclerView 中移除，紧接着是 recycler 执行了 View 的回收逻辑。在 fill 函数的一开始会去回收逃离出屏幕的 view。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>((layoutState.mInfinite || remainningSpace &gt; <span class="number">0</span>) </span><br><span class="line">     &amp;&amp; layoutState.hasMore(state)) &#123;</span><br><span class="line">    layoutChunk(recycler, state, layoutState, layoutChunkResult);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只要又剩余空间，就会执行 layoutChunk 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">layoutChunk</span><span class="params">(RecyclerView.Recycler recycler, RecyclerView.State stat, LayoutState layoutState, LayoutCHunkResult result)</span></span>&#123;</span><br><span class="line">    View view = layoutState.next(recycler);</span><br><span class="line">    </span><br><span class="line">    LayoutParams params = (LayoutParams) view.getLayoutParams();</span><br><span class="line">    <span class="keyword">if</span>(layoutState.mScrapList == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(mShouldReverseLayout == (layoutState.mLayoutDirection == LayoutState.LAYOUT_START)) &#123;</span><br><span class="line">            addView(view);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            addView(view, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    layoutDecoratedWithMargins(view, left, top, right, bottom);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 layoutState 的 next 方法返回了一个 view， 凭空变出一个 View， 很神奇</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">View <span class="title">next</span><span class="params">(RecyclerView.Recycler recycler )</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> View view = recycler.getViewForPosition(mCurrentPosition);</span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见 view 的获取逻辑也是由 recycler 来负责， 所以我们只需要清楚 recycler 可以根据位置返回一个 View 即可。</p>
+<p>我们在看 layoutChunk 对刚刚生成的 View 的处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(mShouldReverseLayout == (layoutState.mLayoutDirectoin == LayoutState.LAYOUT_STATE)) &#123;</span><br><span class="line">    addView(view);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    addView(view, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>明显的调用了 addView 方法，虽然这个方法是 LayoutManager 的，但是这个方法最终会多次辗转调用到 Recycler View 的 addView 方法，将 view 添加到 RecyclerView 中。</p>
+<p>dispatchLayoutStep2 整个布局过程，完成了对 子 View 的测量与布局</p>
+<h4 id="dispatchLayoutStep3"><a href="#dispatchLayoutStep3" class="headerlink" title="dispatchLayoutStep3"></a>dispatchLayoutStep3</h4><p>最后一步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dispatchLayoutStep3</span><span class="params">()</span></span>&#123;</span><br><span class="line">    mState.mLayoutStep = State.STEP_START;</span><br><span class="line">    <span class="keyword">if</span>(mState.mRunSimpleAnimations) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = mChildHelper.getChildCount() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">final</span> ItemHolderInfo animationInfo = mItemAnimator.recordPostLayoutInformation(mState, holder);</span><br><span class="line">            mViewInfoStore.addToPostLayout(holder, animationInfo);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        mViewInfoStore.process(mViewInfoProcessCallback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里是与第一步呼应的，此时子 View 都已布局完成，所以子 View 的信息都发生了变化。第一步出现的 mViewInfoStore 和 mItemAnimator 再次登场，这次 mItemAnimator 调用的是 recordPostLayoutInformation 方法，而 mViewInfoStore 调用的是 addToPostLayout 方法，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addToPostLayout</span><span class="params">(ViewHolder holder, ItemHolderInfo info)</span> </span>&#123;</span><br><span class="line">    InfoRecord record = mLayoutHolderMap.get(holder);</span><br><span class="line">    <span class="keyword">if</span>(record == <span class="keyword">null</span> ) &#123;</span><br><span class="line">        record = InfoRecord.obtain();</span><br><span class="line">        mLayoutHolderMap.put(holder, record);</span><br><span class="line">    &#125;</span><br><span class="line">    record.postInfo = info;record.flags |= FLAT_POST;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后 mViewInfoStore 调用了 process 方法，根据 mViewInfoStore 中的 View 信息，来执行动画逻辑。</p>
+<h3 id="缓存逻辑"><a href="#缓存逻辑" class="headerlink" title="缓存逻辑"></a>缓存逻辑</h3><p>缓存共分为四层</p>
+<ol>
+<li>Scrap  内存缓存</li>
+<li>Cache 内存缓存</li>
+<li>ViewCacheExtension 用户自定义缓存</li>
+<li>Recycled View Pool 缓存池</li>
+</ol>
+<p>RecyclerView 的缓存时分为多级的，但其实真个逻辑很好理解，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">View <span class="title">getViewForPosition</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">boolean</span> dryRun)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> fromScrap = <span class="keyword">false</span>;</span><br><span class="line">    ViewHolder holder = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(mState.isPreLayout()) &#123;</span><br><span class="line">        holder = getChangedScrapViewForPosition(position);</span><br><span class="line">		fromScrap = holder != <span class="keyword">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(hoder == <span class="keyword">null</span>) &#123;</span><br><span class="line">        hodler = getScrapViewForPosition(position, INVALID_TYPE, dryRun);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(holder == <span class="keyword">null</span> )&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> offsetPosition = mAdapterHelper.findPositionOffset(position);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> type = mAdapter.getItemViewType(offsetPosition);</span><br><span class="line">        <span class="keyword">if</span>(mAdapter.hasStableIds())&#123;</span><br><span class="line">            holder = getScrapViewForId(mAdapter.getItemId(offsetPosition), type, dryRun);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(holder == <span class="keyword">null</span> &amp;&amp; mViewCacheExtension != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">final</span> View view = mViewCacheExtension.getViewForPositionAndType(<span class="keyword">this</span>, position, type);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(holder == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// fallback to recycler</span></span><br><span class="line">            holder = getRecyclerViewPool().getRecyclerView(type);</span><br><span class="line">            <span class="keyword">if</span>(holder != <span class="keyword">null</span>)&#123;</span><br><span class="line">                holder.resetInternal();</span><br><span class="line">                <span class="keyword">if</span>(FORCE_INVALIDATE_DISPLAY_LIST)&#123;</span><br><span class="line">                    invalidateDisplayListInt(holder);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(holder == <span class="keyword">null</span> )&#123;</span><br><span class="line">            holder = mAdapter.createViewHolder(RecyclerView.<span class="keyword">this</span>, type);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 生成 LayoutParams 的代码</span></span><br><span class="line">    <span class="keyword">return</span> holder.itemView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取 View 的逻辑可以整理为</p>
+<ul>
+<li>搜索 mChangedScrap， 如果找到则返回相应的 holder</li>
+<li>搜索 mAttachedScrap与 mCachedViews， 如果找到且 holder 有效则返回相应的 holder</li>
+<li>如果设置了 mViewCacheExtension, 对其调用 getViewForPositionAndType 方法进行获取，若返回结果则生成对应的 holder</li>
+<li>搜索 mRecyclerPool, 如果找到则返回 Holder</li>
+<li>如果上述过程都没有找到对饮的 holder, 则执行 Adapter.createViewHolder(); 创建新的 ViewHolder 实例</li>
+</ul>
+<p><strong>对于 View 的回收</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">recycleViewHolderInternal</span><span class="params">(ViewHolder holder )</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(holder.isRecyclable()) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!holder.hasAnyOfTheFlags(VieHolder.FLAG_INVALID | ViewHolder.FLAG_REMOVED) | ViewHolder.FLAG_UPDATE) &#123;</span><br><span class="line">            <span class="keyword">int</span> cachedViewSize = mCachedViews.size();</span><br><span class="line">            <span class="keyword">if</span>(cachedViewSize &gt;= mViewCacheMax &amp;&amp; cachedViewSize &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                recycleCachedViewAt(<span class="number">0</span>);</span><br><span class="line">                cachedViewSize--;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(cachedViewSize &lt; mViewCacheMax) &#123;</span><br><span class="line">                mCachedViews.add(holder);</span><br><span class="line">                cached = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(!cached) &#123;</span><br><span class="line">            addViewHolderToRecycledViewPool(holder);</span><br><span class="line">            recycled = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>回收没有创建复杂，只涉及到两次缓存， mCachedViews 和 mRecyclerPool , mCachedViews 相当于一个先进先出的数据结构（队列），当有新的 View 需要缓存时，都会将新的 View 存入到 mCachedViews， 而 mCachedView  则会移除头部元素，并将头部元素存储在 mRecyclerPool 中， 即 mCachedViews 相当于一级缓存， mRecyclerPool 相当于二级缓存，并且 mRecyclerPool  时可以多个 RecyclerView 共享的。</p>
+<h2 id="与-AdapterView-比较"><a href="#与-AdapterView-比较" class="headerlink" title="与 AdapterView 比较"></a>与 AdapterView 比较</h2><table>
 <thead>
 <tr>
-<th style="text-align:center">修改记录</th>
-<th style="text-align:center">修改时间</th>
-<th style="text-align:center">备注</th>
+<th style="text-align:center">index</th>
+<th style="text-align:center">AdapterView</th>
+<th style="text-align:center">RecyclerView</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">添加删除远程分支</td>
-<td style="text-align:center">2018年07月26日13:59:22</td>
-<td style="text-align:center">删除远程分支命令</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Simple click listener</td>
+<td style="text-align:center">OnItemTouchListener</td>
 </tr>
 <tr>
-<td style="text-align:center">更新fork仓库</td>
-<td style="text-align:center">2018年08月10日14:16:08</td>
-<td style="text-align:center">添加fork的仓库，从主仓库更新代码的命令</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Simple Divider</td>
+<td style="text-align:center">ItemDecoration</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">ListView and GridView</td>
+<td style="text-align:center">LinearLayoutManager<br>GridLayoutManager</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">RecyclerBin</td>
+<td style="text-align:center">Recycler</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">Header and Footer</td>
+<td style="text-align:center">Partial refresh</td>
 </tr>
 </tbody>
 </table>
-<p>整理的还不够完善，以后工作中遇到了会不断补进，如有大神，有可以留言，我们一起来完善。欢迎各位留言^_^</p>
-          <!--noindex-->
+<h5 id="点击事件"><a href="#点击事件" class="headerlink" title="点击事件"></a>点击事件</h5><p>ListView 原生提供了Item 点击、长安的事件，而 RecyclerView  则需要使用 onTouchListener 相对比较复杂</p>
+<h5 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h5><p>ListView  可以很轻松设施 Divider 属性来显示 item 之间的分割线，</p>
+<p>RecyclerView 需要自己实现 ItemDecoration ，两者比较，前者使用更简单，后者定制性更强</p>
+<h5 id="布局类型"><a href="#布局类型" class="headerlink" title="布局类型"></a>布局类型</h5><p>AdapterView 提提供了 三种布局管理方式，LinearLayoutManager, GirdLayoutManager, StaggeredGirdLayoutManager</p>
+<p>ListView 只提供了一种 LinearLayoutManager 方式</p>
+<h5 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h5><ul>
+<li>RecyclerView 提供了DiffUtil 工具类，用于整个页面需要刷新，对比列表中的数据，如果未发生变化，则不会触发重绘制操作</li>
+<li>ListView 不支持单个 Item  的刷新，只能整个列表进行 <code>notifyDataSetChanged</code> ， RecyclerView 提供了 <code>itemChange</code>, <code>ItemInsert</code>, <code>ItemRemoved</code> 等方法，减少了 性能的开销</li>
+</ul>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/git-command/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -887,7 +983,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/开发一个Android-IoT-App/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/View/Android 自定义 View/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -907,7 +1003,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/16/开发一个Android-IoT-App/" class="post-title-link" itemprop="url">开发一个Android IoT App</a>
+                <a href="/2021/01/29/Android 基础/View/Android 自定义 View/" class="post-title-link" itemprop="url">Android自定义View</a>
               
             
           </h1>
@@ -932,25 +1028,9 @@
                 
               
 
-              <time title="Created: 2019-04-16 17:43:18" itemprop="dateCreated datePublished" datetime="2019-04-16T17:43:18+08:00">2019-04-16</time>
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:54:19" itemprop="dateModified" datetime="2019-04-17T21:54:19+08:00">2019-04-17</time>
-              
             
           </span>
 
@@ -984,355 +1064,1211 @@
 
       
         
-          <h1 id="构建-Android-IoT-App"><a href="#构建-Android-IoT-App" class="headerlink" title="构建 Android IoT App"></a>构建 Android IoT App</h1><p>本文翻译自<a href="http://www.survivingwithandroid.com/2017/01/building-iot-app-android-things-android-iot-appplication-development.html" target="_blank" rel="noopener">Building IoT APP for Android Things in 3 step</a></p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/开发一个Android-IoT-App/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" class="post-title-link" itemprop="url">Jenkins + gradle + git 构建 Android CI 构建环境</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:42:05" itemprop="dateCreated datePublished" datetime="2019-04-16T17:42:05+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:55:47" itemprop="dateModified" datetime="2019-04-17T21:55:47+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。</p>
-<p>目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。</p>
-<p>然，在企业组织并不是很完善的公司里，开发打包发布等工作，时常会由开发人员进行操作，难免在一些地方疏忽掉。</p>
-<p>因此，CI 构建的出现，使得这些繁琐的工作变得轻松起来。</p>
-<p>对于开发工程师，只负责向版本库提交代码，不用关心打包，发布之类的流程。</p>
-<p>对于产品和测试，只需要从发布页面下载 APK 安装文件，不需要每一次都去工程师哪里索取最新的安装文件。</p>
-<p>CI 的基本工作流程如下：<br><img src="http://upload-images.jianshu.io/upload_images/1550996-5101eac8d87352a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图1"></p>
-<p>我们每一次提交代码（通过git/svn作为版本库）到主干上，根据 CI 的定时任务，检测到版本更新，通过 CI ，将进行打包发布等流程操作。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/adb-command/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/adb-command/" class="post-title-link" itemprop="url">adb command</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:38:08" itemprop="dateCreated datePublished" datetime="2019-04-16T17:38:08+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-21 23:36:33" itemprop="dateModified" datetime="2019-08-21T23:36:33+08:00">2019-08-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ol>
-<li><p>查看PID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps</span><br></pre></td></tr></table></figure>
+            <p>[TOC]</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="Android开发进阶的必经之路"><a href="#Android开发进阶的必经之路" class="headerlink" title="Android开发进阶的必经之路"></a>Android开发进阶的必经之路</h3><h3 id="为什么要自定义View"><a href="#为什么要自定义View" class="headerlink" title="为什么要自定义View"></a>为什么要自定义View</h3><h3 id="自定义View的基本方法"><a href="#自定义View的基本方法" class="headerlink" title="自定义View的基本方法"></a>自定义View的基本方法</h3><p>自定义View的最基本的三个方法分别是： onMeasure()、onLayout()、onDraw();<br>View在Activity中显示出来，要经历测量、布局和绘制三个步骤，分别对应三个动作：measure、layout和draw。</p>
+<ul>
+<li>测量：onMeasure()决定View的大小；</li>
+<li>布局：onLayout()决定View在ViewGroup中的位置；</li>
+<li>绘制：onDraw()决定绘制这个View。</li>
+</ul>
+<h3 id="自定义控件分类"><a href="#自定义控件分类" class="headerlink" title="自定义控件分类"></a>自定义控件分类</h3><ul>
+<li>自定义View: 只需要重写onMeasure()和onDraw()</li>
+<li>自定义ViewGroup: 则只需要重写onMeasure()和onLayout()</li>
+</ul>
+<h2 id="自定义View基础"><a href="#自定义View基础" class="headerlink" title="自定义View基础"></a>自定义View基础</h2><h3 id="View的分类"><a href="#View的分类" class="headerlink" title="View的分类"></a>View的分类</h3><p>视图View主要分为两类</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>解释</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单一视图</td>
+<td>即一个View，如TextView</td>
+<td>不包含子View</td>
+</tr>
+<tr>
+<td>视图组</td>
+<td>即多个View组成的ViewGroup，如LinearLayout</td>
+<td>包含子View</td>
+</tr>
+</tbody>
+</table>
+<h3 id="View类简介"><a href="#View类简介" class="headerlink" title="View类简介"></a>View类简介</h3><ul>
+<li>View类是Android中各种组件的基类，如View是ViewGroup基类</li>
+<li>View表现为显示在屏幕上的各种视图</li>
+</ul>
+<blockquote>
+<p>Android中的UI组件都由View、ViewGroup组成。</p>
+</blockquote>
+<ul>
+<li><p>View的构造函数：共有4个</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果View是在Java代码里面new的，则调用第一个构造函数</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">CarsonView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果View是在.xml里声明的，则调用第二个构造函数</span></span><br><span class="line"><span class="comment">// 自定义属性是从AttributeSet参数传进来的</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="title">CarsonView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不会自动调用</span></span><br><span class="line"><span class="comment">// 一般是在第二个构造函数里主动调用</span></span><br><span class="line"><span class="comment">// 如View有style属性时</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="title">CarsonView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//API21之后才使用</span></span><br><span class="line">    <span class="comment">// 不会自动调用</span></span><br><span class="line">    <span class="comment">// 一般是在第二个构造函数里主动调用</span></span><br><span class="line">    <span class="comment">// 如View有style属性时</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="title">CarsonView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr, <span class="keyword">int</span> defStyleRes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr, defStyleRes);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>查看日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">全部日志</span><br><span class="line">adb logcat</span><br><span class="line"></span><br><span class="line">按照 PID 筛选日志</span><br><span class="line">adb logcat | grep &lt;PID&gt;</span><br></pre></td></tr></table></figure>
+</ul>
+<h3 id="AttributeSet与自定义属性"><a href="#AttributeSet与自定义属性" class="headerlink" title="AttributeSet与自定义属性"></a>AttributeSet与自定义属性</h3><p>　系统自带的View可以在xml中配置属性，对于写的好的自定义View同样可以在xml中配置属性，为了使自定义的View的属性可以在xml中配置，需要以下4个步骤：</p>
+<ol>
+<li>通过<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">2. 在xml中为相应的属性声明属性值</span><br><span class="line">3. 在运行时（一般为构造函数）获取属性值</span><br><span class="line">4. 将获取到的属性值应用到View</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### View视图结构</span><br><span class="line"></span><br><span class="line">1. PhoneWindow是Android系统中最基本的窗口系统，继承自Windows类，负责管理界面显示以及事件响应。它是Activity与View系统交互的接口，每个Activity都会创建一个</span><br><span class="line">2. DecorView是PhoneWindow中的起始节点View，继承于View类，作为整个视图容器来使用。用于设置窗口属性。它本质上是一个FrameLayout</span><br><span class="line">3. ViewRoot在Activtiy启动时创建，负责管理、布局、渲染窗口UI等等</span><br><span class="line"></span><br><span class="line">![activity](https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/activity.png)</span><br><span class="line"></span><br><span class="line">对于多View的视图，结构是树形结构：最顶层是ViewGroup，ViewGroup下可能有多个ViewGroup或View，如下图：</span><br><span class="line"></span><br><span class="line">![view_arch](https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/view_arch.png)</span><br><span class="line"></span><br><span class="line">一定要记住：无论是measure过程、layout过程还是draw过程，永远都是从View树的根节点开始测量或计算（即从树的顶端开始），一层一层、一个分支一个分支地进行（即树形递归），最终计算整个View树中各个View，最终确定整个View树的相关属性。</span><br><span class="line"></span><br><span class="line">### Android坐标系</span><br><span class="line"></span><br><span class="line">Android的坐标系定义为：</span><br><span class="line"></span><br><span class="line">- 屏幕的左上角为坐标原点</span><br><span class="line">- 向右为x轴增大方向</span><br><span class="line">- 向下为y轴增大方向</span><br><span class="line">  ![zuobiaoxi](https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/zuobiaoxi.png)</span><br><span class="line"></span><br><span class="line">&gt; 区别于一般的数学坐标系</span><br><span class="line">&gt; ![zuobiaoxi_qubie](https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/zuobiaoxi_qubie.png)</span><br><span class="line"></span><br><span class="line">###  View位置（坐标）描述</span><br><span class="line"></span><br><span class="line">View的位置由4个顶点决定的</span><br><span class="line">4个顶点的位置描述分别由4个值决定：</span><br><span class="line"></span><br><span class="line">&gt; 请记住：View的位置是相对于父控件而言的）</span><br><span class="line"></span><br><span class="line">- Top：子View上边界到父view上边界的距离</span><br><span class="line">- Left：子View左边界到父view左边界的距离</span><br><span class="line">- Bottom：子View下边距到父View上边界的距离</span><br><span class="line">- Right：子View右边界到父view左边界的距离</span><br><span class="line"></span><br><span class="line">### 位置获取方式</span><br><span class="line"></span><br><span class="line">View的位置是通过view.getxxx()函数进行获取：（以Top为例）</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">// 获取Top位置</span><br><span class="line">public final int getTop() &#123;  </span><br><span class="line">    return mTop;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">// 其余如下：</span><br><span class="line">  getLeft();      //获取子View左上角距父View左侧的距离</span><br><span class="line">  getBottom();    //获取子View右下角距父View顶部的距离</span><br><span class="line">  getRight();     //获取子View右下角距父View左侧的距离</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>与MotionEvent中 get()和getRaw()的区别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//get() ：触摸点相对于其所在组件坐标系的坐标</span></span><br><span class="line"> event.getX();       </span><br><span class="line"> event.getY();</span><br><span class="line"></span><br><span class="line"><span class="comment">//getRaw() ：触摸点相对于屏幕默认坐标系的坐标</span></span><br><span class="line"> event.getRawX();    </span><br><span class="line"> event.getRawY();</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/zuobiaoxiweizhi.png" alt="zuobiaoxiweizhi"></p>
+<h3 id="Android中颜色相关内容"><a href="#Android中颜色相关内容" class="headerlink" title="Android中颜色相关内容"></a>Android中颜色相关内容</h3><p>Android支持的颜色模式：<br><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/color1.png" alt="color1"></p>
+<p>以ARGB8888为例介绍颜色定义:<br><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/color2.png" alt="color2"></p>
+<h2 id="View树的绘制流程"><a href="#View树的绘制流程" class="headerlink" title="View树的绘制流程"></a>View树的绘制流程</h2><h3 id="View树的绘制流程是谁负责的？"><a href="#View树的绘制流程是谁负责的？" class="headerlink" title="View树的绘制流程是谁负责的？"></a>View树的绘制流程是谁负责的？</h3><p>view树的绘制流程是通过ViewRoot去负责绘制的，ViewRoot这个类的命名有点坑，最初看到这个名字，翻译过来是view的根节点，但是事实完全不是这样，ViewRoot其实不是View的根节点，它连view节点都算不上，它的主要作用是View树的管理者，负责将DecorView和PhoneWindow“组合”起来，而View树的根节点严格意义上来说只有DecorView；每个DecorView都有一个ViewRoot与之关联，这种关联关系是由WindowManager去进行管理的；绘制就是从ViewRoot.performTraversals()开始的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">performTraversals</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      .....</span><br><span class="line">      performMeasure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">      .....</span><br><span class="line">      performLayout(lp, mWidth, mHeight);</span><br><span class="line">      .....</span><br><span class="line">      performDraw();</span><br><span class="line">      .....</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="view的添加"><a href="#view的添加" class="headerlink" title="view的添加"></a>view的添加</h3><p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/view_qiyuan.png" alt></p>
+<h3 id="view的绘制流程"><a href="#view的绘制流程" class="headerlink" title="view的绘制流程"></a>view的绘制流程</h3><p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/view_traversals.png" alt="view_traversals"></p>
+<h3 id="measure"><a href="#measure" class="headerlink" title="measure"></a>measure</h3><ol>
+<li><p>系统为什么要有measure过程？</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Hello World!"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>谷歌建议使用自适应，自适应的话，就不知道大小，所以需要去测量。</p>
 </li>
-<li><p>查询链接设备</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<li><p>measure过程都干了点什么事？</p>
+</li>
+<li><p>对于自适应的尺寸机制，如何合理的测量一颗View树？</p>
+</li>
+<li><p>那么ViewGroup是如何向子View传递限制信息的？</p>
+</li>
+<li><p>ScrollView嵌套ListView问题？</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/view_requestlayout.png" alt="view_requestlayout"></p>
+<h3 id="layout"><a href="#layout" class="headerlink" title="layout"></a>layout</h3><ol>
+<li>系统为什么要有layout过程？</li>
+<li>layout过程都干了点什么事？</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/view_performlayout.png" alt="view_performlayout"></p>
+<h3 id="draw"><a href="#draw" class="headerlink" title="draw"></a>draw</h3><ol>
+<li>系统为什么要有draw过程？</li>
+<li>draw过程都干了点什么事？</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/view_invalidate.png" alt="view_invalidate"></p>
+<h2 id="LayoutParams"><a href="#LayoutParams" class="headerlink" title="LayoutParams"></a>LayoutParams</h2><p>ayoutParams翻译过来就是布局参数，子View通过LayoutParams告诉父容器（ViewGroup）应该如何放置自己。从这个定义中也可以看出来LayoutParams与ViewGroup是息息相关的，因此脱离ViewGroup谈LayoutParams是没有意义的。</p>
+<p>事实上，每个ViewGroup的子类都有自己对应的LayoutParams类，典型的如LinearLayout.LayoutParams和FrameLayout.LayoutParams等，可以看出来LayoutParams都是对应ViewGroup子类的内部类</p>
+<h3 id="MarginLayoutParams"><a href="#MarginLayoutParams" class="headerlink" title="MarginLayoutParams"></a>MarginLayoutParams</h3><p>MarginLayoutParams是和外间距有关的。事实也确实如此，和LayoutParams相比，MarginLayoutParams只是增加了对上下左右外间距的支持。实际上大部分LayoutParams的实现类都是继承自MarginLayoutParams，因为基本所有的父容器都是支持子View设置外间距的</p>
+<ul>
+<li>属性优先级问题<br>MarginLayoutParams主要就是增加了上下左右4种外间距。在构造方法中，先是获取了margin属性；如果该值不合法，就获取horizontalMargin；如果该值不合法，再去获取leftMargin和rightMargin属性（verticalMargin、topMargin和bottomMargin同理）。我们可以据此总结出这几种属性的优先级</li>
+</ul>
+<blockquote>
+<p>margin &gt; horizontalMargin和verticalMargin &gt; leftMargin和RightMargin、topMargin和bottomMargin</p>
+</blockquote>
+<ul>
+<li>属性覆盖问题<br>优先级更高的属性会覆盖掉优先级较低的属性。此外，还要注意一下这几种属性上的注释</li>
+</ul>
+<blockquote>
+<p>Call {@link ViewGroup#setLayoutParams(LayoutParams)} after reassigning a new value</p>
+</blockquote>
+<h3 id="LayoutParams与View如何建立联系"><a href="#LayoutParams与View如何建立联系" class="headerlink" title="LayoutParams与View如何建立联系"></a>LayoutParams与View如何建立联系</h3><ul>
+<li>在XML中定义View</li>
+<li>在Java代码中直接生成View对应的实例对象</li>
+</ul>
+<h3 id="addView"><a href="#addView" class="headerlink" title="addView"></a>addView</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重载方法1：添加一个子View</span></span><br><span class="line"><span class="comment"> * 如果这个子View还没有LayoutParams，就为子View设置当前ViewGroup默认的LayoutParams</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addView</span><span class="params">(View child)</span> </span>&#123;</span><br><span class="line">    addView(child, -<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重载方法2：在指定位置添加一个子View</span></span><br><span class="line"><span class="comment"> * 如果这个子View还没有LayoutParams，就为子View设置当前ViewGroup默认的LayoutParams</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> index View将在ViewGroup中被添加的位置（-1代表添加到末尾）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addView</span><span class="params">(View child, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (child == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Cannot add a null child view to a ViewGroup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    LayoutParams params = child.getLayoutParams();</span><br><span class="line">    <span class="keyword">if</span> (params == <span class="keyword">null</span>) &#123;</span><br><span class="line">        params = generateDefaultLayoutParams();<span class="comment">// 生成当前ViewGroup默认的LayoutParams</span></span><br><span class="line">        <span class="keyword">if</span> (params == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"generateDefaultLayoutParams() cannot return null"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addView(child, index, params);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重载方法3：添加一个子View</span></span><br><span class="line"><span class="comment"> * 使用当前ViewGroup默认的LayoutParams，并以传入参数作为LayoutParams的width和height</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addView</span><span class="params">(View child, <span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> LayoutParams params = generateDefaultLayoutParams();  <span class="comment">// 生成当前ViewGroup默认的LayoutParams</span></span><br><span class="line">    params.width = width;</span><br><span class="line">    params.height = height;</span><br><span class="line">    addView(child, -<span class="number">1</span>, params);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重载方法4：添加一个子View，并使用传入的LayoutParams</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addView</span><span class="params">(View child, LayoutParams params)</span> </span>&#123;</span><br><span class="line">    addView(child, -<span class="number">1</span>, params);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重载方法4：在指定位置添加一个子View，并使用传入的LayoutParams</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addView</span><span class="params">(View child, <span class="keyword">int</span> index, LayoutParams params)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (child == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Cannot add a null child view to a ViewGroup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// addViewInner() will call child.requestLayout() when setting the new LayoutParams</span></span><br><span class="line">    <span class="comment">// therefore, we call requestLayout() on ourselves before, so that the child's request</span></span><br><span class="line">    <span class="comment">// will be blocked at our level</span></span><br><span class="line">    requestLayout();</span><br><span class="line">    invalidate(<span class="keyword">true</span>);</span><br><span class="line">    addViewInner(child, index, params, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addViewInner</span><span class="params">(View child, <span class="keyword">int</span> index, LayoutParams params,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">boolean</span> preventRequestLayout)</span> </span>&#123;</span><br><span class="line">    .....</span><br><span class="line">    <span class="keyword">if</span> (mTransition != <span class="keyword">null</span>) &#123;</span><br><span class="line">        mTransition.addChild(<span class="keyword">this</span>, child);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!checkLayoutParams(params)) &#123; <span class="comment">// ① 检查传入的LayoutParams是否合法</span></span><br><span class="line">        params = generateLayoutParams(params); <span class="comment">// 如果传入的LayoutParams不合法，将进行转化操作</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (preventRequestLayout) &#123; <span class="comment">// ② 是否需要阻止重新执行布局流程</span></span><br><span class="line">        child.mLayoutParams = params; <span class="comment">// 这不会引起子View重新布局（onMeasure-&gt;onLayout-&gt;onDraw）</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        child.setLayoutParams(params); <span class="comment">// 这会引起子View重新布局（onMeasure-&gt;onLayout-&gt;onDraw）</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        index = mChildrenCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addInArray(child, index);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// tell our children</span></span><br><span class="line">    <span class="keyword">if</span> (preventRequestLayout) &#123;</span><br><span class="line">        child.assignParent(<span class="keyword">this</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        child.mParent = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义LayoutParams"><a href="#自定义LayoutParams" class="headerlink" title="自定义LayoutParams"></a>自定义LayoutParams</h3><ol>
+<li>创建自定义属性</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;declare-styleable name=<span class="string">"xxxViewGroup_Layout"</span>&gt;</span><br><span class="line">        &lt;!-- 自定义的属性 --&gt;</span><br><span class="line">        &lt;attr name=<span class="string">"layout_simple_attr"</span> format=<span class="string">"integer"</span>/&gt;</span><br><span class="line">        &lt;!-- 使用系统预置的属性 --&gt;</span><br><span class="line">        &lt;attr name=<span class="string">"android:layout_gravity"</span>/&gt;</span><br><span class="line">    &lt;/declare-styleable&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>继承MarginLayout</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LayoutParams</span> <span class="keyword">extends</span> <span class="title">ViewGroup</span>.<span class="title">MarginLayoutParams</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> simpleAttr;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> gravity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LayoutParams</span><span class="params">(Context c, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(c, attrs);</span><br><span class="line">        <span class="comment">// 解析布局属性</span></span><br><span class="line">        TypedArray typedArray = c.obtainStyledAttributes(attrs, R.styleable.SimpleViewGroup_Layout);</span><br><span class="line">        simpleAttr = typedArray.getInteger(R.styleable.SimpleViewGroup_Layout_layout_simple_attr, <span class="number">0</span>);</span><br><span class="line">        gravity=typedArray.getInteger(R.styleable.SimpleViewGroup_Layout_android_layout_gravity, -<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        typedArray.recycle();<span class="comment">//释放资源</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LayoutParams</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(width, height);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LayoutParams</span><span class="params">(MarginLayoutParams source)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LayoutParams</span><span class="params">(ViewGroup.LayoutParams source)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>重写ViewGroup中几个与LayoutParams相关的方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查LayoutParams是否合法</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">checkLayoutParams</span><span class="params">(ViewGroup.LayoutParams p)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> p <span class="keyword">instanceof</span> SimpleViewGroup.LayoutParams;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成默认的LayoutParams</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> ViewGroup.<span class="function">LayoutParams <span class="title">generateDefaultLayoutParams</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SimpleViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对传入的LayoutParams进行转化</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> ViewGroup.<span class="function">LayoutParams <span class="title">generateLayoutParams</span><span class="params">(ViewGroup.LayoutParams p)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SimpleViewGroup.LayoutParams(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对传入的LayoutParams进行转化</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> ViewGroup.<span class="function">LayoutParams <span class="title">generateLayoutParams</span><span class="params">(AttributeSet attrs)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SimpleViewGroup.LayoutParams(getContext(), attrs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="LayoutParams常见的子类"><a href="#LayoutParams常见的子类" class="headerlink" title="LayoutParams常见的子类"></a>LayoutParams常见的子类</h3><p>在为View设置LayoutParams的时候需要根据它的父容器选择对应的LayoutParams，否则结果可能与预期不一致，这里简单罗列一些常见的LayoutParams子类：</p>
+<ul>
+<li>ViewGroup.MarginLayoutParams</li>
+<li>FrameLayout.LayoutParams</li>
+<li>LinearLayout.LayoutParams</li>
+<li>RelativeLayout.LayoutParams</li>
+<li>RecyclerView.LayoutParams</li>
+<li>GridLayoutManager.LayoutParams</li>
+<li>StaggeredGridLayoutManager.LayoutParams</li>
+<li>ViewPager.LayoutParams</li>
+<li>WindowManager.LayoutParams</li>
+</ul>
+<h2 id="MeasureSpec"><a href="#MeasureSpec" class="headerlink" title="MeasureSpec"></a>MeasureSpec</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>测量规格,封装了父容器对 view 的布局上的限制，内部提供了宽高的信息（ SpecMode 、 SpecSize ），SpecSize是指在某种SpecMode下的参考尺寸，其中SpecMode 有如下三种：</p>
+<ul>
+<li><p>UNSPECIFIED<br>不指定测量模式，父控件不对你有任何限制，你想要多大给你多大，想上天就上天。这种情况一般用于系统内部，表示一种测量状态。（这个模式主要用于系统内部多次Measure的情形，并不是真的说你想要多大最后就真有多大，开发中很少用到）</p>
+</li>
+<li><p>EXACTLY<br>精确测量模式，当该视图的宽高为match_parent或者具体数值时生效，表示父布局已经决定了子视图的精确大小，View的测量值就是SpecSize。</p>
+</li>
+<li><p>AT_MOST<br>当该视图的宽高为wrap_content时生效，你的大小不能大于父控件给你指定的size，但具体是多少，得看你自己的实现。<br>MeasureSpecs（32位的Int）=SpecMode（高2位） + SpecSize（低30位）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取尚未显示的view的宽和高</span></span><br><span class="line"><span class="keyword">int</span> tempWidth =View.MeasureSpec.makeMeasureSpec(<span class="number">0</span>,View.MeasureSpec.UNSPECIFIED);</span><br><span class="line"><span class="keyword">int</span> tempHeight =View.MeasureSpec.makeMeasureSpec(<span class="number">0</span>,View.MeasureSpec.UNSPECIFIED);</span><br><span class="line">view.measure(tempWidth,tempHeight);</span><br><span class="line"><span class="keyword">int</span> realHeight=view.getMeasuredHeight(); </span><br><span class="line"><span class="keyword">int</span> realWidth=view.getMeasuredWidth();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="MeasureSpecs-的意义"><a href="#MeasureSpecs-的意义" class="headerlink" title="MeasureSpecs 的意义"></a>MeasureSpecs 的意义</h3><p>通过将 SpecMode 和 SpecSize 打包成一个 int 值可以避免过多的对象内存分配，为了方便操作，其提供了打包 / 解包方法</p>
+<h3 id="MeasureSpec值的确定"><a href="#MeasureSpec值的确定" class="headerlink" title="MeasureSpec值的确定"></a>MeasureSpec值的确定</h3><p>MeasureSpec值到底是如何计算得来的呢?</p>
+<p>对于DecorView而言，他的MeasureSpecs是由自身窗口大小和自身的LayoutParams共同决定的，子View的MeasureSpec值是根据子View的布局参数（LayoutParams）和父容器的MeasureSpec值计算得来的，具体计算逻辑封装在getChildMeasureSpec()里</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">performMeasure</span><span class="params">(<span class="keyword">int</span> childWidthMeasureSpec, <span class="keyword">int</span> childHeightMeasureSpec)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    mView.measure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体的测量操作是分发给ViewGroup的，由ViewGroup的measureChildren方法传递为子View，如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">measureChildren</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">final</span> <span class="keyword">int</span> size = mChildrenCount;</span><br><span class="line">     <span class="keyword">final</span> View[] children = mChildren;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">         <span class="keyword">final</span> View child = children[i];</span><br><span class="line">         <span class="keyword">if</span> ((child.mViewFlags &amp; VISIBILITY_MASK) != GONE) &#123;</span><br><span class="line">             <span class="comment">//测量指定的View</span></span><br><span class="line">             measureChild(child, widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>测量指定的View</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">measureChild</span><span class="params">(View child, <span class="keyword">int</span> parentWidthMeasureSpec,</span></span></span><br><span class="line"><span class="function"><span class="params">          <span class="keyword">int</span> parentHeightMeasureSpec)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">final</span> LayoutParams lp = child.getLayoutParams();</span><br><span class="line"><span class="comment">//根据父容器的MeasureSpec和子View的布局参数（LayoutParams）计算子View的MeasureSpec</span></span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">int</span> childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,</span><br><span class="line">              mPaddingLeft + mPaddingRight, lp.width);</span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">int</span> childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,</span><br><span class="line">              mPaddingTop + mPaddingBottom, lp.height);</span><br><span class="line"></span><br><span class="line">      child.measure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>子View的MeasureSpec值是根据子View的布局参数（LayoutParams）和父容器的MeasureSpec值计算得来的，具体计算逻辑封装在getChildMeasureSpec()里</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * 目标是将父控件的测量规格和child view的布局参数LayoutParams相结合，得到一个</span></span><br><span class="line"><span class="comment">   * 最可能符合条件的child view的测量规格。  </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> spec 父控件的测量规格</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> padding 父控件里已经占用的大小</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> childDimension child view布局LayoutParams里的尺寸</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> child view 的测量规格</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getChildMeasureSpec</span><span class="params">(<span class="keyword">int</span> spec, <span class="keyword">int</span> padding, <span class="keyword">int</span> childDimension)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> specMode = MeasureSpec.getMode(spec); <span class="comment">//父控件的测量模式</span></span><br><span class="line">      <span class="keyword">int</span> specSize = MeasureSpec.getSize(spec); <span class="comment">//父控件的测量大小</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> size = Math.max(<span class="number">0</span>, specSize - padding);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> resultSize = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> resultMode = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">switch</span> (specMode) &#123;</span><br><span class="line">      <span class="comment">// 当父控件的测量模式 是 精确模式，也就是有精确的尺寸了</span></span><br><span class="line">      <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">          <span class="comment">//如果child的布局参数有固定值，比如"layout_width" = "100dp"</span></span><br><span class="line">          <span class="comment">//那么显然child的测量规格也可以确定下来了，测量大小就是100dp，测量模式也是EXACTLY</span></span><br><span class="line">          <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">              resultSize = childDimension;</span><br><span class="line">              resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">          <span class="comment">//如果child的布局参数是"match_parent"，也就是想要占满父控件</span></span><br><span class="line">          <span class="comment">//而此时父控件是精确模式，也就是能确定自己的尺寸了，那child也能确定自己大小了</span></span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">              resultSize = size;</span><br><span class="line">              resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//如果child的布局参数是"wrap_content"，也就是想要根据自己的逻辑决定自己大小，</span></span><br><span class="line">          <span class="comment">//比如TextView根据设置的字符串大小来决定自己的大小</span></span><br><span class="line">          <span class="comment">//那就自己决定呗，不过你的大小肯定不能大于父控件的大小嘛</span></span><br><span class="line">          <span class="comment">//所以测量模式就是AT_MOST，测量大小就是父控件的size</span></span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">              resultSize = size;</span><br><span class="line">              resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 当父控件的测量模式 是 最大模式，也就是说父控件自己还不知道自己的尺寸，但是大小不能超过size</span></span><br><span class="line">      <span class="keyword">case</span> MeasureSpec.AT_MOST:</span><br><span class="line">          <span class="comment">//同样的，既然child能确定自己大小，尽管父控件自己还不知道自己大小，也优先满足孩子的需求</span></span><br><span class="line">          <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">              resultSize = childDimension;</span><br><span class="line">              resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">          &#125; </span><br><span class="line">          <span class="comment">//child想要和父控件一样大，但父控件自己也不确定自己大小，所以child也无法确定自己大小</span></span><br><span class="line">          <span class="comment">//但同样的，child的尺寸上限也是父控件的尺寸上限size</span></span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">              resultSize = size;</span><br><span class="line">              resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//child想要根据自己逻辑决定大小，那就自己决定呗</span></span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">              resultSize = size;</span><br><span class="line">              resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Parent asked to see how big we want to be</span></span><br><span class="line">      <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">          <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">              <span class="comment">// Child wants a specific size... let him have it</span></span><br><span class="line">              resultSize = childDimension;</span><br><span class="line">              resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">              <span class="comment">// Child wants to be our size... find out how big it should</span></span><br><span class="line">              <span class="comment">// be</span></span><br><span class="line">              resultSize = <span class="number">0</span>;</span><br><span class="line">              resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">              <span class="comment">// Child wants to determine its own size.... find out how</span></span><br><span class="line">              <span class="comment">// big it should be</span></span><br><span class="line">              resultSize = <span class="number">0</span>;</span><br><span class="line">              resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> MeasureSpec.makeMeasureSpec(resultSize, resultMode);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/measurespec3.png" alt="measurespec3"><br>针对上表，这里再做一下具体的说明</p>
+<ul>
+<li><p>对于应用层 View ，其 MeasureSpec 由父容器的 MeasureSpec 和自身的 LayoutParams 来共同决定</p>
+</li>
+<li><p>对于不同的父容器和view本身不同的LayoutParams，view就可以有多种MeasureSpec。</p>
+<pre><code>1.  当view采用固定宽高的时候，不管父容器的MeasureSpec是什么，view的MeasureSpec都是精确模式并且其大小遵循Layoutparams中的大小；
+2. 当view的宽高是match_parent时，这个时候如果父容器的模式是精准模式，那么view也是精准模式并且其大小是父容器的剩余空间，如果父容器是最大模式，那么view也是最大模式并且其大小不会超过父容器的剩余空间；
+3.  当view的宽高是wrap_content时，不管父容器的模式是精准还是最大化，view的模式总是最大化并且大小不能超过父容器的剩余空间。
+4. Unspecified模式，这个模式主要用于系统内部多次measure的情况下，一般来说，我们不需要关注此模式(这里注意自定义View放到ScrollView的情况 需要处理)。
+</code></pre></li>
+</ul>
+<h3 id="View-（ViewGroup）的measure方法"><a href="#View-（ViewGroup）的measure方法" class="headerlink" title="View （ViewGroup）的measure方法"></a>View （ViewGroup）的measure方法</h3><p>  最终是通过回调onMeasure方法实现的，这个方法通常有View的特定子类的方法去实现的，通过重写这个View实现自定义View。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public final void measure(int widthMeasureSpec, int heightMeasureSpec) &#123;</span><br><span class="line">    ...</span><br><span class="line">    onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</span><br><span class="line">	//设置size</span><br><span class="line">    setMeasuredDimension(1,1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onMeasure()</span><br><span class="line"><span class="comment">//1. 测量自身</span></span><br><span class="line"><span class="comment">//2. 为每个子View计算测量的限制信息 Mode / Size</span></span><br><span class="line"><span class="comment">//3. 把上一步确定的限制信息，传递给每一个子View，然后子View开始measure</span></span><br><span class="line"><span class="comment">//4. 获取子View测量完成后的尺寸</span></span><br><span class="line"><span class="comment">//5. ViewGroup根据自身的情况，计算自己的尺寸</span></span><br><span class="line"><span class="comment">//6. 保存自身的尺寸</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">onLayout()</span><br><span class="line"><span class="comment">//1. 遍历子View for</span></span><br><span class="line"><span class="comment">//2. 确定自己的规则</span></span><br><span class="line"><span class="comment">//3. 获取子View的测量尺寸</span></span><br><span class="line"><span class="comment">//4. 确定子View的left,top,right,bottom</span></span><br><span class="line"><span class="comment">//6. 调用child.layout</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ol>
+<li><p><strong>简介</strong>：点、线、矩形、多边形、 弧、圆等。</p>
+</li>
+<li><p><strong>Paint</strong></p>
+<p>2.1 常用属性</p>
+<p>​    mPaint.setARGB();//设置画笔的A、R、G、B值 </p>
+<p>​    mPaint.setStyle();//设置画笔的风格(空心或实心)</p>
+<p>​    mPaint.setColor();//设置画笔的颜色</p>
+<p>​    mPaint.setAlpha();//设置画笔的Alpha </p>
+<p>​    mPaint.setAntiAlias();// 设置画笔的锯齿效果</p>
+<p>​    mPaint.setTextSize();</p>
+<p>​    mPaint.setStrokeWidth();//设置空心边框的宽度</p>
+<p>   2.2 常用style </p>
+<p>​        Paint.Style.FILL   //填充</p>
+<p>​        Paint.Style.STROKE//空心</p>
+<p>   2.3 注意:用到paint的不同属性时，创建多个画笔，因为ondraw的代码并不是马上就执行 </p>
+</li>
+<li><p><strong>常用的画图方法</strong></p>
+<p>3.1 drawPoint(x,y,paint)//点</p>
+<p>3.2 drawLine(startX,startY,endX,endY,paint)//线</p>
+<p>3.3 drawLines(pts,paint)//绘制多条线，float[] pts=new flaot{startX1,startY1,endX1,endY1,startX2,startY2,endX2,endY2},每够4个float是一条线</p>
+<p>3.4 drawRect(l,t,r,b,paint)//矩形</p>
+<p>3.5 drawPoundRect(l,t,r,b,radiusX,radiusY,paint)//圆角矩形，radiusX,radiusY分别是每一个角的x和y轴上的弧度长度</p>
+<p>3.6 drawtCircle(circleX,circleY,radius，paint)//圆</p>
+<p>3.7 drawArc(l,t,r,b,startAngle,sweepAngle,useCenter,paint)//圆弧，useCenter是否与圆心连线</p>
+<p>3.8 drawOval(l,t,r,b,paint)//椭圆</p>
+<p>3.9 drawText(text,startX，startY,paint)//文本</p>
+<p>3.10 canvas.drawPosText(text, new float[]{x1, y1, x2, y2, x3, y3}mPaint);//指定位置绘制文本，text的个数必须和float的点数一致,已过时</p>
+<p>3.11 drawTextOnPath(text,path,hOffset,vOffset,paint)//给据路径画文字，hOffset角度偏移量，vOffset半径偏移量</p>
+<p>3.12 drawPath(path,paint)//画路径</p>
+</li>
+</ol>
+<p>   4.<strong>Path的用法</strong>//<a href="http://blog.sina.com.cn/s/blog_4d9c3fec0102vyhs.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_4d9c3fec0102vyhs.html</a></p>
+<ol start="5">
+<li><p><strong>Canvas常用方法</strong></p>
+<p>5.1 save()//将已经绘制好的图像保存起来</p>
+<p>5.2 restore()//删除所有对矩阵/剪辑状态的修改，自上次保存调用</p>
+<p>5.3 restoreToCount//</p>
+<p>5.4 translate(x,y)//将原始的画布原点（0,0）平移到（x,y）</p>
+<p>5.5 rotate()//将坐标系旋转一定的角度</p>
+<p>5.6 drawColor()//设置画布的颜色  </p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/View/Android WebView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Android 基础/View/Android WebView/" class="post-title-link" itemprop="url">Android WebView</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a><strong>问题</strong>：</h2><h3 id="为什么-WebView-的加载速度那么慢"><a href="#为什么-WebView-的加载速度那么慢" class="headerlink" title="为什么 WebView 的加载速度那么慢?"></a><strong>为什么</strong> <strong>WebView 的加载速度那么慢?</strong></h3><ol>
+<li><p>js 解析效率</p>
+<p>如果 js 文件较多、解析比较复杂，就会导致渲染速度较慢。或者手机硬件性能比较差的花，也会导致渲染速度比较慢</p>
+</li>
+<li><p>页面资源的下载</p>
+<p>一般加载一个 H5 页面，都会产生比较多的网络请求，如图片、js 文件、css 文件等，需要将这些资源都下载完成之后才能完成渲染，这样也会导致页面渲染速度变慢</p>
 </li>
 </ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/adb-command/#more" rel="contents">
+              <a class="btn" href="/2021/01/29/Android 基础/View/Android WebView/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
           
           <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/04/Android-Room/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/04/Android-Room/" class="post-title-link" itemprop="url">Android Room</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-04 19:44:57 / Modified: 19:45:12" itemprop="dateCreated datePublished" datetime="2021-01-04T19:44:57+08:00">2021-01-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Android-Room"><a href="#Android-Room" class="headerlink" title="Android Room"></a>Android Room</h1><p><a href="https://developer.android.com/reference/android/arch/persistence/room/package-summary?hl=zh-cn" target="_blank" rel="noopener">翻译自官网文档</a></p>
+<p>Room 是一个关系映射对象库，可以使我们很方便的访问 App 数据库</p>
+<ul>
+<li><strong>Database:</strong> 注解用来标记问数据库，该类须继承 RoomDatabase,运行时，可以通过 Room.databaseBuilder 或者获取他的实例 Room.inMemoryDatabasebuilder</li>
+<li><strong>Entity:</strong> 将 Model 或 pojo 类，标记为数据库行，每个 Entity 都会创建一个数据库表来保存项目。实体类必须在 Database#entities  数组中引用。除非另有说明，否则 Entity 的每个字段（及其父类）都将 Entity 保留在数据库中</li>
+<li><strong>Dao:</strong> 将类或接口标记为数据访问对象。数据访问对象负责定义访问数据库的方法。带有注释的类 Database 必须具有一个带有 0 个参数的抽象方法，并返回带有 Dao 注释的类。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File: User.java</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> uid;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"last_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="comment">// Room 请求 set 和 get 方法去访问数据</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// File: UserDao.java</span></span><br><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user"</span>) </span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">loadAll</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user where uid in (:userIds)"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">loadAllByUserId</span><span class="params">(<span class="keyword">int</span>... userIds)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"select * from user where name like :first and last_name like :last limit 1"</span>)</span><br><span class="line">    <span class="function">User <span class="title">loadOneByNameAndLastName</span><span class="params">(String first, String last)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertAll</span><span class="params">(User... users)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Delete</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(User user)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// File: AppDatabse.java</span></span><br><span class="line"><span class="meta">@Database</span>(entities = &#123;User.java&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> UserDao <span class="title">userDao</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 AppDatabase 实例</span></span><br><span class="line">AppDatabse db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, <span class="string">"database_name"</span>).build();</span><br></pre></td></tr></table></figure>
+<p>一旦 Room 在编译期，就开始检测注解，扫描所有可以访问的表/</p>
+<p>可以通过使用 <code>InvalidtaionTracker</code> 类来观察一个数据表的变化。</p>
+<p>Room 允许通过 <code>Query</code>  方法返回一个 <code>LiveData</code> 类型的数据。它会自动观察相关数据表，一旦发生数据改变，就会触发 <code>LiveData</code> 的观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LiveData 会自动分发数据表的改变</span></span><br><span class="line"><span class="meta">@Query</span>(<span class="string">"Select * from user order by name limit 5"</span>) </span><br><span class="line"><span class="keyword">public</span> LiveData&lt;List&lt;User&gt;&gt; loadFirstFiveUsers();</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/07/09/RecyclerView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/09/RecyclerView/" class="post-title-link" itemprop="url">RecyclerView</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-07-09 20:33:30 / Modified: 20:36:43" itemprop="dateCreated datePublished" datetime="2020-07-09T20:33:30+08:00">2020-07-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="RechclerView-总结"><a href="#RechclerView-总结" class="headerlink" title="RechclerView 总结"></a>RechclerView 总结</h1><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/image-20200709164241306.png?raw=true" alt="image-20200709164241306"></p>
+<p>Recycler View： 负责将 Datas 展示在自己身上，其本身是一个 ViewGroup，只认识 View，因此需要一个 Adapter 来将 Datas 的内容转换为 View</p>
+<p>Adapter： 负责翻译，将 Datas 内容，转换为 View，方便 RecyclerView 展示</p>
+<p>ViewHolder： RecyclerView 只会与 ViewHolder 进行交互，因此 ViewHolder 充当中间件，来将 Datas 的内容传递给  RecyclerView</p>
+<p>LayoutManager：负责布局，RecyclerView 将其子 View 的布局管理，交给它来完成</p>
+<p>Recycler：负责管理 View 的生命周期，LayoutManager 只管负责 View 的布局任务，对其回收交给了 Recycler 来处理，避免造成不必要的错误</p>
+<p>ItemAnimator： 负责动画，当 RecyclerView 中的数据发生变化（增、删等）都会通过它来完成平滑的过渡</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/07/09/RecyclerView/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/03/11/Android 基础/适配/Android-Q-文件权限适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/03/11/Android 基础/适配/Android-Q-文件权限适配/" class="post-title-link" itemprop="url">Android Q 文件权限适配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-03-11 20:11:41" itemprop="dateCreated datePublished" datetime="2020-03-11T20:11:41+08:00">2020-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-29 23:54:28" itemprop="dateModified" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>随着 Android Q 的发布，随之而来的适配工作也在暗潮涌动，这里说一下 Android Q 文件存储；<br>Android Q 在外部存储设备中为每个应用提供了一个“沙盒”，任何其他应用都无法直接访问您的沙盒文件。由于文件是您应用的私有文件，因此您不在需要任何权限即可在外部存储设备中访问和保存自己的设备。这次更新有效的保证了用户文件的隐私性，也赚少了对应应用所需要的权限数量。</p>
+<p>“沙盒”就是应用的专属文件，并且访问这个文件夹无需任何权限。Google 推荐应用的沙盒内存储文件地址为<br><code>Context.getExternalFilesDir()</code> 下的文件夹。需要传入以下参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Environment.DIRECTORY_MUSIC</span><br><span class="line">Environment.DIRECTORY_PODCASTS</span><br><span class="line">Environment.DIRECTORY_RINGTONES</span><br><span class="line">Environment.DIRECTORY_ALARMS</span><br><span class="line">Environment.DIRECTORY_NOTIFICATIONS</span><br><span class="line">Environment.DIRECTORY_PICUTRES</span><br><span class="line">Environment.DIRECTORY_MOVIES</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/03/11/Android 基础/适配/Android-Q-文件权限适配/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/03/06/ASpectJ-初识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/03/06/ASpectJ-初识/" class="post-title-link" itemprop="url">ASpectJ 初识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-03-06 10:41:22 / Modified: 16:45:31" itemprop="dateCreated datePublished" datetime="2020-03-06T10:41:22+08:00">2020-03-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="首先我们先来了解一下-AOP"><a href="#首先我们先来了解一下-AOP" class="headerlink" title="首先我们先来了解一下 AOP"></a>首先我们先来了解一下 AOP</h2><blockquote>
+<p>AOP(面向切面编程) 被认为是 OOP（面向对象编程） 的一个强大补充，有了 AOP ，我们可以把分散在应用各处的行为放在可重用的模块中，有效减少冗余代码，并让我们的类只关注自身的主要功能</p>
+</blockquote>
+<p>面向切面编程 AOP（aspect oriented programming），是一种将横切关注点与业务逻辑分离的编程方式。每个横切关注点都集中在一个地方，儿不是分散在很多处代码中。这样我们的服务模块更加简洁，因为他们只包含了主要关注点的代码，而次要的功能或者说是辅助的功能被转移到切面中。</p>
+<h2 id="AOP-术语"><a href="#AOP-术语" class="headerlink" title="AOP 术语"></a>AOP 术语</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">别名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Advice</td>
+<td style="text-align:center">通知</td>
+<td>切面的具体行为，要执行的代码</td>
+</tr>
+<tr>
+<td style="text-align:center">PointCut</td>
+<td style="text-align:center">切点</td>
+<td>通知被应用的具体位置</td>
+</tr>
+<tr>
+<td style="text-align:center">Join Point</td>
+<td style="text-align:center">连接点</td>
+<td>程序运行时，能够应用通知的所有点</td>
+</tr>
+<tr>
+<td style="text-align:center">Aspect</td>
+<td style="text-align:center">切面</td>
+<td>什么时候在什么地方做什么事情，是切点和通知的结合</td>
+</tr>
+<tr>
+<td style="text-align:center">Target</td>
+<td style="text-align:center">目标对象</td>
+<td>被切入功能的目标对象</td>
+</tr>
+<tr>
+<td style="text-align:center">Introduction</td>
+<td style="text-align:center">引入</td>
+<td>将新的方法或属性引入到现有的类中</td>
+</tr>
+<tr>
+<td style="text-align:center">Weaving</td>
+<td style="text-align:center">织入</td>
+<td>将切面应用到目标对象并创建新的代理对象的过程</td>
+</tr>
+</tbody>
+</table>
+<p>AOP 底层通过使用动态代理实现，包含两种方式：</p>
+<ol>
+<li>使用 JDK 动态代理实现</li>
+<li>使用 cglib 实现</li>
+</ol>
+<p><strong>通知类型</strong></p>
+<ol>
+<li>前置通知(Befor)：在方法之前执行</li>
+<li>后置通知(After)：在方法之后执行</li>
+<li>异常通知(AfterThrowing)：方法出现异常执行</li>
+<li>最终通知(AfterReturning)：在后置之后执行</li>
+<li>环绕通知(Around)：在方法之前和之后执行</li>
+</ol>
+<h2 id="AspectJ"><a href="#AspectJ" class="headerlink" title="AspectJ"></a>AspectJ</h2><p>AspectJ 实际是对 AOP 编程思想的一个实践，目前用的比较火，它是一种集合和 Java 完全一样的语言，而且完全兼容 Java。</p>
+<p>先写到这里！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2020/02/20/三方框架/OKHttp-重定向拦截器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/20/三方框架/OKHttp-重定向拦截器/" class="post-title-link" itemprop="url">OKHttp 重定向拦截器</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-20 17:05:21" itemprop="dateCreated datePublished" datetime="2020-02-20T17:05:21+08:00">2020-02-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-29 23:54:28" itemprop="dateModified" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用-OKHttp-进行重定向拦截处理"><a href="#使用-OKHttp-进行重定向拦截处理" class="headerlink" title="使用 OKHttp 进行重定向拦截处理"></a>使用 OKHttp 进行重定向拦截处理</h1><p>okhttp重定向存在两个缺陷：</p>
+<ol>
+<li><p>okhttp处理301,302重定向时，会把请求方式设置为GET<br>这样会丢失原来Post请求中的参数。</p>
+</li>
+<li><p>okhttp默认不支持跨协议的重定向，比如http重定向到https</p>
+</li>
+</ol>
+<p>为了解决这两个问题写了这个拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedirectInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Request request = chain.request();</span><br><span class="line">        HttpUrl beforeUrl = request.url();</span><br><span class="line">        Response response = chain.proceed(request);</span><br><span class="line">        HttpUrl afterUrl = response.request().url();</span><br><span class="line">        <span class="comment">//1.根据url判断是否是重定向</span></span><br><span class="line">        <span class="keyword">if</span>(!beforeUrl.equals(afterUrl)) &#123;</span><br><span class="line">            <span class="comment">//处理两种情况 1、跨协议 2、原先不是GET请求。</span></span><br><span class="line">            <span class="keyword">if</span> (!beforeUrl.scheme().equals(afterUrl.scheme())||!request.method().equals(<span class="string">"GET"</span>)) &#123;</span><br><span class="line">                <span class="comment">//重新请求</span></span><br><span class="line">                Request newRequest = request.newBuilder().url(response.request().url()).build();</span><br><span class="line">                response = chain.proceed(newRequest);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -1376,7 +2312,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1420,7 +2356,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1453,7 +2389,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

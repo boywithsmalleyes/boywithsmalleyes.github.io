@@ -378,7 +378,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/08/01/Handler 线程通信基础流程/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/基础知识/Java-泛型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -398,7 +398,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/01/Handler 线程通信基础流程/" class="post-title-link" itemprop="url">Handler 线程通信基础流程</a>
+                <a href="/2021/01/29/Java/基础知识/Java-泛型/" class="post-title-link" itemprop="url">Java 泛型</a>
               
             
           </h1>
@@ -423,25 +423,9 @@
                 
               
 
-              <time title="Created: 2019-08-01 21:54:08" itemprop="dateCreated datePublished" datetime="2019-08-01T21:54:08+08:00">2019-08-01</time>
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-15 20:31:50" itemprop="dateModified" datetime="2019-08-15T20:31:50+08:00">2019-08-15</time>
-              
             
           </span>
 
@@ -475,1475 +459,1723 @@
 
       
         
-          <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
-<h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Looper 在构造函数里做了两件事儿：</p>
-<ol>
-<li>将线程对象指向了创建的 Looper 的线程</li>
-<li>创建了一个新的  MessageQueue</li>
+          
+            <p>泛型，即 <strong>参数化类型</strong>。我们比较熟悉的就是定义方法时有形参，然后调用方法时传递实参。</p>
+<p>参数化类型，就是将类型由原来具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数类型，然后再调用/使用时传入具体的类型。</p>
+<p>泛型再使用过程中，操作的数据类型被指定为一个参数，可以用在类、接口和方法中。分别被成为泛型类、泛型接口、泛型方法。</p>
+<h2 id="三种泛型方式"><a href="#三种泛型方式" class="headerlink" title="三种泛型方式"></a>三种泛型方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeClass</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TypeClass</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TypeInterface</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型方法</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">typeMethod</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="泛型的作用"><a href="#泛型的作用" class="headerlink" title="泛型的作用"></a>泛型的作用</h2><ol>
+<li>使得代码更健壮</li>
+<li>代码更简洁</li>
+<li>更灵活、可复用</li>
 </ol>
-<p>分析完构造函数后，看下面两个方法</p>
-<ol>
-<li>looper.loop()</li>
-<li>looper.prepare()</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/01/Handler 线程通信基础流程/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/06/23/清香木养殖（三）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/23/清香木养殖（三）/" class="post-title-link" itemprop="url">清香木养殖（三）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-06-23 19:49:19 / Modified: 22:34:03" itemprop="dateCreated datePublished" datetime="2019-06-23T19:49:19+08:00">2019-06-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>距离上一次更新已经过去一个半月了，请不要担心，他还在！<br>作为绿植小白，真真切切的体验养殖的快乐、与惊心动魄的时候，是不会想起来要记录博客的。</p>
-<p>这次写这篇文章的目的，依然还是要记录一下它的成长，遭遇，以及一些养殖过程中的经验。好啦，天也不早了，咱也得弄点干货了。</p>
-<p>绿植小白，在上手清香木后，查询到的一些养殖的理论知识，在这一个半月的时间里得到了很严峻的挑战。继上次为它替换了新家之后，它就不在是从前的那个可爱的孩子了，淘气的狠；现在造的（东北话，本人东北滴，意思是将自己的身体，外表，或其他弄得破败不堪）还能可看出点模样来。</p>
-<p>这段时间，它经历的掉叶、枯黄、旱涝。哈哈，你们有没有感觉到他很可怜。但不论怎样，他现在正在茁壮的成长中，已经逃离了法海。</p>
-<p>现在的它，虽然已经没有了挡住的枝繁叶茂，但也没有像我这没程序员一样，寸草不生。那我们就接下来就还是说说它的养殖注意事项吧：</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/23/清香木养殖（三）/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/05/08/清香木养殖（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/08/清香木养殖（二）/" class="post-title-link" itemprop="url">清香木养殖（二）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-08 11:02:23" itemprop="dateCreated datePublished" datetime="2019-05-08T11:02:23+08:00">2019-05-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-23 22:33:59" itemprop="dateModified" datetime="2019-06-23T22:33:59+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>心心切切,每天都会关注它的变化,可惜心急吃不得热豆腐;经过了几天, 发现它有一些枯叶和干枝,你是在向我宣战吗?????上网查询了一下发现其实是植物在更换了环境之后,需要一段时间的适应,枯叶干枝属于正常现象, 哈哈哈,还好你不是嫌弃我的小屋.</p>
-<p>记得高中那会,每天都在书本的海洋里飘荡,生物学自在其中,嘴边也总是在背诵着植物的”光合作用”,”呼吸作用”,这些知识早已深深铭记在心中,刻印在脑海,挥之不去.</p>
-<p>植物白天进行光合作用,吸收二氧化碳,释放氧气;夜晚呼吸作用吸收氧气,释放二氧化碳.这些知识让我认识了世界,然而并没有让我认识他.起初还是傻乎乎的每天出门上班时,把花放在窗台上,打开窗子,让他沐浴阳光,接受洗礼;可最近在浏览一些网站时,注意到一句话让我困惑不已—-“给予植物充足的光照,可以放在阳台上,但要避免太阳光直射”. 我懵了,我真的懵了, 既然都选择放在窗台上,难道窗台上的阳关就不是太阳直射了嘛????? 我很困惑, 爱琢磨的我在想, 窗台上有玻璃,Uh… 难道是隔着一层玻璃就不算直射了吗,, 哎, 这个问题,到现在我也没有想清楚.在经过不断的查询我发现其实植物进行光合作用并不是之可以有太阳光才可以.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/08/清香木养殖（二）/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/05/04/清香木养殖（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/04/清香木养殖（一）/" class="post-title-link" itemprop="url">清香木养殖（一）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-04 21:54:08 / Modified: 22:52:51" itemprop="dateCreated datePublished" datetime="2019-05-04T21:54:08+08:00">2019-05-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>激动的心，颤抖的手，京东上面动动手。<br>哈哈，很久就有想养一个绿植的想法，经过了半年的挣扎，终于在 3 天前动起了手，入手一株<strong>清香木</strong>，据老板说，清香木可以散发出香味，充满整个房间，香气四溢（还未鉴定，刚收到，正怀着激动的心在写）。</p>
-<p><img src="https://raw.githubusercontent.com/boywithsmalleyes/static_file/master/images/WechatIMG68.jpeg" alt="清香木"></p>
-<p>其实对这枝有一点小失望，就是个头太小，不过没关系，咱俩熬呗，早晚你会长大的。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/04/清香木养殖（一）/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/30/OkHttp-Intercept/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/30/OkHttp-Intercept/" class="post-title-link" itemprop="url">OkHttp Intercept</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-30 20:42:02" itemprop="dateCreated datePublished" datetime="2019-04-30T20:42:02+08:00">2019-04-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-23 22:36:03" itemprop="dateModified" datetime="2019-06-23T22:36:03+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>OKHttp 在开发中经常用到,这里介绍一下 OKHttp 的拦截器(interceptor)的几个使用例子</p>
-<p>要是用拦截器很简单,我们只需要自定义一个 interceptor 类, 并实现 Interceptor 接口, 同时重写 intercept 方法.</p>
-<p>这里介绍两种 Interceptor 的实例</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/30/OkHttp-Intercept/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/17/多个-ssh-公钥提交代码到不同平台/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/17/多个-ssh-公钥提交代码到不同平台/" class="post-title-link" itemprop="url">多个 ssh 公钥提交代码到不同平台</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-17 22:09:21" itemprop="dateCreated datePublished" datetime="2019-04-17T22:09:21+08:00">2019-04-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-23 22:35:50" itemprop="dateModified" datetime="2019-06-23T22:35:50+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>作为一个技术开发人员，免不了在 <code>github</code> 以及 <code>gitlab</code> 以及其他 <code>git</code> 平台上进行代码管理；<br>工作中您可能使用 <code>svn</code> （这不在我们的讨论范围）,也有可能使用 <code>git</code>, 生活中，您可能会将一些内容分享到你的 <code>github</code> 上， 供大家参阅。</p>
-<p><code>git</code> 创建版本库很容易， <code>clone</code> 代码也仅仅是简单的一句 <code>git clone https://github.com/xxxx.git</code>，异或是 <code>git clone git@github.com:xxxxx.git</code>；当然，使用 <code>https</code> 的方式简单易操作（本人认为是一个傻瓜相机），但是通过使用 <code>https</code> 的方式，经常会遇到需要输入账号和密码的情况，这大大的加大了安全问题，虽然某 dear 的图形化工具，会帮助我们 remeber 账号和密码，避免了重复输入，但这不在我们的讨论范围（个人很鄙视使用图形化界面的），接下来要说的就是使用 <code>SSH</code> 的方式来处理 <code>git</code> 的版本管理。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/17/多个-ssh-公钥提交代码到不同平台/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Java-判断字符串是否是数字的方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Java-判断字符串是否是数字的方法/" class="post-title-link" itemprop="url">Java 判断字符串是否是数字的方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:47:06" itemprop="dateCreated datePublished" datetime="2019-04-16T17:47:06+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:55:55" itemprop="dateModified" datetime="2019-04-17T21:55:55+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li>使用 Java自带的函数</li>
+<h2 id="限定类型变量"><a href="#限定类型变量" class="headerlink" title="限定类型变量"></a>限定类型变量</h2><p>有时候我们需要对类型变量加约束，比如计算量i盎格变量的最大，最小值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">min</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.compareTo(b) &gt; <span class="number">0</span>) </span><br><span class="line">        <span class="keyword">return</span> a; </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么如上代码，如果我们传入的两个变量没有实现 <code>Comparable</code> 会如何呢？那一定是调用不到 <code>compareTo()</code> 的，那么我们对其加上约束</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Comparable&gt; <span class="function">T <span class="title">min</span> <span class="params">(T a, T b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.compareTo(b) &gt; <span class="number">0</span>) </span><br><span class="line">        <span class="keyword">return</span> a; </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>T extends Comparable</code> 中，T 表示应该绑定的子类型， <code>Comparable</code> 则表示绑定类型，子类型和绑定类型可以是接口也可以是类。</p>
+<p>如果我们传入一个没有实现 <code>Comparable</code> 接口的实例，则会发生编译错误。</p>
+<p><strong>同时 <code>extends</code> 左右都允许有多个，比如 <code>T, V extends Comparable &amp; serializable</code> ，限定类型中，只允许有一个类，而且如果有类，必须再限定列表的第一个</strong></p>
+<h4 id="约束和局限性"><a href="#约束和局限性" class="headerlink" title="约束和局限性"></a>约束和局限性</h4><ul>
+<li>不能使用基本类习数据类型做参数，只能使用包装器类型</li>
+<li>运行时类型查询只时用于原始类型</li>
+<li>反射对泛型擦除增加了风险</li>
+<li>泛型类型中的方法冲突（同名方法，泛型参数做参数变量时，在泛型擦除后，会造成同名方法冲突）</li>
+<li>静态块/静态方法中不能使用泛型</li>
+<li>不能创建参数化类型的数组</li>
+<li>不能实例化类型变量</li>
+<li>不能捕获泛型类的实例</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isNumeric (String str) &#123;</span><br><span class="line">    for (int i = str.length(); --i &gt;=0) &#123;</span><br><span class="line">          if (!Character.isDigit(str.charAt(i))) &#123;</span><br><span class="line">                return false;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/Java-判断字符串是否是数字的方法/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-中设置全屏的方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Android-中设置全屏的方法/" class="post-title-link" itemprop="url">Android 中设置全屏的方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:46:31" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:31+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:55:03" itemprop="dateModified" datetime="2019-04-17T21:55:03+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在开发中,我们经常需要把我们的应用设置为全屏,这里有两种方式: 一是在代码中设置; 二是在配置文件中设置</p>
-<h1 id="一-在代码中设置"><a href="#一-在代码中设置" class="headerlink" title="一. 在代码中设置"></a>一. 在代码中设置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class BaseActivity extends Activity &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(saveInstanceState);</span><br><span class="line">        // 无title</span><br><span class="line">        requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">        // 全屏</span><br><span class="line">        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>强调一点: <strong> 设置全屏的两段代码,必须在 <code>setContentView()</code> 之前调用,不然会报错 </strong></p>
-<h1 id="二-在配置文件中修改"><a href="#二-在配置文件中修改" class="headerlink" title="二. 在配置文件中修改"></a>二. 在配置文件中修改</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;manifest </span><br><span class="line">  xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">  package=&quot;com.android.test&quot;</span><br><span class="line">  android:versionCode=&quot;1&quot;</span><br><span class="line">  ndroid:versionName=&quot;1.0&quot;&gt;</span><br><span class="line">  &lt;application android:icon=&quot;@drawable/icon&quot;</span><br><span class="line">    android:lable=&quot;@string/app_name&gt;</span><br><span class="line">    &lt;activity android:name=&quot;.BaseActivity&quot; </span><br><span class="line">        android:theme=&quot;@android:style/Theme.NotitleBar.Fullscreen&quot;</span><br><span class="line">        android:lable=&quot;@string/app_name&quot;&gt;</span><br><span class="line">        &lt;intent-filter&gt;</span><br><span class="line">            &lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;</span><br><span class="line">            &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;</span><br><span class="line">        &lt;/intent-filter&gt;</span><br><span class="line">  &lt;/application&gt;</span><br><span class="line">&lt;/manifest&gt;</span><br></pre></td></tr></table></figure>
-<p>使用第一种方法,会在应用运行后,看到一个短暂的状态来, 然后才全屏, 而第二种方法是不会有这种情况的,大家根据需要自行选择.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/Android-获取-IP-地址/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/Android-获取-IP-地址/" class="post-title-link" itemprop="url">Android 获取 IP 地址</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-17 21:54:55" itemprop="dateModified" datetime="2019-04-17T21:54:55+08:00">2019-04-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开发中经常会需要判断当前是否连接网络, WiFi 或 移动数据连接判断的需求,</p>
-<p><strong>第一种方法: </strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  </span><br><span class="line">WifiInfo wifiInfo = wifiManager.getConnectionInfo();  </span><br><span class="line"><span class="keyword">int</span> ipAddress = wifiInfo.getIpAddress();</span><br></pre></td></tr></table></figure>
-<p>通过这种方式获取到的 IP 地址为一串数字,我们并不能看懂,因此我们需要通过下面的方法进行转换:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ip = (ipAddress &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;8 &amp; 0xff) + &quot;.&quot; + (ipAddress&gt;&gt;16 &amp; 0xff) + &quot;.&quot; + (ipAddress &gt;&gt; 24 &amp; 0xff);</span><br></pre></td></tr></table></figure>
-<p>这样转换之后,我们获取到的 IP 地址就是我们平时认识的, 比如: 192.168.1.108</p>
-<p>这种方法在飞行模式下获取到的 IP 地址为 0.0.0.0</p>
-<p><strong>第二种方法:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  public String getLocalIpAddress() &#123;  </span><br><span class="line">    try &#123;  </span><br><span class="line">        for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;  </span><br><span class="line">            NetworkInterface intf = en.nextElement();  </span><br><span class="line">            for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;  </span><br><span class="line">                InetAddress inetAddress = enumIpAddr.nextElement();  </span><br><span class="line">                if (!inetAddress.isLoopbackAddress()) &#123;  </span><br><span class="line">                    return inetAddress.getHostAddress().toString();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; catch (SocketException ex) &#123;  </span><br><span class="line">        Log.e(LOG_TAG, ex.toString());  </span><br><span class="line">    &#125;  </span><br><span class="line">    return null;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第二种方式是比较通用的,在WiFi和3G/4G 状态下,都可以获取到正确的地址.比如: fe80::8e3a:e3ff:fe45:a018</p>
-<p>这种方法在手机处于飞行状态下时, 获取到的 IP 地址为 null</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2019/04/16/事件分发/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/16/事件分发/" class="post-title-link" itemprop="url">事件分发</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-16 17:46:00" itemprop="dateCreated datePublished" datetime="2019-04-16T17:46:00+08:00">2019-04-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-23 22:36:46" itemprop="dateModified" datetime="2019-06-23T22:36:46+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>事件分发的三个方法</strong></p>
+<h2 id="泛型的继承规则"><a href="#泛型的继承规则" class="headerlink" title="泛型的继承规则"></a>泛型的继承规则</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="title">exrends</span> <span class="title">Employee</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>泛型类可以继承或者扩展其他泛型类，比如 <code>List</code> 和 <code>ArrayList</code></p>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HongFuShi</span> <span class="keyword">extends</span> <span class="title">Fruit</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(GenericType&lt;Fruit&gt; p)</span> </span>&#123;</span><br><span class="line">    System.out.println(p.getData().getColor());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">use</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    GenericType&lt;Fruit&gt; a = <span class="keyword">new</span> GenericType(); <span class="comment">// 可以</span></span><br><span class="line">    GenericType&lt;Apple&gt; b = <span class="keyword">new</span> GenericType();<span class="comment">// 不允许d </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为上面的方案不被 SDK 允许，于是提出了一个通配符类型</p>
+<ul>
+<li><code>? extends X</code> 表示类型的上界，类型参数是 X 的子类</li>
+<li><code>? super X</code> 表示类型的下界，类型参数是 X 的父类</li>
+</ul>
+<h4 id="extends-X，可读不可写"><a href="#extends-X，可读不可写" class="headerlink" title="? extends X，可读不可写"></a>? extends X，可读不可写</h4><p>表示传递给方法的参数，必须是 X 的子类（包括 X 本身）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(GenericType&lt;? extends Fruit&gt; p)</span></span>&#123;</span><br><span class="line">    System.out.println(p.getData().getColor());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但对于泛型类 <code>GenericType</code> 来说，如果其中提供了 get 和 set 类型参数变量的方法的话， set 方法是不允许调用的（只能查看，不能修改）</p>
+<p>因为 <code>? extends X</code> 表示类型的上界，类型参数是 X 的子类，那么可定的说， get 方法返回的一定是 X (不管是 X 还是 X 的子类)，编译器是可以确定知道的。但是 set 方法只知道传入的是个 X，至于具体是哪一个子类，并不知道。</p>
+<h4 id="super-X-，可写不可读"><a href="#super-X-，可写不可读" class="headerlink" title="? super X ，可写不可读"></a>? super X ，可写不可读</h4><p>表示传递给方法的参数，必须是 X 的父类（包括 X 本身）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(GenericType&lt;? <span class="keyword">super</span> Apple&gt; p)</span> </span>&#123;</span><br><span class="line">    System.out.println(po.getData());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但对于泛型类 <code>GenericType</code> 来说，如果其中提供了 get 和 set  类型的变量方法的话，set 方法可以被调用， 且传入的参数只能是 X 或者 X 的子类。</p>
+<p>get 方法只返回一个 Object 类型的值。<br>因为  <code>? super X</code> 表示类型的下界，参数类型是 X  的父类（包括其本身）那么可以肯定的说， get 方法返回的一定格式 X 的父类，那么具体是哪个父类，并不知道。但  Object 一定是它的父类，所以 get  方法返回的是一个 Object ，编译器可以确定知道。但是 set 方法，编译器不知道它需要的确切类型，但是 X 和 X 的子类可以安全的转换 X。</p>
+<h3 id="无限通配符-，只是为了说明用法"><a href="#无限通配符-，只是为了说明用法" class="headerlink" title="无限通配符 ?，只是为了说明用法"></a>无限通配符 ?，只是为了说明用法</h3><p>表示类型没有限制，可以把 <code>?</code> 看成所有类型的父类，如： Pair&lt;?&gt;</p>
+<p><code>ArrayList&lt;T&gt; al = new ArrayList&lt;T&gt;()</code> 指定集合元素只能是 T 类型</p>
+<p><code>ArrayList&lt;?&gt; al = new ArrayList&lt;?&gt;()</code> 集合元素可以是任意类型。</p>
+<h2 id="虚拟机是如何实现的"><a href="#虚拟机是如何实现的" class="headerlink" title="虚拟机是如何实现的"></a>虚拟机是如何实现的</h2><p>Java 语言中的泛型，再程序源码中存在，再编译后的字节码文件中，就已经替换为原来的远程类型（Raw Type）并且再相应的地方插入了强制转换代码，因此对于运行期间的 Java 语言来说，<code>ArrayList&lt;int&gt;</code> 与 <code>ArrayList&lt;String&gt;</code> 就是同一个类，所以泛型技术实际上是 Java 语言的语法糖， Java 语言中的泛型实现方法成为泛型擦除，基于这种方法实现的泛型称为<strong>伪泛型</strong></p>
+<h2 id="泛型擦除"><a href="#泛型擦除" class="headerlink" title="泛型擦除"></a>泛型擦除</h2><p>因为虚拟机实现原理，就是泛型擦除，因此 <strong>泛型信息只能存在于代码的编译阶段，编译成子接码之后，与类型相关的信息会被擦除掉，变为 Object</strong></p>
+<p><strong>步骤</strong></p>
 <ol>
-<li><p>dispatchTouchEvent(MotionEvent event) </p>
-<p> 判断当前 View 是否要消费此事件，消费，则不再向下传递，反之传递，以此来分发事件；</p>
+<li>检查泛型类型，获取目标泛型</li>
+<li>擦除类型变量，并替换为限定类型<ol>
+<li>如果泛型类型的类型变量没有限定<code>&lt;T&gt;</code> 则用 Object 原始类型表示</li>
+<li>如果有限定类型<code>&lt;T extends XClass&gt;</code>则用，<code>XClass</code> 作为原始类型</li>
+<li>如果有多个限定<code>&lt;T extends XClass &amp; XClass2&gt;</code> 则使用第一个作为原始类型</li>
+</ol>
 </li>
-<li><p>onInterceptTouchEvent(MotionEvent event) </p>
-<p> 通过 dispatchTouchEvent 调用， 返回值用来判断当前 View 是否要消费事件；</p>
+<li>在必要时插入类型转换以保证类型安全</li>
+<li>生成<strong>桥方法</strong> 以再扩展时保持多态</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/基础知识/Java-注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/基础知识/Java-注解/" class="post-title-link" itemprop="url">Java 注解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Java 注解又称标注。注解是元数据的一种形式，提供有关于程序但不属于程序本身的数据。注解对他们注解的代码的操作没有直接影响。</p>
+<h2 id="声明注解"><a href="#声明注解" class="headerlink" title="声明注解"></a>声明注解</h2><p>Java 中所有的注解，默认实现接口 <code>Annotation</code> 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Annotation</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">String <span class="title">toString</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    Class&lt;? extends Annotation&gt; annotationType();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与生命一个  Class 不同，注解的使用使用 <code>@interface</code> 管检测</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Login &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><p>在定义注解时，注解类也能够使用其他的注解声明，对注解类型进行注解的注解类。</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>注解标记另一个注解，以限制可以应用注解的 Java 元素类型。目标注解指定以下元素类型之一作为其值</p>
+<ul>
+<li>ElementType.ANNOTATION_TYPE 可以用于注解类型</li>
+<li>ElementType.CONSTRUCTOR 可以用于构造函数</li>
+<li>ElementType.FIELD 可以用于字段或属性</li>
+<li>ElementType.LOCAL_VARIABLE 可以用于局部变量</li>
+<li>ElementType.METHOD 可以应用于方法级注解</li>
+<li>ElementType.PACKAGE 可以应用于包生命</li>
+<li>ELementType.PARAMETER 方法参数</li>
+<li>ElementType.TYPE 用于类的任何元素</li>
+</ul>
+<h2 id="Retention"><a href="#Retention" class="headerlink" title="Retention"></a>Retention</h2><p>注解指定标记注解的存储方式（作用域）：</p>
+<ul>
+<li>RetentionPolicy.SOUTRCE 标记注解仅保留在源码级别中，并被编译器忽略</li>
+<li>RetentionPolicy.CLASS 标记注解在编译时由编译器保留，但 Java 虚拟机会忽略</li>
+<li>RetentionPolicy.RUNTIME 标记的注解由 JVM 保留，因此运行时环境可以使用</li>
+</ul>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>按照作用域来讲，注解可以被三种场景使用</p>
+<h3 id="SOURCE"><a href="#SOURCE" class="headerlink" title="SOURCE"></a>SOURCE</h3><p><code>RetentionPolicy.SOURCE</code> 作用于源码级别的注解，可提供给 IDE 语法检查， APT 等场景使用</p>
+<p><strong>语法检查：</strong></p>
+<p>在 <code>Adnroid</code>开发中，<code>support-annotations</code> 与 <code>androidx.annotation</code> 中均提供了 <code>@IntDef</code> 注解，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(SOURCE)</span><br><span class="line"><span class="meta">@Target</span>(&#123;ANNOTATION_TYPE&#125;) </span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> IntDef &#123;</span><br><span class="line">    <span class="keyword">int</span>[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">flag</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">open</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此注解的意义在于能够取代枚举，实现如方法入参限制</p>
+<p>如：我们定义 test 方法，只接收 Teacher 参数，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Teacher &#123;</span><br><span class="line">    LILY, MARY</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(Teacher teacher)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>而现在为了内存优化，我们现在不再使用枚举，则方法定义为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LILY = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MARY = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> teacher)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>然而 <code>test</code> 方法由于采用基本数据类型 <code>int</code> ，讲无法进行类型限定。此时我们使用 <code>@IntDef</code> 增加自定义注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LILY = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MARY = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@IntDef</span>(value = &#123;LILY, MARY&#125;) <span class="comment">// 限定为 LILY, MARY</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.PARAMETER) <span class="comment">// 作用于参数的注解</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.SOURCE) </span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Teacher&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(@Teacher <span class="keyword">int</span> teacher)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>此时，我们再去调用 <code>test</code> 方法，如果传递的参数不时 LILY, 和  MARY 则会显示 <code>Inspection</code> 警告</p>
+<p><strong>APT 注解处理器</strong></p>
+<p>apt 是 “Annotation Processor Tools” ，意为注解处理器。顾名思义，用于处理注解，编写好的 Java 源文件，需要经过 Javac 编译，翻译为虚拟机能够加载解析的字节码 class 文件。注解处理器是 Javac 自带的一个工具，用来编译时期扫描处理注解信息。</p>
+<h3 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h3><p>定义为 Class 的注解，会保留在 class 文件中，但是会被虚拟机忽略（无法在运行期反射获取注解）。此时需要符合此种注解的应用场景为字节码操作。像 AspectJ, 热修复等</p>
+<p>所谓字节码操作，就是直接修改字节码 Class 文件以达到修改代码逻辑的目的，在程序中有多处需要进行是否登录判断。</p>
+<p>我们借助 AOP （面向切面编程）的思想，将程序的功能点划分为：<em>需要登录</em> 和 <em>不需要登录</em> 即两个切面，对于切面的区分可采用注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> LoginAspect&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@LoginAspect</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jumpA</span><span class="params">()</span></span>&#123;</span><br><span class="line">    startActivity(<span class="keyword">new</span> Intent(<span class="keyword">this</span>, AActivity.class));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jumpB</span><span class="params">()</span></span>&#123;</span><br><span class="line">    startActivity(<span class="keyword">new</span> Intent(<span class="keyword">this</span>, BActivity.class));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Runtime"><a href="#Runtime" class="headerlink" title="Runtime"></a>Runtime</h3><p>注解保留到运行期，意味着我们能够在运行期间结合反射技术获取注解中的所有信息。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/基础知识/Java 枚举/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/基础知识/Java 枚举/" class="post-title-link" itemprop="url">Java 枚举</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>枚举是一种特殊类，他和普通类一样可以使用构造器、定义成员变量和方法，也嫩南瓜实现一个或多个接口，但枚举不能继承其他类。</p>
+<p><strong>使用<code>enum</code> 来标识枚举类</strong></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>必须使用 <code>enum</code> 关键字声明</li>
+<li>除了初始化，不能通过任何方式手动创建枚举实例</li>
+<li>不可以被继承</li>
+<li>JVM 保证线程安全</li>
+<li>无法继承其他类</li>
+</ol>
+<h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><p><strong>常量枚举</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Color &#123;</span><br><span class="line">    RED, GREEN, BLUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(Color.RED);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果</span></span><br><span class="line"><span class="comment">// RED</span></span><br></pre></td></tr></table></figure>
+<p>上述代码是枚举的简单使用方法，不能看出枚举的特点和枚举的具体实现。</p>
+<p>通过字节码分析 <code>Color.class</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// final 修饰，不能被继承</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Color</span> <span class="keyword">extends</span> <span class="title">Enum</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">// 声明的变量，都对应一个枚举实例对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Color RED;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Color GREEN;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Color BLUE;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Color $VALUES[];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回原数组的副本，防止数组的修改，引起内部 values 值的改变</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Color[] values()&#123;</span><br><span class="line">        <span class="keyword">return</span> (Color[])$VALUE.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 按照名字获取枚举实例</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Color <span class="title">valueOf</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (Color)Enum.valueOf(com/example/Color, name);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 私有构造</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Color</span><span class="params">(String name, <span class="keyword">int</span> ordinal)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, ordinal);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 静态初始化</span></span><br><span class="line">    <span class="comment">// 在类加载的 clinit 阶段就被实例化， JVM 能够保证类加载过程的线程安全</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        RED = <span class="keyword">new</span> Color(<span class="string">"RED"</span>, <span class="number">0</span>);</span><br><span class="line">        GREEN = <span class="keyword">new</span> Color(<span class="string">"GREEN"</span>, <span class="number">1</span>);</span><br><span class="line">        BLUE =  <span class="keyword">new</span> Color(<span class="string">"BLUE"</span>, <span class="number">2</span>);</span><br><span class="line">        </span><br><span class="line">        $VALUES = (<span class="keyword">new</span> Color[] &#123;</span><br><span class="line">            RED, GREEN, BLUE</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从反编译的类中可以看出，<code>enum</code> 关键字编写的类，在编译阶段编译器会自动帮外卖生成一份真正在 <code>jvm</code> 中运行的代码</p>
+<p><code>Enum</code> 类接受一个继承自 <code>Enum</code> 的泛型（反编译阶段，<code>Java</code>中没有具体体现泛型，是应为泛型在编译阶段就会被 <code>JVM</code> 进行泛型擦除，替换为具体实现）</p>
+<p>从枚举类以及反编译出来的字节码可以看出，枚举类第一个 <code>;</code> 前的变量，都会在字节码中体现为一个 <code>Color</code> 实例，且在 <code>clinit</code> 静态代码块中进行初始化。而静态块在类加载阶段，<code>JVM</code> 会保证枚举对象的线程安全。</p>
+<p>生成的 <code>$VALUES[]</code> 可通过 <code>values()</code> 方法被外部获取实例。</p>
+<h2 id="枚举-Enum-类分析"><a href="#枚举-Enum-类分析" class="headerlink" title="枚举 Enum 类分析"></a>枚举 Enum 类分析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Enum</span>&lt;<span class="title">E</span> <span class="keyword">extends</span> <span class="title">Enum</span>&lt;<span class="title">E</span>&gt;&gt; <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">E</span>&gt;, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> ordinal;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(E var1)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.getClass() != var1.getClass() &amp;&amp; <span class="keyword">this</span>.getDeclaringClass() != var1.getDeclaringClass()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ClassCastException();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.ordinal - var1.ordinal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object var1)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span> == var1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Enum</code> 类实现了 <code>Comparable</code> 接口，表明它是支持排序的，实现 <code>compareTo</code> ，方法定义为 <code>final</code> 且实现以来 <code>ordinal</code> 字段也是 <code>final</code> 类型，说明只能依据 <code>ordinal</code> 排序，排序规则不可变.</p>
+<p><strong>ordinal:</strong> 表示枚举的顺序，从 <code>Color</code> 类中可以看出他是从 0 开始自然顺序增长，且其值是 <code>final</code> 类型，外部无法改变。</p>
+<p><strong>name:</strong> 表示枚举的名字，它的值就是我们枚举实例的名称（自然，我们也可以通过构造方法进行修改）</p>
+<p><strong>equals():</strong>  使用 <code>==</code> 判断两个枚举是否相等</p>
+<h2 id="每个枚举类型及其定义的枚举变量在-JVM-中都是唯一的"><a href="#每个枚举类型及其定义的枚举变量在-JVM-中都是唯一的" class="headerlink" title="每个枚举类型及其定义的枚举变量在 JVM 中都是唯一的"></a>每个枚举类型及其定义的枚举变量在 JVM 中都是唯一的</h2><p>枚举类型它拥有的实例在编写的时候，就已经确定，不能通过其他手段进行创建，且枚举变量在 <code>JVM</code> 中有且只有一个对应的实例</p>
+<p><em>为达到这种效果，枚举通过下面的方式来完成</em></p>
+<ol>
+<li><p>类加载时创建，保证线程安全</p>
+<p>枚举对象在静态块中创建，由类加载时进行初始化，<code>JVM</code> 保证线程安全，这样就能保证枚举对象 不会因为并发请求同时请求而错误的创建多个实例</p>
 </li>
-<li><p>onTouchEvent(MotionEvent event) </p>
-<p> 当 View 决定消费事件，则将进行该方法的调用，依据具体的事件，及具体业务，实现不同的事件。</p>
+<li><p>对序列化进行特殊处理，防止反序列化时创建对象</p>
+<p>一旦实现 <code>Serializable</code> 接口之后，反序列化时每次调用 <code>readObject()</code> 方法返回的都是一个新创建出来的对象</p>
+<p>而枚举在序列化时，<code>Java</code> 仅仅是将枚举对象的 <code>name</code> 属性输出到结果中，反序列化时则是通过枚举的 <code>valueOf()</code> 方法来根据名字查找枚举对象。同时，编译器不允许任何对这种序列化进行定制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Enum&lt;T&gt;&gt; <span class="function">T <span class="title">valueOf</span><span class="params">(Class&lt;T&gt; var0, String var1)</span> </span>&#123;</span><br><span class="line">        Enum var2 = (Enum)var0.enumConstantDirectory().get(var1);</span><br><span class="line">        <span class="keyword">if</span> (var2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> var2;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (var1 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"Name is null"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"No enum constant "</span> + var0.getCanonicalName() + <span class="string">"."</span> + var1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(ObjectInputStream var1)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InvalidObjectException(<span class="string">"can't deserialize enum"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObjectNoData</span><span class="params">()</span> <span class="keyword">throws</span> ObjectStreamException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InvalidObjectException(<span class="string">"can't deserialize enum"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>私有构造函数，无法正常 new 出对象</p>
+</li>
+<li><p>无法通过 <code>clone()</code> 方法， 克隆对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> CloneNotSupportedException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无法通过反射的方式创建枚举对象</p>
+<p>枚举类型在 <code>JVM</code> 层面上，禁止通过反射构造枚举实例的行为，如果尝试通过反射创建，会爆出 <code>Cannot reflectively create enum objects</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reflectTest</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">// 获取类对象</span></span><br><span class="line">    Class&lt;?&gt; cls = Class.forName(<span class="string">"com.example.Color"</span>);</span><br><span class="line">    <span class="comment">// 获取构造函数</span></span><br><span class="line">    Constructor&lt;?&gt; constructor = cls.getDeclaredConstructor(String.class, <span class="keyword">int</span>.class);</span><br><span class="line">    <span class="comment">// 设置访问权限</span></span><br><span class="line">    constructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">    <span class="comment">// 实例化对象</span></span><br><span class="line">    Object refObj = constructor.newInstance(<span class="string">"name"</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exception</span></span><br><span class="line">Exception in thread <span class="string">"main"</span> java.lang.IllegalArgumentException: Cannot reflectively create <span class="keyword">enum</span> objects</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h2 id="枚举的使用"><a href="#枚举的使用" class="headerlink" title="枚举的使用"></a>枚举的使用</h2><h3 id="枚举与单例模式"><a href="#枚举与单例模式" class="headerlink" title="枚举与单例模式"></a>枚举与单例模式</h3><p>传统的单例模式通过饿汉式、懒汉式、双重检查、内部静态类等方式，都无法完全保证单例在 JVM 中保证唯一</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// todo...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>枚举实现的单例，是非常完美和简洁的，但枚举初始化会由时间成本和空间成本。</p>
+<p>在 <code>Android</code> 设备上，尽量避免选择使用枚举单例（当然现在的设备，已经很优秀了，这一点可以酌情考虑），除了枚举单例还是可以选择 <strong>双重检查锁</strong>，<strong>静态内部类</strong> 的方式实现单例</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/基础知识/Java-反射/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/基础知识/Java-反射/" class="post-title-link" itemprop="url">Java 反射</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>什么是反射？</strong></p>
+<p>反射使程序代码能够接入装载到 JVM 中的类的内部信息，允许在编写与执行时，而不是源代码中选定的类协作的代码，是以开发效率换运行效率的一种手段。</p>
+<p>一般情况下，我们使用某个类时，必定知道它是什么类，用来做什么，于是我们直接实例化，之后使用这个类对象进行操作</p>
+<p>反射则是一开始并不知道我们要初始化的类对象是什么，自然也无法通过 <code>new</code> 关键字来创建对象。</p>
+<p><strong>反射的作用</strong></p>
+<ol>
+<li>实现跨平台兼容，比如 JDK 中的 SocketImpl 的实现</li>
+<li>通过 xml 或者注解，实现依赖注入（DI) ，注解处理，动态代理，单元测试等功能。如 Rotifit、 Spring 、Dagger </li>
+</ol>
+<p><strong>Java Class 的文件结构</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    u4 magic;</span><br><span class="line">    u2 minor_version;</span><br><span class="line">    u2 major_version;</span><br><span class="line">    u2 constant_pool_count;</span><br><span class="line">    cp_info constant_pool[constant_pool_count - <span class="number">1</span> ];</span><br><span class="line">    u2 access_flags;</span><br><span class="line">    u2 this_class;</span><br><span class="line">    u2 super_class;</span><br><span class="line">    u2 interfaces_count;</span><br><span class="line">    u2 interfaces[interfaces_count];</span><br><span class="line">    <span class="comment">// 重要</span></span><br><span class="line">    u2 fields_count;</span><br><span class="line">    field_info fields[field_count];</span><br><span class="line">    <span class="comment">// 重要</span></span><br><span class="line">    u2 methods_count;</span><br><span class="line">    method_info methods[methods_count];</span><br><span class="line">    u2 attributes_count;</span><br><span class="line">    attribute_info attributes[attributes_count];</span><br><span class="line">&#125;ClassBlock</span><br></pre></td></tr></table></figure>
+<p><strong>field 字段结构</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">fieldblock</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span> *name;</span><br><span class="line">    <span class="keyword">char</span> *type;</span><br><span class="line">    <span class="keyword">char</span> *signature;</span><br><span class="line">    u2 access_flag;</span><br><span class="line">    u2 constant;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">union</span> &#123;</span><br><span class="line">            <span class="keyword">char</span> data[<span class="number">8</span>];</span><br><span class="line">            <span class="keyword">uintptr_t</span> u;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> l;</span><br><span class="line">            <span class="keyword">void</span> *p;</span><br><span class="line">            <span class="keyword">int</span> i;</span><br><span class="line">        &#125; static_value;</span><br><span class="line">        u4 offset;</span><br><span class="line">    &#125;u;</span><br><span class="line">&#125;FieldBlock;</span><br></pre></td></tr></table></figure>
+<p><strong>method</strong> </p>
+<p>提供了 descriptor, access_flags, Code 等索引，并指向常量池；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">method_info &#123;</span><br><span class="line">    u2 access_flags;</span><br><span class="line">    u2 name_index;</span><br><span class="line">    <span class="comment">// the paramters that the method takes and the value that it return</span></span><br><span class="line">    u2 descriptor_index;</span><br><span class="line">    u2 attributes_count;</span><br><span class="line">    attribute_info attributes[attributes_count];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="类的加载顺序"><a href="#类的加载顺序" class="headerlink" title="类的加载顺序"></a>类的加载顺序</h3><p><strong>ClassLoader：</strong></p>
+<p> 用于加载、连接、缓存 Class，可以通过纯  Java 或者 native 进行实现。在 JVM 的 native 中， ClassLoader 内部维护着一个线程安全的 <code>HashTable&lt;String, Class&gt;</code> 用于实现堆 Class 字节流节码后的缓存，如果 <code>HashTable</code> 中有缓存，则直接返回缓存；反之，在获得类名后，通过读取文件，网络上的 class 字节流反序列化为 JVM 中的 native 的 C 结构体，接着分配 ( malloc ) 内存，并将指针缓存在 HashTable 中。</p>
+<p><strong>初始化过程</strong></p>
+<p>当 ClassLoader 加载 Class 结束后，将进行 Class 的初始化工作，主要执行 <code>clinit()&gt;</code> 中的静态块与静态属性（取决于编码顺序）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Smaple</span> </span>&#123;</span><br><span class="line">    <span class="comment">// step 1</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> b dddddddddddddddddddddddddddddddddddddddddddd= <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// step 2</span></span><br><span class="line">    <span class="keyword">static</span>  &#123;</span><br><span class="line">       b = <span class="number">3</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Sample s = <span class="keyword">new</span> Sample();</span><br><span class="line">        System.out.println(s.b);</span><br><span class="line">        <span class="comment">// b = 3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Class.forName</strong></p>
+<p><code>Class.forName()</code> 可以通过报名寻找到 Class 对象，比如： <code>Class.forName(&quot;java.lang.String&quot;)</code></p>
+<p><strong>getDeclaredFields</strong></p>
+<p><code>class.getDeclaredFields()</code> 方法实际调用的是 <code>native</code> 方法 <code>getDeclaredFields0()</code> 它在  JVM 主要实现步骤如下</p>
+<ol>
+<li>根据 Class 结构体信息，获取 <code>field_count</code> 和 <code>fields[]</code> 字段，这个字段在 load 过程就被放入了</li>
+<li>根据 <code>field_count</code> 的大小分配内存和创建数组</li>
+<li>将数组进行 <code>forEach</code> 循环，通过 <code>fields[]</code> 中的信息一次创建 Object 对象。</li>
+<li>返回数组指针</li>
+</ol>
+<p>这个过程比较耗时：</p>
+<ol>
+<li>创建、计算、分配数组对象</li>
+<li>对字段进行循环赋值</li>
+</ol>
+<p><strong>Method.invoke</strong></p>
+<p>创建 Frame</p>
+<p>如果对象 flag 为 native，交给 native_handler 进行处理</p>
+<p>在 frame 中执行 Java 代码</p>
+<p>弹出 Frame</p>
+<p>返回执行结果的指针</p>
+<p>主要慢在</p>
+<ol>
+<li>需要完全执行 ByteCode 而缺少 JIT 等优化</li>
+<li>检查参数非常多，本来可以在编译器或者加载时完成</li>
+</ol>
+<p><strong>class.newInstance</strong></p>
+<p>检测权限，预分配空间大小等参数</p>
+<p>创建 Object 对象，并分配空间</p>
+<p>通过<code>Method.invoke()</code> 调用构造函数</p>
+<p>返回 Object 指针</p>
+<p>主要慢在：</p>
+<ol>
+<li>参数检查不能优化或者一口</li>
+<li>构造函数 Method.invoke 本身耗时</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java-异常/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/Java-异常/" class="post-title-link" itemprop="url">Java 异常</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>Crash</strong> 应用崩溃，是由于代码异常而导致 APP 非正常退出，导致应用程序无法正常使用，所有工作都停止的现象。</p>
+<p>发生 <strong>Crash</strong> 后需要重新启动应用（有些情况也会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 <strong>Crash</strong> 的放生，在 <strong>Android</strong> 系统中，系统碎片化比较严重，各 <strong>Rom</strong> 之间的差异，设置系统的 BUG ，都可能导致 <strong>Crash</strong> 的发生。</p>
+<p>在 <strong>Android</strong> 应用 中发生 <strong>Crash</strong> 有两种类型： Java 层的 Crash 和 Native 的 Crash。这两种 <strong>Crash</strong> 的监控和获取堆栈信息有所不同。</p>
+<h2 id="Java-Crash"><a href="#Java-Crash" class="headerlink" title="Java Crash"></a>Java Crash</h2><p>Java 的 Crash 监控非常简单，<strong>Java 中的 Thread 定义了一个接口： <code>UncaughtExceptionHandler</code> , 用于处理未捕获的异常导致线程的终止（catch 了的是捕获不到）</strong>，当应用发生了 Crash 的时候，就会走 <code>UNcaughtExceptionHandler.uncaughtException</code> ，该方法中可以获取到异常的信息，我们通过 <code>Thread.setDefaultUncaughtExceptionHandler</code> ，该方法来设置线程的默认异常处理器，我们可以将异常信息保存到本地或者上传到服务器，方便我们快速定位问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CrashHandler</span> <span class="keyword">implements</span> <span class="title">Thread</span>.<span class="title">UncaughtExceptionHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FILE_NAME_STUFFIX = <span class="string">".trace"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Thread.UncaughtExceptionHandler mDefaultCrashHandler;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Context mContext;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">CrashHandler</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();</span><br><span class="line">        Thread.setDefaultUncaughtExceptionHandler(<span class="keyword">this</span>);</span><br><span class="line">        mContext = context.getApplicationContext();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当程序中有未捕获异常，系统将会调用这个方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">uncaughtException</span><span class="params">(Thread t, Throwable e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 自行处理，可以保存到本地，也可以上传到后台</span></span><br><span class="line">            File file = dealException(e);</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e1) &#123;</span><br><span class="line">            e1.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 交给系统默认程序处理，否则会重复自启动</span></span><br><span class="line">            <span class="keyword">if</span>(mDefaultCrashHandler != <span class="keyword">null</span>) &#123;</span><br><span class="line">                mDefaultCrashHandler.uncaughtException(t, e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 导出异常到 SD 卡</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">private</span> File <span class="title">dealException</span><span class="params">(Thread t, Throwable e)</span> throw Exception </span>&#123;</span><br><span class="line">         String time = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).format(<span class="keyword">new</span> Date());</span><br><span class="line">         File f = <span class="keyword">new</span> File(mContext.getExternalCacheDir().getAbsoluteFile(), <span class="string">"crash_info"</span>);</span><br><span class="line">         <span class="keyword">if</span>(!f.exists()) &#123;</span><br><span class="line">             f.mkdirs();</span><br><span class="line">         &#125;</span><br><span class="line">         File crashFile = <span class="keyword">new</span> File(f, time+ FILE_NAME_SUFFIX);</span><br><span class="line">         <span class="comment">// 向文件中写入数据,可以自定义存储内容，尽量详细方便我们快速定位问题</span></span><br><span class="line">         PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(f)));</span><br><span class="line">         pw.println(time);</span><br><span class="line">         pw.println(<span class="string">"Thread:"</span> + t.getName());</span><br><span class="line">         e.printStackTrace(pw);<span class="comment">// 写入 crash 堆栈</span></span><br><span class="line">         pw.flush();</span><br><span class="line">         pw.close();</span><br><span class="line">         <span class="keyword">return</span> f;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="NDK-Crash"><a href="#NDK-Crash" class="headerlink" title="NDK Crash"></a>NDK Crash</h2><h3 id="Linux-信号机制"><a href="#Linux-信号机制" class="headerlink" title="Linux 信号机制"></a>Linux 信号机制</h3><p>信号机制是 Linux 进程间通信的一种重要方式，Linux 信号一方面用于正常的进程间通信和同步，另一方面还负责监控系统异常及中断。当应用程序运行异常是， Linux 内核将产生错误信号并通知当前进程。当前进程在接收到该错误信号后，可以有三种不同的处理方式：</p>
+<ul>
+<li>忽略该信号</li>
+<li>捕捉该信号并执行对应的信号处理函数（信号处理程序）</li>
+<li>执行该信号的缺省操作（如终止进程）</li>
+</ul>
+<p>当 Linux 应用程序在执行时发生严重错误，一般会导致程序崩溃。其中 Linux 专门提供了一类 crash 信号，在程序接收到该信号时，缺省操作时将崩溃的线程信息记录到核心文件，然后终止进程。</p>
+<p>常见的崩溃信号列表：</p>
+<ul>
+<li><strong>SIGSEGV: </strong> 内存引用无效</li>
+<li><strong>SIGBUS: </strong> 访问内存对象的未定义部分</li>
+<li><strong>SIGFPE: </strong> 算数运算错误</li>
+<li><strong>SIGILL: </strong> 非法指令，如执行垃圾或特权指令</li>
+<li><strong>SIGSYS: </strong> 糟糕的系统调用</li>
+<li><strong>SIGXCPU: </strong> 超过 CPU 时间限制</li>
+<li><strong>SIGXFSZ: </strong> 文件大小限制</li>
+</ul>
+<p>一般出现崩溃信号， Android 系统会默认缺省操作时直接退出程序。但是系统允许我们给某一个进程的某一个特定信号注册一个相应的处理函数（singal） ，即对该信号的默认处理动作进行修改。因此 NDK Crash 的监控可以采用这种信号机制，捕获崩溃信号执行我们自己的信号处理函数，从而捕获 NKD Crash。</p>
+<h3 id="BreakPad"><a href="#BreakPad" class="headerlink" title="BreakPad"></a>BreakPad</h3><p><a href="https://github.com/google/breakpad" target="_blank" rel="noopener">Google breakpad</a> 是一个跨平台的崩溃转储和分析框架和工具的集合。 breakpad 在 Linux 中的实现就是借助了 Linux 信号捕获机制实现的。因为其实现为  C++, 在 Android 中必须要借助 NDK 工具。</p>
+<p> <a href="..\..\技术文档\Crash监控.pdf">Crash监控.pdf</a> </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java 中堆和栈的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/Java 中堆和栈的区别/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Java-中堆和栈的区别"><a href="#Java-中堆和栈的区别" class="headerlink" title="Java 中堆和栈的区别"></a>Java 中堆和栈的区别</h1><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>Java 中堆和栈的区别具体由一下几点</p>
+<h3 id="各司其职"><a href="#各司其职" class="headerlink" title="各司其职"></a>各司其职</h3><p><strong>栈：</strong> 用来存储局部变量和方法调用</p>
+<p><strong>堆： </strong> 用来存储 Java 中的对象，无论是成员变量，局部变量，还是类，他们指向的对象都存储再堆内存中。</p>
+<h3 id="内存："><a href="#内存：" class="headerlink" title="内存："></a>内存：</h3><p><strong>栈：</strong> 内存归属于单个线程，每个线程都会由一个栈内存，其存储的变量只能再其所属线程中可见，即占内存可以理解成线程的私有内存</p>
+<p><strong>堆： </strong> 内存中的对象堆所有线程可见。堆内存中的对象可以被所有线程访问。</p>
+<h3 id="异常错误"><a href="#异常错误" class="headerlink" title="异常错误"></a>异常错误</h3><p>如果栈内存没有可用空间存储方法调用和局部变量， JVM 会抛出 <code>java.lang.StackOverFlowError</code> </p>
+<p>如果堆内存没有可用空间存储 生成的对象，  JVM 会抛出 <code>Java.lang.OutOfMemoryError</code></p>
+<h3 id="空间大小"><a href="#空间大小" class="headerlink" title="空间大小"></a>空间大小</h3><p>栈的内存要远远小于堆内存，如果使用递归的话，那么栈很快就会充满。如果递归没有及时跳出，很可能发生 <code>StackOverFlowError</code> 问题</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java 内存管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/Java 内存管理/" class="post-title-link" itemprop="url">Java 内存管理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对于 Java 程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个 new 操作区写配对的 <code>delete/free</code> 代码，而且不容易出现内存泄漏和内存移除问题，看起来一切由虚拟机管理内存一切都很美好。不过也正是 Java 程序员把内存控制的权力交给了 Java 虚拟机，一旦出现内存泄漏和溢出的问题，如果不了解续集及是怎么使用内存的，排查问题就很艰难。</p>
+<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/java_runtime_data_area.png?raw=true" alt="java runtime"></p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是一块较小的内存空间，作用是当前线程锁执行的字节码的行号指示器。</p>
+<p>由于 Java 虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现，再任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）知乎执行一条线程中的指令，因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各线程之间的计数器互不影响，独立存储。</p>
+<p>此区域是唯一一个 Java 虚拟机规范中没有任何 <strong>OutOfMemoryError</strong> 情况的区域</p>
+<h3 id="Java-虚拟机栈"><a href="#Java-虚拟机栈" class="headerlink" title="Java 虚拟机栈"></a>Java 虚拟机栈</h3><p>Java 虚拟机栈也是线程私有的，生命周期与线程相同。虚拟机描述的是 Java 方法执行的内存模型：每个方法被执行的时候都会同时创建一个栈帧（Stack Frame）用于存储局部变量表、操作站、动态链接、方法处口等信息。</p>
+<p>每一个方法被调用直到执行完成的过程，就对应一个栈帧再虚拟机栈中从入栈到出栈的过程。</p>
+<p><strong>局部变量表</strong> 存放了编译器可知的各种基本数据类型（boolean, byte, char, short, int, float, long, double），对象引用(Reference类型)。</p>
+<p><strong>StackOverflowError</strong>： 如果虚拟机栈可以动态扩展，当扩展时无法申请到足够的内存时会抛出 <code>StackOverflowError</code> 异常</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈锁发挥的作用时相似的，其区别是虚拟机栈为虚拟机执行 Java 方法服务。而本地方法栈则是为虚拟机使用到的 Navite 方法服务。</p>
+<h3 id="Java-堆"><a href="#Java-堆" class="headerlink" title="Java 堆"></a>Java 堆</h3><p>是 Java 虚拟机所管理的内存中最大的一块。Java 堆被所有线程共享的一块内存区域，再虚拟机启动的时候创建。<strong>此区域唯一的目的就是存放对象实例</strong>，几乎所有的对象实例都再这里分配内存。</p>
+<p>Java 堆是垃圾回收器管理的主要区域，因此很多时候也被称做 GC 堆，从内存回收角度看，由于现在收集器基本都是采用 <strong>分代收集算法</strong> ，所以 Java 堆中还可以细分为： 新生代和老生代</p>
+<p>如果从内存分配角度看，线程共享的 Java 堆中可能划分出多个线程私有的分配缓冲区</p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a><strong>方法区</strong></h3><p>方法区与 Java 堆一样，是哥哥线程共享的内存区域，<strong>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译的代码等数据</strong>。</p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a><strong>运行时常量池</strong></h3><p>运行时常量池是方法去的一部分 ，用于存放编译器申城的各种字面量和符号引用，这部分内容在类加载后存放到方法区的运行时常量池中。</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p><strong>GC</strong> 真正让程序员的生产力得到了释放，但是程序员很难感知到它的存在。在大多数情况下不是很需要关心 GC ，不过如果设计到一些性能优化，问题排查的时候，深入地了解 GC 还是有必要的。</p>
+<h3 id="Java-内存区域"><a href="#Java-内存区域" class="headerlink" title="Java 内存区域"></a>Java 内存区域</h3><ul>
+<li>虚拟机栈：表述的是方法执行时的内存模型，线程私有化，生命周期和线程相同，每个方法被执行的同时都会创建栈帧，主要保存执行方法时的具不变量表、操作数栈、动态链接和方法返回地址等信息。方法执行时入栈，执行完成出栈，出栈就相当于清空了数据，入栈出栈的实际很明确，<strong>这块区域不需要进行 GC</strong></li>
+<li>本地方法栈：与虚拟机栈类似，主要在于虚拟机栈为虚拟机执行Java方法是服务，本地方法栈为虚拟机执行本地方法时服务。<strong>不需要进行 GC</strong></li>
+<li>程序计数器：线程独有，可以看作时当前线程执行的字节码行号。<strong>不需要进行 GC</strong></li>
+<li>本地内存：线程共享区域，本地内存；主要存储类的信息、长廊、静态变量、即使编译器编译后代码，这部分由于时在堆中实现的，受 GC 管理。Java 8 以后，这个区域也不需要GC</li>
+<li>堆：对象实例和水族都是在堆上分配的， GC 也主要堆这两类数据进行回收</li>
+</ul>
+<h4 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h4><h5 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h5><p>最容易想到的一种方式，就是对象被引用一次，再它的头上就加一次引用次数，如果没有被引用（引用次数为0），则此对象可回收。但这种方式存在一个问题：<strong>循环引用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    Test instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(String name)</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// first</span></span><br><span class="line">        A a = <span class="keyword">new</span> Test(<span class="string">"a"</span>);</span><br><span class="line">        B b = <span class="keyword">new</span> Test(<span class="string">"b"</span>);</span><br><span class="line">        <span class="comment">//second</span></span><br><span class="line">        a.instance = b;</span><br><span class="line">        b.instance = a;</span><br><span class="line">	    <span class="comment">//third</span></span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">        b = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照上面的步骤，虽然 a, b 都被置为 null, 但是由于之前他们指向的对象相互引用（引用计数都为1），所以无法收回，也证是无法解决循环引用的问题，现代虚拟机一抛弃这种方法。</p>
+<h5 id="可达性算法"><a href="#可达性算法" class="headerlink" title="可达性算法"></a>可达性算法</h5><p>以一系列叫做 <strong>GC Root</strong> 的对象为起点出发，引出他们指向的下一个节点，再以下个节点为起点，引出此节点的下一个节点。。。（通过 GC Root 传承的一条线就叫引用链），直到所有的节点都遍历完毕，如果相关对象不再任意一个以 GC Root 为起点的引用链上，则这个对象会被判定为垃圾，进行回收。</p>
+<p>但是，一个对象的 <code>finalize</code> 方法给了对象一次垂死挣扎的机会，当对象不可达时，发生 GC 时，会先判断对象是否执行了 <code>finalize</code> 方法，如果未执行，则会先执行 <code>finalize</code> 方法，我们可以再此方法里将当前对象和 GC Root 关联，这样执行 <code>finalize</code> 之后，GC 会再次判断对象是否可达，如果不可达，就回收，可达则不回收。</p>
+<p><strong>注意：</strong> <code>finalize</code> 方法只会执行一次，如果第一次执行 <code>finalize</code> 方法，子对象变成了可达，确定不会回收，但如果对象再次被 GC 则会忽略 <code>finalize</code> 方法，对象会被回收。</p>
+<p><strong>GC Root</strong></p>
+<p>那么，什么样的对象可以作为 GC Root 呢</p>
+<ol>
+<li><p>虚拟机栈（栈帧中的本地变量）中的引用对象</p>
+</li>
+<li><p>方法区中类静态属性引用的对象</p>
+</li>
+<li><p>方法区中常量引用的对象</p>
+</li>
+<li><p>本地方法栈中 JNI 引用的对象</p>
+</li>
+</ol>
+<p><strong>虚拟机栈中的对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>a 是栈帧中的本地变量，当 a = null 时，由于此时 a  充当了 GC Root 的作用， a 与原来指向的实例 <code>new Test()</code> 断开连接，所以对象会被回收。</p>
+<p><strong>方法区中类静态属性引用的对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Test instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        a.instance = <span class="keyword">new</span> Test();</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当栈帧中的本地变量  <code>a = null</code> 时，由于 a 原来指向的对下个与 GC  Root（变量 instance）断开了连接，所以 a 原来的对象会被回收，而由于我们给 <code>instance</code> 赋值了变量的引用， <code>instance</code> 在此时是类静态属性引用，充当了 GC Root 的作用，它指向的对象依然存活。</p>
+<p><strong>方法区中常量引用的对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Test instance = <span class="keyword">new</span> Test();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>常量 <code>instance</code> 指向的对象并不会因为 a 指向的对象被回收而回收</p>
+<p><strong>本地方法栈中的 JNI 引用的对象</strong></p>
+<blockquote>
+<p>所谓本地方法就是一个 java 调用非 java 代码的接口，该方法并非 java 实现的，可能是 C 或 Python 等其他语言。Java 通过 JNI 来调用本地方法，而本地方法是以库文件的形式存放的。</p>
+</blockquote>
+<p>当调用 Java 方法时，虚拟机会创建一个栈帧并压入 Java 栈，而当它调用的是本地方法时，虚拟机会保持 Java 不变，不会再 Java 栈中压入新的帧，虚拟机只是简单的动态连接并直接调用指定的本地方法。</p>
+<h5 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h5><p><strong>步骤</strong>：</p>
+<ol>
+<li>先根据可达性算法 <strong>标记</strong> 出相应的可回收对象</li>
+<li>对可回收对象进行回收</li>
+</ol>
+<p>操作起来很简单，也不需要做数据移动的操作。但是却存在一个问题 –&gt; <strong>内存碎片</strong></p>
+<p>假如我们想在内存中分配一块需要连续内存占用的 4M  或 6M 的内存区域，由于内存碎片的存在，有可能得不到分配。</p>
+<h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h5><p>把堆等分成两块区域 A 和 B， 区域 A 负责分配对象， 区域 B 不非陪，对区域 A 使用标记清楚算法把存活的对象标记出来，然后把区域 A 中存活的对象都复制到 B 区域（同时将存活的对象都一次紧邻排列），最后把 A 区域对象全部清理掉释放出空间。</p>
+<p><strong>问题：</strong></p>
+<p>比如给堆分配了 500M 内存，结果只有 250M 可用 ，空间平白无故减少了一半。另外每此回收都要把存活的对象移动到另外一般，效率很低下。</p>
+<h5 id="标记整理法"><a href="#标记整理法" class="headerlink" title="标记整理法"></a>标记整理法</h5><p>步骤：</p>
+<ol>
+<li>先根据可达性算法 <strong>标记</strong> 出相应的可回收对象</li>
+<li>对可回收对象进行回收</li>
+<li>将所有存活对象都往一端移动，紧邻排列。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Java/Java 中文件 Copy 的几种方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Java/Java 中文件 Copy 的几种方式/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Java-中文件-Copy-的几种方式"><a href="#Java-中文件-Copy-的几种方式" class="headerlink" title="Java 中文件 Copy 的几种方式"></a>Java 中文件 Copy 的几种方式</h1><h2 id="Java-io"><a href="#Java-io" class="headerlink" title="Java.io"></a>Java.io</h2><p>利用 <code>java.io</code> 类库。直接为源文件创建一个 <code>FileInputStream</code> 负责读取，然后再为目标文件创建一个 <code>FileOutputStream</code> 负责写入:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByStream</span><span class="params">(File source, File target)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    InputStream is = <span class="keyword">null</span>;</span><br><span class="line">    OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        is = <span class="keyword">new</span> FileInputStream(source);</span><br><span class="line">        os = <span class="keyword">new</span> FileOutputStream(target);</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> length;</span><br><span class="line">        <span class="keyword">while</span>((length = is.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            os.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java-nio"><a href="#Java-nio" class="headerlink" title="Java.nio"></a>Java.nio</h2><p>利用 <code>java.nio</code> 类库提供的 transferTo 或 transferFrom  方法实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByChannel</span><span class="params">(File source, File target)</span> throw IOException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>(FileChannel sc = <span class="keyword">new</span> FileInputStream(source).getChannel();</span><br><span class="line">       FileChannel tc = <span class="keyword">new</span> FileOutputStream(target).getChannel();) &#123;</span><br><span class="line">        <span class="keyword">long</span> count = sc.size();</span><br><span class="line">        <span class="keyword">while</span>(count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">long</span> transferred = sc.transferTo(sc.position(), count, tc);</span><br><span class="line">            count -= transferred;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java-nio-file-File-copy"><a href="#Java-nio-file-File-copy" class="headerlink" title="Java.nio.file.File.copy"></a>Java.nio.file.File.copy</h2><p>关于 Copy 效率的问题，其实与操作系统和配置有关，总体来说 nio  transferTo/transferFrom 的方式可能更快，因为它更能利用现代操作系统底层机制，避免不必要拷贝和上下文切换。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/适配/Android 屏幕适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Android 基础/适配/Android 屏幕适配/" class="post-title-link" itemprop="url">Android 屏幕适配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="为什么要适配"><a href="#为什么要适配" class="headerlink" title="为什么要适配"></a>为什么要适配</h2><p>由于 Android 系统的开放性，任何用户、开发者、 OEM 厂商、运营商都可以对 Android 进行定制，于是导致运行 Android 的设备多种多样，他们有着不同的屏幕尺寸和像素密度。</p>
+<p>尽管系统可以通过基本的缩放和调整大小使得界面适配不同的屏幕，但进一步优化，可以确保界面能够在各类屏幕上美观的呈现。</p>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210128142240773.png" alt="image-20210128142240773"></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="屏幕尺寸"><a href="#屏幕尺寸" class="headerlink" title="屏幕尺寸"></a>屏幕尺寸</h3><p>屏幕尺寸指 <strong>屏幕对角线的长度</strong>，单位是 <em>英寸</em>，一英寸 = 2.54 厘米</p>
+<blockquote>
+<p>常见的 Android 设备尺寸有 2.4 、 2.8、3.5、3.7、4.2、5.0、5.5、6.0，目前 5.5 以上的设备偏多</p>
+</blockquote>
+<h3 id="屏幕分辨率"><a href="#屏幕分辨率" class="headerlink" title="屏幕分辨率"></a>屏幕分辨率</h3><p>屏幕分辨率是指在 横纵方向上的像素点数，单位是 <em>px</em> ，1px = 1个像素点。</p>
+<p>一般以 纵向像素 <em> 横向像素，如 1920 </em> 1080 来表示，即 宽度方向上有 1080 个像素点，高度方向上有 1920 个像素点。</p>
+<blockquote>
+<p>单位:  px(pixel) ，1 px = 1像素点</p>
+<p>Android 手机常见的分辨率： 320 <em> 480    480 </em> 800  720 <em> 1280  1080 </em> 1920</p>
+<p>UI 设计图一般会以 px 作为统一的计量单位</p>
+</blockquote>
+<h3 id="屏幕像素密度"><a href="#屏幕像素密度" class="headerlink" title="屏幕像素密度"></a>屏幕像素密度</h3><p>屏幕像素密度是指 <strong>每英寸上的像素点</strong>， 单位是 <em>dpi</em>, 即 “dot per inch” 的缩写。</p>
+<p>屏幕像素密度与屏幕尺寸和屏幕分辨率有关，在单一变化条件下，屏幕尺寸越小，分辨率越高，像素密度越大，反之越小。dp = px / inch</p>
+<blockquote>
+<p>假设设备内每英寸有 160 个像素点，那么该设备的屏幕像素密度 = 160 dpi</p>
+</blockquote>
+<p>Android 手机对每类手机屏幕大小都有一个相应的屏幕像素密度</p>
+<table>
+<thead>
+<tr>
+<th>密度类型</th>
+<th>代表的分辨率 px</th>
+<th>屏幕像素密度 dpi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低密度（ldpi）</td>
+<td>240 * 320</td>
+<td>120</td>
+</tr>
+<tr>
+<td>中密度（mdpi）</td>
+<td>320 * 480</td>
+<td>160</td>
+</tr>
+<tr>
+<td>高密度（hdpi）</td>
+<td>480 * 800</td>
+<td>240</td>
+</tr>
+<tr>
+<td>超高密度（xhdpi）</td>
+<td>720 * 1280</td>
+<td>320</td>
+</tr>
+<tr>
+<td>超超高密度（xxhdpi）</td>
+<td>1080 * 1920</td>
+<td>480</td>
+</tr>
+</tbody>
+</table>
+<h3 id="屏幕尺寸、分辨率、像素密度三者关系"><a href="#屏幕尺寸、分辨率、像素密度三者关系" class="headerlink" title="屏幕尺寸、分辨率、像素密度三者关系"></a>屏幕尺寸、分辨率、像素密度三者关系</h3><p>一部手机的分辨率是 <strong>宽 x 高</strong>， 屏幕大小是以寸为单位，三者关系为:</p>
+<p>密度 dp = 像素 px / 屏幕大小 inch</p>
+<p>密度（dpi） = $\frac {\sqrt{宽^2 + 高^2}}{屏幕大小} $</p>
+<ol>
+<li>密度即每英寸的像素点</li>
+<li>勾股定理求出手机的对角线物理尺寸</li>
+<li>再储以屏幕大小即可</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210128150307492.png" alt="image-20210128150307492"></p>
+<h3 id="密度无关像素"><a href="#密度无关像素" class="headerlink" title="密度无关像素"></a>密度无关像素</h3><p><code>density-independent pixel</code> 叫做 <code>dp</code>  或 <code>dip</code> ，与终端上的实际物理像素点无关。可以保证在不同屏幕像素密度的设备上显示相同的效果。</p>
+<blockquote>
+<p>Android 开发时用 dp 而不是 px 单位设置图片大小，是  Android 特有的单位</p>
+<p>场景：假如同样是画一条屏幕一半的线，如果使用 px 作为单位，那么在 480 <em> 800 分辨率的设备上应为 240 px. 在 320 </em> 480 的设备上设置为 160 px。</p>
+<p>如果使用 dp 为单位，在两种分辨率下，  160dp 都显示为屏幕一半的长度。</p>
+</blockquote>
+<h3 id="dp-与-px-的转换"><a href="#dp-与-px-的转换" class="headerlink" title="dp 与 px 的转换"></a>dp 与 px 的转换</h3><p><code>px = dp * (dpi / 160)</code></p>
+<table>
+<thead>
+<tr>
+<th>密度类型</th>
+<th>代表的分辨率 px</th>
+<th>屏幕密度 dpi</th>
+<th>换算（px/dp)</th>
+<th>比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低密度 ldpi</td>
+<td>240 x 320</td>
+<td>120</td>
+<td>1dp = 0.75px</td>
+<td>3</td>
+</tr>
+<tr>
+<td>中密度 mdpi</td>
+<td>320 x 480</td>
+<td>160</td>
+<td>1dp = 1px</td>
+<td>4</td>
+</tr>
+<tr>
+<td>高密度 hdpi</td>
+<td>480 x 800</td>
+<td>240</td>
+<td>1dp = 1.5px</td>
+<td>6</td>
+</tr>
+<tr>
+<td>超高密度 xhdpi</td>
+<td>720 x 1280</td>
+<td>320</td>
+<td>1dp = 2px</td>
+<td>8</td>
+</tr>
+<tr>
+<td>超超高密度 xxhdpi</td>
+<td>1080 x 1920</td>
+<td>480</td>
+<td>1dp = 3px</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<p>在 Android 中，规定 以 <code>160dpi</code> 即屏幕分辨率为 320 x 480 为基准：1 dp = 1 px</p>
+<h3 id="独立比例像素"><a href="#独立比例像素" class="headerlink" title="独立比例像素"></a>独立比例像素</h3><p><code>sp</code>, <code>scale-independent pixels</code>, 与 dp 类似，但是可以根据文字大小首选项进行缩放，是设置字体大小的御用单位。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="使用备用布局-使用限定符"><a href="#使用备用布局-使用限定符" class="headerlink" title="使用备用布局-使用限定符"></a>使用备用布局-使用限定符</h3><ul>
+<li>尺寸限定符</li>
+<li>使用最小宽度限定符</li>
+<li>布局别名</li>
+<li>屏幕方向限定符</li>
+</ul>
+<p><strong>最小宽度限定符： </strong></p>
+<p>通过将屏幕尺寸描述为密度无关像素的度量值， Android 允许创建转为具体的屏幕尺寸而设计的布局。</p>
+<h3 id="创建可拉抻的九宫格位图"><a href="#创建可拉抻的九宫格位图" class="headerlink" title="创建可拉抻的九宫格位图"></a>创建可拉抻的九宫格位图</h3><p>九宫格位图接你上是一种标准的 png 文件，但带有额外的 1 像素边框。</p>
+<h3 id="布局选择"><a href="#布局选择" class="headerlink" title="布局选择"></a>布局选择</h3><ul>
+<li>线性布局（LinearLayout)</li>
+<li>相对布局（RelativeLayout）</li>
+<li>帧布局（FrameLayout）</li>
+<li>绝对布局（AbsoluteLayout）</li>
+<li>约束布局（ConstraintLayout）</li>
+</ul>
+<h3 id="使用自适应尺寸"><a href="#使用自适应尺寸" class="headerlink" title="使用自适应尺寸"></a>使用自适应尺寸</h3><ul>
+<li>wrap_content</li>
+<li>match_parent</li>
+<li>weight</li>
+<li>dp</li>
+</ul>
+<p>不要使用 px</p>
+<h3 id="百分比适配"><a href="#百分比适配" class="headerlink" title="百分比适配"></a>百分比适配</h3><ol>
+<li>以某一分辨率为基准，生成所有分辨率对应像素数列表</li>
+<li>将生成像素数列表存放在 res 目录下对应的 value 文件下</li>
+<li>根据 UI 设计师给出设计图的尺寸，找到对应像素单位，然后给控件设计就可以</li>
+</ol>
+<h3 id="使用约束布局"><a href="#使用约束布局" class="headerlink" title="使用约束布局"></a>使用约束布局</h3><p>ConstraintLayout</p>
+<h3 id="今日头条适配方案"><a href="#今日头条适配方案" class="headerlink" title="今日头条适配方案"></a>今日头条适配方案</h3><p><code>px 值 = dp 值 * metrics.density</code>  这里的 <code>density</code> 是手机的屏幕密度，由系统提供。不同的手机的 <code>density</code> 不同，所以我们不能直接使用系统的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/适配/Android 版本适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Android 基础/适配/Android 版本适配/" class="post-title-link" itemprop="url">Android 版本适配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h3><p><code>targetSdkVersion</code>： 目标 SDK 版本，也就是我们最高适配的 SDK 版本</p>
+<p>不同版本的 SDK ，为我们提供了不同的 API 接口使用，丰富以及方便开发者。</p>
+<p>旧的接口行为发生了变化，为了保证 APK 的行为还是和以前兼容，在源码中多了很多类似于 <code>ctx.getApplicatioinInfo().targetSdkVersion()</code> 的判断，因此只要 APK 的 <code>targetSdkVersion</code> 不变，即使 APK 安装在新的 Android 系统上，其行为也不会发生变化。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/16/事件分发/#more" rel="contents">
+              <a class="btn" href="/2021/01/29/Android 基础/适配/Android 版本适配/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1992,7 +2224,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2036,7 +2268,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2069,7 +2301,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
