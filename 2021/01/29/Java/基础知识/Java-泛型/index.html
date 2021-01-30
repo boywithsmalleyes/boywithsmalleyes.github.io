@@ -529,46 +529,16 @@
         <p>泛型，即 <strong>参数化类型</strong>。我们比较熟悉的就是定义方法时有形参，然后调用方法时传递实参。</p>
 <p>参数化类型，就是将类型由原来具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数类型，然后再调用/使用时传入具体的类型。</p>
 <p>泛型再使用过程中，操作的数据类型被指定为一个参数，可以用在类、接口和方法中。分别被成为泛型类、泛型接口、泛型方法。<br><a id="more"></a></p>
-<h2 id="三种泛型方式"><a href="#三种泛型方式" class="headerlink" title="三种泛型方式"></a>三种泛型方式</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 泛型类</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TypeClass</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> T data<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">TypeClass</span><span class="token punctuation">(</span>T data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// 泛型接口</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">TypeInterface</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
-    T <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// 泛型方法</span>
-<span class="token comment" spellcheck="true">// </span>
-<span class="token keyword">public</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> T <span class="token function">typeMethod</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-</code></pre>
+<h2 id="三种泛型方式"><a href="#三种泛型方式" class="headerlink" title="三种泛型方式"></a>三种泛型方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeClass</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TypeClass</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TypeInterface</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型方法</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">typeMethod</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="泛型的作用"><a href="#泛型的作用" class="headerlink" title="泛型的作用"></a>泛型的作用</h2><ol>
 <li>使得代码更健壮</li>
 <li>代码更简洁</li>
 <li>更灵活、可复用</li>
 </ol>
 <h2 id="限定类型变量"><a href="#限定类型变量" class="headerlink" title="限定类型变量"></a>限定类型变量</h2><p>有时候我们需要对类型变量加约束，比如计算量i盎格变量的最大，最小值。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> T <span class="token function">min</span><span class="token punctuation">(</span>T a<span class="token punctuation">,</span> T b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> 
-        <span class="token keyword">return</span> a<span class="token punctuation">;</span> 
-    <span class="token keyword">else</span>  
-        <span class="token keyword">return</span> b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">min</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.compareTo(b) &gt; <span class="number">0</span>) </span><br><span class="line">        <span class="keyword">return</span> a; </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>那么如上代码，如果我们传入的两个变量没有实现 <code>Comparable</code> 会如何呢？那一定是调用不到 <code>compareTo()</code> 的，那么我们对其加上约束</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">></span> T <span class="token function">min</span> <span class="token punctuation">(</span>T a<span class="token punctuation">,</span> T b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> 
-        <span class="token keyword">return</span> a<span class="token punctuation">;</span> 
-    <span class="token keyword">else</span>  
-        <span class="token keyword">return</span> b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Comparable&gt; <span class="function">T <span class="title">min</span> <span class="params">(T a, T b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.compareTo(b) &gt; <span class="number">0</span>) </span><br><span class="line">        <span class="keyword">return</span> a; </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>T extends Comparable</code> 中，T 表示应该绑定的子类型， <code>Comparable</code> 则表示绑定类型，子类型和绑定类型可以是接口也可以是类。</p>
 <p>如果我们传入一个没有实现 <code>Comparable</code> 接口的实例，则会发生编译错误。</p>
 <p><strong>同时 <code>extends</code> 左右都允许有多个，比如 <code>T, V extends Comparable &amp; serializable</code> ，限定类型中，只允许有一个类，而且如果有类，必须再限定列表的第一个</strong></p>
@@ -582,47 +552,20 @@
 <li>不能实例化类型变量</li>
 <li>不能捕获泛型类的实例</li>
 </ul>
-<h2 id="泛型的继承规则"><a href="#泛型的继承规则" class="headerlink" title="泛型的继承规则"></a>泛型的继承规则</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token keyword">class</span> <span class="token class-name">Worker</span> exrends Employee<span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Pair</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-</code></pre>
+<h2 id="泛型的继承规则"><a href="#泛型的继承规则" class="headerlink" title="泛型的继承规则"></a>泛型的继承规则</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="title">exrends</span> <span class="title">Employee</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>泛型类可以继承或者扩展其他泛型类，比如 <code>List</code> 和 <code>ArrayList</code></p>
-<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Fruit</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Orange</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Apple</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">HongFuShi</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">println</span><span class="token punctuation">(</span>GenericType<span class="token operator">&lt;</span>Fruit<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">use</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    GenericType<span class="token operator">&lt;</span>Fruit<span class="token operator">></span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GenericType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 可以</span>
-    GenericType<span class="token operator">&lt;</span>Apple<span class="token operator">></span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GenericType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 不允许d </span>
-<span class="token punctuation">}</span>
-</code></pre>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HongFuShi</span> <span class="keyword">extends</span> <span class="title">Fruit</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(GenericType&lt;Fruit&gt; p)</span> </span>&#123;</span><br><span class="line">    System.out.println(p.getData().getColor());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">use</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    GenericType&lt;Fruit&gt; a = <span class="keyword">new</span> GenericType(); <span class="comment">// 可以</span></span><br><span class="line">    GenericType&lt;Apple&gt; b = <span class="keyword">new</span> GenericType();<span class="comment">// 不允许d </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>因为上面的方案不被 SDK 允许，于是提出了一个通配符类型</p>
 <ul>
 <li><code>? extends X</code> 表示类型的上界，类型参数是 X 的子类</li>
 <li><code>? super X</code> 表示类型的下界，类型参数是 X 的父类</li>
 </ul>
 <h4 id="extends-X，可读不可写"><a href="#extends-X，可读不可写" class="headerlink" title="? extends X，可读不可写"></a>? extends X，可读不可写</h4><p>表示传递给方法的参数，必须是 X 的子类（包括 X 本身）</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">println</span><span class="token punctuation">(</span>GenericType<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span><span class="token operator">></span> p<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(GenericType&lt;? extends Fruit&gt; p)</span></span>&#123;</span><br><span class="line">    System.out.println(p.getData().getColor());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但对于泛型类 <code>GenericType</code> 来说，如果其中提供了 get 和 set 类型参数变量的方法的话， set 方法是不允许调用的（只能查看，不能修改）</p>
 <p>因为 <code>? extends X</code> 表示类型的上界，类型参数是 X 的子类，那么可定的说， get 方法返回的一定是 X (不管是 X 还是 X 的子类)，编译器是可以确定知道的。但是 set 方法只知道传入的是个 X，至于具体是哪一个子类，并不知道。</p>
 <h4 id="super-X-，可写不可读"><a href="#super-X-，可写不可读" class="headerlink" title="? super X ，可写不可读"></a>? super X ，可写不可读</h4><p>表示传递给方法的参数，必须是 X 的父类（包括 X 本身）</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">println</span><span class="token punctuation">(</span>GenericType<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Apple<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>po<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(GenericType&lt;? <span class="keyword">super</span> Apple&gt; p)</span> </span>&#123;</span><br><span class="line">    System.out.println(po.getData());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但对于泛型类 <code>GenericType</code> 来说，如果其中提供了 get 和 set  类型的变量方法的话，set 方法可以被调用， 且传入的参数只能是 X 或者 X 的子类。</p>
 <p>get 方法只返回一个 Object 类型的值。<br>因为  <code>? super X</code> 表示类型的下界，参数类型是 X  的父类（包括其本身）那么可以肯定的说， get 方法返回的一定格式 X 的父类，那么具体是哪个父类，并不知道。但  Object 一定是它的父类，所以 get  方法返回的是一个 Object ，编译器可以确定知道。但是 set 方法，编译器不知道它需要的确切类型，但是 X 和 X 的子类可以安全的转换 X。</p>
 <h3 id="无限通配符-，只是为了说明用法"><a href="#无限通配符-，只是为了说明用法" class="headerlink" title="无限通配符 ?，只是为了说明用法"></a>无限通配符 ?，只是为了说明用法</h3><p>表示类型没有限制，可以把 <code>?</code> 看成所有类型的父类，如： Pair&lt;?&gt;</p>
@@ -1461,7 +1404,7 @@
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

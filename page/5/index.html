@@ -682,10 +682,8 @@
 <p>最近一直困扰我的一个问题就是， 每当我给 Android Studio 升级时，就会遇到无法输入中文的情况，每次上网查询，总是磕磕绊绊，今儿将方法记录下来，以备以后需要是好找。</p>
 <p>首先，打开 Android Studio 的文件目录 <code>/android-stdio/bin/</code> ，使用 Vi 命令打开文件 <code>studio.sh</code>，</p>
 <p>在文件的开头，输入下面这一串</p>
-<pre><code>export XMODIFIERS=@im=fcitx
-export QT_IM_MODULE=fcitx
-export GTK_IM_MODULE=&quot;fcitx&quot;
-</code></pre><p>然后 :wq 保存退出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export XMODIFIERS=@im=fcitx</span><br><span class="line">export QT_IM_MODULE=fcitx</span><br><span class="line">export GTK_IM_MODULE=&quot;fcitx&quot;</span><br></pre></td></tr></table></figure>
+<p>然后 :wq 保存退出。</p>
 <p>接着重启 Android Studio 就可以了。</p>
 
           
@@ -1395,11 +1393,7 @@ export GTK_IM_MODULE=&quot;fcitx&quot;
         
           <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
 <h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
-<pre><code class="java">private Looper(boolean quitAllowed) {
-    mQueue = new MessageQueue(quitAllowed);// 传入的参数代表这个 Queue 是否能够被退出
-    mThread = Thread.currentThread();
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Looper 在构造函数里做了两件事儿：</p>
 <ol>
 <li>将线程对象指向了创建的 Looper 的线程</li>
@@ -2818,7 +2812,7 @@ export GTK_IM_MODULE=&quot;fcitx&quot;
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

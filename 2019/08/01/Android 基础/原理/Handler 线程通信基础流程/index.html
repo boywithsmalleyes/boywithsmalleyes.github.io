@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 private Looper(boolean quitAllowed) {     mQueue = new MessageQueue(quitA">
+  <meta name="description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
 <meta name="keywords" content="Handler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handler 线程通信基础流程">
 <meta property="og:url" content="http://xiaoman.ren/2019/08/01/Android 基础/原理/Handler 线程通信基础流程/index.html">
 <meta property="og:site_name" content="茶白生产空间">
-<meta property="og:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 private Looper(boolean quitAllowed) {     mQueue = new MessageQueue(quitA">
+<meta property="og:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-01-29T15:54:28.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler 线程通信基础流程">
-<meta name="twitter:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 private Looper(boolean quitAllowed) {     mQueue = new MessageQueue(quitA">
+<meta name="twitter:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
 
 
 
@@ -528,11 +528,7 @@
       
         <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
 <h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token function">Looper</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> quitAllowed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    mQueue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MessageQueue</span><span class="token punctuation">(</span>quitAllowed<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 传入的参数代表这个 Queue 是否能够被退出</span>
-    mThread <span class="token operator">=</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Looper 在构造函数里做了两件事儿：</p>
 <ol>
 <li>将线程对象指向了创建的 Looper 的线程</li>
@@ -545,53 +541,7 @@
 </ol>
 <a id="more"></a>
 <h3 id="looper-loop"><a href="#looper-loop" class="headerlink" title="looper.loop()"></a>looper.loop()</h3><p>在当前线程中启动一个 Message loop 机制</p>
-<pre class=" language-Java"><code class="language-Java">public static void loop(){
-    final Looper me = myLooper();// 获取当前线程绑定的 Looper
-    if(me == null) {
-        throw new RuntimeException("No Looper; Looper.prepare() wasn`t called on this thread");        
-    }
-    final MessageQueue queue = me.mQueue();// 获取与 Looper 绑定的 MessageQueue
-    // make sure the identity of this thread is that of the local process,
-    // And keep track of what that identity token actuall is.
-    Binder.clearCallingIdentity();
-    fianl long ident = Binder.clearCallingIdentity();
-
-    // 进入死循环，不断获取对象，分发对象到 Handler 中去消费
-    for(;;) {
-        Message msg = queue.next();// 不断获取下一个 message 对象，这里可能会造成阻塞。
-        if(msg == null) {
-            // No message idicates that the message queue is quittig.
-            return;
-        }
-
-        // This must be in a local variable, in case a UI event sets the logger
-        Printer logging = me.mLogging;
-        if(logging != null) {
-            logging.println(">>> Dispatching to " + msg.target + " " + msg.callback _ ": " + msg.what);
-        }
-
-        // 在这里开始分发 Message 
-        msg.target.dispatchMessage(msg);
-
-        if(logging != null) {
-            logging.println("<<<<< Finished to " + msg.target + " " + msg.callback);
-        }
-
-        // Make sure that during the course of dispatching the identity of the thread wasn`t corrupted.
-
-        final long newIdent = Binder.clearCallingIdentity();
-        if(ident != null) {
-            Log.wtf(TAG, "Thread identity changed from 0x"
-                        + Long.toHexString(ident) + " to 0x"
-                        + Long.toHexString(newIdent) + " while dispatching to "
-                        + msg.target.getClass().getName() + " "
-                        + msg.callback + " what=" + msg.what);
-        }
-        // 当分发完 Message 后，当然要标记将该 Message 为 “正在使用”
-        msg.recycleUnchecked();
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Looper me = myLooper();<span class="comment">// 获取当前线程绑定的 Looper</span></span><br><span class="line">    <span class="keyword">if</span>(me == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"No Looper; Looper.prepare() wasn`t called on this thread"</span>);        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> MessageQueue queue = me.mQueue();<span class="comment">// 获取与 Looper 绑定的 MessageQueue</span></span><br><span class="line">    <span class="comment">// make sure the identity of this thread is that of the local process,</span></span><br><span class="line">    <span class="comment">// And keep track of what that identity token actuall is.</span></span><br><span class="line">    Binder.clearCallingIdentity();</span><br><span class="line">    fianl <span class="keyword">long</span> ident = Binder.clearCallingIdentity();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 进入死循环，不断获取对象，分发对象到 Handler 中去消费</span></span><br><span class="line">    <span class="keyword">for</span>(;;) &#123;</span><br><span class="line">        Message msg = queue.next();<span class="comment">// 不断获取下一个 message 对象，这里可能会造成阻塞。</span></span><br><span class="line">        <span class="keyword">if</span>(msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// No message idicates that the message queue is quittig.</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// This must be in a local variable, in case a UI event sets the logger</span></span><br><span class="line">        Printer logging = me.mLogging;</span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&gt;&gt;&gt; Dispatching to "</span> + msg.target + <span class="string">" "</span> + msg.callback _ <span class="string">": "</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 在这里开始分发 Message </span></span><br><span class="line">        msg.target.dispatchMessage(msg);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&lt;&lt;&lt;&lt;&lt; Finished to "</span> + msg.target + <span class="string">" "</span> + msg.callback);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Make sure that during the course of dispatching the identity of the thread wasn`t corrupted.</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">long</span> newIdent = Binder.clearCallingIdentity();</span><br><span class="line">        <span class="keyword">if</span>(ident != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Log.wtf(TAG, <span class="string">"Thread identity changed from 0x"</span></span><br><span class="line">                        + Long.toHexString(ident) + <span class="string">" to 0x"</span></span><br><span class="line">                        + Long.toHexString(newIdent) + <span class="string">" while dispatching to "</span></span><br><span class="line">                        + msg.target.getClass().getName() + <span class="string">" "</span></span><br><span class="line">                        + msg.callback + <span class="string">" what="</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当分发完 Message 后，当然要标记将该 Message 为 “正在使用”</span></span><br><span class="line">        msg.recycleUnchecked();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>从上面的代码可以看出，最重要的方法是：</p>
 <ol>
 <li><code>queue.next()</code></li>
@@ -605,89 +555,25 @@
 <li>Handler （msg.target 实际上就是 Handler）：食物的消费者</li>
 <li>Looper：负责分发食物的人</li>
 </ol>
-<h3 id="looper-prepare-在当前线程关联一个-Lopper-对象"><a href="#looper-prepare-在当前线程关联一个-Lopper-对象" class="headerlink" title="looper.prepare() 在当前线程关联一个 Lopper 对象"></a>looper.prepare() 在当前线程关联一个 Lopper 对象</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">prepare</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> quitAllowed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>sThreadLocal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"Only one Lopper may be created per thread"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// 在当前线程绑定一个 looper</span>
-    mThreadLocal<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Looper</span><span class="token punctuation">(</span>quiteAllowed<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<h3 id="looper-prepare-在当前线程关联一个-Lopper-对象"><a href="#looper-prepare-在当前线程关联一个-Lopper-对象" class="headerlink" title="looper.prepare() 在当前线程关联一个 Lopper 对象"></a>looper.prepare() 在当前线程关联一个 Lopper 对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sThreadLocal.get() != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Lopper may be created per thread"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 在当前线程绑定一个 looper</span></span><br><span class="line">    mThreadLocal.set(<span class="keyword">new</span> Looper(quiteAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在上面的代码中，做了两件事儿：</p>
 <ol>
 <li>判断当前线程有没有 Looper，如果有则抛出异常（在这里我们就可以知道，Android 规定一个线程只能拥有一个与自己关联的 Looper。</li>
 <li>如果有的话，那么就设置一个新的 Looper 到当前线程。</li>
 </ol>
-<h3 id="Handler-的使用"><a href="#Handler-的使用" class="headerlink" title="Handler 的使用"></a>Handler 的使用</h3><pre class=" language-java"><code class="language-java">Handler handler <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Handler</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// </span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleMessage</span><span class="token punctuation">(</span>Message msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// handle your message</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<h3 id="Handler-的使用"><a href="#Handler-的使用" class="headerlink" title="Handler 的使用"></a>Handler 的使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Handler handler = <span class="keyword">new</span> Handler ()&#123;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// handle your message</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们先来看下 Handler 的构造：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 空参构造与之对应</span>
-<span class="token keyword">public</span> <span class="token function">Handler</span><span class="token punctuation">(</span>Callback callbacck<span class="token punctuation">,</span> <span class="token keyword">boolean</span> async<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 大姨泄漏提醒log</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token comment" spellcheck="true">// 获取与创建 Handler 线程的 Looper</span>
-    mLooper <span class="token operator">=</span> Looper<span class="token punctuation">.</span><span class="token function">myLooper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>mLooper <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RunntimeException</span><span class="token punctuation">(</span><span class="token string">"Can`t create handler inside thread that has not called Looper.prepare()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// 获取 Looper 绑定的 MessageQueue</span>
-    <span class="token comment" spellcheck="true">// 因为一个 Looper 只有一个 MessageQueue， 也就是与当前线程绑定的 MessageQueue</span>
-    mQueue <span class="token operator">=</span> mLooper<span class="token punctuation">.</span>mQueue<span class="token punctuation">;</span>
-    mCallback <span class="token operator">=</span> callback<span class="token punctuation">;</span>
-    mAsynchronous <span class="token operator">=</span> async<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空参构造与之对应</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Handler</span><span class="params">(Callback callbacck, <span class="keyword">boolean</span> async)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 大姨泄漏提醒log</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 获取与创建 Handler 线程的 Looper</span></span><br><span class="line">    mLooper = Looper.myLooper();</span><br><span class="line">    <span class="keyword">if</span>(mLooper == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RunntimeException(<span class="string">"Can`t create handler inside thread that has not called Looper.prepare()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取 Looper 绑定的 MessageQueue</span></span><br><span class="line">    <span class="comment">// 因为一个 Looper 只有一个 MessageQueue， 也就是与当前线程绑定的 MessageQueue</span></span><br><span class="line">    mQueue = mLooper.mQueue;</span><br><span class="line">    mCallback = callback;</span><br><span class="line">    mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>Looper.loop() 死循环中的 msg.target 是什么时候被赋值的？</li>
 <li>handler.handleMessage(msg) 在什么时候被回调的？</li>
 </ol>
 <p><strong>A1:</strong> Looper.loop() 死循环中的 msg.target 是什么赋值的呢？要分析这个问题，自然的就想到从发送消息开始，无论是 handler.sendMessage(msg)  还是 handler.sendEmptyMessage(what)， 最后都可以追溯到下面这个方法：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">sendMessageAtTime</span><span class="token punctuation">(</span>Message msg<span class="token punctuation">,</span> <span class="token keyword">long</span> uptimeMillis<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 引用 Handler 中的 MessageQueue</span>
-    <span class="token comment" spellcheck="true">// 这个 MessageQueue 就是创建 Looper 时被创建的 MessageQueue</span>
-    MessageQueue queue <span class="token operator">=</span> mQueue<span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span><span class="token punctuation">(</span>queue <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        RuntimeException e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>
-        <span class="token keyword">this</span> <span class="token operator">+</span> <span class="token string">" sendMessageAtTime() called withe no mQueue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Log<span class="token punctuation">.</span><span class="token function">w</span><span class="token punctuation">(</span><span class="token string">"Looper"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 将新来的 Message 加入到 MessageQueue 中</span>
-    <span class="token keyword">return</span> <span class="token function">enqueueMessage</span><span class="token punctuation">(</span>queue<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> uptimeMillis<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sendMessageAtTime</span><span class="params">(Message msg, <span class="keyword">long</span> uptimeMillis)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 引用 Handler 中的 MessageQueue</span></span><br><span class="line">    <span class="comment">// 这个 MessageQueue 就是创建 Looper 时被创建的 MessageQueue</span></span><br><span class="line">    MessageQueue queue = mQueue;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(queue == <span class="keyword">null</span>) &#123;</span><br><span class="line">        RuntimeException e = <span class="keyword">new</span> RuntimeException(</span><br><span class="line">        <span class="keyword">this</span> + <span class="string">" sendMessageAtTime() called withe no mQueue"</span>);</span><br><span class="line">        Log.w(<span class="string">"Looper"</span>, e.getMessage(), e);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将新来的 Message 加入到 MessageQueue 中</span></span><br><span class="line">    <span class="keyword">return</span> enqueueMessage(queue, msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接下来看一下 <code>enququeMessage(queue, msg, uptimeMillis)</code>:</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">enququeMessage</span><span class="token punctuation">(</span>MessageQueue<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> Message msg<span class="token punctuation">,</span> <span class="token keyword">long</span> uptimeMillis<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-       msg<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-       <span class="token keyword">if</span><span class="token punctuation">(</span>mAsynchronous<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        msg<span class="token punctuation">.</span><span class="token function">setAsynchronous</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token punctuation">}</span>
-       <span class="token keyword">return</span> queue<span class="token punctuation">.</span><span class="token function">enqueueMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> uptimeMillis<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">enququeMessage</span><span class="params">(MessageQueue, queue, Message msg, <span class="keyword">long</span> uptimeMillis)</span> </span>&#123;</span><br><span class="line">   	msg.target = <span class="keyword">this</span>;</span><br><span class="line">   	<span class="keyword">if</span>(mAsynchronous) &#123;</span><br><span class="line">        msg.setAsynchronous(<span class="keyword">true</span>);</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> queue.enqueueMessage(msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>A2</strong>:  handler.handleMessage(msg) 在什么时候被回调？通过上面的分析，我们很明确知道， Message 中的 target 是在什么时候赋值的，我们先来分析下在 Looper.loop() 中出现过的 dispatchMessage(msg) 方法</p>
-<pre class=" language-Java"><code class="language-Java">public void diapatchMessage(Message msg) {
-    if(msg.callback != null) {
-        handleCallback(msg);
-    } else {
-        if(mCallback != null) {
-            if(mCallback.handleMessage(msg)) {
-                return;
-            }
-        }
-        handleMessage(msg); // 开始回调
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">diapatchMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(msg.callback != <span class="keyword">null</span>) &#123;</span><br><span class="line">        handleCallback(msg);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(mCallback != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(mCallback.handleMessage(msg)) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        handleMessage(msg); <span class="comment">// 开始回调</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过上面的分析，可以清楚的知道 Handler, Looper, Message, MessageQueue 这四者的关系以及如何合作了。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>当我们调用 handler.sendMessage(msg)； 方法发送一个 Message 时， 实际上这个 Message 是发送到与当前线程绑定的一个 MessageQueue 中，然后与当前线程绑定的 Looper 将会不断的从 MessageQueue 中取出新的 Message， 调用 msg.target.dispatchMessage(msg) 方法将消息发送到与 Message 绑定的 handler.handleMessage() 方法中。</p>
 <p>一个 Thread 对应多个 Handler， 一个 Thread 对应一个 Looper 和 MessageQueue， Handler 与 Thread 共享 Looper 和 MessageQueue。 Message 只是消息的载体，将会被发送到与线程绑定的唯一的 MessageQueue 中，并且被与线程绑定的唯一的 Looper 分发，被其自身绑定的 Handler 消费。</p>
@@ -1510,7 +1396,7 @@
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

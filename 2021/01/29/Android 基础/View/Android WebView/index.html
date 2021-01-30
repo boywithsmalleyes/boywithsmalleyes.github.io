@@ -525,87 +525,9 @@
 <p>所以我们可以从第二点做文章，主要思路就是一些资源文件都使用 App 本地资源，而不需要从网络下载，从而提高页面的打开速度</p>
 <ol>
 <li><p>首先将一些资源文件放在本地的 <code>assets</code> 目录，然后重写 WebViewClient 的 <code>shouldInterceptRequest(WebView view, String url)</code> 和  <code>shouleInterceptRequest(WebView view, WebResourceRequest request)</code> 这两个方法，对访问地址进行拦截，当 <code>url</code> 地址命中本地配置的 <code>url</code> 时，使用本地资源替代，否则就使用网络上的资源。</p>
-<pre class=" language-Java"><code class="language-Java">mWebView.setWebViewClient(new WebViewClient() {
-    // 设置不使用系统浏览器打开，直接显示在当前 WebView
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        view.loadUrl(url);
-        return true;
-    }
-
-    @Override
-    public WebResourceResponse shouldIntercepteReqeuest(WebView view, String url) {
-        // 如果命中本地资源，使用本地资源替代
-        if(mDataHelper.hasLocalResource(url)){
-            WebResourceResponse response = mDataHelper.getReplaceWebResourceResponse(getApplicationContext(), url);
-            if(response != null) {
-                return response;
-            }
-        }
-        return super.shouldInterceptRequest(view, url);
-    }
-
-    // 兼容 5.0 以上的设备
-    @TargetApi(VERSION_CODE.LOLLIPOP)
-    @Override
-    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-        String url = request.getUrl().toString();
-        if(mDataHelper.hasLocalResource(url)) {
-            WebResourceResponse response = mDataHelper.getReplaceWebResourceResponse(getApplicationContext(), url);
-            if(response != null) {
-                return response;
-            }
-        }
-        return super.shouleInterceptRequest(view, request);
-    }
-});
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">mWebView.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</span><br><span class="line">    <span class="comment">// 设置不使用系统浏览器打开，直接显示在当前 WebView</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</span><br><span class="line">        view.loadUrl(url);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldIntercepteReqeuest</span><span class="params">(WebView view, String url)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果命中本地资源，使用本地资源替代</span></span><br><span class="line">        <span class="keyword">if</span>(mDataHelper.hasLocalResource(url))&#123;</span><br><span class="line">            WebResourceResponse response = mDataHelper.getReplaceWebResourceResponse(getApplicationContext(), url);</span><br><span class="line">            <span class="keyword">if</span>(response != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> response;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.shouldInterceptRequest(view, url);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 兼容 5.0 以上的设备</span></span><br><span class="line">    <span class="meta">@TargetApi</span>(VERSION_CODE.LOLLIPOP)</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldInterceptRequest</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</span><br><span class="line">        String url = request.getUrl().toString();</span><br><span class="line">        <span class="keyword">if</span>(mDataHelper.hasLocalResource(url)) &#123;</span><br><span class="line">            WebResourceResponse response = mDataHelper.getReplaceWebResourceResponse(getApplicationContext(), url);</span><br><span class="line">            <span class="keyword">if</span>(response != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> response;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.shouleInterceptRequest(view, request);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>DataHelper 是一个工具类</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DataHelper</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span> mMap<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">DataHelper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        mMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">initData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">initData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        String imageDir <span class="token operator">=</span> <span class="token string">"images/"</span><span class="token punctuation">;</span>
-        String pngSuffix <span class="token operator">=</span> <span class="token string">".png"</span><span class="token punctuation">;</span>
-        mMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"http://renyugang.io/wp-content/themes/twentyseventeen/style.css?ver=4.9.8"</span><span class="token punctuation">,</span> <span class="token string">"css/style.css"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        mMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"http://renyugang.io/wp-content/uploads/2018/06/cropped-ryg.png"</span><span class="token punctuation">,</span>imageDir <span class="token operator">+</span> <span class="token string">"cropped-ryg.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// ...</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">hasLocalResource</span><span class="token punctuation">(</span>String url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> mMap<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> WebResourceResponce <span class="token function">getReplacedWebResourceResponse</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> String url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        String localResourcePath <span class="token operator">=</span> mMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>TextUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>localResourcePath<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        InputStream is <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            is <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAssets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>localResourcePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        String mimeType<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">contans</span><span class="token punctuation">(</span><span class="token string">"css"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            mimeType <span class="token operator">=</span> <span class="token string">"text/css"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">".jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            mimeType <span class="token operator">=</span> <span class="token string">"image/jpeg"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            mimeType <span class="token operator">=</span> <span class="token string">"image/png"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        WebResourceResponse response <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebResourceResponse</span><span class="token punctuation">(</span>mimeType<span class="token punctuation">,</span> <span class="token string">"utf-8"</span><span class="token punctuation">,</span> is<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> response<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataHelper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; mMap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataHelper</span><span class="params">()</span></span>&#123;</span><br><span class="line">        mMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        initData();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String imageDir = <span class="string">"images/"</span>;</span><br><span class="line">        String pngSuffix = <span class="string">".png"</span>;</span><br><span class="line">        mMap.put(<span class="string">"http://renyugang.io/wp-content/themes/twentyseventeen/style.css?ver=4.9.8"</span>, <span class="string">"css/style.css"</span>);</span><br><span class="line">        mMap.put(<span class="string">"http://renyugang.io/wp-content/uploads/2018/06/cropped-ryg.png"</span>,imageDir + <span class="string">"cropped-ryg.png"</span>);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasLocalResource</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mMap.containsKey(url);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebResourceResponce <span class="title">getReplacedWebResourceResponse</span><span class="params">(Context context, String url)</span> </span>&#123;</span><br><span class="line">        String localResourcePath = mMap.get(url);</span><br><span class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(localResourcePath)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = context.getApplicationContext().getAssets().open(localResourcePath);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String mimeType;</span><br><span class="line">        <span class="keyword">if</span>(url.contans(<span class="string">"css"</span>)) &#123;</span><br><span class="line">            mimeType = <span class="string">"text/css"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.contains(<span class="string">".jpg"</span>)) &#123;</span><br><span class="line">            mimeType = <span class="string">"image/jpeg"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mimeType = <span class="string">"image/png"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        WebResourceResponse response = <span class="keyword">new</span> WebResourceResponse(mimeType, <span class="string">"utf-8"</span>, is);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <hr>
@@ -620,9 +542,7 @@
 </blockquote>
 <p><strong>设置 WebView 使用这些内容</strong></p>
 <p>想要 WebView 使用上面说到的缓存机制配置（答案是，不配置或手动设置）</p>
-<pre class=" language-java"><code class="language-java">WebSettings settings <span class="token operator">=</span> mWebView<span class="token punctuation">.</span><span class="token function">getSettings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-settings<span class="token punctuation">.</span><span class="token function">setCacheMode</span><span class="token punctuation">(</span>WebSettings<span class="token punctuation">.</span>LOAD_DEFAULT<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WebSettings settings = mWebView.getSettings();</span><br><span class="line">settings.setCacheMode(WebSettings.LOAD_DEFAULT);</span><br></pre></td></tr></table></figure>
 <p><strong>WebView 的 5 种缓存模式</strong></p>
 <ul>
 <li>LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据</li>
@@ -1467,7 +1387,7 @@ settings<span class="token punctuation">.</span><span class="token function">set
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

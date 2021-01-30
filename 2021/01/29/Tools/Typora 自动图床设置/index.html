@@ -531,20 +531,7 @@
       
 
       
-        <p>自动图床设置，在我们撰写文档时，会自动将图片保存到图库，并转化 URL 展示出来，最终我们在分享 MD 文档时，避免了本地相对目录，无法引用的情况发生。<br><a id="more"></a></p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"picBed"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"uploader"</span><span class="token operator">:</span> <span class="token string">"github"</span><span class="token punctuation">,</span>
-    <span class="token property">"github"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"repo"</span><span class="token operator">:</span> <span class="token string">"ximan/static_file"</span><span class="token punctuation">,</span> // 仓库名，格式时 username/reponame
-      <span class="token property">"token"</span><span class="token operator">:</span> <span class="token string">"xxxxxxxx"</span><span class="token punctuation">,</span> // github token
-      <span class="token property">"path"</span><span class="token operator">:</span> <span class="token string">"images/"</span><span class="token punctuation">,</span> // 自定义存储路径 如： image/
-      <span class="token property">"branch"</span><span class="token operator">:</span> <span class="token string">"master"</span> // 分支名，默认是 master
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token property">"picgoPlugins"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+        <p>自动图床设置，在我们撰写文档时，会自动将图片保存到图库，并转化 URL 展示出来，最终我们在分享 MD 文档时，避免了本地相对目录，无法引用的情况发生。<br><a id="more"></a><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"picBed"</span>: &#123;</span><br><span class="line">    <span class="attr">"uploader"</span>: <span class="string">"github"</span>,</span><br><span class="line">    <span class="attr">"github"</span>: &#123;</span><br><span class="line">      "repo": "ximan/static_file", // 仓库名，格式时 username/reponame</span><br><span class="line">      "token": "xxxxxxxx", // github token</span><br><span class="line">      "path": "images/", // 自定义存储路径 如： image/</span><br><span class="line">      "branch": "master" // 分支名，默认是 master</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  "picgoPlugins": &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li><p>首先您要有一个 Github 账号</p>
 </li>
@@ -1395,7 +1382,7 @@
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

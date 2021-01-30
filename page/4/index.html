@@ -1646,14 +1646,7 @@
         
           <p>随着 Android Q 的发布，随之而来的适配工作也在暗潮涌动，这里说一下 Android Q 文件存储；<br>Android Q 在外部存储设备中为每个应用提供了一个“沙盒”，任何其他应用都无法直接访问您的沙盒文件。由于文件是您应用的私有文件，因此您不在需要任何权限即可在外部存储设备中访问和保存自己的设备。这次更新有效的保证了用户文件的隐私性，也赚少了对应应用所需要的权限数量。</p>
 <p>“沙盒”就是应用的专属文件，并且访问这个文件夹无需任何权限。Google 推荐应用的沙盒内存储文件地址为<br><code>Context.getExternalFilesDir()</code> 下的文件夹。需要传入以下参数</p>
-<pre><code class="java">Environment.DIRECTORY_MUSIC
-Environment.DIRECTORY_PODCASTS
-Environment.DIRECTORY_RINGTONES
-Environment.DIRECTORY_ALARMS
-Environment.DIRECTORY_NOTIFICATIONS
-Environment.DIRECTORY_PICUTRES
-Environment.DIRECTORY_MOVIES
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Environment.DIRECTORY_MUSIC</span><br><span class="line">Environment.DIRECTORY_PODCASTS</span><br><span class="line">Environment.DIRECTORY_RINGTONES</span><br><span class="line">Environment.DIRECTORY_ALARMS</span><br><span class="line">Environment.DIRECTORY_NOTIFICATIONS</span><br><span class="line">Environment.DIRECTORY_PICUTRES</span><br><span class="line">Environment.DIRECTORY_MOVIES</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2895,7 +2888,7 @@ Environment.DIRECTORY_MOVIES
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

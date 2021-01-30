@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="协程fun main() {     GlobalScope.launch {// 后台启动一个新的协程并继续， launch 协程的构建器         delay(1000L) // 非阻塞的等待1s，         println(&amp;quot;World!&amp;quot;) // 延时后，输出      }     println(&amp;quot;Hello&amp;quot;) // 协程已再等待时，">
+  <meta name="description" content="协程12345678fun main() &amp;#123;    GlobalScope.launch &amp;#123;// 后台启动一个新的协程并继续， launch 协程的构建器        delay(1000L) // 非阻塞的等待1s，        println(&quot;World!&quot;) // 延时后，输出     &amp;#125;    println(&quot;Hello&quot;) // 协程已再等待时，主线">
 <meta name="keywords" content="Android,Java,Kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="茶白生产空间">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程/index.html">
 <meta property="og:site_name" content="茶白生产空间">
-<meta property="og:description" content="协程fun main() {     GlobalScope.launch {// 后台启动一个新的协程并继续， launch 协程的构建器         delay(1000L) // 非阻塞的等待1s，         println(&amp;quot;World!&amp;quot;) // 延时后，输出      }     println(&amp;quot;Hello&amp;quot;) // 协程已再等待时，">
+<meta property="og:description" content="协程12345678fun main() &amp;#123;    GlobalScope.launch &amp;#123;// 后台启动一个新的协程并继续， launch 协程的构建器        delay(1000L) // 非阻塞的等待1s，        println(&quot;World!&quot;) // 延时后，输出     &amp;#125;    println(&quot;Hello&quot;) // 协程已再等待时，主线">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-01-29T16:15:57.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="茶白生产空间">
-<meta name="twitter:description" content="协程fun main() {     GlobalScope.launch {// 后台启动一个新的协程并继续， launch 协程的构建器         delay(1000L) // 非阻塞的等待1s，         println(&amp;quot;World!&amp;quot;) // 延时后，输出      }     println(&amp;quot;Hello&amp;quot;) // 协程已再等待时，">
+<meta name="twitter:description" content="协程12345678fun main() &amp;#123;    GlobalScope.launch &amp;#123;// 后台启动一个新的协程并继续， launch 协程的构建器        delay(1000L) // 非阻塞的等待1s，        println(&quot;World!&quot;) // 延时后，输出     &amp;#125;    println(&quot;Hello&quot;) // 协程已再等待时，主线">
 
 
 
@@ -526,111 +526,32 @@
       
 
       
-        <h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 后台启动一个新的协程并继续， launch 协程的构建器</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 非阻塞的等待1s，</span>
-        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"World!"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 延时后，输出 </span>
-    <span class="token punctuation">}</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 协程已再等待时，主线程还在继续</span>
-    Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">2000L</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 阻塞主线程 2s 保证， JVM 存活</span>
-<span class="token punctuation">}</span>
-</code></pre>
+        <h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    GlobalScope.launch &#123;<span class="comment">// 后台启动一个新的协程并继续， launch 协程的构建器</span></span><br><span class="line">        delay(<span class="number">1000L</span>) <span class="comment">// 非阻塞的等待1s，</span></span><br><span class="line">        println(<span class="string">"World!"</span>) <span class="comment">// 延时后，输出 </span></span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"Hello"</span>) <span class="comment">// 协程已再等待时，主线程还在继续</span></span><br><span class="line">    Thread.sleep(<span class="number">2000L</span>) <span class="comment">// 阻塞主线程 2s 保证， JVM 存活</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>协程是轻量级的线程。 <code>CoroutineScope</code> 通常与 <code>launch</code> 协程构建器一起启动。</p>
 <p><strong>GlobalScope</strong>： 意味着新协程的生命周期与应用程序的生命周期一致</p>
 <p><code>delay</code> 是一个特殊的挂起函数，不会造成线程阻塞，但是会挂起协程，并且只能再协程中使用。</p>
 <h2 id="桥接阻塞与非阻塞的世界"><a href="#桥接阻塞与非阻塞的世界" class="headerlink" title="桥接阻塞与非阻塞的世界"></a>桥接阻塞与非阻塞的世界</h2><p>使用<code>runBlocking</code> 协程构建器来阻塞，使用非阻塞函数<code>delay</code> 方便，不易与 <code>Thread.sleep()</code> 阻塞函数混淆</p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span>
-        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"world!"</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"hello "</span><span class="token punctuation">)</span>
-    runBlocking<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 这个表达式阻塞了主线程</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">2000L</span><span class="token punctuation">)</span> 
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    GlobalScope.launch &#123; <span class="comment">//</span></span><br><span class="line">        delay(<span class="number">1000L</span>)</span><br><span class="line">        println(<span class="string">"world!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"hello "</span>)</span><br><span class="line">    runBlocking&#123; <span class="comment">// 这个表达式阻塞了主线程</span></span><br><span class="line">        delay(<span class="number">2000L</span>) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上例，只使用了非阻塞函数 <code>delay</code>, 调用 <code>runBlocking</code> 的主线程会一直阻塞，直到 <code>runBlocking</code> 内部的协程执行完毕</p>
 <p>还可以使用 <code>runBlocking</code> 包裹 main 函数来执行：</p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> runBlocking<span class="token operator">&lt;</span>Unit<span class="token operator">></span> <span class="token punctuation">{</span>
-    GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">{</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span>
-        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello "</span><span class="token punctuation">)</span>
-    <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">2000L</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line">    GlobalScope.launch &#123;</span><br><span class="line">        delay(<span class="number">1000L</span>)</span><br><span class="line">        println(<span class="string">"world"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"Hello "</span>)</span><br><span class="line">    delay(<span class="number">2000L</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>runBlicking&lt;Unit&gt; {}</code> 作为用来启动顶层主协程的适配器。显式指定了返回类型 Unit， 因为在 Kotlin 中 main 函数必须返回 Unit 类型</p>
 <h2 id="等待一个作业"><a href="#等待一个作业" class="headerlink" title="等待一个作业"></a>等待一个作业</h2><p>延迟一段时间来等待另一个协程运行并不是好选择，我们显式（非阻塞方式）等待所启动的后台 Job 执行结束</p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> job <span class="token operator">=</span> GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 启动一个新协程并持有这个作业的引用</span>
-    <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-<span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"hello "</span><span class="token punctuation">)</span>
-job<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 等待直到子协程执行结束</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = GlobalScope.launch &#123; <span class="comment">// 启动一个新协程并持有这个作业的引用</span></span><br><span class="line">    delay(<span class="number">1000L</span>)</span><br><span class="line">    println(<span class="string">"world"</span>)</span><br><span class="line">&#125;</span><br><span class="line">println(<span class="string">"hello "</span>)</span><br><span class="line">job.join()<span class="comment">// 等待直到子协程执行结束</span></span><br></pre></td></tr></table></figure>
 <p>这里主协程与后台作业的持续时间没有任何关系了。</p>
 <h2 id="结构化的并发"><a href="#结构化的并发" class="headerlink" title="结构化的并发"></a>结构化的并发</h2><p>当我们使用 <code>GlobalScope.launch</code> 时，我们会创建一个顶层协程。虽然很轻，但运行时会消耗一些内存资源。如果忘记保持对新启动的协程的引用，它还会继续运行。如果协程中的代码挂起了会怎么样。如果我们启动了太多的协程并导致内存不足。必须手动保持对所有已启动协程的引用并 <code>join</code> 很容易出错</p>
 <p>结构化并发是解决这个问题的最佳方案。我们可以在执行操作所在的指定作用域内启动协程，而不是像通常使用线程（线程总是全局的）那样在 <code>GlobalScope</code> 中启动。</p>
 <p>我们使用<code>runBlocking</code> 协程构建器将 <code>main</code> 函数转化为协程，包括 <code>runBlocking</code> 在内的每个协程构建器都将 <code>CoroutineScope</code> 的实例添加到其代码块所在的作用域中。可以在这个作用域中启动这个线程而不需要显式 <code>join</code> 中，因为外部协程（示例中的 runBlocking) 直到在其他作用域中启动的所有协程都执行完毕后才会结束。</p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> runBlocking <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// this: CoroutineScope</span>
-    launch <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 在 runBlocking 作用域中启动一个新的协程</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span>
-        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello, "</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking &#123; <span class="comment">// this: CoroutineScope</span></span><br><span class="line">    launch &#123; <span class="comment">// 在 runBlocking 作用域中启动一个新的协程</span></span><br><span class="line">        delay(<span class="number">1000L</span>)</span><br><span class="line">        println(<span class="string">"world"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"Hello, "</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="作用域构建"><a href="#作用域构建" class="headerlink" title="作用域构建"></a>作用域构建</h2><p>除了由不同的构建器提供协程作用域之外，还可以使用 <code>coroutineScope</code> 构建器生命自己的作用域，它会主动创建一个协程作用域并且在所有已启动子协程执行完毕之前不会结束</p>
 <p><code>runBlocking</code> 与 <code>coroutineScope</code>  可能看起来很类似，因为他们都会等待其协程体以及所有子协程结束。主要区别在于 <code>runBlocking</code> 方法会<strong>阻塞</strong>当前线程来等待，而 <code>coroutineScope</code> 只会挂起，会释放底层线程用于其他用途。</p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> main <span class="token operator">=</span> runBlocking <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// coroutine scope</span>
-    launch <span class="token punctuation">{</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">200L</span><span class="token punctuation">)</span>
-        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Task from runBlocking"</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-
-    coroutineScope <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 创建一个作用域协程</span>
-        launch <span class="token punctuation">{</span>
-            <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">500L</span><span class="token punctuation">)</span>
-            <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Task from nested launch"</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100L</span><span class="token punctuation">)</span>
-        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Task from coroutine scope"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 这一行会在内嵌 launch 之前输出</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Coroutine scope is over"</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">// 这一行在内嵌 launch 执行完毕后输出</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> main = runBlocking &#123; // coroutine scope</span></span><br><span class="line">    launch &#123;</span><br><span class="line">        delay(<span class="number">200L</span>)</span><br><span class="line">        println(<span class="string">"Task from runBlocking"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    coroutineScope &#123;<span class="comment">// 创建一个作用域协程</span></span><br><span class="line">        launch &#123;</span><br><span class="line">            delay(<span class="number">500L</span>)</span><br><span class="line">            println(<span class="string">"Task from nested launch"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        delay(<span class="number">100L</span>)</span><br><span class="line">		println(<span class="string">"Task from coroutine scope"</span>) <span class="comment">// 这一行会在内嵌 launch 之前输出</span></span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"Coroutine scope is over"</span>)    <span class="comment">// 这一行在内嵌 launch 执行完毕后输出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="提取函数重构"><a href="#提取函数重构" class="headerlink" title="提取函数重构"></a>提取函数重构</h2><p>当将 <code>launch{}</code> 内部代码块提取到独立的函数体中时，需要 <code>suspend</code>  修饰新函数。这是一个挂起函数。</p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> runBlocking <span class="token punctuation">{</span>
-    launch <span class="token punctuation">{</span><span class="token function">doWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"hello "</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-
-suspend <span class="token keyword">fun</span> <span class="token function">doWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span>
-    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"world!"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h2 id="协程很轻量"><a href="#协程很轻量" class="headerlink" title="协程很轻量"></a>协程很轻量</h2><pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> main <span class="token operator">=</span> runBlocking <span class="token punctuation">{</span>
-    <span class="token function">repeat</span><span class="token punctuation">(</span>100_000<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        launch <span class="token punctuation">{</span>
-            <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">5000L</span><span class="token punctuation">)</span>
-            <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking &#123;</span><br><span class="line">    launch &#123;doWorld()&#125;</span><br><span class="line">    println(<span class="string">"hello "</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">doWorld</span><span class="params">()</span></span> &#123;</span><br><span class="line">    delay(<span class="number">1000L</span>)</span><br><span class="line">    println(<span class="string">"world!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="协程很轻量"><a href="#协程很轻量" class="headerlink" title="协程很轻量"></a>协程很轻量</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> main = runBlocking &#123;</span></span><br><span class="line">    repeat(<span class="number">100_000</span>) &#123;</span><br><span class="line">        launch &#123;</span><br><span class="line">            delay(<span class="number">5000L</span>)</span><br><span class="line">            println(<span class="string">"."</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>10w 个协程，每个都输出一个点，如果尝试使用线程，会发生内存不足的情况</p>
-<h2 id="全局协程像守护线程"><a href="#全局协程像守护线程" class="headerlink" title="全局协程像守护线程"></a>全局协程像守护线程</h2><pre class=" language-kotlin"><code class="language-kotlin">GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">{</span>
-    <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> i <span class="token operator">-></span> 
-        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"I`m sleeping <span class="token interpolation variable">$i</span> ..."</span><span class="token punctuation">)</span>
-                  <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">500L</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1399L</span><span class="token punctuation">)</span>
-</code></pre>
+<h2 id="全局协程像守护线程"><a href="#全局协程像守护线程" class="headerlink" title="全局协程像守护线程"></a>全局协程像守护线程</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch &#123;</span><br><span class="line">    repeat(<span class="number">1000</span>) &#123; i -&gt; </span><br><span class="line">		println(<span class="string">"I`m sleeping <span class="variable">$i</span> ..."</span>)</span><br><span class="line">                  delay(<span class="number">500L</span>)</span><br><span class="line">	    			&#125;</span><br><span class="line">&#125;</span><br><span class="line">delay(<span class="number">1399L</span>)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -714,8 +635,8 @@ suspend <span class="token keyword">fun</span> <span class="token function">doWo
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/29/Kotlin/协程/协程-异常处理/" rel="next" title="协程异常处理">
-                <i class="fa fa-chevron-left"></i> 协程异常处理
+              <a href="/2021/01/29/Kotlin/协程/协程-挂起/" rel="next" title="协程挂起">
+                <i class="fa fa-chevron-left"></i> 协程挂起
               </a>
             
           </div>
@@ -1444,7 +1365,7 @@ suspend <span class="token keyword">fun</span> <span class="token function">doWo
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

@@ -697,15 +697,7 @@
           <ul>
 <li>使用 Java自带的函数</li>
 </ul>
-<pre><code>public static boolean isNumeric (String str) {
-    for (int i = str.length(); --i &gt;=0) {
-          if (!Character.isDigit(str.charAt(i))) {
-                return false;
-          }
-    }
-    return true;
-}
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isNumeric (String str) &#123;</span><br><span class="line">    for (int i = str.length(); --i &gt;=0) &#123;</span><br><span class="line">          if (!Character.isDigit(str.charAt(i))) &#123;</span><br><span class="line">                return false;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2127,15 +2119,12 @@
         
           <ol>
 <li><p>查看PID</p>
-<pre><code>adb shell ps
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>查看日志</p>
-<pre><code>全部日志
-adb logcat
-
-按照 PID 筛选日志
-adb logcat | grep &lt;PID&gt;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">全部日志</span><br><span class="line">adb logcat</span><br><span class="line"></span><br><span class="line">按照 PID 筛选日志</span><br><span class="line">adb logcat | grep &lt;PID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2147,7 +2136,7 @@ adb logcat | grep &lt;PID&gt;
           <!--/noindex-->
         
       
-    </li></ol></div>
+    </div>
 
     
 
@@ -2856,7 +2845,7 @@ adb logcat | grep &lt;PID&gt;
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

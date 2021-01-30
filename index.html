@@ -1766,15 +1766,7 @@
 
       
         
-          <h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><pre><code class="kotlin">fun main() {
-    GlobalScope.launch {// 后台启动一个新的协程并继续， launch 协程的构建器
-        delay(1000L) // 非阻塞的等待1s，
-        println(&quot;World!&quot;) // 延时后，输出 
-    }
-    println(&quot;Hello&quot;) // 协程已再等待时，主线程还在继续
-    Thread.sleep(2000L) // 阻塞主线程 2s 保证， JVM 存活
-}
-</code></pre>
+          <h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    GlobalScope.launch &#123;<span class="comment">// 后台启动一个新的协程并继续， launch 协程的构建器</span></span><br><span class="line">        delay(<span class="number">1000L</span>) <span class="comment">// 非阻塞的等待1s，</span></span><br><span class="line">        println(<span class="string">"World!"</span>) <span class="comment">// 延时后，输出 </span></span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"Hello"</span>) <span class="comment">// 协程已再等待时，主线程还在继续</span></span><br><span class="line">    Thread.sleep(<span class="number">2000L</span>) <span class="comment">// 阻塞主线程 2s 保证， JVM 存活</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1787,180 +1779,6 @@
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-异常处理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白生产空间">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/01/29/Kotlin/协程/协程-异常处理/" class="post-title-link" itemprop="url">协程异常处理</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2021-01-30 00:16:07" itemprop="dateModified" datetime="2021-01-30T00:16:07+08:00">2021-01-30</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/01/29/Kotlin/协程/协程-异常处理/" class="leancloud_visitors" data-flag-title="协程异常处理">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ol>
-<li><p><strong>协程内部异常处理流程</strong>： </p>
-<p><code>launch</code> 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 <code>CoroutineExceptionHandler</code> 中，如果没有配置，会查找全局（JVM）上的<code>CoroutineExceptionHandler</code> 处理，</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/01/29/Kotlin/协程/协程-异常处理/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ol></div>
 
     
 
@@ -2138,6 +1956,180 @@
         
       
     </li></ul></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-异常处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白生产空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Kotlin/协程/协程-异常处理/" class="post-title-link" itemprop="url">协程异常处理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:16:07" itemprop="dateModified" datetime="2021-01-30T00:16:07+08:00">2021-01-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/01/29/Kotlin/协程/协程-异常处理/" class="leancloud_visitors" data-flag-title="协程异常处理">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
+<li><p><strong>协程内部异常处理流程</strong>： </p>
+<p><code>launch</code> 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 <code>CoroutineExceptionHandler</code> 中，如果没有配置，会查找全局（JVM）上的<code>CoroutineExceptionHandler</code> 处理，</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Kotlin/协程/协程-异常处理/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ol></div>
 
     
 
@@ -2846,7 +2838,7 @@
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
@@ -3044,7 +3036,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("数据结构");titles.push("算法");titles.push("Glide");titles.push("Markdown 数学公式编辑");titles.push("Typora 设置图床");titles.push("协程知识点");titles.push("协程调度器");titles.push("");titles.push("协程异常处理");titles.push("协程挂起");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("数据结构");titles.push("算法");titles.push("Glide");titles.push("Markdown 数学公式编辑");titles.push("Typora 设置图床");titles.push("协程知识点");titles.push("协程调度器");titles.push("");titles.push("协程挂起");titles.push("协程异常处理");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

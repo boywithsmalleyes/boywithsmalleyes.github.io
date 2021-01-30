@@ -555,20 +555,12 @@
 <li>已暂存：表示把已修改的文件房子啊下次提交时要保存的清单中，也就是执行了 git add 命令。</li>
 </ol>
 <h2 id="远程仓库与本地代码的配置"><a href="#远程仓库与本地代码的配置" class="headerlink" title="远程仓库与本地代码的配置"></a>远程仓库与本地代码的配置</h2><p>将本地已经有的项目上传到远程空仓库中</p>
-<pre class=" language-git"><code class="language-git">cd &lt;project path>
-git init
-git remote add origin &lt;远程仓库地址>
-git add .
-git commit -m <span class="token string">'提交日志'</span>
-git push -u origin master
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;project path&gt;</span><br><span class="line">git init</span><br><span class="line">git remote add origin &lt;远程仓库地址&gt;</span><br><span class="line">git add .</span><br><span class="line">git commit -m &apos;提交日志&apos;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 <h2 id="Git-基本配置"><a href="#Git-基本配置" class="headerlink" title="Git 基本配置"></a>Git 基本配置</h2><ol>
 <li>配置个人的用户名称和电子邮件地址，每次提交时，都会引用这两条信息，以用来说明是谁提交的更新。</li>
 </ol>
 <p>使用 <code>--global</code> 选项，更改的未用户主目录下的配置，如果想在某个特定的项目中使用其他的名称和邮件，只需要去掉 <code>--global</code> 选项重新配置，新的配置位于当前项目的 <code>.git/config</code> 文件中。</p>
-<pre class=" language-git"><code class="language-git"> git config --global user.name <span class="token string">''</span>yourname<span class="token string">''</span>
- git config --global user.email  yourname@gmail.com
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &apos;&apos;yourname&apos;&apos;</span><br><span class="line">git config --global user.email  yourname@gmail.com</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>基础命令</li>
 </ol>
@@ -620,15 +612,10 @@ git push -u origin master
 <p>git remote set-url &lt;仓库地址&gt;</p>
 </blockquote>
 <p>SSH 和 HTTPS 方式切换</p>
-<pre class=" language-git"><code class="language-git"><span class="token comment" spellcheck="true"># ssh to https</span>
-<span class="token command">$ git remote set-url origin https://github.com/USERNAME/repository.git</span>
-<span class="token comment" spellcheck="true"># https to ssh</span>
-<span class="token command">$ git remote set-url origin git@github.com:USERNAME/repository.git</span>
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ssh to https</span><br><span class="line">$ git remote set-url origin https://github.com/USERNAME/repository.git</span><br><span class="line"># https to ssh</span><br><span class="line">$ git remote set-url origin git@github.com:USERNAME/repository.git</span><br></pre></td></tr></table></figure>
 <p>可以使用 <code>git remote -v</code> 来检查当前仓库地址</p>
-<pre><code>&gt; origin git@github.com:username/repository.git (fetch)
-&gt; origin git@github.com:username/repository.git (push)
-</code></pre><p>SSH 和 HTTPS 的区别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; origin git@github.com:username/repository.git (fetch)</span><br><span class="line">&gt; origin git@github.com:username/repository.git (push)</span><br></pre></td></tr></table></figure>
+<p>SSH 和 HTTPS 的区别：</p>
 <p>使用 SSH 方式需要在本地配置一个密钥，具体可参见<a href="https://xiaoman.ren/2019/04/17/%E5%A4%9A%E4%B8%AA-ssh-%E5%85%AC%E9%92%A5%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%88%B0%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0/">多个 SSH 公钥提交代码到不同平台</a>中介绍；<br>而使用 HTTPS 的方式操作简单，弊端是需要经常输入密码。</p>
 <blockquote>
 <p>git branch</p>
@@ -669,18 +656,11 @@ git push -u origin master
 <blockquote>
 <p>git remote 用来管理， fork 的项目，与主项目的更新操作</p>
 </blockquote>
-<pre><code>git remote -v
-git remote add upstream git@github.com:XXX/XXX.git
-git fetch upstream
-git merge upstream/master
-git push
-</code></pre><h2 id="使用中的一些技巧"><a href="#使用中的一些技巧" class="headerlink" title="使用中的一些技巧"></a>使用中的一些技巧</h2><p><strong>命名别名</strong><br>复杂并超长的命令，可以通过起别名的方式方便在终端中书协</p>
-<pre><code>git config --global alias.ci commit
-git config --global alias.ck checkout
-git config --global alias.st status
-</code></pre><p>然后就可以很愉快的使用git命令了。</p>
-<pre><code>git st
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br><span class="line">git remote add upstream git@github.com:XXX/XXX.git</span><br><span class="line">git fetch upstream</span><br><span class="line">git merge upstream/master</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h2 id="使用中的一些技巧"><a href="#使用中的一些技巧" class="headerlink" title="使用中的一些技巧"></a>使用中的一些技巧</h2><p><strong>命名别名</strong><br>复杂并超长的命令，可以通过起别名的方式方便在终端中书协</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.ci commit</span><br><span class="line">git config --global alias.ck checkout</span><br><span class="line">git config --global alias.st status</span><br></pre></td></tr></table></figure>
+<p>然后就可以很愉快的使用git命令了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git st</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -1499,7 +1479,7 @@ git config --global alias.st status
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

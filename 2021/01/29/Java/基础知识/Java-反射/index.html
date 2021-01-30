@@ -535,76 +535,17 @@
 <li>通过 xml 或者注解，实现依赖注入（DI) ，注解处理，动态代理，单元测试等功能。如 Rotifit、 Spring 、Dagger </li>
 </ol>
 <p><strong>Java Class 的文件结构</strong></p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    u4 magic<span class="token punctuation">;</span>
-    u2 minor_version<span class="token punctuation">;</span>
-    u2 major_version<span class="token punctuation">;</span>
-    u2 constant_pool_count<span class="token punctuation">;</span>
-    cp_info constant_pool<span class="token punctuation">[</span>constant_pool_count <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
-    u2 access_flags<span class="token punctuation">;</span>
-    u2 this_class<span class="token punctuation">;</span>
-    u2 super_class<span class="token punctuation">;</span>
-    u2 interfaces_count<span class="token punctuation">;</span>
-    u2 interfaces<span class="token punctuation">[</span>interfaces_count<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 重要</span>
-    u2 fields_count<span class="token punctuation">;</span>
-    field_info fields<span class="token punctuation">[</span>field_count<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 重要</span>
-    u2 methods_count<span class="token punctuation">;</span>
-    method_info methods<span class="token punctuation">[</span>methods_count<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    u2 attributes_count<span class="token punctuation">;</span>
-    attribute_info attributes<span class="token punctuation">[</span>attributes_count<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>ClassBlock
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    u4 magic;</span><br><span class="line">    u2 minor_version;</span><br><span class="line">    u2 major_version;</span><br><span class="line">    u2 constant_pool_count;</span><br><span class="line">    cp_info constant_pool[constant_pool_count - <span class="number">1</span> ];</span><br><span class="line">    u2 access_flags;</span><br><span class="line">    u2 this_class;</span><br><span class="line">    u2 super_class;</span><br><span class="line">    u2 interfaces_count;</span><br><span class="line">    u2 interfaces[interfaces_count];</span><br><span class="line">    <span class="comment">// 重要</span></span><br><span class="line">    u2 fields_count;</span><br><span class="line">    field_info fields[field_count];</span><br><span class="line">    <span class="comment">// 重要</span></span><br><span class="line">    u2 methods_count;</span><br><span class="line">    method_info methods[methods_count];</span><br><span class="line">    u2 attributes_count;</span><br><span class="line">    attribute_info attributes[attributes_count];</span><br><span class="line">&#125;ClassBlock</span><br></pre></td></tr></table></figure>
 <p><strong>field 字段结构</strong></p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> fieldblock <span class="token punctuation">{</span>
-    <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span>
-    <span class="token keyword">char</span> <span class="token operator">*</span>type<span class="token punctuation">;</span>
-    <span class="token keyword">char</span> <span class="token operator">*</span>signature<span class="token punctuation">;</span>
-    u2 access_flag<span class="token punctuation">;</span>
-    u2 constant<span class="token punctuation">;</span>
-    <span class="token keyword">union</span> <span class="token punctuation">{</span>
-        <span class="token keyword">union</span> <span class="token punctuation">{</span>
-            <span class="token keyword">char</span> data<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-            uintptr_t u<span class="token punctuation">;</span>
-            <span class="token keyword">long</span> <span class="token keyword">long</span> l<span class="token punctuation">;</span>
-            <span class="token keyword">void</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
-            <span class="token keyword">int</span> i<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> static_value<span class="token punctuation">;</span>
-        u4 offset<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>u<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>FieldBlock<span class="token punctuation">;</span>
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">fieldblock</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span> *name;</span><br><span class="line">    <span class="keyword">char</span> *type;</span><br><span class="line">    <span class="keyword">char</span> *signature;</span><br><span class="line">    u2 access_flag;</span><br><span class="line">    u2 constant;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">union</span> &#123;</span><br><span class="line">            <span class="keyword">char</span> data[<span class="number">8</span>];</span><br><span class="line">            <span class="keyword">uintptr_t</span> u;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> l;</span><br><span class="line">            <span class="keyword">void</span> *p;</span><br><span class="line">            <span class="keyword">int</span> i;</span><br><span class="line">        &#125; static_value;</span><br><span class="line">        u4 offset;</span><br><span class="line">    &#125;u;</span><br><span class="line">&#125;FieldBlock;</span><br></pre></td></tr></table></figure>
 <p><strong>method</strong> </p>
 <p>提供了 descriptor, access_flags, Code 等索引，并指向常量池；</p>
-<pre class=" language-c"><code class="language-c">method_info <span class="token punctuation">{</span>
-    u2 access_flags<span class="token punctuation">;</span>
-    u2 name_index<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// the paramters that the method takes and the value that it return</span>
-    u2 descriptor_index<span class="token punctuation">;</span>
-    u2 attributes_count<span class="token punctuation">;</span>
-    attribute_info attributes<span class="token punctuation">[</span>attributes_count<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">method_info &#123;</span><br><span class="line">    u2 access_flags;</span><br><span class="line">    u2 name_index;</span><br><span class="line">    <span class="comment">// the paramters that the method takes and the value that it return</span></span><br><span class="line">    u2 descriptor_index;</span><br><span class="line">    u2 attributes_count;</span><br><span class="line">    attribute_info attributes[attributes_count];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="类的加载顺序"><a href="#类的加载顺序" class="headerlink" title="类的加载顺序"></a>类的加载顺序</h3><p><strong>ClassLoader：</strong></p>
 <p> 用于加载、连接、缓存 Class，可以通过纯  Java 或者 native 进行实现。在 JVM 的 native 中， ClassLoader 内部维护着一个线程安全的 <code>HashTable&lt;String, Class&gt;</code> 用于实现堆 Class 字节流节码后的缓存，如果 <code>HashTable</code> 中有缓存，则直接返回缓存；反之，在获得类名后，通过读取文件，网络上的 class 字节流反序列化为 JVM 中的 native 的 C 结构体，接着分配 ( malloc ) 内存，并将指针缓存在 HashTable 中。</p>
 <p><strong>初始化过程</strong></p>
 <p>当 ClassLoader 加载 Class 结束后，将进行 Class 的初始化工作，主要执行 <code>clinit()&gt;</code> 中的静态块与静态属性（取决于编码顺序）</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Smaple</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// step 1</span>
-    <span class="token keyword">static</span> <span class="token keyword">int</span> b dddddddddddddddddddddddddddddddddddddddddddd<span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// step 2</span>
-    <span class="token keyword">static</span>  <span class="token punctuation">{</span>
-       b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span> <span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Sample s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sample</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// b = 3</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Smaple</span> </span>&#123;</span><br><span class="line">    <span class="comment">// step 1</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> b dddddddddddddddddddddddddddddddddddddddddddd= <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// step 2</span></span><br><span class="line">    <span class="keyword">static</span>  &#123;</span><br><span class="line">       b = <span class="number">3</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Sample s = <span class="keyword">new</span> Sample();</span><br><span class="line">        System.out.println(s.b);</span><br><span class="line">        <span class="comment">// b = 3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Class.forName</strong></p>
 <p><code>Class.forName()</code> 可以通过报名寻找到 Class 对象，比如： <code>Class.forName(&quot;java.lang.String&quot;)</code></p>
 <p><strong>getDeclaredFields</strong></p>
@@ -1460,7 +1401,7 @@
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

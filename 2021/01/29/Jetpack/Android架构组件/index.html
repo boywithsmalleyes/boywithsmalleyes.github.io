@@ -563,40 +563,15 @@
 <li><code>UserProfileViewModel</code> : 准备数据以便再 <code>UserProfileFragment</code> 中查看并对用户互动做出响应的类</li>
 </ul>
 <p><strong>UserProfileViewModel</strong></p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> UserProfileViewModel<span class="token operator">:</span> <span class="token function">ViewModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">val</span> userId<span class="token operator">:</span>String <span class="token operator">=</span> <span class="token function">TODO</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">val</span> user<span class="token operator">:</span> User <span class="token operator">=</span> <span class="token function">TODO</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserProfileViewModel</span>: <span class="type">ViewModel</span></span>()&#123;</span><br><span class="line">	<span class="keyword">val</span> userId:String = TODO()</span><br><span class="line">    <span class="keyword">val</span> user: User = TODO()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>UserProfileFragment</strong></p>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> UserProfileFragment<span class="token operator">:</span> <span class="token function">Fragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 使用 ViewModels() 拓展函数，以及 "androidx.fragment:fragment-ktx:lastest-version" 在 模块下的 build.gradle </span>
-    <span class="token keyword">private</span> <span class="token keyword">val</span> viewModel<span class="token operator">:</span> UserProfileViewModel <span class="token keyword">by</span> <span class="token function">viewModels</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreateView</span><span class="token punctuation">(</span>
-    inflater<span class="token operator">:</span> LayoutInflater<span class="token punctuation">,</span>
-    container<span class="token operator">:</span> ViewGroup<span class="token operator">?</span><span class="token punctuation">,</span>
-    savedInstanceState<span class="token operator">:</span> Bundle<span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">:</span> View <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> inflater<span class="token punctuation">.</span><span class="token function">infalte</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>main_fragment<span class="token punctuation">,</span> container<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserProfileFragment</span>: <span class="type">Fragment</span></span>()&#123;</span><br><span class="line">    <span class="comment">// 使用 ViewModels() 拓展函数，以及 "androidx.fragment:fragment-ktx:lastest-version" 在 模块下的 build.gradle </span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> viewModel: UserProfileViewModel <span class="keyword">by</span> viewModels()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreateView</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    inflater: <span class="type">LayoutInflater</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    container: <span class="type">ViewGroup</span>?,</span></span></span><br><span class="line"><span class="function"><span class="params">    savedInstanceState: <span class="type">Bundle</span>?)</span></span>: View &#123;</span><br><span class="line">        <span class="keyword">return</span> inflater.infalte(R.layout.main_fragment, container, <span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在，由了这些代码块，需要将他们串联起来，毕竟在 <code>UserProfileViewModel</code> 类中设置 <code>user</code> 字段时，我们需要一种方法来通知界面</p>
 <p>要获取 <code>user</code> 我们的 <code>ViewModel</code> 需要访问 Fragment 参数。我们可以通过 fragment 传递，或者更好的办法时使用 <code>SaveState</code> 模块，我们可以让 View Model 直接读取参数</p>
 <blockquote>
 <p>SavedStateHandle 允许 ViewModel 访问相关 Fragment 或 Activity 的已保存状态和参数</p>
 </blockquote>
-<pre class=" language-kotlin"><code class="language-kotlin"><span class="token comment" spellcheck="true">// UserProfileViewModel</span>
-<span class="token keyword">class</span> <span class="token function">UserProfileViewModel</span> <span class="token punctuation">(</span>savedStatedHandle<span class="token operator">:</span> SavedStateHandle<span class="token punctuation">)</span> <span class="token operator">:</span><span class="token function">ViewModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">val</span> userId<span class="token operator">:</span>String <span class="token operator">=</span> savedStateHandle<span class="token punctuation">[</span><span class="token string">"uid"</span><span class="token punctuation">]</span> <span class="token operator">?:</span> <span class="token keyword">throw</span> <span class="token function">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"missing user id"</span><span class="token punctuation">)</span>
-    <span class="token keyword">val</span> user<span class="token operator">:</span> User <span class="token operator">=</span> <span class="token function">TODO</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// UserProfileFragment</span>
-<span class="token keyword">private</span> <span class="token keyword">val</span> viewModel<span class="token operator">:</span> UserProfileViewModel <span class="token keyword">by</span> <span class="token function">viewModels</span><span class="token punctuation">(</span>
-    factoryProducer <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token function">SavedStateVMFactory</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-<span class="token punctuation">)</span>
-</code></pre>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UserProfileViewModel</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserProfileViewModel</span> </span>(savedStatedHandle: SavedStateHandle) :ViewModel()&#123;</span><br><span class="line">    <span class="keyword">val</span> userId:String = savedStateHandle[<span class="string">"uid"</span>] ?: <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"missing user id"</span>)</span><br><span class="line">    <span class="keyword">val</span> user: User = TODO()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// UserProfileFragment</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> viewModel: UserProfileViewModel <span class="keyword">by</span> viewModels(</span><br><span class="line">    factoryProducer = &#123;SavedStateVMFactory(<span class="keyword">this</span>)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1416,7 +1391,7 @@
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

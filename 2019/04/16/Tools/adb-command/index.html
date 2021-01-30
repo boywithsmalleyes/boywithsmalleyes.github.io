@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="查看PID adb shell ps  查看日志 全部日志 adb logcat  按照 PID 筛选日志 adb logcat | grep &amp;lt;PID&amp;gt;">
+  <meta name="description" content="查看PID 1adb shell ps  查看日志 12345全部日志adb logcat按照 PID 筛选日志adb logcat | grep &amp;lt;PID&amp;gt;">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Adb Command">
 <meta property="og:url" content="http://xiaoman.ren/2019/04/16/Tools/adb-command/index.html">
 <meta property="og:site_name" content="茶白生产空间">
-<meta property="og:description" content="查看PID adb shell ps  查看日志 全部日志 adb logcat  按照 PID 筛选日志 adb logcat | grep &amp;lt;PID&amp;gt;">
+<meta property="og:description" content="查看PID 1adb shell ps  查看日志 12345全部日志adb logcat按照 PID 筛选日志adb logcat | grep &amp;lt;PID&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-01-29T16:04:55.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Adb Command">
-<meta name="twitter:description" content="查看PID adb shell ps  查看日志 全部日志 adb logcat  按照 PID 筛选日志 adb logcat | grep &amp;lt;PID&amp;gt;">
+<meta name="twitter:description" content="查看PID 1adb shell ps  查看日志 12345全部日志adb logcat按照 PID 筛选日志adb logcat | grep &amp;lt;PID&amp;gt;">
 
 
 
@@ -528,103 +528,85 @@
       
         <ol>
 <li><p>查看PID</p>
-<pre><code>adb shell ps
-</code></pre></li>
-<li><p>查看日志</p>
-<pre><code>全部日志
-adb logcat
-
-按照 PID 筛选日志
-adb logcat | grep &lt;PID&gt;
-</code></pre><a id="more"></a></li>
-<li><p>查询链接设备</p>
-<pre><code>adb devices
-</code></pre><!--more-->
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>查看日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">全部日志</span><br><span class="line">adb logcat</span><br><span class="line"></span><br><span class="line">按照 PID 筛选日志</span><br><span class="line">adb logcat | grep &lt;PID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol start="3">
+<li><p>查询链接设备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<!--more-->
+<ol start="4">
 <li><p>重启机器</p>
-<pre><code>adb reboot
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>杀死进程服务</p>
-<pre><code>adb kill-server
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb kill-server</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>重启进程服务</p>
-<pre><code>adb start-server
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb start-server</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>获取机器 Mac 地址</p>
-<pre><code>adb shell cat /sys/class/net/wlan0/address
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /sys/class/net/wlan0/address</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>安装 APK</p>
-<pre><code>普通安装
-adb install &lt;file path&gt;
-
-保留数据和缓存文件
-adb install -r &lt;file path&gt;
-
-安装到 SD 卡上
-adb install -s &lt;file path&gt;
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">普通安装</span><br><span class="line">adb install &lt;file path&gt;</span><br><span class="line"></span><br><span class="line">保留数据和缓存文件</span><br><span class="line">adb install -r &lt;file path&gt;</span><br><span class="line"></span><br><span class="line">安装到 SD 卡上</span><br><span class="line">adb install -s &lt;file path&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>卸载 APK</p>
-<pre><code>普通卸载
-adb uninstall &lt;package name&gt;
-
-保留数据和缓存文件
-adb uninstall -k &lt;package name&gt;
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">普通卸载</span><br><span class="line">adb uninstall &lt;package name&gt;</span><br><span class="line"></span><br><span class="line">保留数据和缓存文件</span><br><span class="line">adb uninstall -k &lt;package name&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>启动应用</p>
-<pre><code>adb shell am start -n &lt;package name&gt;/.&lt;activity_class_name&gt;
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -n &lt;package name&gt;/.&lt;activity_class_name&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>查看 CPU 占用率</p>
-<pre><code>adb shell top
-
-查看内存占用前 6 的 app
-adb shell top -m 6
-
-刷新一次内存
-adb shell top -n 1
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb shell top</span><br><span class="line"></span><br><span class="line">查看内存占用前 6 的 app</span><br><span class="line">adb shell top -m 6</span><br><span class="line"></span><br><span class="line">刷新一次内存</span><br><span class="line">adb shell top -n 1</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>杀死进程</p>
-<pre><code>adb shell kill &lt;pid&gt;
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell kill &lt;pid&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>将 System 分区重新挂在为可读写分区</p>
-<pre><code>adb remount
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb remount</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>从本地复制文件到设备</p>
-<pre><code>adb push &lt;local&gt; &lt;remote&gt;
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push &lt;local&gt; &lt;remote&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>从设备复制文件到本地</p>
-<pre><code>adb pull &lt;remote&gt; &lt;local&gt;
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull &lt;remote&gt; &lt;local&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>查看 WiFi 密码</p>
-<pre><code>adb shell cat /data/misc/wifi/*.conf
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /data/misc/wifi/*.conf</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>查看 bug 报告</p>
-<pre><code>adb bugreport
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb bugreport</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>跑 monkey</p>
-<pre><code>adb shell monkey -v -p your.package.name 500
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell monkey -v -p your.package.name 500</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>截图</p>
-<pre><code>adb shell screencap -p /sdcard/screenshot.png
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screencap -p /sdcard/screenshot.png</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>录屏</p>
-<pre><code>adb shell screenrecord /sdcard/demo.mp4
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screenrecord /sdcard/demo.mp4</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>查看安装列表</p>
-<pre><code>adb shell pm list packages
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="11">
 <li><p>安装证书</p>
-<pre><code>adb shell am start -n com.android.certinstaller/.CertInstallerMain -a android.intent.action.VIEW -t application/x-x509-ca-cert file:///sdcard/cacert.cer
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -n com.android.certinstaller/.CertInstallerMain -a android.intent.action.VIEW -t application/x-x509-ca-cert file:///sdcard/cacert.cer</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>查看内存占用</p>
-<pre><code>adb shell dumpsys meminfo &lt;package&gt; -d
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys meminfo &lt;package&gt; -d</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>查询栈信息</p>
-<pre><code>adb shell dumpsys activity
-// 获取自己应用
-adb shell dumpsys activity | grep &lt;package&gt;
-// 获取处于栈顶的 activity
-adb shell dumpsys activity | grep mFocusedActivity
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys activity</span><br><span class="line">// 获取自己应用</span><br><span class="line">adb shell dumpsys activity | grep &lt;package&gt;</span><br><span class="line">// 获取处于栈顶的 activity</span><br><span class="line">adb shell dumpsys activity | grep mFocusedActivity</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 
       
@@ -1415,7 +1397,7 @@ adb shell dumpsys activity | grep mFocusedActivity
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);

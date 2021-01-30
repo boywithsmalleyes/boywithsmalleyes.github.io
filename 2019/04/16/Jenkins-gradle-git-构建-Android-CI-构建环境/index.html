@@ -567,11 +567,8 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 6. Tomcat
 7. Jenkins
 </code></pre><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Java-环境-安装"><a href="#Java-环境-安装" class="headerlink" title="Java 环境 安装"></a>Java 环境 安装</h3><p>Java JDK, Android SDK, Gradle 可从<span class="exturl" data-url="aHR0cDovL2FuZHJvaWRkZXZ0b29scy5jbg==" title="http://androiddevtools.cn">AndroidDevTools<i class="fa fa-external-link"></i></span>处下载获取。</p>
-<h3 id="git-安装"><a href="#git-安装" class="headerlink" title="git 安装"></a>git 安装</h3><p>git 可通过终端进行安装</p>
-<pre><code>sudo add-apt-repository ppa:git-core/ppa
-sudo apt-get update
-sudo apt-get install git
-</code></pre><p>安装完成之后通过<code>git --version</code> 检查是否成功</p>
+<h3 id="git-安装"><a href="#git-安装" class="headerlink" title="git 安装"></a>git 安装</h3><p>git 可通过终端进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:git-core/ppa</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure></p>
+<p>安装完成之后通过<code>git --version</code> 检查是否成功</p>
 <p>安装后 git 存储在 <code>/usr/bin/git</code>下</p>
 <h3 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h3><p>通过 Jenkins <span class="exturl" data-url="aHR0cHM6Ly9qZW5raW5zLmlvL2luZGV4Lmh0bWw=" title="https://jenkins.io/index.html">官方网站<i class="fa fa-external-link"></i></span>下载最新Jenkins.war包</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-d2654c0a1383423a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Jenkins 下载"></p>
@@ -604,80 +601,10 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-2390d86256678c54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建CI工程"></p>
 <h3 id="参数化构建"><a href="#参数化构建" class="headerlink" title="参数化构建"></a>参数化构建</h3><p>通常我们在使用 Android-studio 进行打包时以及签名时，都会用到build.gradle并在其中配置相关属性。再此，我们可以用Jenkins，配置我们的项目参数，例如发布的版本号，构建时间， 上传路径，发布地址，签名打包等等。</p>
 <p>在这里我们先看看 build.gradle 中的构建信息:</p>
-<p>在项目的 moudle 下 build.gradle 文件</p>
-<pre><code>def getDate () {
-    def date = new Date()
-    def formattedDate = date.format(&quot;yyyyMMddHHmm&quot;)
-    return formattedDate
-}
-
-def verName = APP_VERSION
-def verCode = 14
-
-android {
-    ....
-    signingConfigs {
-        release {
-          keyAlias &#39;&#39;
-          keyPassword &#39;&#39;
-          storeFile file (&#39;&#39;)
-          storePassword &#39;&#39;
-       }   
-   }
-
-  defaultConfig {
-      applicationId &quot;cn.zhuangbudong.example&quot;
-      minSdkVersion 18
-      targetSdkVersion 25
-      multiDexEnabled true
-      versionCode verCode
-      versionName verName
-
-      resValues(&quot;string&quot;, &#39;app_version&#39;, verName)
-  }
-  buildTypes {
-    release {
-      signingConfig signingConfigs.release
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), &#39;proguard-rules.pro&#39;
-    }
-
-   lintOptions {
-    abortOnError false
-   }
-
-   dexOptions {
-      javaMaxHeapSize &#39;2g&#39;
-   }
-
-applicationVariants.all { variant -&gt;
-    variant.outputs.each { output -&gt;
-        def newName
-        def timeNow
-        def oldFile = output.outputFile
-        def outDirectory = oldFile.parent
-        if (&quot;true&quot;.equals(IS_JENKINS)) { 
-            timeNow = JENKINS_TIME
-            outDirectory = &quot;/media/nexd/work/android/package/release/&quot;
-            newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; 
-       } else {
-            timeNow = getDate()
-            if (variant.buildType.name.equals(&#39;debug&#39;)) { 
-               newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_debug.apk&quot;  
-          } else { 
-               newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; 
-           } 
-       } 
-       output.outputFile = new File(outDirectory, newName)
-    }}
-
-  }
-}
-</code></pre><p>gradle.properties:</p>
-<pre><code>APP_VERSION=2.0.2
-IS_JENKINS=false
-JENKINS_TIME=&#39;&#39;
-</code></pre><p>在工程中添加以上代码，并在Jenkins中为这些参数赋值。</p>
+<p>在项目的 moudle 下 build.gradle 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">def getDate () &#123;</span><br><span class="line">    def date = new Date()</span><br><span class="line">    def formattedDate = date.format(&quot;yyyyMMddHHmm&quot;)</span><br><span class="line">    return formattedDate</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">def verName = APP_VERSION</span><br><span class="line">def verCode = 14</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    ....</span><br><span class="line">    signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">          keyAlias &apos;&apos;</span><br><span class="line">          keyPassword &apos;&apos;</span><br><span class="line">          storeFile file (&apos;&apos;)</span><br><span class="line">          storePassword &apos;&apos;</span><br><span class="line">       &#125;   </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  defaultConfig &#123;</span><br><span class="line">      applicationId &quot;cn.zhuangbudong.example&quot;</span><br><span class="line">      minSdkVersion 18</span><br><span class="line">      targetSdkVersion 25</span><br><span class="line">      multiDexEnabled true</span><br><span class="line">      versionCode verCode</span><br><span class="line">      versionName verName</span><br><span class="line"></span><br><span class="line">      resValues(&quot;string&quot;, &apos;app_version&apos;, verName)</span><br><span class="line">  &#125;</span><br><span class="line">  buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">      signingConfig signingConfigs.release</span><br><span class="line">      minifyEnabled false</span><br><span class="line">      proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   lintOptions &#123;</span><br><span class="line">    abortOnError false</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   dexOptions &#123;</span><br><span class="line">      javaMaxHeapSize &apos;2g&apos;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">applicationVariants.all &#123; variant -&gt;</span><br><span class="line">    variant.outputs.each &#123; output -&gt;</span><br><span class="line">        def newName</span><br><span class="line">        def timeNow</span><br><span class="line">        def oldFile = output.outputFile</span><br><span class="line">        def outDirectory = oldFile.parent</span><br><span class="line">        if (&quot;true&quot;.equals(IS_JENKINS)) &#123; </span><br><span class="line">            timeNow = JENKINS_TIME</span><br><span class="line">            outDirectory = &quot;/media/nexd/work/android/package/release/&quot;</span><br><span class="line">            newName = &apos;zhuangbudong_example_&apos; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; </span><br><span class="line">       &#125; else &#123;</span><br><span class="line">            timeNow = getDate()</span><br><span class="line">            if (variant.buildType.name.equals(&apos;debug&apos;)) &#123; </span><br><span class="line">               newName = &apos;zhuangbudong_example_&apos; + verName + &quot;_debug.apk&quot;  </span><br><span class="line">          &#125; else &#123; </span><br><span class="line">               newName = &apos;zhuangbudong_example_&apos; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; </span><br><span class="line">           &#125; </span><br><span class="line">       &#125; </span><br><span class="line">       output.outputFile = new File(outDirectory, newName)</span><br><span class="line">    &#125;&#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>gradle.properties:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">APP_VERSION=2.0.2</span><br><span class="line">IS_JENKINS=false</span><br><span class="line">JENKINS_TIME=&apos;&apos;</span><br></pre></td></tr></table></figure>
+<p>在工程中添加以上代码，并在Jenkins中为这些参数赋值。</p>
 <p>下面介绍 Jenkins 参数配置</p>
 <p>勾选参数化构建过程，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1550996-20f69e63a527814c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="参数化构建"></p>
 <p>按照下图，添加相关类型的参数，此处注意，Jenkins 配置的参数名要和在android-studio中配置的参数名保持一致</p>
@@ -698,20 +625,8 @@ JENKINS_TIME=&#39;&#39;
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-4e4e6e139fc1e856.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构建"></p>
 <h3 id="构建后操作"><a href="#构建后操作" class="headerlink" title="构建后操作"></a>构建后操作</h3><p>当项目构建完成后，我们可以通过邮件的方式将产生的Apk文件，以及测试报告，构建日志等信息，发送出来 如下图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-63b6bcb7b2dfd551.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="邮件发送"></p>
-<pre><code>&lt;hr/&gt;
-(本邮件是程序自动下发的，请勿回复！)&lt;br/&gt;&lt;hr/&gt;
-项目名称：${PROJECT_NAME}&lt;br/&gt;&lt;hr/&gt;
-构建编号：${BUILD_NUMBER}&lt;br/&gt;&lt;hr/&gt;
-构建状态：${BUILD_STATUS}&lt;br/&gt;&lt;hr/&gt;
-触发原因：${CAUSE}&lt;br/&gt;&lt;hr/&gt;
-测试报告：&lt;a href=&quot;${PROJECT_URL}ws/${PROJECT_NAME}app/build/reports/tests/release/index.html&quot;&gt;${PROJECT_URL}ws/${PROJECT_NAME}app/build/reports/tests/release/index.html&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
-构建日志地址：&lt;a href=&quot;${BUILD_URL}console&quot;&gt;${BUILD_URL}console/&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
-构建地址：&lt;a href=&quot;${PROJECT_URL}&quot;&gt;${PROJECT_URL}&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
-构建报告：&lt;a href=&quot;${BUILD_URL}testReport&quot;&gt;${BUILD_URL}testReport&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
-变更集:${JELLY_SCRIPT,template=&quot;html&quot;}&lt;br/&gt;
-
-&lt;hr/&gt;
-</code></pre><h2 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h2><p>回到 Jenkins 首页，点击创建的项目，点击 build with parameters:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;hr/&gt;</span><br><span class="line">(本邮件是程序自动下发的，请勿回复！)&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">项目名称：$&#123;PROJECT_NAME&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建编号：$&#123;BUILD_NUMBER&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建状态：$&#123;BUILD_STATUS&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">触发原因：$&#123;CAUSE&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">测试报告：&lt;a href=&quot;$&#123;PROJECT_URL&#125;ws/$&#123;PROJECT_NAME&#125;app/build/reports/tests/release/index.html&quot;&gt;$&#123;PROJECT_URL&#125;ws/$&#123;PROJECT_NAME&#125;app/build/reports/tests/release/index.html&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建日志地址：&lt;a href=&quot;$&#123;BUILD_URL&#125;console&quot;&gt;$&#123;BUILD_URL&#125;console/&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建地址：&lt;a href=&quot;$&#123;PROJECT_URL&#125;&quot;&gt;$&#123;PROJECT_URL&#125;&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建报告：&lt;a href=&quot;$&#123;BUILD_URL&#125;testReport&quot;&gt;$&#123;BUILD_URL&#125;testReport&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">变更集:$&#123;JELLY_SCRIPT,template=&quot;html&quot;&#125;&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr/&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h2><p>回到 Jenkins 首页，点击创建的项目，点击 build with parameters:</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-58ecc4965ab845ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Build with Parameters"></p>
 <p>点击开始构建，启动 Jenkins 构建任务。</p>
 <p>构建成功时，显示为蓝色， 失败为红色，如下图：</p>
@@ -1537,7 +1452,7 @@ JENKINS_TIME=&#39;&#39;
             }
           }
 
-          if ('auto' === 'manual') {
+          if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
