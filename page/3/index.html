@@ -1477,6 +1477,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/适配/Android 版本适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白生产空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/Android 基础/适配/Android 版本适配/" class="post-title-link" itemprop="url">Android 版本适配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/01/29/Android 基础/适配/Android 版本适配/" class="leancloud_visitors" data-flag-title="Android 版本适配">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h3><p><code>targetSdkVersion</code>： 目标 SDK 版本，也就是我们最高适配的 SDK 版本</p>
+<p>不同版本的 SDK ，为我们提供了不同的 API 接口使用，丰富以及方便开发者。</p>
+<p>旧的接口行为发生了变化，为了保证 APK 的行为还是和以前兼容，在源码中多了很多类似于 <code>ctx.getApplicatioinInfo().targetSdkVersion()</code> 的判断，因此只要 APK 的 <code>targetSdkVersion</code> 不变，即使 APK 安装在新的 Android 系统上，其行为也不会发生变化。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/01/29/Android 基础/适配/Android 版本适配/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/适配/Android 屏幕适配/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1724,164 +1882,6 @@
 <h3 id="今日头条适配方案"><a href="#今日头条适配方案" class="headerlink" title="今日头条适配方案"></a>今日头条适配方案</h3><p><code>px 值 = dp 值 * metrics.density</code>  这里的 <code>density</code> 是手机的屏幕密度，由系统提供。不同的手机的 <code>density</code> 不同，所以我们不能直接使用系统的。</p>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/01/29/Android 基础/适配/Android 版本适配/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白生产空间">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/01/29/Android 基础/适配/Android 版本适配/" class="post-title-link" itemprop="url">Android 版本适配</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-01-29 23:54:28" itemprop="dateCreated datePublished" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/01/29/Android 基础/适配/Android 版本适配/" class="leancloud_visitors" data-flag-title="Android 版本适配">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h3><p><code>targetSdkVersion</code>： 目标 SDK 版本，也就是我们最高适配的 SDK 版本</p>
-<p>不同版本的 SDK ，为我们提供了不同的 API 接口使用，丰富以及方便开发者。</p>
-<p>旧的接口行为发生了变化，为了保证 APK 的行为还是和以前兼容，在源码中多了很多类似于 <code>ctx.getApplicatioinInfo().targetSdkVersion()</code> 的判断，因此只要 APK 的 <code>targetSdkVersion</code> 不变，即使 APK 安装在新的 Android 系统上，其行为也不会发生变化。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/01/29/Android 基础/适配/Android 版本适配/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2301,7 +2301,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2320,7 +2320,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -3123,7 +3125,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Java 泛型");titles.push("Java 注解");titles.push("Java 枚举");titles.push("Java 反射");titles.push("Java 异常");titles.push("Java 内存管理");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("自定义 ViewGroup");titles.push("Handler 消息机制");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Java 泛型");titles.push("Java 注解");titles.push("Java 枚举");titles.push("Java 反射");titles.push("Java 异常");titles.push("Java 内存管理");titles.push("Android 版本适配");titles.push("Android 屏幕适配");titles.push("自定义 ViewGroup");titles.push("Handler 消息机制");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

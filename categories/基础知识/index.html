@@ -454,6 +454,32 @@
 
 
       
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2021/01/29/Java/基础知识/Object 类/" itemprop="url">
+            
+              <span itemprop="name">Object 类</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2021-01-29T23:54:28+08:00" content="2021-01-29">
+          01-29
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
     </div>
 
   </div>
@@ -504,7 +530,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -523,7 +549,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -1326,7 +1354,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("数据结构");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("数据结构");titles.push("Object 类");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
