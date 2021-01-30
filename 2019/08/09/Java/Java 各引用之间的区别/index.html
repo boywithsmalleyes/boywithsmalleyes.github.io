@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.1.0',
     sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -123,7 +123,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -145,7 +145,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Reference">
 <meta property="og:url" content="http://xiaoman.ren/2019/08/09/Java/Java 各引用之间的区别/index.html">
-<meta property="og:site_name" content="茶白">
+<meta property="og:site_name" content="茶白生产空间">
 <meta property="og:description" content="Reference 引用继承自 Object， 有 SoftReference, WeakReference, PhantomReference 三个直接子类。    名称 特点     StrongReferenceSoftReference 只要引用链不断开，不会被回收   SoftReference 直到虚拟机内存不足时垃圾回收才回收此堆内存空间。   WeakReference 没有任何强">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-01-29T16:04:05.903Z">
@@ -155,7 +155,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="茶白" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="茶白生产空间" type="application/atom+xml">
 
 
 
@@ -171,7 +171,7 @@
   };
 </script>
 
-  <title>Java Reference | 茶白</title>
+  <title>Java Reference | 茶白生产空间</title>
   
 
 
@@ -230,7 +230,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">茶白</span>
+        <span class="site-title">茶白生产空间</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -266,8 +266,29 @@
     
 
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -282,6 +303,8 @@
       
     
 
+    
+      
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
@@ -300,8 +323,10 @@
     
 
     
+      
+    
 
-    <a href="https:\\fiissh.tech/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</a>
+    <span class="exturl" data-url="aHR0cHM6XFxmaWlzc2gudGVjaC8="><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</span>
 
   </li>
 
@@ -317,9 +342,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -357,11 +379,21 @@
     </header>
 
     
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -386,12 +418,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
       <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
+      <meta itemprop="name" content="茶白生产空间">
     </span>
 
     
@@ -456,7 +488,25 @@
 
           
           
+            <span id="/2019/08/09/Java/Java 各引用之间的区别/" class="leancloud_visitors" data-flag-title="Java Reference">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -509,20 +559,70 @@
 <li>Referent： 被引用对象</li>
 <li>ReferenceQueue：当引用（软引用、弱引用、虚引用）的 Referent 被回收后，该引用（软引用、弱引用、虚引用）会被 enqueue 到这个 ReferenceQueue 中。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>　</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>.finalize();</span><br><span class="line">            System.out.println(<span class="string">"in Person finalize"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReferenceTest</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Person</span>　<span class="token punctuation">{</span>
+        <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">finalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
+            <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">finalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"in Person finalize"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
 <!-- more -->
 <h2 id="StrongReference-强引用"><a href="#StrongReference-强引用" class="headerlink" title="StrongReference 强引用"></a>StrongReference 强引用</h2><p>Java 中使用的最多，普通的引用 <code>Object obj = new Object();  Person p = new Person();</code> 都属于<code>强引用</code> </p>
 <p>强引用本身存储在栈中，new 出来的对象存储在堆中。栈中保存的引用指向堆中对象的地址。</p>
 <p>一般情况下，当引用不在指向堆中对象的地址时（person = null） GC collector 就开始考虑对此内存（堆中的对象）进行回收。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+<pre class=" language-Java"><code class="language-Java">Person p = new Person();
+</code></pre>
 <p>person 就是一个强引用，强引用不会被 GC，即使内存不够抛出 OOM 时也不会被回收。</p>
 <h2 id="SoftReference-软引用"><a href="#SoftReference-软引用" class="headerlink" title="SoftReference 软引用"></a>SoftReference 软引用</h2><p>软引用普通使用形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">SoftReference&lt;Person&gt; sr = <span class="keyword">new</span> SoftReference&lt;Person&gt;(person);</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java">Person p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+SoftReference<span class="token operator">&lt;</span>Person<span class="token operator">></span> sr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SoftReference</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <p>强引用 person 作为参数，创建了一个软引用对象 sr, 下面是例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testSofeReference</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 创建强引用对象</span></span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为"</span> + person);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建软引用对象</span></span><br><span class="line">    SoftReference&lt;Person&gt; sr = <span class="keyword">new</span> SoftReference&lt;Person&gt;(person);</span><br><span class="line">    person = <span class="keyword">null</span>; <span class="comment">// 之前 new 出的 Person 对象不会立即被回收，除非 JVM 需要内存(OOM 之前)</span></span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">testSofeReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 创建强引用对象</span>
+    Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象为"</span> <span class="token operator">+</span> person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 创建软引用对象</span>
+    SoftReference<span class="token operator">&lt;</span>Person<span class="token operator">></span> sr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SoftReference</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    person <span class="token operator">=</span> null<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 之前 new 出的 Person 对象不会立即被回收，除非 JVM 需要内存(OOM 之前)</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象进入 GC 流程"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象尚未被回收"</span> <span class="token operator">+</span> sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    System<span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象进入 GC 流程"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象尚未被回收"</span> <span class="token operator">+</span> sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
 <p>执行上面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br></pre></td></tr></table></figure>
-<ul>
+<pre><code>person 对象为 com.example.ReferenceTest$Person@522d9d8c
+person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c
+person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c
+</code></pre><ul>
 <li>当执行 person = null 后，堆内存的 Person 对象不再有任何强引用指向它，但此时还存在 sr 引用的对象指向 Person 对象。此时调用 sr.get() 方法，返回 Person 对象，即之前堆中的强引用对象了。我们可以合理猜测GC collector 很有可能尚未进行垃圾回收，所以此时 sr.get() 方法返回不为空。</li>
 <li>我们继续执行 <code>System.gc()</code> 强制进行垃圾回收，打印结果可以看到， sr.get() 返回依然不为空，说明 Person 对象依旧没有被回收。</li>
 </ul>
@@ -533,16 +633,69 @@
 </ol>
 <p><strong>总结：</strong> SoftReference 变相延长了其只是对象占据堆内存的时间，直到虚拟机内存不足时垃圾回收才回收此堆内存空间。</p>
 <p><strong>软引用还可以和一个 ReferenceQueue 一起使用，</strong> 当 SoftReference 的 Referent 被回收以后，这个 SoftReference 会被自动 enqueue 到这个 ReferenctQueue 中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testSoftReferenceWithQueue</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为："</span> + person);</span><br><span class="line">    </span><br><span class="line">    ReferenceQueue&lt;Person&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">    SoftReference&lt;Person&gt; sr = <span class="keyword">new</span> SoftReference&lt;&gt;(person, queue);</span><br><span class="line">    </span><br><span class="line">    person = <span class="keyword">null</span>; <span class="comment">// 之前 new 出的 Person 对象不会立即被回收，除非 JVM 需要内存 （OOM 前）</span></span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"加入 ReferenceQueue 的对象为："</span> + queue.poll());</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(sr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + sr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"加入 ReferenceQueue 的对象为： "</span> + queue.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">testSoftReferenceWithQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象为："</span> <span class="token operator">+</span> person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ReferenceQueue<span class="token operator">&lt;</span>Person<span class="token operator">></span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReferenceQueue</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    SoftReference<span class="token operator">&lt;</span>Person<span class="token operator">></span> sr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SoftReference</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>person<span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    person <span class="token operator">=</span> null<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 之前 new 出的 Person 对象不会立即被回收，除非 JVM 需要内存 （OOM 前）</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象进入 GC 流程"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象尚未被回收"</span> <span class="token operator">+</span> sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"加入 ReferenceQueue 的对象为："</span> <span class="token operator">+</span> queue<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    System<span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象进入 GC 流程"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象尚未被回收"</span> <span class="token operator">+</span> sr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"加入 ReferenceQueue 的对象为： "</span> <span class="token operator">+</span> queue<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>执行上述例子，结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">加入 ReferenceQueue 的对象为 null</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">加入 ReferenceQueue 的对象为 null</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 当 SoftReference 或 WeakReference 的 get() 方法返回 null 时，仅表明其指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收。</p>
+<pre><code>person 对象为 com.example.ReferenceTest$Person@522d9d8c
+person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c
+加入 ReferenceQueue 的对象为 null
+person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c
+加入 ReferenceQueue 的对象为 null
+</code></pre><p><strong>注意：</strong> 当 SoftReference 或 WeakReference 的 get() 方法返回 null 时，仅表明其指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收。</p>
 <p>而只有确认被垃圾回收后，如果有 ReferenceQueue ，其引用才会被放置于 ReferenceQueue 中。</p>
 <h2 id="WeakReference-弱引用"><a href="#WeakReference-弱引用" class="headerlink" title="WeakReference 弱引用"></a>WeakReference 弱引用</h2><p>弱引用的一般使用形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testWeakReference</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为： "</span> + person);</span><br><span class="line">    </span><br><span class="line">    WeakReference&lt;Person&gt; wr = <span class="keyword">new</span> WeakReference&lt;&gt;(person);</span><br><span class="line">    person = <span class="keyword">null</span>; <span class="comment">// 被 GC 后，之前 new 出的 Person 对象会立即被回收，进入 GC 流程。</span></span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-Java"><code class="language-Java">private static void testWeakReference(){
+    Person person = new Person();
+    System.out.println("person 对象为： " + person);
+
+    WeakReference<person> wr = new WeakReference<>(person);
+    person = null; // 被 GC 后，之前 new 出的 Person 对象会立即被回收，进入 GC 流程。
+    if (wr.get() == null) {
+        System.out.println("person 对象进入 GC 流程");
+    } else {
+        System.out.println("person 对象尚未被回收" + wr.get());
+    }
+
+    System.gc();
+
+    if (wr.get() == null) {
+        System.out.println("person 对象进入 GC 流程");
+    } else {
+        System.out.println("person 对象尚未被回收" + wr.get());
+    }
+}
+</person></code></pre>
 <p>执行结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c</span><br><span class="line">person 对象进入 GC 流程</span><br><span class="line">in Person finalize</span><br></pre></td></tr></table></figure>
-<ul>
+<pre><code>person 对象为 com.example.ReferenceTest$Person@522d9d8c
+person 对象尚未被回收 com.example.ReferenceTest$Person@522d9d8c
+person 对象进入 GC 流程
+in Person finalize
+</code></pre><ul>
 <li><p>当执行 <code>person = null</code> 后，堆内存的  Person 对象不再有任何引用指向它，但此时还存在 wr 引用的对象指向 Person 对象。</p>
 <p>此时调用 <code>wr.get()</code> 方法，返回 Person 对象，即之前堆中的强引用对象，我们可以合理猜测 GC collector 很有可能尚未进行垃圾回收，所以此时 <code>wr.get()</code> 方法返回不为空。</p>
 </li>
@@ -556,24 +709,108 @@
 <p><strong>其主要使用场景见于：</strong> </p>
 <p>​    当前已有强引用指向强引用对象，此时由于业务需要，需要增加对此对象的引用，同时又不希望改变此引用的垃圾回收机制，此时 <code>WeakReference</code> 正好符合需求，常见于一些与生命周期的场景中，比如 Activity 中的 Handler 的使用，为了防止内存泄露需要用到弱引用。</p>
 <p>与 SoftReference 一样，可以同 ReferenceQueue 一起使用。当 WeakReference 的 Referent 被回收以后，这个 WeakReference 会被自动 enqueue 到这个 ReferenceQueue 中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testWeakReferenceWithQueue</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为 "</span> + person);</span><br><span class="line">    </span><br><span class="line">    ReferenceQueue&lt;Person&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">    WeakReference&lt;Person&gt; wr = <span class="keyword">new</span> WeakReference&lt;&gt;(person, queue);</span><br><span class="line">    System.out.println(<span class="string">"wr 对象为 "</span> + wr);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"Whether or not this reference has been enqueued:"</span> + wr.isEnqueued());</span><br><span class="line">    System.out.println(<span class="string">"Queue item: "</span> + queue.pull());</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (wr.get() == <span class="keyword">null</span>) &#123;<span class="comment">// 仅是表名指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收，只有确认被垃圾回收后，如果有 ReferenceQueue ，其引用才会被放置于 ReferenceQueue 中。</span></span><br><span class="line">        System.out.println(<span class="string">"person 对象进入 GC 流程"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"person 对象尚未被回收"</span> + wr.get());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 确保垃圾回收线程能够执行</span></span><br><span class="line">        Thread.sleep(<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"Whether or not this reference has been enqueued: "</span> + wr.isEnqueued());</span><br><span class="line">    System.out.println(<span class="string">"queue item: "</span> + queue.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">testWeakReferenceWithQueue</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象为 "</span> <span class="token operator">+</span> person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ReferenceQueue<span class="token operator">&lt;</span>Person<span class="token operator">></span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReferenceQueue</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    WeakReference<span class="token operator">&lt;</span>Person<span class="token operator">></span> wr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakReference</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>person<span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"wr 对象为 "</span> <span class="token operator">+</span> wr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>wr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象进入 GC 流程"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象尚未被回收"</span> <span class="token operator">+</span> wr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Whether or not this reference has been enqueued:"</span> <span class="token operator">+</span> wr<span class="token punctuation">.</span><span class="token function">isEnqueued</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Queue item: "</span> <span class="token operator">+</span> queue<span class="token punctuation">.</span><span class="token function">pull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    System<span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>wr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 仅是表名指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收，只有确认被垃圾回收后，如果有 ReferenceQueue ，其引用才会被放置于 ReferenceQueue 中。</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象进入 GC 流程"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象尚未被回收"</span> <span class="token operator">+</span> wr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 确保垃圾回收线程能够执行</span>
+        Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Whether or not this reference has been enqueued: "</span> <span class="token operator">+</span> wr<span class="token punctuation">.</span><span class="token function">isEnqueued</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"queue item: "</span> <span class="token operator">+</span> queue<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p><strong>执行结果：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTEst$Person@522d9d8c</span><br><span class="line">wr 对象为 java.lang.ref.WeakReference@603828d2</span><br><span class="line">person 对象尚未被回收 com.example.ReferenceTEst$Person@522d9d8c</span><br><span class="line">Whether or not this reference has been enqueued: false</span><br><span class="line">queue item: null</span><br><span class="line">person 对象进入回收流程</span><br><span class="line">in Person finalize</span><br><span class="line">Whether or not this reference has been enqueued: true</span><br><span class="line">queue item: java.lang.ref.WeakReference@603828d2</span><br></pre></td></tr></table></figure>
-<p>从第二行到最后行可以看出， person 进入 GC 流程后，wr 被加入到 queue 中。</p>
+<pre><code>person 对象为 com.example.ReferenceTEst$Person@522d9d8c
+wr 对象为 java.lang.ref.WeakReference@603828d2
+person 对象尚未被回收 com.example.ReferenceTEst$Person@522d9d8c
+Whether or not this reference has been enqueued: false
+queue item: null
+person 对象进入回收流程
+in Person finalize
+Whether or not this reference has been enqueued: true
+queue item: java.lang.ref.WeakReference@603828d2
+</code></pre><p>从第二行到最后行可以看出， person 进入 GC 流程后，wr 被加入到 queue 中。</p>
 <p><strong>注意：</strong></p>
 <p>​     当 SoftReference 或者 WeakReference 的 get() 方法返回 null 时，仅表示其指示对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收。</p>
 <p>​    而只有确认被垃圾回收后，如果有 ReferenceQueue， 其引用才会被放置于 ReferenceQueue 中。</p>
 <h2 id="PhantomReference-虚引用"><a href="#PhantomReference-虚引用" class="headerlink" title="PhantomReference 虚引用"></a>PhantomReference 虚引用</h2><p>虚引用源码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang.ref;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.ref.Reference;</span><br><span class="line"><span class="keyword">import</span> java.lang.ref.ReferenceQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhantomReference</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Reference</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PhantomReference</span><span class="params">(T var1, ReferenceQueue&lt;? <span class="keyword">super</span> T&gt; var2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.(var1, var2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>ref<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>ref<span class="token punctuation">.</span>Reference<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>ref<span class="token punctuation">.</span>ReferenceQueue<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PhantomReference</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">extends</span> <span class="token class-name">Reference</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> T <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">PhantomReference</span><span class="token punctuation">(</span>T var1<span class="token punctuation">,</span> ReferenceQueue<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> var2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token punctuation">(</span>var1<span class="token punctuation">,</span> var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <ul>
 <li>PhantomReference 只有一个构造函数 <code>PhantomReference(T referenct, ReferenceQueue&lt;? super T&gt; q)</code>  因此，PhantomReference 使用必须结合 ReferenceQueue；</li>
 <li>不管有无强引用指向 PhantomReference 的指示对象， PhantomReference 的 get() 方法返回结果都是 null</li>
 </ul>
 <p>举例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testPhantomReference</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">    System.out.println(<span class="string">"person 对象为"</span> + person);</span><br><span class="line">    </span><br><span class="line">    ReferenceQueue&lt;Person&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">    PhantomReference&lt;Person&gt; pr = <span class="keyword">new</span> PhantomReference&lt;&gt;(person, queue);</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"pr 对象为"</span> + pr);</span><br><span class="line">    System.out.println(<span class="string">"pr.get() = "</span> + pr.get());</span><br><span class="line">    </span><br><span class="line">    person = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    System.gc();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">// 确保垃圾回收线程执行</span></span><br><span class="line">        Thread.sleep(<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"queue item: "</span> + queue.poll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">testPhantomReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"person 对象为"</span> <span class="token operator">+</span> person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ReferenceQueue<span class="token operator">&lt;</span>Person<span class="token operator">></span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReferenceQueue</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PhantomReference<span class="token operator">&lt;</span>Person<span class="token operator">></span> pr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PhantomReference</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>person<span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"pr 对象为"</span> <span class="token operator">+</span> pr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"pr.get() = "</span> <span class="token operator">+</span> pr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    person <span class="token operator">=</span> null<span class="token punctuation">;</span>
+
+    System<span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 确保垃圾回收线程执行</span>
+        Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"queue item: "</span> <span class="token operator">+</span> queue<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p><strong>执行结果：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">person 对象为 com.example.ReferenceTEst$Person@522d9d8c</span><br><span class="line">pr 对象为 java.lang.ref.PhantomReference@60e35b53</span><br><span class="line">pr.get() = null</span><br><span class="line">in Person finalize</span><br><span class="line">queue ite: java.lang.ref.PhantomReference@60e35b53</span><br></pre></td></tr></table></figure>
-<p><strong>总结：</strong></p>
+<pre><code>person 对象为 com.example.ReferenceTEst$Person@522d9d8c
+pr 对象为 java.lang.ref.PhantomReference@60e35b53
+pr.get() = null
+in Person finalize
+queue ite: java.lang.ref.PhantomReference@60e35b53
+</code></pre><p><strong>总结：</strong></p>
 <p>​    与 WeakReference 一样，不改变原有的强引用对象的垃圾回收机制。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可以被垃圾回收。虚引用主要用来跟踪对象被垃圾回收后的活动（监听并采取必要的行动）</p>
 <p><strong>用途：</strong></p>
 <p>​    当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。</p>
@@ -594,6 +831,35 @@
     
       
     
+    
+      <div>
+        
+          
+        
+      </div>
+      <div>
+        <div id="reward-container">
+  <div>打赏点这里</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/IMG_4730.JPG" alt="茶白 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -616,7 +882,7 @@
     <a href="http://xiaoman.ren/2019/08/09/Java/Java 各引用之间的区别/" title="Java Reference">http://xiaoman.ren/2019/08/09/Java/Java 各引用之间的区别/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
 </ul>
 
       </div>
@@ -649,8 +915,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/23/Linux-下配置-Android-Studio-中文输入/" rel="prev" title="Linux 下配置 Android Studio 中文输入">
-                Linux 下配置 Android Studio 中文输入 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/09/Java/Java 中文件 Copy 的几种方式/" rel="prev" title="Java 文件流">
+                Java 文件流 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -712,7 +978,7 @@
               <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true" alt="茶白">
             
               <p class="site-author-name" itemprop="name">茶白</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <div class="site-description motion-element" itemprop="description">个人技术积累,Android 工程师</div>
           </div>
 
           
@@ -722,12 +988,29 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
               
 
               
@@ -767,7 +1050,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -797,7 +1082,7 @@
                   
                     
                   
-                  <a href="https://github.com/xiaomanwong" title="GitHub &rarr; https://github.com/xiaomanwong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="GitHub &rarr; https://github.com/xiaomanwong"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -808,7 +1093,7 @@
                   
                     
                   
-                  <a href="mailto:zhuangbudong@gmail.com" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <span class="exturl" data-url="bWFpbHRvOnpodWFuZ2J1ZG9uZ0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
                 </span>
               
             </div>
@@ -822,7 +1107,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><img src="/images/cc-zero.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -881,20 +1166,40 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -942,11 +1247,26 @@
 
 
 
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="10" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
+  
+  
 
 
+
+  
+  
+
+
+
+  
+  
 
 
 
@@ -963,6 +1283,18 @@
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
 
   
 
@@ -977,7 +1309,9 @@
   
 
 
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
 
 
 
@@ -997,6 +1331,8 @@
   
 
   
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
 
   
 
@@ -1299,7 +1635,7 @@
             }
           }
 
-          if ('auto' === 'auto') {
+          if ('auto' === 'manual') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
@@ -1347,6 +1683,173 @@
 
 
   
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+  
+  <script>
+    (function () {
+
+      firebase.initializeApp({
+        apiKey: '',
+        projectId: ''
+      })
+
+      function getCount(doc, increaseCount) {
+        //increaseCount will be false when not in article page
+
+        return doc.get().then(function (d) {
+          var count
+          if (!d.exists) { //has no data, initialize count
+            if (increaseCount) {
+              doc.set({
+                count: 1
+              })
+              count = 1
+            }
+            else {
+              count = 0
+            }
+          }
+          else { //has data
+            count = d.data().count
+            if (increaseCount) {
+              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
+                doc.set({ //increase count
+                  count: count + 1
+                })
+                count++
+              }
+            }
+          }
+          if (window.localStorage && increaseCount) { //mark as visited
+            localStorage.setItem(title, true)
+          }
+
+          return count
+        })
+      }
+
+      function appendCountTo(el) {
+        return function (count) {
+          $(el).append(
+            $('<span>').addClass('post-visitors-count').append(
+              $('<span>').addClass('post-meta-divider').text('|')
+            ).append(
+              $('<span>').addClass('post-meta-item-icon').append(
+                $('<i>').addClass('fa fa-users')
+              )
+              ).append($('<span>').text('Views ' + count))
+          )
+        }
+      }
+
+      var db = firebase.firestore()
+      var articles = db.collection('articles')
+
+      //https://hexo.io/docs/variables.html
+      var isPost = 'Java Reference'.length > 0
+      var isArchive = '' === 'true'
+      var isCategory = ''.length > 0
+      var isTag = ''.length > 0
+
+      if (isPost) { //is article page
+        var title = 'Java Reference'
+        var doc = articles.doc(title)
+
+        getCount(doc, true).then(appendCountTo($('.post-meta')))
+      }
+      else if (!isArchive && !isCategory && !isTag) { //is index page
+        var titles = [] //array to titles
+
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
+        eval(postsstr)
+
+        var promises = titles.map(function (title) {
+          return articles.doc(title)
+        }).map(function (doc) {
+          return getCount(doc)
+        })
+        Promise.all(promises).then(function (counts) {
+          var metas = $('.post-meta')
+          counts.forEach(function (val, idx) {
+            appendCountTo(metas[idx])(val)
+          })
+        })
+      }
+    })()
+  </script>
+
+
+  
+  
+
+  
+  
+
+  
+
 
   
 
@@ -1363,10 +1866,15 @@
   
 
   
-
   
-
   
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
 
   
 <script>
@@ -1406,6 +1914,20 @@
 
 
   
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = '';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
 
   
 

@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.1.0',
     sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -123,7 +123,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -140,22 +140,22 @@
 
 
 
-  <meta name="description" content="协程内部异常处理流程：  launch 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 CoroutineExceptionHandler 中，如果没有配置，会查找全局（JVM）上的CoroutineExceptionHandler 处理，  async 在未捕获异常的出现时同样会尝试取消其父协程，">
+  <meta name="description" content="协程内部异常处理流程：  launch 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 CoroutineExceptionHandler 中，如果没有配置，会查找全局（JVM）上的CoroutineExceptionHandler 处理，">
 <meta name="keywords" content="Kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="协程异常处理">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-异常处理/index.html">
-<meta property="og:site_name" content="茶白">
-<meta property="og:description" content="协程内部异常处理流程：  launch 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 CoroutineExceptionHandler 中，如果没有配置，会查找全局（JVM）上的CoroutineExceptionHandler 处理，  async 在未捕获异常的出现时同样会尝试取消其父协程，">
+<meta property="og:site_name" content="茶白生产空间">
+<meta property="og:description" content="协程内部异常处理流程：  launch 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 CoroutineExceptionHandler 中，如果没有配置，会查找全局（JVM）上的CoroutineExceptionHandler 处理，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.318Z">
+<meta property="og:updated_time" content="2021-01-29T16:16:07.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="协程异常处理">
-<meta name="twitter:description" content="协程内部异常处理流程：  launch 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 CoroutineExceptionHandler 中，如果没有配置，会查找全局（JVM）上的CoroutineExceptionHandler 处理，  async 在未捕获异常的出现时同样会尝试取消其父协程，">
+<meta name="twitter:description" content="协程内部异常处理流程：  launch 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 CoroutineExceptionHandler 中，如果没有配置，会查找全局（JVM）上的CoroutineExceptionHandler 处理，">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="茶白" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="茶白生产空间" type="application/atom+xml">
 
 
 
@@ -171,7 +171,7 @@
   };
 </script>
 
-  <title>协程异常处理 | 茶白</title>
+  <title>协程异常处理 | 茶白生产空间</title>
   
 
 
@@ -230,7 +230,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">茶白</span>
+        <span class="site-title">茶白生产空间</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -266,8 +266,29 @@
     
 
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -282,6 +303,8 @@
       
     
 
+    
+      
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
@@ -300,8 +323,10 @@
     
 
     
+      
+    
 
-    <a href="https:\\fiissh.tech/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</a>
+    <span class="exturl" data-url="aHR0cHM6XFxmaWlzc2gudGVjaC8="><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</span>
 
   </li>
 
@@ -317,9 +342,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -357,11 +379,21 @@
     </header>
 
     
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -386,12 +418,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
       <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
+      <meta itemprop="name" content="茶白生产空间">
     </span>
 
     
@@ -429,6 +461,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:16:07" itemprop="dateModified" datetime="2021-01-30T00:16:07+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -440,7 +488,25 @@
 
           
           
+            <span id="/2021/01/29/Kotlin/协程/协程-异常处理/" class="leancloud_visitors" data-flag-title="协程异常处理">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -463,6 +529,7 @@
         <ol>
 <li><p><strong>协程内部异常处理流程</strong>： </p>
 <p><code>launch</code> 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 <code>CoroutineExceptionHandler</code> 中，如果没有配置，会查找全局（JVM）上的<code>CoroutineExceptionHandler</code> 处理，</p>
+<a id="more"></a>
 <p> <code>async</code> 在未捕获异常的出现时同样会尝试取消其父协程，但不管是否能够取消成功都不会进行后续的异常处理，直到用户主动调用 <code>await</code> 时抛出</p>
 </li>
 <li><p><strong>异常在作用域内传播</strong></p>
@@ -478,34 +545,195 @@
 </li>
 </ol>
 <p>当我们进行异步请求时，必然会有失败的情况发生，那么我们继续上一个例子完善它</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Callback</span>&lt;<span class="type">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">onSuccess</span><span class="params">(value: <span class="type">T</span>)</span></span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">onError</span><span class="params">(t: <span class="type">Throwable</span>)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getUser</span><span class="params">(callback: <span class="type">Callback</span>)</span></span>&#123;&#125;</span><br><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">getUserCoroutine</span><span class="params">()</span></span> = suspendCoroutine&lt;User&gt; &#123;continuation-&gt;</span><br><span class="line">	getUser(<span class="keyword">object</span>: Callback&lt;User&gt; &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onSuccess</span><span class="params">(user: <span class="type">User</span>)</span></span> &#123;</span><br><span class="line">            continuation.resume(resume)</span><br><span class="line">        &#125; </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onError</span><span class="params">(e: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">            continuation.resumeWithException(t)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)                                                        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">GlobalScope.launch(Dispatchers.Main) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        userNameView.text = getUserCoroutine().name</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e:Exception) &#123;</span><br><span class="line">        userNameView.text = <span class="string">"Get user error: <span class="variable">$e</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">interface</span> Callback<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">fun</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>value<span class="token operator">:</span> T<span class="token punctuation">)</span>
+    <span class="token keyword">fun</span> <span class="token function">onError</span><span class="token punctuation">(</span>t<span class="token operator">:</span> Throwable<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">fun</span> <span class="token function">getUser</span><span class="token punctuation">(</span>callback<span class="token operator">:</span> Callback<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+suspend <span class="token keyword">fun</span> <span class="token function">getUserCoroutine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> suspendCoroutine<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token punctuation">{</span>continuation<span class="token operator">-></span>
+    <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token keyword">object</span><span class="token operator">:</span> Callback<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>user<span class="token operator">:</span> User<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>resume<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> 
+
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onError</span><span class="token punctuation">(</span>e<span class="token operator">:</span> Throwable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            continuation<span class="token punctuation">.</span><span class="token function">resumeWithException</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>                                                        
+<span class="token punctuation">}</span>
+
+GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        userNameView<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token function">getUserCoroutine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token operator">:</span>Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        userNameView<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Get user error: <span class="token interpolation variable">$e</span>"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h2><p>线程也好，RxJava 也好，都会有全局处理异常的方式</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Thread.setDefaultUncaughtExceptionHandler&#123;t: Thread, e: Throwable -&gt;</span><br><span class="line">    	<span class="comment">// handle exception here</span></span><br><span class="line">		println(<span class="string">"Thread '<span class="subst">$&#123;t.name&#125;</span>' throws an exception with mesage '<span class="subst">$&#123;e.message&#125;</span>'"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">throw</span> ArithmeticException(<span class="string">"Hey!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Thread<span class="token punctuation">.</span><span class="token function">setDefaultUncaughtExceptionHandler</span><span class="token punctuation">{</span>t<span class="token operator">:</span> Thread<span class="token punctuation">,</span> e<span class="token operator">:</span> Throwable <span class="token operator">-></span>
+        <span class="token comment" spellcheck="true">// handle exception here</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Thread '<span class="token interpolation"><span class="token delimiter variable">${</span>t<span class="token punctuation">.</span>name<span class="token delimiter variable">}</span></span>' throws an exception with mesage '<span class="token interpolation"><span class="token delimiter variable">${</span>e<span class="token punctuation">.</span>message<span class="token delimiter variable">}</span></span>'"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">throw</span> <span class="token function">ArithmeticException</span><span class="token punctuation">(</span><span class="token string">"Hey!"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>RxJava 设置全局异常捕获</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RxJavaPlugins.setErrorHandler(e-&gt; &#123;</span><br><span class="line">    println(<span class="string">"Throws an exception with message '$&#123;e.message&#125;'"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java">RxJavaPlugins<span class="token punctuation">.</span><span class="token function">setErrorHandler</span><span class="token punctuation">(</span>e<span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Throws an exception with message '${e.message}'"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
 <p><strong>协程也可以设置</strong>，类似于通过 <code>Thread.setUnCaughtExceptionHandler</code> 为线程设置一个异常捕获器，同时也可以为每一个协程单独设置 <code>CoroutineExceptionHandler</code> 这样协程内未捕获的异常既可以通过它来捕获</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> exceptionHandler = CoroutineExceptionHandler&#123; coroutineContext, throwable -&gt; </span><br><span class="line">		println(<span class="string">"Throws an exception with message: '<span class="subst">$&#123;throwable.message&#125;</span>'"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    GlobalScope.launch(exceptionHandler) &#123;</span><br><span class="line">        <span class="keyword">throw</span> ArithemticException(<span class="string">"Hey!"</span>)</span><br><span class="line">    &#125;.join()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">private</span> suspend <span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">val</span> exceptionHandler <span class="token operator">=</span> CoroutineExceptionHandler<span class="token punctuation">{</span> coroutineContext<span class="token punctuation">,</span> throwable <span class="token operator">-></span> 
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Throws an exception with message: '<span class="token interpolation"><span class="token delimiter variable">${</span>throwable<span class="token punctuation">.</span>message<span class="token delimiter variable">}</span></span>'"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>exceptionHandler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token function">ArithemticException</span><span class="token punctuation">(</span><span class="token string">"Hey!"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p><code>ConroutineExceptionHandler</code> 也是一个上下文。当然上面的只能捕获对应协程内未捕获的异常，真正的全局捕获，在JVM上我们可以自己定义一个实现</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GlobalCoroutineExceptionHandler</span>: <span class="type">CoroutineExceptionHandler &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> key: CoroutineContext.Key&lt;*&gt; = CoroutineExceptinHandler</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">handleException</span><span class="params">(context, CoroutineContext, exception: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">"coroutine exceptino: <span class="variable">$exception</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> GlobalCoroutineExceptionHandler<span class="token operator">:</span> CoroutineExceptionHandler <span class="token punctuation">{</span>
+    <span class="token keyword">override</span> <span class="token keyword">val</span> key<span class="token operator">:</span> CoroutineContext<span class="token punctuation">.</span>Key<span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">></span> <span class="token operator">=</span> CoroutineExceptinHandler
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">handleException</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> CoroutineContext<span class="token punctuation">,</span> exception<span class="token operator">:</span> Throwable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"coroutine exceptino: <span class="token interpolation variable">$exception</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>然后在 <code>classpath</code> 中创建 <code>META-INFO/services/kotlinx.coroutines.CoroutineExceptionHandler</code> 的全类名，文件内容就写我们的实现类的全名</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.***.***.exceptions.GlobalCoroutineExceptionHandler</span><br></pre></td></tr></table></figure>
+<pre class=" language-tex"><code class="language-tex">com.***.***.exceptions.GlobalCoroutineExceptionHandler
+</code></pre>
 <h2 id="异常传播"><a href="#异常传播" class="headerlink" title="异常传播"></a>异常传播</h2><h3 id="协程作用域"><a href="#协程作用域" class="headerlink" title="协程作用域"></a>协程作用域</h3><p>当我们启动协程的时候，一直都在用 <code>GlobalScope</code> ，意味着这是要给独立的顶级协程作用域，此外还有<code>coroutineScope{}</code> 及 <code>supervisorScope{}</code></p>
 <ul>
 <li>通过 <code>GlobalScope</code> 启动的协程单独启动一个协程作用域，内部的子协程遵循默认的作用域规则。通过 <code>GlobalScope</code> 启动的协程自成一派</li>
 <li><code>coroutineScope</code> 是继承外部 <code>Job</code> 的上下文创建作用域，在其内部的取消操作是双向传播的，子协程未捕获的异常会向上传递给它的父协程。它更适合一系列对等的协程并发的完成一项工作，<strong>任何一个子协程异常退出，那么整体都将退出</strong>， <strong>一损俱损</strong> ，同时这也是协程内部再启动子协程的默认作用域</li>
 <li><code>supervisorScope</code> 同样继承外部作用域的上下文，但其内部的取消操作是单项传播的，父协程向子协程传播，反过来不行。意味着<strong>子协程出现了异常并不会影响父协程以及其他兄弟协程</strong>，它更适合一些独立不相干的任务，任何一个任务出问题，并不会影响其他任务的工作，<strong>自作自受</strong>。<code>supervisorScope</code> 内部启动的子协程再启动子协程，如无明确指出，则遵循默认作用域规则，<strong>即<code>supervosorScope</code> 只作用其直接子协程</strong></li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    log(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        coroutineScope &#123;</span><br><span class="line">            log(<span class="number">2</span>)</span><br><span class="line">            launch &#123;</span><br><span class="line">                log(<span class="number">3</span>)</span><br><span class="line">                launch &#123;</span><br><span class="line">                    log(<span class="number">4</span>)</span><br><span class="line">                    delay(<span class="number">100</span>)</span><br><span class="line">                    <span class="keyword">throw</span> ArithmeticException(<span class="string">"Hello"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">                log(<span class="number">5</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            log(<span class="number">6</span>)</span><br><span class="line">            <span class="keyword">val</span> job = launch &#123;</span><br><span class="line">                log(<span class="number">7</span>)</span><br><span class="line">                delay(<span class="number">1000</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                log(<span class="number">8</span>)</span><br><span class="line">                job.join()</span><br><span class="line">                log(<span class="number">9</span>)</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">                log(<span class="string">"10 <span class="variable">$e</span>"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        log(<span class="number">11</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        log(<span class="string">"12 <span class="variable">$e</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    log(<span class="number">13</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">6</span><br><span class="line">3</span><br><span class="line">5</span><br><span class="line">4</span><br><span class="line">8</span><br><span class="line">7</span><br><span class="line">10 kotlinx.coroutines.JobCancellationException: ScopeCoroutine is cancelling; job=ScopeCoroutine&#123;Cancelling&#125;@695fd68b</span><br><span class="line">12 java.lang.ArithmeticException: Hello</span><br><span class="line">13</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">suspend <span class="token keyword">fun</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        coroutineScope <span class="token punctuation">{</span>
+            <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            launch <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+                launch <span class="token punctuation">{</span>
+                    <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+                    <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+                    <span class="token keyword">throw</span> <span class="token function">ArithmeticException</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+            <span class="token keyword">val</span> job <span class="token operator">=</span> launch <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span>
+                job<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"10 <span class="token interpolation variable">$e</span>"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"12 <span class="token interpolation variable">$e</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-tex"><code class="language-tex">1
+2
+6
+3
+5
+4
+8
+7
+10 kotlinx.coroutines.JobCancellationException: ScopeCoroutine is cancelling; job=ScopeCoroutine{Cancelling}@695fd68b
+12 java.lang.ArithmeticException: Hello
+13
+</code></pre>
 <p>从上面的程序和结果我们可以看出，<strong>10</strong>  这里，我们调用 <code>join</code> 收到了一个取消异常，在协程当中支持取消的操作的 <code>suspend</code> 函数在取消是抛出一个 <code>CancellationException</code>。</p>
 <p>协程 3 抛出了，未捕获异常，进入异常完成状态，它与父协程 2 之间遵循默认的作用域规则，因此 3 会通知它的父协程取消， 2 根据作用域规则通知父协程 1 ，也就是整个作用域取消，自下向上传播。在 1 中的 <code>job.join()</code> 调用就会抛出异常，也就是 10 出的结果。最终由 3 抛出的异常在 12 出被捕获。</p>
 <p>我们将 <code>coroutineScope</code> 换成 <code>supervisorScope</code> ，其他不变</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">6</span><br><span class="line">3</span><br><span class="line">5</span><br><span class="line">4</span><br><span class="line">8</span><br><span class="line">7</span><br><span class="line">Exception in thread "DefaultDispatcher-worker-3" java.lang.ArithmeticException: Hello</span><br><span class="line">	at com.hachi.common.GlobalExceptionHandlerKt<span class="formula">$main$</span>2<span class="formula">$1$</span>1.invokeSuspend(GlobalExceptionHandler.kt:69)</span><br><span class="line">	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)</span><br><span class="line">	at kotlinx.coroutines.DispatchedTask.run(Dispatched.kt:241)</span><br><span class="line">	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:594)</span><br><span class="line">	at kotlinx.coroutines.scheduling.CoroutineScheduler.access<span class="formula">$runSafely(CoroutineScheduler.kt:60)</span></span><br><span class="line"><span class="formula">	at kotlinx.coroutines.scheduling.CoroutineScheduler$</span>Worker.run(CoroutineScheduler.kt:740)</span><br><span class="line">9</span><br><span class="line">11</span><br><span class="line">13</span><br></pre></td></tr></table></figure>
+<pre class=" language-tex"><code class="language-tex">1
+2
+6
+3
+5
+4
+8
+7
+Exception in thread "DefaultDispatcher-worker-3" java.lang.ArithmeticException: Hello
+    at com.hachi.common.GlobalExceptionHandlerKt$main$2$1$1.invokeSuspend(GlobalExceptionHandler.kt:69)
+    at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+    at kotlinx.coroutines.DispatchedTask.run(Dispatched.kt:241)
+    at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:594)
+    at kotlinx.coroutines.scheduling.CoroutineScheduler.access$runSafely(CoroutineScheduler.kt:60)
+    at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:740)
+9
+11
+13
+</code></pre>
 <p>我们可以看出，1-8 的输出没有区别，顺序上的差异是线程调度造成的，并不会影响协程的语义。</p>
 <p>我们为内部协程增加啊一个 <code>CoroutineExceptionHandler</code> 就可以证明我们一个结论</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> exceptionHandler = CoroutineExceptioHandler &#123;coroutineContext, throwable -&gt; </span><br><span class="line">           log(<span class="string">"<span class="subst">$&#123;coroutineContext[CoroutineName]&#125;</span> <span class="variable">$throwable</span>"</span>)                                     &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    log(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        superisorScope &#123;</span><br><span class="line">            log(<span class="number">2</span>)</span><br><span class="line">            launch(exceptionHandler + CoroutineName(<span class="string">"2"</span>)) &#123;</span><br><span class="line">                log(<span class="number">3</span>)</span><br><span class="line">                launch (exceptionHandler + CoroutineName(<span class="string">"3"</span>))&#123;</span><br><span class="line">                    log(<span class="number">4</span>)</span><br><span class="line">                    delay(<span class="number">100</span>)</span><br><span class="line">                    <span class="keyword">throw</span> ArithmeticException(<span class="string">"Hello"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">                log(<span class="number">5</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            log(<span class="number">6</span>)</span><br><span class="line">            <span class="keyword">val</span> job = launch &#123;</span><br><span class="line">                log(<span class="number">7</span>)</span><br><span class="line">                delay(<span class="number">1000</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                log(<span class="number">8</span>)</span><br><span class="line">                job.join()</span><br><span class="line">                log(<span class="number">9</span>)</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">                log(<span class="string">"10 <span class="variable">$e</span>"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        log(<span class="number">11</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        log(<span class="string">"12 <span class="variable">$e</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    log(<span class="number">13</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">6</span><br><span class="line">3</span><br><span class="line">5</span><br><span class="line">4</span><br><span class="line">8</span><br><span class="line">7</span><br><span class="line">CoroutineName(2) java.lang.ArithmeticException: Hello</span><br><span class="line">9</span><br><span class="line">11</span><br><span class="line">13</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> exceptionHandler <span class="token operator">=</span> CoroutineExceptioHandler <span class="token punctuation">{</span>coroutineContext<span class="token punctuation">,</span> throwable <span class="token operator">-></span> 
+           <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation"><span class="token delimiter variable">${</span>coroutineContext<span class="token punctuation">[</span>CoroutineName<span class="token punctuation">]</span><span class="token delimiter variable">}</span></span> <span class="token interpolation variable">$throwable</span>"</span><span class="token punctuation">)</span>                                     <span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-kotlin"><code class="language-kotlin">suspend <span class="token keyword">fun</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        superisorScope <span class="token punctuation">{</span>
+            <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token function">launch</span><span class="token punctuation">(</span>exceptionHandler <span class="token operator">+</span> <span class="token function">CoroutineName</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+                <span class="token function">launch</span> <span class="token punctuation">(</span>exceptionHandler <span class="token operator">+</span> <span class="token function">CoroutineName</span><span class="token punctuation">(</span><span class="token string">"3"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+                    <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+                    <span class="token keyword">throw</span> <span class="token function">ArithmeticException</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+            <span class="token keyword">val</span> job <span class="token operator">=</span> launch <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span>
+                job<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"10 <span class="token interpolation variable">$e</span>"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"12 <span class="token interpolation variable">$e</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-tex"><code class="language-tex">1
+2
+6
+3
+5
+4
+8
+7
+CoroutineName(2) java.lang.ArithmeticException: Hello
+9
+11
+13
+</code></pre>
 <p>我们看到，触发<code>CoroutineExceptionHandler</code> 的是协程 2。</p>
 <h3 id="如何使用-scope"><a href="#如何使用-scope" class="headerlink" title="如何使用 scope"></a>如何使用 scope</h3><ul>
 <li>对于没有协程作用域，但需要启动协程的时候，适合用 <strong>GlobalScope</strong></li>
@@ -516,11 +744,24 @@
 <h2 id="join-和-await"><a href="#join-和-await" class="headerlink" title="join 和 await"></a>join 和 await</h2><p>前面的例子一直是用 <code>launch</code> 启动协程常用的还有 <code>async</code>, <code>actor</code> <code>produce</code> 其中 <code>actor</code> 和 <code>launch</code> 的行为类似，在未捕获异常出现以后，会抛出。而 <code>async</code> 和 <code>produce</code> 则主要是用来输出结果的，它们内部的异常只在外部消费他们的记过时才抛出。</p>
 <h3 id="什么是消费结果"><a href="#什么是消费结果" class="headerlink" title="什么是消费结果"></a>什么是消费结果</h3><p>两组协程启动器，我们可以分别认为是 <em>消费者</em> 和 <em>生产者</em> </p>
 <p>消费者异常立即抛出；生产者只有结果异常时抛出</p>
-<h3 id="async-和-await"><a href="#async-和-await" class="headerlink" title="async 和 await"></a><strong>async 和 await</strong></h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> deferred = GlobalScope.async&lt;<span class="built_in">Int</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">throw</span> ArithmeticException()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> value = deferred.await()</span><br><span class="line">        log(<span class="string">"1. <span class="variable">$value</span>"</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        log(<span class="string">"2. <span class="variable">$e</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="async-和-await"><a href="#async-和-await" class="headerlink" title="async 和 await"></a><strong>async 和 await</strong></h3><pre class=" language-kotlin"><code class="language-kotlin">suspend <span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">val</span> deferred <span class="token operator">=</span> GlobalScope<span class="token punctuation">.</span>async<span class="token operator">&lt;</span>Int<span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token function">ArithmeticException</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">val</span> value <span class="token operator">=</span> deferred<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"1. <span class="token interpolation variable">$value</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"2. <span class="token interpolation variable">$e</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>当我们调用 <code>await</code> 时，期望 <code>deferred</code> 能够给我们一个合适的结果，但是它发生了异常，没有办法左到， 随后就抛出一个异常给我们</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. java.lang.ArithmeticException</span><br></pre></td></tr></table></figure>
+<pre class=" language-tex"><code class="language-tex">2. java.lang.ArithmeticException
+</code></pre>
 <h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p><code>join</code> 则和 <code>await</code> 不同， <code>join</code> 只关心是否执行完，至于为什么完成，它不关心。将上面的 <code>await</code> 替换成 <code>join</code> 后 </p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. kotlin.Unit</span><br></pre></td></tr></table></figure>
+<pre class=" language-tex"><code class="language-tex">1. kotlin.Unit
+</code></pre>
 <p>异常信息被吞掉了，用 <code>launch</code> 替换 <code>async</code> ，<code>join</code> 处仍然不会有任何响应。</p>
 <p><code>launch</code> 中未捕获的异常与 <code>aysync</code> 的处理方式不同， <code>launch</code> 会直接抛出异常给父协程，如果没有父协程或者处于 <code>supervisorScope</code> 中父协程不响应，那么就会交给上下文中执行的 <code>CoroutineExceptionHandler</code> 处理，如果没有指定，那就传给全局的 <code>CoroutineExcetionHandler</code> 等等。而 <code>async</code>  则要等 <code>await</code> 来消费</p>
 
@@ -538,6 +779,35 @@
     
       
     
+    
+      <div>
+        
+          
+        
+      </div>
+      <div>
+        <div id="reward-container">
+  <div>打赏点这里</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/IMG_4730.JPG" alt="茶白 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -560,7 +830,7 @@
     <a href="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-异常处理/" title="协程异常处理">http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-异常处理/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
 </ul>
 
       </div>
@@ -656,7 +926,7 @@
               <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true" alt="茶白">
             
               <p class="site-author-name" itemprop="name">茶白</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <div class="site-description motion-element" itemprop="description">个人技术积累,Android 工程师</div>
           </div>
 
           
@@ -666,12 +936,29 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
               
 
               
@@ -711,7 +998,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -741,7 +1030,7 @@
                   
                     
                   
-                  <a href="https://github.com/xiaomanwong" title="GitHub &rarr; https://github.com/xiaomanwong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="GitHub &rarr; https://github.com/xiaomanwong"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -752,7 +1041,7 @@
                   
                     
                   
-                  <a href="mailto:zhuangbudong@gmail.com" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <span class="exturl" data-url="bWFpbHRvOnpodWFuZ2J1ZG9uZ0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
                 </span>
               
             </div>
@@ -766,7 +1055,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><img src="/images/cc-zero.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -825,20 +1114,40 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -886,11 +1195,26 @@
 
 
 
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="10" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
+  
+  
 
 
+
+  
+  
+
+
+
+  
+  
 
 
 
@@ -907,6 +1231,18 @@
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
 
   
 
@@ -921,7 +1257,9 @@
   
 
 
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
 
 
 
@@ -941,6 +1279,8 @@
   
 
   
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
 
   
 
@@ -1243,7 +1583,7 @@
             }
           }
 
-          if ('auto' === 'auto') {
+          if ('auto' === 'manual') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
@@ -1291,6 +1631,173 @@
 
 
   
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+  
+  <script>
+    (function () {
+
+      firebase.initializeApp({
+        apiKey: '',
+        projectId: ''
+      })
+
+      function getCount(doc, increaseCount) {
+        //increaseCount will be false when not in article page
+
+        return doc.get().then(function (d) {
+          var count
+          if (!d.exists) { //has no data, initialize count
+            if (increaseCount) {
+              doc.set({
+                count: 1
+              })
+              count = 1
+            }
+            else {
+              count = 0
+            }
+          }
+          else { //has data
+            count = d.data().count
+            if (increaseCount) {
+              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
+                doc.set({ //increase count
+                  count: count + 1
+                })
+                count++
+              }
+            }
+          }
+          if (window.localStorage && increaseCount) { //mark as visited
+            localStorage.setItem(title, true)
+          }
+
+          return count
+        })
+      }
+
+      function appendCountTo(el) {
+        return function (count) {
+          $(el).append(
+            $('<span>').addClass('post-visitors-count').append(
+              $('<span>').addClass('post-meta-divider').text('|')
+            ).append(
+              $('<span>').addClass('post-meta-item-icon').append(
+                $('<i>').addClass('fa fa-users')
+              )
+              ).append($('<span>').text('Views ' + count))
+          )
+        }
+      }
+
+      var db = firebase.firestore()
+      var articles = db.collection('articles')
+
+      //https://hexo.io/docs/variables.html
+      var isPost = '协程异常处理'.length > 0
+      var isArchive = '' === 'true'
+      var isCategory = ''.length > 0
+      var isTag = ''.length > 0
+
+      if (isPost) { //is article page
+        var title = '协程异常处理'
+        var doc = articles.doc(title)
+
+        getCount(doc, true).then(appendCountTo($('.post-meta')))
+      }
+      else if (!isArchive && !isCategory && !isTag) { //is index page
+        var titles = [] //array to titles
+
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
+        eval(postsstr)
+
+        var promises = titles.map(function (title) {
+          return articles.doc(title)
+        }).map(function (doc) {
+          return getCount(doc)
+        })
+        Promise.all(promises).then(function (counts) {
+          var metas = $('.post-meta')
+          counts.forEach(function (val, idx) {
+            appendCountTo(metas[idx])(val)
+          })
+        })
+      }
+    })()
+  </script>
+
+
+  
+  
+
+  
+  
+
+  
+
 
   
 
@@ -1307,10 +1814,15 @@
   
 
   
-
   
-
   
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
 
   
 <script>
@@ -1350,6 +1862,20 @@
 
 
   
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = '';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
 
   
 

@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.1.0',
     sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -123,7 +123,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -145,7 +145,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="协程知识点">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程知识点/index.html">
-<meta property="og:site_name" content="茶白">
+<meta property="og:site_name" content="茶白生产空间">
 <meta property="og:description" content="什么是协程 轻量级的线程，并不完全是线程 可以顺序的写异步代码， 降低异步编程带来的负担 更高效，多个协程可以公用一个线程。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的 运行在协程中的可中断的方法不会阻塞当前线程">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-01-29T16:15:36.741Z">
@@ -155,7 +155,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="茶白" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="茶白生产空间" type="application/atom+xml">
 
 
 
@@ -171,7 +171,7 @@
   };
 </script>
 
-  <title>协程知识点 | 茶白</title>
+  <title>协程知识点 | 茶白生产空间</title>
   
 
 
@@ -230,7 +230,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">茶白</span>
+        <span class="site-title">茶白生产空间</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -266,8 +266,29 @@
     
 
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -282,6 +303,8 @@
       
     
 
+    
+      
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
@@ -300,8 +323,10 @@
     
 
     
+      
+    
 
-    <a href="https:\\fiissh.tech/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</a>
+    <span class="exturl" data-url="aHR0cHM6XFxmaWlzc2gudGVjaC8="><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</span>
 
   </li>
 
@@ -317,9 +342,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -357,11 +379,21 @@
     </header>
 
     
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -386,12 +418,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
       <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
+      <meta itemprop="name" content="茶白生产空间">
     </span>
 
     
@@ -456,7 +488,25 @@
 
           
           
+            <span id="/2021/01/29/Kotlin/协程/协程知识点/" class="leancloud_visitors" data-flag-title="协程知识点">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -484,15 +534,25 @@
 <h2 id="可中断的方法（suspending-functions）"><a href="#可中断的方法（suspending-functions）" class="headerlink" title="可中断的方法（suspending functions）"></a>可中断的方法（suspending functions）</h2></li>
 </ol>
 <p><strong>可中断的方法有能力中断协程的执行</strong>， 当可中断的方法执行完毕后，结者就可以使用它们返回的结果</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> user = <span class="keyword">suspend</span> &#123; userService.doLogin(username, password)&#125;</span><br><span class="line"><span class="keyword">val</span> currentFriends = <span class="keyword">suspend</span> &#123; userService.requestCurrentFriends(user) &#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> user <span class="token operator">=</span> suspend <span class="token punctuation">{</span> userService<span class="token punctuation">.</span><span class="token function">doLogin</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token keyword">val</span> currentFriends <span class="token operator">=</span> suspend <span class="token punctuation">{</span> userService<span class="token punctuation">.</span><span class="token function">requestCurrentFriends</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+</code></pre>
 <ul>
 <li>可中断方法可以运行在相同或不同的线程，取决于使用方式*</li>
 <li>可中断的方法只能运行在协程中或其它可中断的方法中</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">suspendingFunction</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="comment">// do long things</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">suspend <span class="token keyword">fun</span> <span class="token function">suspendingFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// do long things</span>
+    <span class="token keyword">return</span> <span class="token number">0</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="协程上下文（Coroutine-Context）"><a href="#协程上下文（Coroutine-Context）" class="headerlink" title="协程上下文（Coroutine Context）"></a>协程上下文（Coroutine Context）</h2><p><em>协程上下文是一系列规则和配置的集合，它决定了协程的运行方式</em>， 其内部结构是一个列表容器</p>
 <h2 id="withContext"><a href="#withContext" class="headerlink" title="withContext"></a>withContext</h2><p><strong>在协程内部</strong>，这个方法可以轻易的改变代码运行时所在的上下文。它是一个可中断的方法，所以调用它会中断协程的执行，直到执行完成。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">suspendLogin</span><span class="params">(username: <span class="type">String</span>, password: <span class="type">String</span>)</span></span>:String = </span><br><span class="line">withContext(Dispatchers.Main) &#123;</span><br><span class="line">    userService.doLogin(username, password)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">suspend <span class="token keyword">fun</span> <span class="token function">suspendLogin</span><span class="token punctuation">(</span>username<span class="token operator">:</span> String<span class="token punctuation">,</span> password<span class="token operator">:</span> String<span class="token punctuation">)</span><span class="token operator">:</span>String <span class="token operator">=</span> 
+<span class="token function">withContext</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    userService<span class="token punctuation">.</span><span class="token function">doLogin</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h3 id="调度器-dispatcher"><a href="#调度器-dispatcher" class="headerlink" title="调度器(dispatcher)"></a>调度器(dispatcher)</h3><ul>
 <li><strong>Default</strong>： 未指定 <code>dispathcer</code> 的时候会默认使用。一般用于 CPU 密集型任务，特别是计算。可以使用和 CPU 核数一样多的线程</li>
 <li><strong>IO</strong>：用于输入、输出场景。通常涉及会阻塞线程，需要等待另一个系统响应的任务，比如：网络请求、数据库操作、读写文件。它不使用CPU，可以同一时间运行多个线程，默认数量是 64 的线程池。</li>
@@ -502,25 +562,58 @@
 <h2 id="协程构造器（Coroutine-Builders）"><a href="#协程构造器（Coroutine-Builders）" class="headerlink" title="协程构造器（Coroutine Builders）"></a>协程构造器（Coroutine Builders）</h2><p>根据实际情况，我们可以选择不同的协程构造器，也可以自己创建</p>
 <h3 id="runBlocking"><a href="#runBlocking" class="headerlink" title="runBlocking"></a>runBlocking</h3><p>这个构造器会阻塞当前线程，直到协程内的所有任务执行完毕。</p>
 <p><code>runBolcking</code> 对于测试可中断的方法非常有用。在测试的时候，将可中断的方法运行在 <code>runBlocking</code> 构建的协程内部，这样可以保证，在这些可中断的方法返回结果前，当前测试线程不会结束。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testSuspendedFunction</span><span class="params">()</span></span> = runBlocking &#123;</span><br><span class="line">    <span class="keyword">val</span> res = suspendingTask1()</span><br><span class="line">    assertEquals(<span class="number">0</span>, res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">testSuspendedFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> runBlocking <span class="token punctuation">{</span>
+    <span class="token keyword">val</span> res <span class="token operator">=</span> <span class="token function">suspendingTask1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>除了这个场景意外，几乎永不到</p>
 <h3 id="launch"><a href="#launch" class="headerlink" title="launch"></a>launch</h3><p>这个构造器狠重要，因为它可以 <strong>很轻易的创建一个协程</strong>，经常使用。</p>
 <p><code>launch</code> 不会阻塞当前线程（前期是我们使用了合适的 <code>dispatcher</code>）</p>
 <p>这个构造器需要一个作用域（<code>scope</code>）</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch(Dispatchers.Main)&#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token operator">..</span><span class="token operator">..</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p><code>launch</code> 方法返回一个 <code>Job</code> ，<code>Job</code>  继承了协程上下文(<code>CoroutineContext</code>)</p>
 <p><code>Job</code> 提供了很多有用的方法，一个 <code>Job</code> 可以有一个父 <code>Job</code>，父 <code>Job</code> 可以控制子 <code>Job</code></p>
 <h4 id="job-join"><a href="#job-join" class="headerlink" title="job.join"></a>job.join</h4><p>这个方法可以中断与当前 <code>Job</code> 关联的协程，直到所有子 <code>Job</code> 执行完成。协程内所有可中断的方法与当前 <code>Job</code> 关联。直到子 <code>Job</code> 全部执行完成，与当前 <code>Job</code> 关联的协程才能继续执行。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = GlobalScope.launch(Dispatchers.Main) &#123;</span><br><span class="line">    doCoroutineTask()</span><br><span class="line">    <span class="keyword">val</span> res1 = suspendingTask1()</span><br><span class="line">    <span class="keyword">val</span> res2 = suspendingTask2()</span><br><span class="line">    process(res1, res2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">job.join()</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> job <span class="token operator">=</span> GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">doCoroutineTask</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> res1 <span class="token operator">=</span> <span class="token function">suspendingTask1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> res2 <span class="token operator">=</span> <span class="token function">suspendingTask2</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">process</span><span class="token punctuation">(</span>res1<span class="token punctuation">,</span> res2<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+job<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
 <p><code>job.join()</code> 是一个可中断的方法，所以它应该在协程内部被调用。</p>
 <h4 id="job-cancel"><a href="#job-cancel" class="headerlink" title="job.cancel()"></a>job.cancel()</h4><p>取消所有与其关联的子 <code>Job</code> ，加入 <code>suspendingTask1()</code> 正在执行的时候 <code>Job</code> 调用了取消，这个时候 <code>res1</code> 不会再返回， 而且 <code>suspendingTask2()</code> 也不会再执行</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = GlobalScope.launch(Dispatchers.Main) &#123;</span><br><span class="line">    doCoroutineTask()</span><br><span class="line">    <span class="keyword">val</span> res1 = suspendingTask1()</span><br><span class="line">    <span class="keyword">val</span> res2 = suspendingTask2()</span><br><span class="line">    process(res1, res2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">job.cancel()</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> job <span class="token operator">=</span> GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">doCoroutineTask</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> res1 <span class="token operator">=</span> <span class="token function">suspendingTask1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> res2 <span class="token operator">=</span> <span class="token function">suspendingTask2</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">process</span><span class="token punctuation">(</span>res1<span class="token punctuation">,</span> res2<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+job<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
 <p><code>job.cancel</code> 是一个普通方法，不必运行再协程内部</p>
 <h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p><code>async</code> <strong>允许并行地运行多个子线程任务</strong>， 它不是一个可中断方法，当调用 <code>async</code> 启动子协程的同事，后面的代码也会立即执行。 <code>async</code> 通常需要运行再另外一个协程内部，它会返回一个特殊的 <code>Job</code> -&gt; <code>Deferred</code></p>
 <h4 id="Deferred"><a href="#Deferred" class="headerlink" title="Deferred"></a>Deferred</h4><p><code>Deferred</code> 有一个 <code>await()</code> 函数，它是一个可终端的方法，当需要获取 <code>async</code> 的结果是，需要调用 <code>await()</code> 方法等待。调用后，会中断当前线程，直到其返回结果</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch(Dispatchers.Main) &#123;</span><br><span class="line">    <span class="keyword">val</span> user = withContext(Dispathcers.IO) &#123;userService.doLogin(username, password)&#125;</span><br><span class="line">    <span class="keyword">val</span> currendFriend = async(Dispatchers.IO) &#123;userService.requestCurrentFriends(user) &#125;</span><br><span class="line">    <span class="keyword">val</span> suggestedFriends = async(Dispatchers.IO) &#123; userService.requestSuggestedFriends(user)&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">val</span> finalUser = user.copy(friends = currenFriends.await() + suggestedFriends.await())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">val</span> user <span class="token operator">=</span> <span class="token function">withContext</span><span class="token punctuation">(</span>Dispathcers<span class="token punctuation">.</span>IO<span class="token punctuation">)</span> <span class="token punctuation">{</span>userService<span class="token punctuation">.</span><span class="token function">doLogin</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token keyword">val</span> currendFriend <span class="token operator">=</span> <span class="token function">async</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>IO<span class="token punctuation">)</span> <span class="token punctuation">{</span>userService<span class="token punctuation">.</span><span class="token function">requestCurrentFriends</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+    <span class="token keyword">val</span> suggestedFriends <span class="token operator">=</span> <span class="token function">async</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>IO<span class="token punctuation">)</span> <span class="token punctuation">{</span> userService<span class="token punctuation">.</span><span class="token function">requestSuggestedFriends</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">val</span> finalUser <span class="token operator">=</span> user<span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span>friends <span class="token operator">=</span> currenFriends<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> suggestedFriends<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="作用域-Scope"><a href="#作用域-Scope" class="headerlink" title="作用域(Scope)"></a>作用域(Scope)</h2><h3 id="GlobalScope"><a href="#GlobalScope" class="headerlink" title="GlobalScope"></a>GlobalScope</h3><p>全局的作用域，如果协程的运行周期和 App 的生命周期一样长的滑，创建协程的时候可以使用它。不应该和任何可以销毁的组件绑定使用</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch(Dispatchers.Main) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
 <ul>
 <li>是否伴随 APP 整个生命周期</li>
 <li>没有界面和组件绑定</li>
@@ -531,7 +624,13 @@
 <li>dispathcer： 用于指定协程默认使用的 dispatcher</li>
 <li>Job: 用在任何需要的时候取消协程</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span>:<span class="type">AppCompatActivity</span></span>(), CoroutineScope &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> coroutineContext: CoroutineContext</span><br><span class="line">    	<span class="keyword">get</span>() = Dispatchers.Main + job</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> job: Job</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> MainActivity<span class="token operator">:</span><span class="token function">AppCompatActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> CoroutineScope <span class="token punctuation">{</span>
+    <span class="token keyword">override</span> <span class="token keyword">val</span> coroutineContext<span class="token operator">:</span> CoroutineContext
+        <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> Dispatchers<span class="token punctuation">.</span>Main <span class="token operator">+</span> job
+
+    <span class="token keyword">private</span> <span class="token keyword">lateinit</span> <span class="token keyword">var</span> job<span class="token operator">:</span> Job
+<span class="token punctuation">}</span>
+</code></pre>
 
       
     </div>
@@ -547,6 +646,35 @@
     
       
     
+    
+      <div>
+        
+          
+        
+      </div>
+      <div>
+        <div id="reward-container">
+  <div>打赏点这里</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/IMG_4730.JPG" alt="茶白 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -569,7 +697,7 @@
     <a href="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程知识点/" title="协程知识点">http://xiaoman.ren/2021/01/29/Kotlin/协程/协程知识点/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
 </ul>
 
       </div>
@@ -665,7 +793,7 @@
               <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true" alt="茶白">
             
               <p class="site-author-name" itemprop="name">茶白</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <div class="site-description motion-element" itemprop="description">个人技术积累,Android 工程师</div>
           </div>
 
           
@@ -675,12 +803,29 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
               
 
               
@@ -720,7 +865,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -750,7 +897,7 @@
                   
                     
                   
-                  <a href="https://github.com/xiaomanwong" title="GitHub &rarr; https://github.com/xiaomanwong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="GitHub &rarr; https://github.com/xiaomanwong"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -761,7 +908,7 @@
                   
                     
                   
-                  <a href="mailto:zhuangbudong@gmail.com" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <span class="exturl" data-url="bWFpbHRvOnpodWFuZ2J1ZG9uZ0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
                 </span>
               
             </div>
@@ -775,7 +922,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><img src="/images/cc-zero.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -834,20 +981,40 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -895,11 +1062,26 @@
 
 
 
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="10" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
+  
+  
 
 
+
+  
+  
+
+
+
+  
+  
 
 
 
@@ -916,6 +1098,18 @@
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
 
   
 
@@ -930,7 +1124,9 @@
   
 
 
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
 
 
 
@@ -950,6 +1146,8 @@
   
 
   
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
 
   
 
@@ -1252,7 +1450,7 @@
             }
           }
 
-          if ('auto' === 'auto') {
+          if ('auto' === 'manual') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
@@ -1300,6 +1498,173 @@
 
 
   
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+  
+  <script>
+    (function () {
+
+      firebase.initializeApp({
+        apiKey: '',
+        projectId: ''
+      })
+
+      function getCount(doc, increaseCount) {
+        //increaseCount will be false when not in article page
+
+        return doc.get().then(function (d) {
+          var count
+          if (!d.exists) { //has no data, initialize count
+            if (increaseCount) {
+              doc.set({
+                count: 1
+              })
+              count = 1
+            }
+            else {
+              count = 0
+            }
+          }
+          else { //has data
+            count = d.data().count
+            if (increaseCount) {
+              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
+                doc.set({ //increase count
+                  count: count + 1
+                })
+                count++
+              }
+            }
+          }
+          if (window.localStorage && increaseCount) { //mark as visited
+            localStorage.setItem(title, true)
+          }
+
+          return count
+        })
+      }
+
+      function appendCountTo(el) {
+        return function (count) {
+          $(el).append(
+            $('<span>').addClass('post-visitors-count').append(
+              $('<span>').addClass('post-meta-divider').text('|')
+            ).append(
+              $('<span>').addClass('post-meta-item-icon').append(
+                $('<i>').addClass('fa fa-users')
+              )
+              ).append($('<span>').text('Views ' + count))
+          )
+        }
+      }
+
+      var db = firebase.firestore()
+      var articles = db.collection('articles')
+
+      //https://hexo.io/docs/variables.html
+      var isPost = '协程知识点'.length > 0
+      var isArchive = '' === 'true'
+      var isCategory = ''.length > 0
+      var isTag = ''.length > 0
+
+      if (isPost) { //is article page
+        var title = '协程知识点'
+        var doc = articles.doc(title)
+
+        getCount(doc, true).then(appendCountTo($('.post-meta')))
+      }
+      else if (!isArchive && !isCategory && !isTag) { //is index page
+        var titles = [] //array to titles
+
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
+        eval(postsstr)
+
+        var promises = titles.map(function (title) {
+          return articles.doc(title)
+        }).map(function (doc) {
+          return getCount(doc)
+        })
+        Promise.all(promises).then(function (counts) {
+          var metas = $('.post-meta')
+          counts.forEach(function (val, idx) {
+            appendCountTo(metas[idx])(val)
+          })
+        })
+      }
+    })()
+  </script>
+
+
+  
+  
+
+  
+  
+
+  
+
 
   
 
@@ -1316,10 +1681,15 @@
   
 
   
-
   
-
   
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
 
   
 <script>
@@ -1359,6 +1729,20 @@
 
 
   
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = '';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
 
   
 

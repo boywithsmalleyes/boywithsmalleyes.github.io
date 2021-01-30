@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.1.0',
     sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -123,7 +123,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -143,9 +143,9 @@
   <meta name="description" content="前言在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。 目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jenkins + gradle + git 构建 Android CI 构建环境">
+<meta property="og:title" content="Jenkins + Gradle + Git 构建 Android CI 构建环境">
 <meta property="og:url" content="http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/index.html">
-<meta property="og:site_name" content="茶白">
+<meta property="og:site_name" content="茶白生产空间">
 <meta property="og:description" content="前言在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。 目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1550996-5101eac8d87352a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -173,13 +173,13 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1550996-4b2fc4b1190ddcd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2021-01-29T16:03:28.385Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jenkins + gradle + git 构建 Android CI 构建环境">
+<meta name="twitter:title" content="Jenkins + Gradle + Git 构建 Android CI 构建环境">
 <meta name="twitter:description" content="前言在项目开发中，我们需要将最新的代码更新，提供给测试人员进行测试，以及发布。 目前 Android 工作中都在使用很强大的开发、构建以及打包工具，例如： android-studio、Gradle、Git等。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1550996-5101eac8d87352a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="茶白" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="茶白生产空间" type="application/atom+xml">
 
 
 
@@ -195,7 +195,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   };
 </script>
 
-  <title>Jenkins + gradle + git 构建 Android CI 构建环境 | 茶白</title>
+  <title>Jenkins + Gradle + Git 构建 Android CI 构建环境 | 茶白生产空间</title>
   
 
 
@@ -254,7 +254,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">茶白</span>
+        <span class="site-title">茶白生产空间</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -290,8 +290,29 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
 
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -306,6 +327,8 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
       
     
 
+    
+      
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
@@ -324,8 +347,10 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
 
     
+      
+    
 
-    <a href="https:\\fiissh.tech/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</a>
+    <span class="exturl" data-url="aHR0cHM6XFxmaWlzc2gudGVjaC8="><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</span>
 
   </li>
 
@@ -341,9 +366,6 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
       
     </ul>
   
-
-  
-    
 
   
 
@@ -381,11 +403,21 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     </header>
 
     
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -410,12 +442,12 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
       <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
+      <meta itemprop="name" content="茶白生产空间">
     </span>
 
     
@@ -423,7 +455,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
         
         
-          <h1 class="post-title" itemprop="name headline">Jenkins + gradle + git 构建 Android CI 构建环境
+          <h1 class="post-title" itemprop="name headline">Jenkins + Gradle + Git 构建 Android CI 构建环境
 
               
             
@@ -480,7 +512,25 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
           
           
+            <span id="/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" class="leancloud_visitors" data-flag-title="Jenkins + Gradle + Git 构建 Android CI 构建环境">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -516,11 +566,14 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 5. Git
 6. Tomcat
 7. Jenkins
-</code></pre><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Java-环境-安装"><a href="#Java-环境-安装" class="headerlink" title="Java 环境 安装"></a>Java 环境 安装</h3><p>Java JDK, Android SDK, Gradle 可从<a href="http://androiddevtools.cn" target="_blank" rel="noopener">AndroidDevTools</a>处下载获取。</p>
-<h3 id="git-安装"><a href="#git-安装" class="headerlink" title="git 安装"></a>git 安装</h3><p>git 可通过终端进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:git-core/ppa</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure></p>
-<p>安装完成之后通过<code>git --version</code> 检查是否成功</p>
+</code></pre><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Java-环境-安装"><a href="#Java-环境-安装" class="headerlink" title="Java 环境 安装"></a>Java 环境 安装</h3><p>Java JDK, Android SDK, Gradle 可从<span class="exturl" data-url="aHR0cDovL2FuZHJvaWRkZXZ0b29scy5jbg==" title="http://androiddevtools.cn">AndroidDevTools<i class="fa fa-external-link"></i></span>处下载获取。</p>
+<h3 id="git-安装"><a href="#git-安装" class="headerlink" title="git 安装"></a>git 安装</h3><p>git 可通过终端进行安装</p>
+<pre><code>sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+</code></pre><p>安装完成之后通过<code>git --version</code> 检查是否成功</p>
 <p>安装后 git 存储在 <code>/usr/bin/git</code>下</p>
-<h3 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h3><p>通过 Jenkins <a href="https://jenkins.io/index.html" target="_blank" rel="noopener">官方网站</a>下载最新Jenkins.war包</p>
+<h3 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h3><p>通过 Jenkins <span class="exturl" data-url="aHR0cHM6Ly9qZW5raW5zLmlvL2luZGV4Lmh0bWw=" title="https://jenkins.io/index.html">官方网站<i class="fa fa-external-link"></i></span>下载最新Jenkins.war包</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-d2654c0a1383423a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Jenkins 下载"></p>
 <h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>打开 <code>vi /etc/profile</code></p>
 <p>将下列语句添加在文件的末尾后， 执行 esc-&gt;:wq</p>
@@ -551,10 +604,80 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-2390d86256678c54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建CI工程"></p>
 <h3 id="参数化构建"><a href="#参数化构建" class="headerlink" title="参数化构建"></a>参数化构建</h3><p>通常我们在使用 Android-studio 进行打包时以及签名时，都会用到build.gradle并在其中配置相关属性。再此，我们可以用Jenkins，配置我们的项目参数，例如发布的版本号，构建时间， 上传路径，发布地址，签名打包等等。</p>
 <p>在这里我们先看看 build.gradle 中的构建信息:</p>
-<p>在项目的 moudle 下 build.gradle 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">def getDate () &#123;</span><br><span class="line">    def date = new Date()</span><br><span class="line">    def formattedDate = date.format(&quot;yyyyMMddHHmm&quot;)</span><br><span class="line">    return formattedDate</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">def verName = APP_VERSION</span><br><span class="line">def verCode = 14</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    ....</span><br><span class="line">    signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">          keyAlias &apos;&apos;</span><br><span class="line">          keyPassword &apos;&apos;</span><br><span class="line">          storeFile file (&apos;&apos;)</span><br><span class="line">          storePassword &apos;&apos;</span><br><span class="line">       &#125;   </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  defaultConfig &#123;</span><br><span class="line">      applicationId &quot;cn.zhuangbudong.example&quot;</span><br><span class="line">      minSdkVersion 18</span><br><span class="line">      targetSdkVersion 25</span><br><span class="line">      multiDexEnabled true</span><br><span class="line">      versionCode verCode</span><br><span class="line">      versionName verName</span><br><span class="line"></span><br><span class="line">      resValues(&quot;string&quot;, &apos;app_version&apos;, verName)</span><br><span class="line">  &#125;</span><br><span class="line">  buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">      signingConfig signingConfigs.release</span><br><span class="line">      minifyEnabled false</span><br><span class="line">      proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   lintOptions &#123;</span><br><span class="line">    abortOnError false</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   dexOptions &#123;</span><br><span class="line">      javaMaxHeapSize &apos;2g&apos;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">applicationVariants.all &#123; variant -&gt;</span><br><span class="line">    variant.outputs.each &#123; output -&gt;</span><br><span class="line">        def newName</span><br><span class="line">        def timeNow</span><br><span class="line">        def oldFile = output.outputFile</span><br><span class="line">        def outDirectory = oldFile.parent</span><br><span class="line">        if (&quot;true&quot;.equals(IS_JENKINS)) &#123; </span><br><span class="line">            timeNow = JENKINS_TIME</span><br><span class="line">            outDirectory = &quot;/media/nexd/work/android/package/release/&quot;</span><br><span class="line">            newName = &apos;zhuangbudong_example_&apos; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; </span><br><span class="line">       &#125; else &#123;</span><br><span class="line">            timeNow = getDate()</span><br><span class="line">            if (variant.buildType.name.equals(&apos;debug&apos;)) &#123; </span><br><span class="line">               newName = &apos;zhuangbudong_example_&apos; + verName + &quot;_debug.apk&quot;  </span><br><span class="line">          &#125; else &#123; </span><br><span class="line">               newName = &apos;zhuangbudong_example_&apos; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; </span><br><span class="line">           &#125; </span><br><span class="line">       &#125; </span><br><span class="line">       output.outputFile = new File(outDirectory, newName)</span><br><span class="line">    &#125;&#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>gradle.properties:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">APP_VERSION=2.0.2</span><br><span class="line">IS_JENKINS=false</span><br><span class="line">JENKINS_TIME=&apos;&apos;</span><br></pre></td></tr></table></figure>
-<p>在工程中添加以上代码，并在Jenkins中为这些参数赋值。</p>
+<p>在项目的 moudle 下 build.gradle 文件</p>
+<pre><code>def getDate () {
+    def date = new Date()
+    def formattedDate = date.format(&quot;yyyyMMddHHmm&quot;)
+    return formattedDate
+}
+
+def verName = APP_VERSION
+def verCode = 14
+
+android {
+    ....
+    signingConfigs {
+        release {
+          keyAlias &#39;&#39;
+          keyPassword &#39;&#39;
+          storeFile file (&#39;&#39;)
+          storePassword &#39;&#39;
+       }   
+   }
+
+  defaultConfig {
+      applicationId &quot;cn.zhuangbudong.example&quot;
+      minSdkVersion 18
+      targetSdkVersion 25
+      multiDexEnabled true
+      versionCode verCode
+      versionName verName
+
+      resValues(&quot;string&quot;, &#39;app_version&#39;, verName)
+  }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), &#39;proguard-rules.pro&#39;
+    }
+
+   lintOptions {
+    abortOnError false
+   }
+
+   dexOptions {
+      javaMaxHeapSize &#39;2g&#39;
+   }
+
+applicationVariants.all { variant -&gt;
+    variant.outputs.each { output -&gt;
+        def newName
+        def timeNow
+        def oldFile = output.outputFile
+        def outDirectory = oldFile.parent
+        if (&quot;true&quot;.equals(IS_JENKINS)) { 
+            timeNow = JENKINS_TIME
+            outDirectory = &quot;/media/nexd/work/android/package/release/&quot;
+            newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; 
+       } else {
+            timeNow = getDate()
+            if (variant.buildType.name.equals(&#39;debug&#39;)) { 
+               newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_debug.apk&quot;  
+          } else { 
+               newName = &#39;zhuangbudong_example_&#39; + verName + &quot;_&quot; + timeNow + &quot;_&quot; + variant.buildType.name + &quot;.apk&quot; 
+           } 
+       } 
+       output.outputFile = new File(outDirectory, newName)
+    }}
+
+  }
+}
+</code></pre><p>gradle.properties:</p>
+<pre><code>APP_VERSION=2.0.2
+IS_JENKINS=false
+JENKINS_TIME=&#39;&#39;
+</code></pre><p>在工程中添加以上代码，并在Jenkins中为这些参数赋值。</p>
 <p>下面介绍 Jenkins 参数配置</p>
 <p>勾选参数化构建过程，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1550996-20f69e63a527814c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="参数化构建"></p>
 <p>按照下图，添加相关类型的参数，此处注意，Jenkins 配置的参数名要和在android-studio中配置的参数名保持一致</p>
@@ -575,8 +698,20 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-4e4e6e139fc1e856.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构建"></p>
 <h3 id="构建后操作"><a href="#构建后操作" class="headerlink" title="构建后操作"></a>构建后操作</h3><p>当项目构建完成后，我们可以通过邮件的方式将产生的Apk文件，以及测试报告，构建日志等信息，发送出来 如下图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-63b6bcb7b2dfd551.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="邮件发送"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;hr/&gt;</span><br><span class="line">(本邮件是程序自动下发的，请勿回复！)&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">项目名称：$&#123;PROJECT_NAME&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建编号：$&#123;BUILD_NUMBER&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建状态：$&#123;BUILD_STATUS&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">触发原因：$&#123;CAUSE&#125;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">测试报告：&lt;a href=&quot;$&#123;PROJECT_URL&#125;ws/$&#123;PROJECT_NAME&#125;app/build/reports/tests/release/index.html&quot;&gt;$&#123;PROJECT_URL&#125;ws/$&#123;PROJECT_NAME&#125;app/build/reports/tests/release/index.html&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建日志地址：&lt;a href=&quot;$&#123;BUILD_URL&#125;console&quot;&gt;$&#123;BUILD_URL&#125;console/&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建地址：&lt;a href=&quot;$&#123;PROJECT_URL&#125;&quot;&gt;$&#123;PROJECT_URL&#125;&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">构建报告：&lt;a href=&quot;$&#123;BUILD_URL&#125;testReport&quot;&gt;$&#123;BUILD_URL&#125;testReport&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;</span><br><span class="line">变更集:$&#123;JELLY_SCRIPT,template=&quot;html&quot;&#125;&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr/&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h2><p>回到 Jenkins 首页，点击创建的项目，点击 build with parameters:</p>
+<pre><code>&lt;hr/&gt;
+(本邮件是程序自动下发的，请勿回复！)&lt;br/&gt;&lt;hr/&gt;
+项目名称：${PROJECT_NAME}&lt;br/&gt;&lt;hr/&gt;
+构建编号：${BUILD_NUMBER}&lt;br/&gt;&lt;hr/&gt;
+构建状态：${BUILD_STATUS}&lt;br/&gt;&lt;hr/&gt;
+触发原因：${CAUSE}&lt;br/&gt;&lt;hr/&gt;
+测试报告：&lt;a href=&quot;${PROJECT_URL}ws/${PROJECT_NAME}app/build/reports/tests/release/index.html&quot;&gt;${PROJECT_URL}ws/${PROJECT_NAME}app/build/reports/tests/release/index.html&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+构建日志地址：&lt;a href=&quot;${BUILD_URL}console&quot;&gt;${BUILD_URL}console/&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+构建地址：&lt;a href=&quot;${PROJECT_URL}&quot;&gt;${PROJECT_URL}&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+构建报告：&lt;a href=&quot;${BUILD_URL}testReport&quot;&gt;${BUILD_URL}testReport&lt;/a&gt;&lt;br/&gt;&lt;hr/&gt;
+变更集:${JELLY_SCRIPT,template=&quot;html&quot;}&lt;br/&gt;
+
+&lt;hr/&gt;
+</code></pre><h2 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h2><p>回到 Jenkins 首页，点击创建的项目，点击 build with parameters:</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1550996-58ecc4965ab845ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Build with Parameters"></p>
 <p>点击开始构建，启动 Jenkins 构建任务。</p>
 <p>构建成功时，显示为蓝色， 失败为红色，如下图：</p>
@@ -599,6 +734,35 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
       
     
     
+      <div>
+        
+          
+        
+      </div>
+      <div>
+        <div id="reward-container">
+  <div>打赏点这里</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/IMG_4730.JPG" alt="茶白 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
       <div>
@@ -617,10 +781,10 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" title="Jenkins + gradle + git 构建 Android CI 构建环境">http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/</a>
+    <a href="http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/" title="Jenkins + Gradle + Git 构建 Android CI 构建环境">http://xiaoman.ren/2019/04/16/Jenkins-gradle-git-构建-Android-CI-构建环境/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
 </ul>
 
       </div>
@@ -643,8 +807,8 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/16/Tools/adb-command/" rel="next" title="adb command">
-                <i class="fa fa-chevron-left"></i> adb command
+              <a href="/2019/04/16/Tools/adb-command/" rel="next" title="Adb Command">
+                <i class="fa fa-chevron-left"></i> Adb Command
               </a>
             
           </div>
@@ -716,7 +880,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
               <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true" alt="茶白">
             
               <p class="site-author-name" itemprop="name">茶白</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <div class="site-description motion-element" itemprop="description">个人技术积累,Android 工程师</div>
           </div>
 
           
@@ -726,12 +890,29 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
               
 
               
@@ -771,7 +952,9 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -801,7 +984,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
                   
                     
                   
-                  <a href="https://github.com/xiaomanwong" title="GitHub &rarr; https://github.com/xiaomanwong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="GitHub &rarr; https://github.com/xiaomanwong"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -812,7 +995,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
                   
                     
                   
-                  <a href="mailto:zhuangbudong@gmail.com" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <span class="exturl" data-url="bWFpbHRvOnpodWFuZ2J1ZG9uZ0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
                 </span>
               
             </div>
@@ -826,7 +1009,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><img src="/images/cc-zero.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -885,20 +1068,40 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -946,11 +1149,26 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 
 
 
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="10" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
+  
+  
 
 
+
+  
+  
+
+
+
+  
+  
 
 
 
@@ -967,6 +1185,18 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
 
   
 
@@ -981,7 +1211,9 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
   
 
 
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
 
 
 
@@ -1001,6 +1233,8 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
   
 
   
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
 
   
 
@@ -1303,7 +1537,7 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
             }
           }
 
-          if ('auto' === 'auto') {
+          if ('auto' === 'manual') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
@@ -1351,6 +1585,173 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 
 
   
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+  
+  <script>
+    (function () {
+
+      firebase.initializeApp({
+        apiKey: '',
+        projectId: ''
+      })
+
+      function getCount(doc, increaseCount) {
+        //increaseCount will be false when not in article page
+
+        return doc.get().then(function (d) {
+          var count
+          if (!d.exists) { //has no data, initialize count
+            if (increaseCount) {
+              doc.set({
+                count: 1
+              })
+              count = 1
+            }
+            else {
+              count = 0
+            }
+          }
+          else { //has data
+            count = d.data().count
+            if (increaseCount) {
+              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
+                doc.set({ //increase count
+                  count: count + 1
+                })
+                count++
+              }
+            }
+          }
+          if (window.localStorage && increaseCount) { //mark as visited
+            localStorage.setItem(title, true)
+          }
+
+          return count
+        })
+      }
+
+      function appendCountTo(el) {
+        return function (count) {
+          $(el).append(
+            $('<span>').addClass('post-visitors-count').append(
+              $('<span>').addClass('post-meta-divider').text('|')
+            ).append(
+              $('<span>').addClass('post-meta-item-icon').append(
+                $('<i>').addClass('fa fa-users')
+              )
+              ).append($('<span>').text('Views ' + count))
+          )
+        }
+      }
+
+      var db = firebase.firestore()
+      var articles = db.collection('articles')
+
+      //https://hexo.io/docs/variables.html
+      var isPost = 'Jenkins + Gradle + Git 构建 Android CI 构建环境'.length > 0
+      var isArchive = '' === 'true'
+      var isCategory = ''.length > 0
+      var isTag = ''.length > 0
+
+      if (isPost) { //is article page
+        var title = 'Jenkins + Gradle + Git 构建 Android CI 构建环境'
+        var doc = articles.doc(title)
+
+        getCount(doc, true).then(appendCountTo($('.post-meta')))
+      }
+      else if (!isArchive && !isCategory && !isTag) { //is index page
+        var titles = [] //array to titles
+
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
+        eval(postsstr)
+
+        var promises = titles.map(function (title) {
+          return articles.doc(title)
+        }).map(function (doc) {
+          return getCount(doc)
+        })
+        Promise.all(promises).then(function (counts) {
+          var metas = $('.post-meta')
+          counts.forEach(function (val, idx) {
+            appendCountTo(metas[idx])(val)
+          })
+        })
+      }
+    })()
+  </script>
+
+
+  
+  
+
+  
+  
+
+  
+
 
   
 
@@ -1367,10 +1768,15 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
   
 
   
-
   
-
   
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
 
   
 <script>
@@ -1410,6 +1816,20 @@ imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jenkinsmain.png"></p>
 
 
   
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = '';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
 
   
 

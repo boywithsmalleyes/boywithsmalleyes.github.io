@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.1.0',
     sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -123,7 +123,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -145,17 +145,17 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="协程入门">
 <meta property="og:url" content="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-入门/index.html">
-<meta property="og:site_name" content="茶白">
+<meta property="og:site_name" content="茶白生产空间">
 <meta property="og:description" content="协程是一种非抢占式或者说是协作式的计算机程序并发调度的实现方案，程序可以主动挂起或者回复执行。 线程当中的代码逻辑在线程抢占到 CPU 的时间片的时候才可以执行，否则就写着 协程更轻量的意思是，协程并不会映射成内核线程或者其他资源，他的调用在用户态就可以搞定，任务之间是协作式，并非抢占式。 协程的三要素：上下文、启动模式、协程体 多个协程可以共用一个线程  协程的本质  协程的挂起函数本质上就是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.315Z">
+<meta property="og:updated_time" content="2021-01-29T16:16:18.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="协程入门">
 <meta name="twitter:description" content="协程是一种非抢占式或者说是协作式的计算机程序并发调度的实现方案，程序可以主动挂起或者回复执行。 线程当中的代码逻辑在线程抢占到 CPU 的时间片的时候才可以执行，否则就写着 协程更轻量的意思是，协程并不会映射成内核线程或者其他资源，他的调用在用户态就可以搞定，任务之间是协作式，并非抢占式。 协程的三要素：上下文、启动模式、协程体 多个协程可以共用一个线程  协程的本质  协程的挂起函数本质上就是">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="茶白" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="茶白生产空间" type="application/atom+xml">
 
 
 
@@ -171,7 +171,7 @@
   };
 </script>
 
-  <title>协程入门 | 茶白</title>
+  <title>协程入门 | 茶白生产空间</title>
   
 
 
@@ -230,7 +230,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">茶白</span>
+        <span class="site-title">茶白生产空间</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -266,8 +266,29 @@
     
 
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -282,6 +303,8 @@
       
     
 
+    
+      
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
@@ -300,8 +323,10 @@
     
 
     
+      
+    
 
-    <a href="https:\\fiissh.tech/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</a>
+    <span class="exturl" data-url="aHR0cHM6XFxmaWlzc2gudGVjaC8="><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</span>
 
   </li>
 
@@ -317,9 +342,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -357,11 +379,21 @@
     </header>
 
     
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -386,12 +418,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
       <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白">
+      <meta itemprop="name" content="茶白生产空间">
     </span>
 
     
@@ -429,6 +461,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-30 00:16:18" itemprop="dateModified" datetime="2021-01-30T00:16:18+08:00">2021-01-30</time>
+              
+            
           </span>
 
           
@@ -440,7 +488,25 @@
 
           
           
+            <span id="/2021/01/29/Kotlin/协程/协程-入门/" class="leancloud_visitors" data-flag-title="协程入门">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -474,40 +540,128 @@
 </ul>
 </li>
 </ul>
+<a id="more"></a>
 <h2 id="通过-Retrofit-请求"><a href="#通过-Retrofit-请求" class="headerlink" title="通过 Retrofit 请求"></a>通过 Retrofit 请求</h2><p>通过 <code>Retrofit</code> 发送一个网络请求</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">GitHubServiceApi</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GET(<span class="meta-string">"users/&#123;login&#125;"</span>)</span></span><br><span class="line">	<span class="function"><span class="keyword">fun</span> <span class="title">getUser</span><span class="params">(<span class="meta">@Path(<span class="meta-string">"login"</span>)</span> login:<span class="type">String</span>)</span></span>:Call&lt;User&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> id:String, <span class="keyword">val</span> name:String, <span class="keyword">val</span> url:String)</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">interface</span> GitHubServiceApi <span class="token punctuation">{</span>
+    <span class="token annotation builtin">@GET</span><span class="token punctuation">(</span><span class="token string">"users/{login}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">fun</span> <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token annotation builtin">@Path</span><span class="token punctuation">(</span><span class="token string">"login"</span><span class="token punctuation">)</span> login<span class="token operator">:</span>String<span class="token punctuation">)</span><span class="token operator">:</span>Call<span class="token operator">&lt;</span>User<span class="token operator">></span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">data</span> <span class="token keyword">class</span> <span class="token function">User</span><span class="token punctuation">(</span><span class="token keyword">val</span> id<span class="token operator">:</span>String<span class="token punctuation">,</span> <span class="token keyword">val</span> name<span class="token operator">:</span>String<span class="token punctuation">,</span> <span class="token keyword">val</span> url<span class="token operator">:</span>String<span class="token punctuation">)</span>
+</code></pre>
 <p><code>Retrofit</code> 初始化如下</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> githubServiceApi <span class="keyword">by</span> lazy &#123;</span><br><span class="line">    <span class="keyword">val</span> retorfit = retrofit2.Retrofit.Builder()</span><br><span class="line">        .baseUrl(<span class="string">"https//api.github.com"</span>)</span><br><span class="line">        .addConverterFacetory(GsonConverterFactory.create())</span><br><span class="line">        .build()</span><br><span class="line">    retrofit.create(GitHUbServiceApi::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> githubServiceApi <span class="token keyword">by</span> lazy <span class="token punctuation">{</span>
+    <span class="token keyword">val</span> retorfit <span class="token operator">=</span> retrofit2<span class="token punctuation">.</span>Retrofit<span class="token punctuation">.</span><span class="token function">Builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">baseUrl</span><span class="token punctuation">(</span><span class="token string">"https//api.github.com"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">addConverterFacetory</span><span class="token punctuation">(</span>GsonConverterFactory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    retrofit<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>GitHUbServiceApi<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>发起网络请求</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">githubServiceApi.getUser(<span class="string">"small"</span>)</span><br><span class="line">.enqueue(<span class="keyword">object</span>: Callback&lt;User&gt; &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onFailure</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">User</span>&gt;, t: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">        handler.post&#123;showError(t)&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onSuccess</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">User</span>&gt;, response: <span class="type">Response</span>&lt;<span class="type">User</span>&gt;)</span></span> &#123;</span><br><span class="line">        handler.post&#123;</span><br><span class="line">            response.body()?.let(::showUser) ?: showError(NullPointerException())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">githubServiceApi<span class="token punctuation">.</span><span class="token function">getUser</span><span class="token punctuation">(</span><span class="token string">"small"</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">object</span><span class="token operator">:</span> Callback<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onFailure</span><span class="token punctuation">(</span>call<span class="token operator">:</span> Call<span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">,</span> t<span class="token operator">:</span> Throwable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        handler<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">{</span><span class="token function">showError</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>call<span class="token operator">:</span> Call<span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">,</span> response<span class="token operator">:</span> Response<span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        handler<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">{</span>
+            response<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span><span class="token punctuation">(</span><span class="token operator">::</span>showUser<span class="token punctuation">)</span> <span class="token operator">?:</span> <span class="token function">showError</span><span class="token punctuation">(</span><span class="token function">NullPointerException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
 <h2 id="改造为携程"><a href="#改造为携程" class="headerlink" title="改造为携程"></a>改造为携程</h2><p>对于 <code>Retrofit</code> 改造为协程的方式有两种，分别通过 <code>CallAdapter</code> 和 <code>suspend</code> 函数</p>
 <h3 id="CallAdapter"><a href="#CallAdapter" class="headerlink" title="CallAdapter"></a>CallAdapter</h3><p>该方法的本质是让接口的方法返回一个协程的 <code>Job</code></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">GitHubServiceApi</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GET(<span class="meta-string">"users/&#123;login&#125;"</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getUser</span><span class="params">(<span class="meta">@Path(<span class="meta-string">"login"</span>)</span>login:<span class="type">String</span>)</span></span>:Deferred&lt;User&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">interface</span> GitHubServiceApi <span class="token punctuation">{</span>
+    <span class="token annotation builtin">@GET</span><span class="token punctuation">(</span><span class="token string">"users/{login}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">fun</span> <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token annotation builtin">@Path</span><span class="token punctuation">(</span><span class="token string">"login"</span><span class="token punctuation">)</span>login<span class="token operator">:</span>String<span class="token punctuation">)</span><span class="token operator">:</span>Deferred<span class="token operator">&lt;</span>User<span class="token operator">></span>
+<span class="token punctuation">}</span>
+</code></pre>
 <blockquote>
 <p>Deferred 是 Job 的子接口</p>
 </blockquote>
 <p>同时需要为 <code>Retrofit</code> 添加对 <code>Deferred</code> 的支持</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-groovy"><code class="language-groovy">implementation <span class="token string">'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'</span>
+</code></pre>
 <p>对构造 <code>Retorfit</code> 的实例添加</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> githubServiceApi <span class="keyword">by</span> lazy &#123;</span><br><span class="line">    <span class="keyword">val</span> retorfit = retrofit2.Retrofit.Builder()</span><br><span class="line">        .baseUrl(<span class="string">"https//api.github.com"</span>)</span><br><span class="line">        .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">        .addCallAdapterFactory(CoroutineCallAdapterFactroy())</span><br><span class="line">        .build()</span><br><span class="line">    retrofit.create(GitHubServiceApi::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> githubServiceApi <span class="token keyword">by</span> lazy <span class="token punctuation">{</span>
+    <span class="token keyword">val</span> retorfit <span class="token operator">=</span> retrofit2<span class="token punctuation">.</span>Retrofit<span class="token punctuation">.</span><span class="token function">Builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">baseUrl</span><span class="token punctuation">(</span><span class="token string">"https//api.github.com"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">addConverterFactory</span><span class="token punctuation">(</span>GsonConverterFactory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">addCallAdapterFactory</span><span class="token punctuation">(</span><span class="token function">CoroutineCallAdapterFactroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    retrofit<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>GitHubServiceApi<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>通过上面的修改，那么我们的请求就可以这样写</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch(Dispatchers.Main) &#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        showUser(githubServiceApi.getUser(<span class="string">"small"</span>).await())</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        shwoError(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        <span class="token function">showUser</span><span class="token punctuation">(</span>githubServiceApi<span class="token punctuation">.</span><span class="token function">getUser</span><span class="token punctuation">(</span><span class="token string">"small"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">shwoError</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p><strong>Note:</strong>  我们首先通过 <code>launch</code> 启动了一个协程，这类似于我们启动一个线程，<code>launch</code> 的参数有三个: 协程上下文、协程启动模式、协程体</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> CorountineScope.<span class="title">launch</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	context:<span class="type">CorountineContext</span> = EmptyCouroutineContext,<span class="comment">// 上下文</span></span></span></span><br><span class="line"><span class="function"><span class="params">    start: <span class="type">CoroutineStart</span> = CoroutineStart.DEFGAULT, <span class="comment">// 启动模式</span></span></span></span><br><span class="line"><span class="function"><span class="params">    block: <span class="type">suspend</span> <span class="type">CorountineScope</span>.()</span></span> -&gt; UNit <span class="comment">// 协程体</span></span><br><span class="line">) :Job</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">public</span> <span class="token keyword">fun</span> CorountineScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>
+    context<span class="token operator">:</span>CorountineContext <span class="token operator">=</span> EmptyCouroutineContext<span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 上下文</span>
+    start<span class="token operator">:</span> CoroutineStart <span class="token operator">=</span> CoroutineStart<span class="token punctuation">.</span>DEFGAULT<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 启动模式</span>
+    block<span class="token operator">:</span> suspend CorountineScope<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> UNit <span class="token comment" spellcheck="true">// 协程体</span>
+<span class="token punctuation">)</span> <span class="token operator">:</span>Job
+</code></pre>
 <p><strong>启动模式</strong> 不是一个复杂的概念，默认直接俄允许调度执行</p>
 <p><strong>上下文</strong>可以有很多作用，包括<em>携带参数</em>、<em>拦截协程执行</em>等等，多数情况下我们不需要自己去实现上下文，只需要使用系统提供的就好。上下文有一个重要的作用就是切换线程，<code>Dispatchers.Main</code> 就是一个官方提供的上下文，它可以确保<code>launch</code> 启动的协程体运行在 UI 线程当中（除非你自己再 <code>launch</code> 的新和成提内部进行线程切换，或者启动运行再其他有线程切换能力的上下文的协程）</p>
 <p>换句话说，在例子当中的整个 <code>launch</code> 内部，你看到的代码都是运行在UI线程中的，尽管 <code>getUser</code> 在执行的时候确实切换了线程，但返回结果的时候会再次切回来。直觉告诉我们 <code>getUser</code> 返回了要给 <code>Deferred</code> 类型，他的 <code>await</code> 方法会返回一个 <code>User</code> 对象，意味着 <code>await</code> 需要等待请求结果返回才可以继续执行，那么<code>await</code> 不会阻塞 UI 线程嘛？</p>
 <p>当然不会。不然 <code>Deferred</code> 于 <code>Future</code>  又有上面区别的，这里<code>await</code>  很可疑。因为实际上是要给 <code>suspend</code> 函数。整个函数只能在协程体或者其他 <code>suspend</code> 函数内部被调用，就像是回调的语法糖一样，通过一个叫 <code>Continuation</code> 的接口来实现返回结果<code></code></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SinceKotlin(<span class="meta-string">"1.3"</span>)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Continuation</span>&lt;<span class="type">in T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> context:CoroutineContext</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWith</span><span class="params">(result:<span class="type">Result</span>&lt;<span class="type">T</span>&gt;)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SinceKotlin(<span class="meta-string">"1.1"</span>)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Continuation</span>&lt;<span class="type">in T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> context:CorouineContext</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">T</span>)</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token annotation builtin">@SinceKotlin</span><span class="token punctuation">(</span><span class="token string">"1.3"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> Continuation<span class="token operator">&lt;</span><span class="token keyword">in</span> T<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">val</span> context<span class="token operator">:</span>CoroutineContext
+    <span class="token keyword">public</span> <span class="token keyword">fun</span> <span class="token function">resumeWith</span><span class="token punctuation">(</span>result<span class="token operator">:</span>Result<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation builtin">@SinceKotlin</span><span class="token punctuation">(</span><span class="token string">"1.1"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> Continuation<span class="token operator">&lt;</span><span class="token keyword">in</span> T<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">val</span> context<span class="token operator">:</span>CorouineContext
+    <span class="token keyword">public</span> <span class="token keyword">fun</span> <span class="token function">resume</span><span class="token punctuation">(</span>value<span class="token operator">:</span> T<span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">fun</span> <span class="token function">resumeWithException</span><span class="token punctuation">(</span>exception<span class="token operator">:</span> Throwable<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
 <p>其实就是要给回调，有结果正常返回， <code>Continuation</code> 调用 <code>resume</code> 返回结果，否则调用 <code>resumeWithException</code> 来抛出异常。</p>
 <p>因此，请求的代码执行流程本质上是一个异步回调</p>
 <p>而之所以可以看起来是同步的，那就是编译器的黑魔法了</p>
 <p>在虚拟机上 <code>await</code> 函数的真实样子是这样的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kotlin/coroutines/Deferred.await (Lkotlin/coroutines/Cotinuation;) LJava/lang/Object</span><br></pre></td></tr></table></figure>
-<p>即接收一个 <code>Continuation</code> 实例，返回 <code>Object</code> 这么一个函数，所以前面的代码可以理解为</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不是正确代码，仅用来理解协程使用</span></span><br><span class="line">GlobalScope.launch(Dispathcers.Main) &#123;</span><br><span class="line">    githubServiceApi.getUser(<span class="string">"small"</span>).await(<span class="keyword">object</span>: Continuation&lt;User&gt;&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">User</span>)</span></span> &#123;</span><br><span class="line">            showUser(value)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">            showError(exception)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>kotlin/coroutines/Deferred.await (Lkotlin/coroutines/Cotinuation;) LJava/lang/Object
+</code></pre><p>即接收一个 <code>Continuation</code> 实例，返回 <code>Object</code> 这么一个函数，所以前面的代码可以理解为</p>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token comment" spellcheck="true">// 不是正确代码，仅用来理解协程使用</span>
+GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span>Dispathcers<span class="token punctuation">.</span>Main<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    githubServiceApi<span class="token punctuation">.</span><span class="token function">getUser</span><span class="token punctuation">(</span><span class="token string">"small"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token keyword">object</span><span class="token operator">:</span> Continuation<span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">{</span>
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">resume</span><span class="token punctuation">(</span>value<span class="token operator">:</span> User<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">showUser</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">resumeWithException</span><span class="token punctuation">(</span>exception<span class="token operator">:</span> Throwable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">showError</span><span class="token punctuation">(</span>exception<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>在 <code>await</code> 当中大致就是：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不是正确代码，仅用来理解协程使用</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">awiat</span><span class="params">(continuation:<span class="type">Continuation</span>&lt;<span class="type">user</span>&gt;)</span></span>:Any&#123;</span><br><span class="line">    ...<span class="comment">// 切到非 UI 线程中执行，等待结果返回</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> user = ....<span class="comment">// 这里执行任务</span></span><br><span class="line">        handler.post &#123;</span><br><span class="line">            continuation.resume(user)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e: Exception) &#123;</span><br><span class="line">        handler.post&#123;continuation.resumeWithException(e)&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token comment" spellcheck="true">// 不是正确代码，仅用来理解协程使用</span>
+<span class="token keyword">fun</span> <span class="token function">awiat</span><span class="token punctuation">(</span>continuation<span class="token operator">:</span>Continuation<span class="token operator">&lt;</span>user<span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span>Any<span class="token punctuation">{</span>
+    <span class="token operator">..</span><span class="token punctuation">.</span><span class="token comment" spellcheck="true">// 切到非 UI 线程中执行，等待结果返回</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">val</span> user <span class="token operator">=</span> <span class="token operator">..</span><span class="token operator">..</span><span class="token comment" spellcheck="true">// 这里执行任务</span>
+        handler<span class="token punctuation">.</span><span class="token function">post</span> <span class="token punctuation">{</span>
+            continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        handler<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">{</span>continuation<span class="token punctuation">.</span><span class="token function">resumeWithException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <blockquote>
 <p>从运行机制上来讲，协程和回调没有本质的区别</p>
 </blockquote>
@@ -516,16 +670,45 @@
 <p>Retrofit 在 release 2.5.0 之后才会支持 suspend 函数</p>
 </blockquote>
 <p>首先修改一下接口方法</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GET(<span class="meta-string">"users/&#123;login&#125;"</span>)</span></span><br><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">getUser</span><span class="params">(<span class="meta">@Path(<span class="meta-string">"login"</span>)</span>login:<span class="type">String</span>)</span></span>: User</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token annotation builtin">@GET</span><span class="token punctuation">(</span><span class="token string">"users/{login}"</span><span class="token punctuation">)</span>
+suspend <span class="token keyword">fun</span> <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token annotation builtin">@Path</span><span class="token punctuation">(</span><span class="token string">"login"</span><span class="token punctuation">)</span>login<span class="token operator">:</span>String<span class="token punctuation">)</span><span class="token operator">:</span> User
+</code></pre>
 <p>这种情况下， <code>Retrofit</code> 会根据接口方法的生命来构造<code>Continuation</code> ，并且在内部封装了一个 <code>Call</code> 的异步请求(使用 <code>enqueue</code>) ，进而得到 User 实例。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        showUser(githubServiceApi.getUser(<span class="string">"small"</span>))</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        showError(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-kotlin"><code class="language-kotlin">GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token function">showUser</span><span class="token punctuation">(</span>githubServiceApi<span class="token punctuation">.</span><span class="token function">getUser</span><span class="token punctuation">(</span><span class="token string">"small"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">showError</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="协程到底是什么"><a href="#协程到底是什么" class="headerlink" title="协程到底是什么"></a>协程到底是什么</h2><p>以前我们使用 Java 进行开发的时候，经常会遇到 <em>回调地域</em> ，使得代码的可读性急剧降低；也通过大量复杂的异步调用处理逻辑、异常；因为回调的存在，还得经常处理线程切换。随着代码体量的增加，各种问题频频爆发。</p>
 <p>而 <strong>协程</strong> 可以帮我们优雅的处理掉这些</p>
 <p>协程本身是一个脱离语言实现的概念。简单来说就是：</p>
 <p>协程是一种非抢占式或者说协作式的计算机程序并发调度的实现，程序可以主动挂起或者恢复执行。经常听到的所谓的协程更轻量的意思是，协程并不会映射成内核线程或者其他重的资源，它的调度在用户态就可以搞定，任务之间的调度并非抢占式，而是协作式。</p>
-<h3 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Job</span>: <span class="type">CoroutineContext.Element &#123;</span></span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> isActive: <span class="built_in">Boolean</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> isCompleted: <span class="built_in">Boolean</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> isCancelled: <span class="built_in">Boolean</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">start</span><span class="params">()</span></span>:<span class="built_in">Boolean</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">cancel</span><span class="params">(cause: <span class="type">CancellationException</span>? = <span class="literal">null</span>)</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">join</span><span class="params">()</span></span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h3><pre class=" language-kotlin"><code class="language-kotlin"><span class="token keyword">public</span> <span class="token keyword">interface</span> Job<span class="token operator">:</span> CoroutineContext<span class="token punctuation">.</span><span class="token function">Element</span> <span class="token punctuation">{</span>
+    <span class="token operator">..</span><span class="token punctuation">.</span>
+    <span class="token keyword">public</span> <span class="token keyword">val</span> isActive<span class="token operator">:</span> Boolean
+    <span class="token keyword">public</span> <span class="token keyword">val</span> isCompleted<span class="token operator">:</span> Boolean
+    <span class="token keyword">public</span> <span class="token keyword">val</span> isCancelled<span class="token operator">:</span> Boolean
+
+    <span class="token keyword">public</span> <span class="token keyword">fun</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>Boolean
+    <span class="token keyword">public</span> <span class="token keyword">fun</span> <span class="token function">cancel</span><span class="token punctuation">(</span>cause<span class="token operator">:</span> CancellationException<span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> suspend <span class="token keyword">fun</span> <span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>我们看一下 <strong>Thread</strong> 的定义</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">boolean</span> <span class="title">isAlive</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">join</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Thread</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">native</span> <span class="token keyword">boolean</span> <span class="token function">isAlive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Deprecated</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException<span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>Thread 和 Job 的基本功能是一致的，他们都承载着一段代码逻辑，也都包含了这段代码的运行状态。</p>
 
       
@@ -542,6 +725,35 @@
     
       
     
+    
+      <div>
+        
+          
+        
+      </div>
+      <div>
+        <div id="reward-container">
+  <div>打赏点这里</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/IMG_4730.JPG" alt="茶白 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -564,7 +776,7 @@
     <a href="http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-入门/" title="协程入门">http://xiaoman.ren/2021/01/29/Kotlin/协程/协程-入门/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
 </ul>
 
       </div>
@@ -660,7 +872,7 @@
               <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true" alt="茶白">
             
               <p class="site-author-name" itemprop="name">茶白</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <div class="site-description motion-element" itemprop="description">个人技术积累,Android 工程师</div>
           </div>
 
           
@@ -670,12 +882,29 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
               
 
               
@@ -715,7 +944,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -745,7 +976,7 @@
                   
                     
                   
-                  <a href="https://github.com/xiaomanwong" title="GitHub &rarr; https://github.com/xiaomanwong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="GitHub &rarr; https://github.com/xiaomanwong"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -756,7 +987,7 @@
                   
                     
                   
-                  <a href="mailto:zhuangbudong@gmail.com" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <span class="exturl" data-url="bWFpbHRvOnpodWFuZ2J1ZG9uZ0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
                 </span>
               
             </div>
@@ -770,7 +1001,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-cn" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><img src="/images/cc-zero.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -829,20 +1060,40 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -890,11 +1141,26 @@
 
 
 
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="10" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
+  
+  
 
 
+
+  
+  
+
+
+
+  
+  
 
 
 
@@ -911,6 +1177,18 @@
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
 
   
 
@@ -925,7 +1203,9 @@
   
 
 
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
 
 
 
@@ -945,6 +1225,8 @@
   
 
   
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
 
   
 
@@ -1247,7 +1529,7 @@
             }
           }
 
-          if ('auto' === 'auto') {
+          if ('auto' === 'manual') {
             input.addEventListener('input', inputEventFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
@@ -1295,6 +1577,173 @@
 
 
   
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+  
+  <script>
+    (function () {
+
+      firebase.initializeApp({
+        apiKey: '',
+        projectId: ''
+      })
+
+      function getCount(doc, increaseCount) {
+        //increaseCount will be false when not in article page
+
+        return doc.get().then(function (d) {
+          var count
+          if (!d.exists) { //has no data, initialize count
+            if (increaseCount) {
+              doc.set({
+                count: 1
+              })
+              count = 1
+            }
+            else {
+              count = 0
+            }
+          }
+          else { //has data
+            count = d.data().count
+            if (increaseCount) {
+              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
+                doc.set({ //increase count
+                  count: count + 1
+                })
+                count++
+              }
+            }
+          }
+          if (window.localStorage && increaseCount) { //mark as visited
+            localStorage.setItem(title, true)
+          }
+
+          return count
+        })
+      }
+
+      function appendCountTo(el) {
+        return function (count) {
+          $(el).append(
+            $('<span>').addClass('post-visitors-count').append(
+              $('<span>').addClass('post-meta-divider').text('|')
+            ).append(
+              $('<span>').addClass('post-meta-item-icon').append(
+                $('<i>').addClass('fa fa-users')
+              )
+              ).append($('<span>').text('Views ' + count))
+          )
+        }
+      }
+
+      var db = firebase.firestore()
+      var articles = db.collection('articles')
+
+      //https://hexo.io/docs/variables.html
+      var isPost = '协程入门'.length > 0
+      var isArchive = '' === 'true'
+      var isCategory = ''.length > 0
+      var isTag = ''.length > 0
+
+      if (isPost) { //is article page
+        var title = '协程入门'
+        var doc = articles.doc(title)
+
+        getCount(doc, true).then(appendCountTo($('.post-meta')))
+      }
+      else if (!isArchive && !isCategory && !isTag) { //is index page
+        var titles = [] //array to titles
+
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
+        eval(postsstr)
+
+        var promises = titles.map(function (title) {
+          return articles.doc(title)
+        }).map(function (doc) {
+          return getCount(doc)
+        })
+        Promise.all(promises).then(function (counts) {
+          var metas = $('.post-meta')
+          counts.forEach(function (val, idx) {
+            appendCountTo(metas[idx])(val)
+          })
+        })
+      }
+    })()
+  </script>
+
+
+  
+  
+
+  
+  
+
+  
+
 
   
 
@@ -1311,10 +1760,15 @@
   
 
   
-
   
-
   
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
 
   
 <script>
@@ -1354,6 +1808,20 @@
 
 
   
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = '';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
 
   
 
