@@ -141,14 +141,14 @@
 
 
   <meta name="description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
-<meta name="keywords" content="Handler">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handler 线程通信基础流程">
 <meta property="og:url" content="http://xiaoman.ren/2019/08/01/Android 基础/原理/Handler 线程通信基础流程/index.html">
 <meta property="og:site_name" content="茶白生产空间">
 <meta property="og:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T15:54:28.303Z">
+<meta property="og:updated_time" content="2021-02-01T12:47:12.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler 线程通信基础流程">
 <meta name="twitter:description" content="Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。 Looper在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出 1234private Looper(boolean quitAllowed) &amp;#123;    mQueue = new MessageQue">
@@ -474,11 +474,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2021-01-29 23:54:28" itemprop="dateModified" datetime="2021-01-29T23:54:28+08:00">2021-01-29</time>
+                <time title="Modified: 2021-02-01 20:47:12" itemprop="dateModified" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Handler/" itemprop="url" rel="index"><span itemprop="name">Handler</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -529,6 +547,7 @@
         <p>Android 中线程通信靠的就是 Handler、Looper、Message、MessageQueue 这四个。</p>
 <h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><p>在 Looper 中，维持一个 Thread 对象以及 MessageQueue， 通过 Looper 的构造函数可以看出</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);<span class="comment">// 传入的参数代表这个 Queue 是否能够被退出</span></span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>Looper 在构造函数里做了两件事儿：</p>
 <ol>
 <li>将线程对象指向了创建的 Looper 的线程</li>
@@ -539,7 +558,7 @@
 <li>looper.loop()</li>
 <li>looper.prepare()</li>
 </ol>
-<a id="more"></a>
+<!--more-->
 <h3 id="looper-loop"><a href="#looper-loop" class="headerlink" title="looper.loop()"></a>looper.loop()</h3><p>在当前线程中启动一个 Message loop 机制</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Looper me = myLooper();<span class="comment">// 获取当前线程绑定的 Looper</span></span><br><span class="line">    <span class="keyword">if</span>(me == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"No Looper; Looper.prepare() wasn`t called on this thread"</span>);        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> MessageQueue queue = me.mQueue();<span class="comment">// 获取与 Looper 绑定的 MessageQueue</span></span><br><span class="line">    <span class="comment">// make sure the identity of this thread is that of the local process,</span></span><br><span class="line">    <span class="comment">// And keep track of what that identity token actuall is.</span></span><br><span class="line">    Binder.clearCallingIdentity();</span><br><span class="line">    fianl <span class="keyword">long</span> ident = Binder.clearCallingIdentity();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 进入死循环，不断获取对象，分发对象到 Handler 中去消费</span></span><br><span class="line">    <span class="keyword">for</span>(;;) &#123;</span><br><span class="line">        Message msg = queue.next();<span class="comment">// 不断获取下一个 message 对象，这里可能会造成阻塞。</span></span><br><span class="line">        <span class="keyword">if</span>(msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// No message idicates that the message queue is quittig.</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// This must be in a local variable, in case a UI event sets the logger</span></span><br><span class="line">        Printer logging = me.mLogging;</span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&gt;&gt;&gt; Dispatching to "</span> + msg.target + <span class="string">" "</span> + msg.callback _ <span class="string">": "</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 在这里开始分发 Message </span></span><br><span class="line">        msg.target.dispatchMessage(msg);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">            logging.println(<span class="string">"&lt;&lt;&lt;&lt;&lt; Finished to "</span> + msg.target + <span class="string">" "</span> + msg.callback);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Make sure that during the course of dispatching the identity of the thread wasn`t corrupted.</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">long</span> newIdent = Binder.clearCallingIdentity();</span><br><span class="line">        <span class="keyword">if</span>(ident != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Log.wtf(TAG, <span class="string">"Thread identity changed from 0x"</span></span><br><span class="line">                        + Long.toHexString(ident) + <span class="string">" to 0x"</span></span><br><span class="line">                        + Long.toHexString(newIdent) + <span class="string">" while dispatching to "</span></span><br><span class="line">                        + msg.target.getClass().getName() + <span class="string">" "</span></span><br><span class="line">                        + msg.callback + <span class="string">" what="</span> + msg.what);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当分发完 Message 后，当然要标记将该 Message 为 “正在使用”</span></span><br><span class="line">        msg.recycleUnchecked();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>从上面的代码可以看出，最重要的方法是：</p>
@@ -653,7 +672,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Handler/" rel="tag"># Handler</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -749,7 +768,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -770,7 +789,21 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -809,13 +842,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

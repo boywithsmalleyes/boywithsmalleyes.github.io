@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷：  okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。">
+  <meta name="description" content="使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷：  okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。  okhttp默认不支持跨协议的重定向，比如http重定向到https">
 <meta name="keywords" content="三方框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OKHttp 重定向拦截器">
 <meta property="og:url" content="http://xiaoman.ren/2020/02/20/三方框架/OKHttp-重定向拦截器/index.html">
 <meta property="og:site_name" content="茶白生产空间">
-<meta property="og:description" content="使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷：  okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。">
+<meta property="og:description" content="使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷：  okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。  okhttp默认不支持跨协议的重定向，比如http重定向到https">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-29T16:05:19.187Z">
+<meta property="og:updated_time" content="2021-02-01T12:47:12.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OKHttp 重定向拦截器">
-<meta name="twitter:description" content="使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷：  okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。">
+<meta name="twitter:description" content="使用 OKHttp 进行重定向拦截处理okhttp重定向存在两个缺陷：  okhttp处理301,302重定向时，会把请求方式设置为GET这样会丢失原来Post请求中的参数。  okhttp默认不支持跨协议的重定向，比如http重定向到https">
 
 
 
@@ -474,11 +474,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2021-01-30 00:05:19" itemprop="dateModified" datetime="2021-01-30T00:05:19+08:00">2021-01-30</time>
+                <time title="Modified: 2021-02-01 20:47:12" itemprop="dateModified" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OkHttp/" itemprop="url" rel="index"><span itemprop="name">OkHttp</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -528,9 +546,12 @@
       
         <h1 id="使用-OKHttp-进行重定向拦截处理"><a href="#使用-OKHttp-进行重定向拦截处理" class="headerlink" title="使用 OKHttp 进行重定向拦截处理"></a>使用 OKHttp 进行重定向拦截处理</h1><p>okhttp重定向存在两个缺陷：</p>
 <ol>
-<li>okhttp处理301,302重定向时，会把请求方式设置为GET<br>这样会丢失原来Post请求中的参数。<a id="more"></a></li>
-<li>okhttp默认不支持跨协议的重定向，比如http重定向到https</li>
+<li><p>okhttp处理301,302重定向时，会把请求方式设置为GET<br>这样会丢失原来Post请求中的参数。</p>
+</li>
+<li><p>okhttp默认不支持跨协议的重定向，比如http重定向到https</p>
+</li>
 </ol>
+<a id="more"></a>
 <p>为了解决这两个问题写了这个拦截器</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedirectInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Request request = chain.request();</span><br><span class="line">        HttpUrl beforeUrl = request.url();</span><br><span class="line">        Response response = chain.proceed(request);</span><br><span class="line">        HttpUrl afterUrl = response.request().url();</span><br><span class="line">        <span class="comment">//1.根据url判断是否是重定向</span></span><br><span class="line">        <span class="keyword">if</span>(!beforeUrl.equals(afterUrl)) &#123;</span><br><span class="line">            <span class="comment">//处理两种情况 1、跨协议 2、原先不是GET请求。</span></span><br><span class="line">            <span class="keyword">if</span> (!beforeUrl.scheme().equals(afterUrl.scheme())||!request.method().equals(<span class="string">"GET"</span>)) &#123;</span><br><span class="line">                <span class="comment">//重新请求</span></span><br><span class="line">                Request newRequest = request.newBuilder().url(response.request().url()).build();</span><br><span class="line">                response = chain.proceed(newRequest);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -705,7 +726,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -726,7 +747,21 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -765,13 +800,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

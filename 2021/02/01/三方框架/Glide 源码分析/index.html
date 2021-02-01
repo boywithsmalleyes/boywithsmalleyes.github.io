@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。 基础用法： 1Glide.with(this).load(url).into(imageView);">
+<meta name="keywords" content="三方框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glide 源码">
+<meta property="og:url" content="http://xiaoman.ren/2021/02/01/三方框架/Glide 源码分析/index.html">
+<meta property="og:site_name" content="茶白生产空间">
+<meta property="og:description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。 基础用法： 1Glide.with(this).load(url).into(imageView);">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_with_sequence.jpg?raw=true">
+<meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_struct.jpg?raw=true">
+<meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_load.jpg?raw=true">
+<meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_into.jpg?raw=true">
+<meta property="og:updated_time" content="2021-02-01T12:47:12.935Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glide 源码">
+<meta name="twitter:description" content="Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 Picasso 和 ImageLoader 两套框架。 都各有特色。这里主要还是讲一下 Glide 。 基础用法： 1Glide.with(this).load(url).into(imageView);">
+<meta name="twitter:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/glide_with_sequence.jpg?raw=true">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="茶白生产空间" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://xiaoman.ren/2021/02/01/三方框架/Glide 源码分析/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Glide 源码 | 茶白生产空间</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">茶白生产空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-首页">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-标签">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友情链接">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <span class="exturl" data-url="aHR0cHM6XFxmaWlzc2gudGVjaC8="><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</span>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/三方框架/Glide 源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白生产空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Glide 源码
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Glide/" itemprop="url" rel="index"><span itemprop="name">Glide</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/三方框架/Glide 源码分析/" class="leancloud_visitors" data-flag-title="Glide 源码">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Glide 作为广为熟知的图片加载框架，在开发工作中出现的频率非常高，同比的还有 <code>Picasso</code> 和 <code>ImageLoader</code> 两套框架。 都各有特色。这里主要还是讲一下 <code>Glide</code> 。</p>
+<p><strong>基础用法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Glide.with(<span class="keyword">this</span>).load(url).into(imageView);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>在 Android 开发中，我们通常最简单的使用 <code>Glide</code> 的 代码如上面一样，如此简单的 api, 就可以帮助我们实现加载本地图片，本地 Drawable ， Gif 图，以及 网络图片，那么在这样简单的 API 的背后，其实它帮助了我们完成了很多工作。</p>
+<p>从简单的使用我们入手，可以看到，要想加载一张图片，我们需要一个当前上下文对象，一个图片地址，一个承载图像的 ImageView 容器。那中三个要求，又同时对应着三个函数，<code>with</code> <code>load</code> 和 <code>into</code>，阅读源码，那就是从源码暴漏给我们最直观的地方进入，不然就是一只没头的苍蝇—到处乱飞。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">主要功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">with</td>
+<td style="text-align:center">1. 初始化Glide对象<br>2. 创建空白的 Fragment 管理生命周期机制<br>3. 创建一个 RequestManager 管理任务</td>
+</tr>
+<tr>
+<td style="text-align:center">load</td>
+<td style="text-align:center">最终构建出 RequestBuilder ，记录传入的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">into</td>
+<td style="text-align:center">1. runRequest 运行队列/等待队列，执行队列 Reqeust 对象<br>2. 活动缓存<br>3. 内存缓存<br>4. HttpUrlConnection</td>
+</tr>
+</tbody>
+</table>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><code>Glide</code> 通过 <code>with</code> 函数，给自己的实例化，并创建一个空白的 <code>Fragment</code> 来管理生命周期并绑定 <code>ReqeustManager</code> 。继续通过 <code>load()</code> 函数构建一个 <code>RequestBuilder()</code> 并缓存我们的参数，继续通过 <code>into</code> 创建一个 <code>Request</code> 对象，并记录宽高、采样数据等。继续，在发起请求之前，先检查一下缓存数据, 活动缓存 <code>ActivityResources</code> 有没有数据，再检查内存缓存 <code>LRUResourceCache</code> ，如果两级缓存都未命中，则启动一个异步任务 <code>DecodeJob</code>, 去检查 <code>DiskCache</code> 中有没有本地磁盘缓存数据，如果没有，通过网络请求数据 <code>HttpUrlConnection</code> ，解析 <code>InputStream</code> 进行采样，最终拿到 <code>Bitmap</code>，将 <code>Bitmap</code> 转换成 <code>Drawable</code> 并讲数据缓存到磁盘中。</p>
+<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>从上面的表格中，我们可以看出来 <code>with</code> 函数，就是用来帮我创建 <code>Glide</code> 对象，并创建一个空白的 <code>Fragment</code> 来管理生命周期。其具体的工作流程如图：</p>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_with_sequence.jpg?raw=true" alt="Glide with 时序图"></p>
+<p>由上面的时序图，我们可以顺序的分析，我们一步步去分析。</p>
+<p><strong>Glide.with()</strong></p>
+<p><code>Glide.with()</code> 为提供了多种重构函数，目的是为我们提供它强大的作用域以及满足我们开发过程中各种复杂的情况。同时适配不同版本以及不同的应用场景。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(context).get(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull Activity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(activity).get(activity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull FragmentActivity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(activity).get(activity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull Fragment fragment)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(fragment.getContext()).get(fragment);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull android.app.Fragment fragment)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(fragment.getActivity()).get(fragment);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(@NonNull View view)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getRetriever(view.getContext()).get(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>getRetriever</strong>()</p>
+<p><code>getRetriever()</code> 通过 Glide 的 get 函数，帮我们初始化了一个 <code>Glide</code> 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> RequestManagerRetriever <span class="title">getRetriever</span><span class="params">(@Nullable Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Glide.get(context).getRequestManagerRetriever();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>get(context)</strong></p>
+<p>可以看出，Glide 是一个单例的，向下看时，我们也可看到，对 Glide 的检查很严谨。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Glide glide;</span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Glide <span class="title">get</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (glide == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (Glide.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (glide == <span class="keyword">null</span>) &#123;</span><br><span class="line">                checkAndInitializeGlide(context, annotationGeneratedModule);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> glide;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>checkAndInitializeGlide() &amp; initializeGlide()</strong></p>
+<p>最终通过构造者模式，完成了对 <code>Glide</code> 对象的初始化，同时在构造者中，也对很多 <code>Glide</code> 工作时需要的对象进行了初始化。我们这里只研究主线业务，其它的可以私下看。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">checkAndInitializeGlide</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">if</span> (isInitializing)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(</span><br><span class="line">            <span class="string">"You cannot call Glide.get() in registerComponents(),"</span></span><br><span class="line">            + <span class="string">" use the provided Glide instance instead"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    isInitializing = <span class="keyword">true</span>;</span><br><span class="line">    initializeGlide(context, generatedAppGlideModule);</span><br><span class="line">    isInitializing = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">initializeGlide</span><span class="params">(Context context, GlideBuilder builder, GeneratedAppGlideModule annotationGeneratedModule)</span> </span>&#123;</span><br><span class="line">    Glide glide = builder.build(applicationContext);</span><br><span class="line">    Glide.glide = glide;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这里， <code>Glide</code> 的初始化工作已经完成，具体初始化了什么信息，细节的东西，自己需要去认真的阅读源码。</p>
+<p>并且代码按照流程，<code>get()</code> 的深度代码已经完成，程序会逐步回到 <code>getRetriever()</code> 函数中，去执行 <code>getRequestManagerRetriever</code> ， <code>getRequestManagerRetriever</code> <code>是通过</code>Glide 的构造器完成的初始化工作，此时直接返回已经创建好的对象。并继续执行 <code>with()</code>函数 的 <code>get()</code> 去创建 <code>RequestManager</code></p>
+<p><strong>get(Fragment fragment)</strong></p>
+<p>这时候，我们发现，现在代码已经跳转到 <code>RequestManagerRetriever</code> 类中</p>
+<p><strong>RequestManagerRetriever</strong></p>
+<p><code>RequestManagerRetriever</code> 是一个管理类，负责生产 <code>Fragment</code> 对象，根据我们传入的 <code>Context</code> 上下文的定义不同，最终会帮我们创建不同的生命周期管理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RequestManager <span class="title">get</span><span class="params">(@NonNull Fragment fragment)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (Util.isOnBackgroundThread()) &#123;</span><br><span class="line">      <span class="comment">// 创建一个全局作用域的 RequestManager，生命周期很长，容易出现内存问题</span></span><br><span class="line">    <span class="keyword">return</span> get(fragment.getContext().getApplicationContext());</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    FragmentManager fm = fragment.getChildFragmentManager();</span><br><span class="line">    <span class="keyword">return</span> supportFragmentGet(fragment.getContext(), fm, fragment, fragment.isVisible());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> RequestManager <span class="title">get</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (context == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You cannot start a load on a null Context"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (Util.isOnMainThread() &amp;&amp; !(context <span class="keyword">instanceof</span> Application)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (context <span class="keyword">instanceof</span> FragmentActivity) &#123;</span><br><span class="line">      <span class="keyword">return</span> get((FragmentActivity) context);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (context <span class="keyword">instanceof</span> Activity) &#123;</span><br><span class="line">      <span class="keyword">return</span> get((Activity) context);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (context <span class="keyword">instanceof</span> ContextWrapper</span><br><span class="line">        &amp;&amp; ((ContextWrapper) context).getBaseContext().getApplicationContext() != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> get(((ContextWrapper) context).getBaseContext());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">       <span class="comment">// 创建一个全局作用域的 RequestManager，生命周期很长，容易出现内存问题</span></span><br><span class="line">    <span class="keyword">return</span> getApplicationManager(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ol>
+<li><p><strong>如果当前任务工作在后台线程或者传入的 <code>Context</code> 对象是一个 <code>Application</code> 级别的，那 <code>Glide</code> 就会帮我们创建一个和 <code>Application</code> 同生命周期的 <code>RequestManager</code> 对象，这个对象生命周期很长， 如果我们不规范使用的话，这里很容易造成<font color="red">内存的泄漏</font></strong>。 因此我们使用时，尽量不要传入里类似的。</p>
+</li>
+<li><p>如果我们传入的是一个 Fragment 对象， Activity 对象等等，那 <code>Glide</code> 就会帮我们创建个空白的 <code>Fragment</code>， <code>supportFragmentGet</code> 和  <code>fragmentGet</code> 两种方案是用来做 <code>androidX</code> 和 <code>android.app</code>中不同 <code>fragment</code> 的适配</p>
+</li>
+</ol>
+</blockquote>
+<p><strong>supportFragmentGet</strong></p>
+<p>创建管理生命周期的 Fragment, <code>androidx</code> 对应的是 <code>supportFragmentGet()</code> ， <code>android.app</code> 对应的是 <code>fragmentGet()</code>， 这里以 <code>supportFragmentGet()</code> 为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> RequestManager <span class="title">supportFragmentGet</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull Context context,</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull FragmentManager fm,</span></span></span><br><span class="line"><span class="function"><span class="params">    @Nullable Fragment parentHint,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">boolean</span> isParentVisible)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建/获取当前空白的 Fragment</span></span><br><span class="line">  SupportRequestManagerFragment current =</span><br><span class="line">      getSupportRequestManagerFragment(fm, parentHint, isParentVisible);</span><br><span class="line">    <span class="comment">// 获取空白 Fragment 中的 RequestManager 对象</span></span><br><span class="line">    <span class="comment">// 如果为空，那么就通过工厂创建一个，并绑定回空白的 Fragment 中</span></span><br><span class="line">  RequestManager requestManager = current.getRequestManager();</span><br><span class="line">  <span class="keyword">if</span> (requestManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">    Glide glide = Glide.get(context);</span><br><span class="line">    requestManager =</span><br><span class="line">        factory.build(</span><br><span class="line">            glide, current.getGlideLifecycle(), current.getRequestManagerTreeNode(), context);</span><br><span class="line">    current.setRequestManager(requestManager);</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="comment">// 返回 reqeustManager 对象</span></span><br><span class="line">  <span class="keyword">return</span> requestManager;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> SupportRequestManagerFragment <span class="title">getSupportRequestManagerFragment</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull <span class="keyword">final</span> FragmentManager fm, @Nullable Fragment parentHint, <span class="keyword">boolean</span> isParentVisible)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 从 FragmentManager 中获取当前已经初始化好，并添加到 Fragment/Activity 中我们空白的 SupportRequestFragment </span></span><br><span class="line">  SupportRequestManagerFragment current =</span><br><span class="line">      (SupportRequestManagerFragment) fm.findFragmentByTag(FRAGMENT_TAG);</span><br><span class="line">    <span class="comment">// 如果为空，说明空白的 Fragment 还没有被添加进去</span></span><br><span class="line">  <span class="keyword">if</span> (current == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="comment">// pendingSupportRequestManagerFragments 是一个 HashMap 集合，用来暂存空白 Fragment 对象</span></span><br><span class="line">      <span class="comment">// 由于 Glide 是一个单例对象，在 Glide 的 builder 中，间接的创建了 RequestManagerRetriever 对象，</span></span><br><span class="line">      <span class="comment">// 因此 RequestManagerRetriever 也是一个单例，不同的 Activity/Fragment, 会有多个，因此这里用一个 HashMap 来存储空白 Fragment，</span></span><br><span class="line">      <span class="comment">// 同时，为了保证每个页面只会有一个空白 Fragment，并可以快速定位，所以使用了 HashMap</span></span><br><span class="line">    current = pendingSupportRequestManagerFragments.get(fm); <span class="comment">// 第一保障</span></span><br><span class="line">      <span class="comment">// 如果当前缓存的数据中，仍然没有创建好 Fragment， 那就说明当前的空白 Fragment 还没有被创建</span></span><br><span class="line">    <span class="keyword">if</span> (current == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 创建一个新的空白 Fragment</span></span><br><span class="line">      current = <span class="keyword">new</span> SupportRequestManagerFragment();</span><br><span class="line">      current.setParentFragmentHint(parentHint);</span><br><span class="line">      <span class="keyword">if</span> (isParentVisible) &#123;</span><br><span class="line">          <span class="comment">// 调用生命周期方法，让所有的监听者开始任务（后面会说）</span></span><br><span class="line">        current.getGlideLifecycle().onStart();</span><br><span class="line">      &#125;</span><br><span class="line">        <span class="comment">// 将创建好的 Fragment 存入到集合中</span></span><br><span class="line">      pendingSupportRequestManagerFragments.put(fm, current);</span><br><span class="line">        <span class="comment">// Handler 通知父容器，这里添加了一个 Fragment</span></span><br><span class="line">      fm.beginTransaction().add(current, FRAGMENT_TAG).commitAllowingStateLoss();</span><br><span class="line">        <span class="comment">// 发送一个 handler 消息，将数据从集合中移除，节省内存空间。（第二保障）</span></span><br><span class="line">      handler.obtainMessage(ID_REMOVE_SUPPORT_FRAGMENT_MANAGER, fm).sendToTarget();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> current;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>这里有一个比较困惑的地方就是，将已经创建好的 <code>Fragment</code> 添加到集合中去后，又通过 <code>Handler</code> 消息，将这个 <code>Fragment</code> 从集合中移除，这是为什么呢？</p>
+<p>其实最终的目的是节省内存空间做的一个优化，通过 Handler来处理是因为，<code>fragment</code> 的添加也是通过 <code>Handler</code> 来完成的，但 <code>Handler</code> 消息的执行时间不能保证，因此通过 <code>Handler</code> 再发一次消息，让移除操作在 <code>Fragment</code> 添加完成之后去执行，就一定能够得到保障。</p>
+<p>只有当 <code>Fragment</code> 被添加进入父容器之后， <code>fm.findFragmentByTag</code> 才能获取到对象。这也是为了保证每个父容器都只有一个空白 <code>Fragment</code> 的两次保障。</p>
+</blockquote>
+<h2 id="类关系图"><a href="#类关系图" class="headerlink" title="类关系图"></a>类关系图</h2><p>至此，with 函数的所有主线业务已经说完了，但究竟 Fragment 是如何监听生命周期变化的呢？我们来看下面这张关系图</p>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_struct.jpg?raw=true" alt="Glide lifecycle"></p>
+<p><strong>SupportRequestManagerFragment</strong> </p>
+<p>内部绑定了 <code>ActivityFragmentLifecycle</code> ，通过 Fragment 生生命周期变化，来引导 <code>RequestManager</code> 完成图片的请求和后续的显示</p>
+<p>我们查看下源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SupportRequestManagerFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"SupportRMFragment"</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> ActivityFragmentLifecycle lifecycle;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@SuppressLint</span>(<span class="string">"ValidFragment"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">SupportRequestManagerFragment</span><span class="params">(@NonNull ActivityFragmentLifecycle lifecycle)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 构造器创建了 ActivityFramgentLifecycle</span></span><br><span class="line">    <span class="keyword">this</span>.lifecycle = lifecycle;</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 在前面初始化 SupportRequestManagerFragment 的代码中，我们还记得他手动的调用了一下 start 方法吧</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onStart();</span><br><span class="line">    lifecycle.onStart();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onStop();</span><br><span class="line">    lifecycle.onStop();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDestroy();</span><br><span class="line">    lifecycle.onDestroy();</span><br><span class="line">    unregisterFragmentWithRoot();</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="meta">@NonNull</span></span><br><span class="line">  <span class="function">ActivityFragmentLifecycle <span class="title">getGlideLifecycle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lifecycle;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当 Fragment / Activity 已经不可见时，通过生命周期变化，通知业务功能类去停止请求或调用，防止内存泄漏和崩溃。</p>
+<h2 id="load"><a href="#load" class="headerlink" title="load"></a>load</h2><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_load.jpg?raw=true" alt="Glide load"></p>
+<p>我们将 <code>Glide.with(this).load(url).into(view);</code> 拆分开来写，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RequestManager requestManager = Glide.with(<span class="keyword">this</span>);</span><br><span class="line">RequestBuilder requestBuilder = requestManager.load(url);</span><br><span class="line">requestBuilder.into(view);</span><br></pre></td></tr></table></figure>
+<p>可以看出， load 函数，我们传入了一个 <code>String</code> 类型的 <code>Url</code>， 最终返回给我们一个 <code>RequestBuilder</code> 对象。按照上面的时序图，我们简单分析一下可以看出，实际上 <code>RequestBuilder</code> 就是一个构造者，记录我们传入的参数，最终将我们传入的内容转化为一个 <code>Drawable</code> 。</p>
+<p><code>Glide</code> 也为我们提供了丰富的 <code>load api</code>， 我们可以传入 <code>url, bitmap, byte[], Drawable, Uri, File, Integer</code> 等等， <code>RequestBuilder</code> 就是来记录我们传入的具体是一个什么样子的数据，并将他们在展示的时候，最终转化成一个 <code>Drawable</code> 给图片容器，也就是后面我们要说的 <code>into</code> 函数。</p>
+<h2 id="into"><a href="#into" class="headerlink" title="into"></a>into</h2><p>into 的流程相当复杂，流程图已经展示不下，也不清晰。这是一张不完整的时序图。并没有体现网络请求的部分，和缓存的部分。</p>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/glide_into.jpg?raw=true" alt></p>
+<p>但我们先按照这个残图先分析一下。</p>
+<p>当 <code>into(imageview)</code> 被调用后</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ViewTarget&lt;ImageView, TranscodeType&gt; <span class="title">into</span><span class="params">(@NonNull ImageView view)</span> </span>&#123;</span><br><span class="line">    Util.assertMainThread();</span><br><span class="line">    Preconditions.checkNotNull(view);</span><br><span class="line"></span><br><span class="line">    BaseRequestOptions&lt;?&gt; requestOptions = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (!requestOptions.isTransformationSet()</span><br><span class="line">        &amp;&amp; requestOptions.isTransformationAllowed()</span><br><span class="line">        &amp;&amp; view.getScaleType() != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">switch</span> (view.getScaleType()) &#123;</span><br><span class="line">        <span class="keyword">case</span> CENTER_CROP:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalCenterCrop();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> CENTER_INSIDE:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalCenterInside();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> FIT_CENTER:</span><br><span class="line">        <span class="keyword">case</span> FIT_START:</span><br><span class="line">        <span class="keyword">case</span> FIT_END:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalFitCenter();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> FIT_XY:</span><br><span class="line">          requestOptions = requestOptions.clone().optionalCenterInside();</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> CENTER:</span><br><span class="line">        <span class="keyword">case</span> MATRIX:</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">          <span class="comment">// Do nothing.</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>Glide 显示对图片进行了解析，获取图片的尺寸等信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> &lt;Y extends Target&lt;TranscodeType&gt;&gt; <span class="function">Y <span class="title">into</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    @NonNull Y target,</span></span></span><br><span class="line"><span class="function"><span class="params">    @Nullable RequestListener&lt;TranscodeType&gt; targetListener,</span></span></span><br><span class="line"><span class="function"><span class="params">    BaseRequestOptions&lt;?&gt; options,</span></span></span><br><span class="line"><span class="function"><span class="params">    Executor callbackExecutor)</span> </span>&#123;</span><br><span class="line">  Preconditions.checkNotNull(target);</span><br><span class="line">  <span class="keyword">if</span> (!isModelSet) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must call #load() before calling #into()"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Request request = buildRequest(target, targetListener, options, callbackExecutor);</span><br><span class="line">  Request previous = target.getRequest();</span><br><span class="line">  requestManager.clear(target);</span><br><span class="line">  target.setRequest(request);</span><br><span class="line">  requestManager.track(target, request);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继续，创建了一个 <code>Request</code> ，这个 <code>Request</code> 的真实对象是 <code>SingleRequest</code> ，并通过 <code>requestManager</code> 执行了这个请求任务。利用三层缓存策略，最终展示了一张图片。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        
+          
+        
+      </div>
+      <div>
+        <div id="reward-container">
+  <div>打赏点这里</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/IMG_4730.JPG" alt="茶白 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>茶白</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://xiaoman.ren/2021/02/01/三方框架/Glide 源码分析/" title="Glide 源码">http://xiaoman.ren/2021/02/01/三方框架/Glide 源码分析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/三方框架/" rel="tag"># 三方框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/01/Tools/Typora 自动图床设置/" rel="next" title="Typora 设置图床">
+                <i class="fa fa-chevron-left"></i> Typora 设置图床
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/01/数据结构/数据结构/" rel="prev" title="数据结构">
+                数据结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true" alt="茶白">
+            
+              <p class="site-author-name" itemprop="name">茶白</p>
+              <div class="site-description motion-element" itemprop="description">个人技术积累,Android 工程师</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="GitHub &rarr; https://github.com/xiaomanwong"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOnpodWFuZ2J1ZG9uZ0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><img src="/images/cc-zero.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作流程"><span class="nav-number">1.</span> <span class="nav-text">工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with"><span class="nav-number">2.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类关系图"><span class="nav-number">3.</span> <span class="nav-text">类关系图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#load"><span class="nav-number">4.</span> <span class="nav-text">load</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#into"><span class="nav-number">5.</span> <span class="nav-text">into</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">茶白</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="10" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+  
+  <script>
+    (function () {
+
+      firebase.initializeApp({
+        apiKey: '',
+        projectId: ''
+      })
+
+      function getCount(doc, increaseCount) {
+        //increaseCount will be false when not in article page
+
+        return doc.get().then(function (d) {
+          var count
+          if (!d.exists) { //has no data, initialize count
+            if (increaseCount) {
+              doc.set({
+                count: 1
+              })
+              count = 1
+            }
+            else {
+              count = 0
+            }
+          }
+          else { //has data
+            count = d.data().count
+            if (increaseCount) {
+              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
+                doc.set({ //increase count
+                  count: count + 1
+                })
+                count++
+              }
+            }
+          }
+          if (window.localStorage && increaseCount) { //mark as visited
+            localStorage.setItem(title, true)
+          }
+
+          return count
+        })
+      }
+
+      function appendCountTo(el) {
+        return function (count) {
+          $(el).append(
+            $('<span>').addClass('post-visitors-count').append(
+              $('<span>').addClass('post-meta-divider').text('|')
+            ).append(
+              $('<span>').addClass('post-meta-item-icon').append(
+                $('<i>').addClass('fa fa-users')
+              )
+              ).append($('<span>').text('Views ' + count))
+          )
+        }
+      }
+
+      var db = firebase.firestore()
+      var articles = db.collection('articles')
+
+      //https://hexo.io/docs/variables.html
+      var isPost = 'Glide 源码'.length > 0
+      var isArchive = '' === 'true'
+      var isCategory = ''.length > 0
+      var isTag = ''.length > 0
+
+      if (isPost) { //is article page
+        var title = 'Glide 源码'
+        var doc = articles.doc(title)
+
+        getCount(doc, true).then(appendCountTo($('.post-meta')))
+      }
+      else if (!isArchive && !isCategory && !isTag) { //is index page
+        var titles = [] //array to titles
+
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
+        eval(postsstr)
+
+        var promises = titles.map(function (title) {
+          return articles.doc(title)
+        }).map(function (doc) {
+          return getCount(doc)
+        })
+        Promise.all(promises).then(function (counts) {
+          var metas = $('.post-meta')
+          counts.forEach(function (val, idx) {
+            appendCountTo(metas[idx])(val)
+          })
+        })
+      }
+    })()
+  </script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = '';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
+
+  
+
+</body>
+</html>
