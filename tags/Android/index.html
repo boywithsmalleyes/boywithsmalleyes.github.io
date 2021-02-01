@@ -591,9 +591,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Android 基础/原理/Handler 消息机制/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Android 基础/View/自定义 ViewGroup/" itemprop="url">
             
-              <span itemprop="name">Handler 消息机制</span>
+              <span itemprop="name">自定义 ViewGroup</span>
             
           </a>
         
@@ -617,9 +617,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Android 基础/View/自定义 ViewGroup/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Android 基础/原理/Handler 消息机制/" itemprop="url">
             
-              <span itemprop="name">自定义 ViewGroup</span>
+              <span itemprop="name">Handler 消息机制</span>
             
           </a>
         
@@ -972,7 +972,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1007,7 +1007,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -1046,7 +1048,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1804,7 +1808,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Android Lifecycle");titles.push("Android 架构组件");titles.push("Android Data Binding");titles.push("Android Room");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("Handler 消息机制");titles.push("自定义 ViewGroup");titles.push("RecyclerView 总结");titles.push("Android自定义View");titles.push("Android WebView");titles.push("Activity 横竖屏");titles.push("Android Q 文件权限适配");titles.push("Handler 线程通信基础流程");titles.push("Android 中设置全屏的方法");titles.push("Android 在一个应用中启动另外一个应用");titles.push("Android Studio Dependencies Library Resolve");titles.push("Jenkins + Gradle + Git 构建 Android CI 构建环境");titles.push("Adb Command");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Android Lifecycle");titles.push("Android 架构组件");titles.push("Android Data Binding");titles.push("Android Room");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("自定义 ViewGroup");titles.push("Handler 消息机制");titles.push("RecyclerView 总结");titles.push("Android自定义View");titles.push("Android WebView");titles.push("Activity 横竖屏");titles.push("Android Q 文件权限适配");titles.push("Handler 线程通信基础流程");titles.push("Android 中设置全屏的方法");titles.push("Android 在一个应用中启动另外一个应用");titles.push("Android Studio Dependencies Library Resolve");titles.push("Jenkins + Gradle + Git 构建 Android CI 构建环境");titles.push("Adb Command");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

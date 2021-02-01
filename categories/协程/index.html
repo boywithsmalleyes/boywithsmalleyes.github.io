@@ -513,9 +513,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-挂起/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-异常处理/" itemprop="url">
             
-              <span itemprop="name">协程挂起</span>
+              <span itemprop="name">协程异常处理</span>
             
           </a>
         
@@ -539,9 +539,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-异常处理/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-挂起/" itemprop="url">
             
-              <span itemprop="name">协程异常处理</span>
+              <span itemprop="name">协程挂起</span>
             
           </a>
         
@@ -686,7 +686,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -721,7 +721,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -760,7 +762,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1518,7 +1522,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("协程知识点");titles.push("协程");titles.push("协程调度器");titles.push("协程挂起");titles.push("协程异常处理");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("协程知识点");titles.push("协程");titles.push("协程调度器");titles.push("协程异常处理");titles.push("协程挂起");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

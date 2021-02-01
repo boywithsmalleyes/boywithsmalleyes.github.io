@@ -140,17 +140,18 @@
 
 
 
-  <meta name="keywords" content="Kotlin">
+  <meta name="description" content="资源类性能就像是撑起冰山一角的下面的冰层，我们称之为 3 + 1 + 1 。 3 + 1  时传统的 -磁盘、cpu 和 内存，加 1 是与环境密切相关的网络；最后一个加 1 则是因为移动网络而显得特别重要的电池（耗电）。 因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD,">
+<meta name="keywords" content="Android,性能优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="协程调度器">
-<meta property="og:url" content="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-调度器/index.html">
+<meta property="og:title" content="Android 磁盘空间优化">
+<meta property="og:url" content="http://xiaoman.ren/2021/02/02/Android 基础/性能优化/磁盘空间优化/index.html">
 <meta property="og:site_name" content="茶白白在胡说">
+<meta property="og:description" content="资源类性能就像是撑起冰山一角的下面的冰层，我们称之为 3 + 1 + 1 。 3 + 1  时传统的 -磁盘、cpu 和 内存，加 1 是与环境密切相关的网络；最后一个加 1 则是因为移动网络而显得特别重要的电池（耗电）。 因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/18062676-f99f572eee860a04.jpg">
-<meta property="og:updated_time" content="2021-02-01T12:47:12.924Z">
+<meta property="og:updated_time" content="2021-02-01T16:29:59.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="协程调度器">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/18062676-f99f572eee860a04.jpg">
+<meta name="twitter:title" content="Android 磁盘空间优化">
+<meta name="twitter:description" content="资源类性能就像是撑起冰山一角的下面的冰层，我们称之为 3 + 1 + 1 。 3 + 1  时传统的 -磁盘、cpu 和 内存，加 1 是与环境密切相关的网络；最后一个加 1 则是因为移动网络而显得特别重要的电池（耗电）。 因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD,">
 
 
 
@@ -160,7 +161,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-调度器/">
+  <link rel="canonical" href="http://xiaoman.ren/2021/02/02/Android 基础/性能优化/磁盘空间优化/">
 
 
 
@@ -170,7 +171,7 @@
   };
 </script>
 
-  <title>协程调度器 | 茶白白在胡说</title>
+  <title>Android 磁盘空间优化 | 茶白白在胡说</title>
   
 
 
@@ -413,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-调度器/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/02/Android 基础/性能优化/磁盘空间优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -430,7 +431,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">协程调度器
+          <h1 class="post-title" itemprop="name headline">Android 磁盘空间优化
 
               
             
@@ -456,7 +457,7 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-02-02 00:29:59" itemprop="dateCreated datePublished" datetime="2021-02-02T00:29:59+08:00">2021-02-02</time>
             
 
             
@@ -474,7 +475,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/资源类性能优化/" itemprop="url" rel="index"><span itemprop="name">资源类性能优化</span></a></span>
 
                 
                 
@@ -489,7 +490,7 @@
 
           
           
-            <span id="/2021/02/01/Kotlin/协程/协程-调度器/" class="leancloud_visitors" data-flag-title="协程调度器">
+            <span id="/2021/02/02/Android 基础/性能优化/磁盘空间优化/" class="leancloud_visitors" data-flag-title="Android 磁盘空间优化">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -527,62 +528,71 @@
       
 
       
-        <p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/18062676-f99f572eee860a04.jpg" alt="协程调度器"></p>
-<a id="more"></a>
+        <p>资源类性能就像是撑起冰山一角的下面的冰层，我们称之为 <code>3 + 1 + 1</code> 。 <code>3 + 1</code>  时传统的 -磁盘、cpu 和 内存，加 1 是与环境密切相关的网络；最后一个加 1 则是因为移动网络而显得特别重要的电池（耗电）。</p>
+<p>因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD, 又可以是 CPU 问题， decode 图片开了过多的子线程，导致主线程的 CPU  资源被争抢；更可以是再主线程中读/写磁盘，磁盘读/写耗时抖一抖、页面也就跟着卡一下。所以关注资源类性能，其实是关注问题的本质去解决问题的方式。</p>
+<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>再没有SSD 磁盘前，大家都觉着 HDD 很好用。对于外行来说，磁盘 I/0 性能总是最容易被忽略的，经理会更集中再 CPU 上。但内行人都知道，性能无非是 CPU 密集型和 I/O 密集型，磁盘 I/O 就是其中之一。</p>
+<p>在设备长时间使用，磁盘空间不足。应用触发大量随机写操作，都会导致磁盘的负载，磁盘 I/O 的耗时会产生剧烈的波动， App 能做的只有一件事儿，即减少磁盘 I/O d 操作量，特别是主线程的操作量。</p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>那么我们要如何发现、定位、解决这些磁盘 I/O 的性能问题呢？</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>问题</th>
+<th>能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Systrace/Strace</td>
+<td>主线程I/O，I/O操作耗时过长</td>
+<td>发现</td>
+</tr>
+<tr>
+<td>STRICTMODE</td>
+<td>主线程I/O</td>
+<td>发现+ 定位</td>
+</tr>
+<tr>
+<td>I/O Monitor</td>
+<td>主线程I/O，多余I/O，Buffer 国小等</td>
+<td>发现+ 定位</td>
+</tr>
+<tr>
+<td>SQL I/O Monitor</td>
+<td>主线程I/O，全表扫描，不合理事务等</td>
+<td>发现+ 定位</td>
+</tr>
+</tbody>
+</table>
+<h4 id="STRICTMODE"><a href="#STRICTMODE" class="headerlink" title="STRICTMODE"></a><strong>STRICTMODE</strong></h4><p>严苛模式，在 Application 的 <code>onCreate()</code> 中定义，也是入门级的必备工具。可以发现并定位磁盘 I/O 问题中影响最大的主线程 I/O，使用方法如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(DEVELOPER_MODE) &#123;</span><br><span class="line">        StrictMode.setThreadPolicy(<span class="keyword">new</span> StrictMode.ThreadPolicy.Builder()</span><br><span class="line">                                  .detectDiskReads()</span><br><span class="line">                                  .detectDiskWrites()</span><br><span class="line">                                  .detectNetwork()</span><br><span class="line">                                  .penaltyLog()</span><br><span class="line">                                  .build());</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原理也很简单，主要是文件操作(BlockGuardOs.java)、数据库操作、和 SharedPreferences 操作的接口中插入检查的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pwrite</span><span class="params">(FileDescriptor fd, ByteBuffer buffer,<span class="keyword">long</span> offset)</span> <span class="keyword">throws</span> ErrnoException </span>&#123;</span><br><span class="line">    BlockGuard.getThreadPolicy().onWriteToDisk();</span><br><span class="line">    <span class="keyword">return</span> os.pwrite(fd, buffer, offset);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// part of blockguard.Policy interface</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onWriteToDisk</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>((mPolicyMask &amp; DETECT_DISK_WRITE) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(tooManyViolationsThisLoop()) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    BlockGuard.BlockGuardPolicyException e = <span class="keyword">new</span> StrictModeDiskWriteViolation(mPolicyMask);</span><br><span class="line">    e.fillInStackTrace();</span><br><span class="line">    startHandlingViolationException(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化点"><a href="#优化点" class="headerlink" title="优化点"></a>优化点</h3><h4 id="冗余的文件读写"><a href="#冗余的文件读写" class="headerlink" title="冗余的文件读写"></a>冗余的文件读写</h4><p>每次打开、关闭或者读 / 写文件，操作系统都需要从用户态到内核态的转换，这种状态的切换本身是很消耗性能的，所以为了提高文件的读 / 写效率，就需要减少用户态和内核态的切换。使用缓存可以避免重复读 / 写，对于需要多次访问的数据，在第一次取出数据时，将数据放到缓存中，下次再访问这些数据时，就可以从缓存中取出来。</p>
+<p><strong>SharedPreferences</strong></p>
+<p>Android 系统使用 SharedPreferences 文件来保存数据很方便，再需要保存数据时的地方一次 <code>commit</code> 就可以。但很多开发同学可能并不知道每调用一次 <code>commit()</code> 就会对应一次文件的打开和关闭，从而造成因 <code>commit()</code> 方法的随意调用而导致文件的重复打开和关闭。</p>
+<p>也就是说，当我们有多个字段需要保存时，只保留最后一个 <code>commit()</code> 方法即可。使用缓存来保存多次写入的数据，延迟写入，从而减少写入次数。</p>
+<h4 id="主线程写入文件"><a href="#主线程写入文件" class="headerlink" title="主线程写入文件"></a>主线程写入文件</h4><p>我们要避免再主线程中进行 I/O 操作，尤其是写操作。因为写入的放大效应会让平时十多毫秒的操作方法几十倍，因此我们可以把 I/O 操作放到子线程中去执行。</p>
+<h4 id="I-O-效率低"><a href="#I-O-效率低" class="headerlink" title="I/O 效率低"></a>I/O 效率低</h4><p><strong>选择合理的操作对象</strong></p>
+<p>当读写文件时，使用不恰当的输入/输出流对象，就会造成 I/O 效率低的现象。比如，当我们使用 <code>ObjectOutputStream</code> 序列化磁盘时，会把内存中的每个对象保存到磁盘中，在保存对象的时候，每个数据成员会到来一次 I/O 操作。</p>
+<p>那么我们可以在 <code>ObjectOutputStream</code> 上面封装一个输出流 <code>ByteArrayOutputStream</code> ，先将对象序列化后的信息写入到缓存区中，然后再一次性的写入到磁盘中。<strong>可以通过使用缓冲区，有效的减少磁盘 I/O 的次数</strong></p>
+<table><br>    <tr><br>        <th></th><th></th><th>读 / 写方式</th><br>    </tr><br>    <tr><br>        <td rowspan="3">序列化写磁盘</td><td>优化前</td><td>ObjectOutputStream</td><br>    </tr><br>    <tr><br>        <td rowspan="2">优化后</td><td>BufferedOutputStream + ObjectOutputStream</td><br>    </tr><br>    <tr><br>        <td>ByteArrayOutputStream + ObjectOutputStream</td><br>    </tr><br>    <tr><br>        <td rowspan="3">序列化读磁盘</td><td>优化前</td><td>ObjectInputStream</td><br>    </tr><br>    <tr><br>    <td rowspan="2">优化后</td><td>BufferedInputStream + ObjectInputStream</td><br>    </tr><br>    <tr><br>        <td>ByteArrayInputStream + ObjectInputStream</td><br>    </tr><br></table>
+
+<p><strong>合理的设置 Buffer 的大小</strong></p>
+<p>我们可以做一个有趣的实验，如果有一个 1M 大小的文件需要我们读取，我们看下面的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">gethash</span><span class="params">(String fileName, String hashType)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    InputStream is = <span class="keyword">new</span> FileInputStream(fileName);</span><br><span class="line">    <span class="keyword">byte</span> buffer[] = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    MessageDigest md5 = MessageDigest.getInstance(hashType);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> numRead = <span class="number">0</span>;(numRed = is.read(buffer)) &gt; <span class="number">0</span>;)&#123;</span><br><span class="line">        md5.update(buffer, <span class="number">0</span>, numRead);</span><br><span class="line">    &#125;</span><br><span class="line">    fis.close();</span><br><span class="line">    <span class="keyword">return</span> toHexString(md5.digest());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不难看出，程序中设置的 Buffer 大小为 1KB， 也就是说 1M 的数据，要读取 1025 次才能确保全部读取完成。那就需要对文件执行 1025 次的访问，大大增加的访问次数，就会降低读写效率。当然 Buffer 有不是越大越好。如果 Buffer 太大， 会导致申请 Buffer 的时间过长，反而整体效率不高。这里推荐使用的 Buffer 大小为 8kb，和 Java 默认的 Buffer 大小一致， Buffer 大小至少应为 4kb。</p>
+<h4 id="重复开关数据库"><a href="#重复开关数据库" class="headerlink" title="重复开关数据库"></a>重复开关数据库</h4><p>在 <code>SQLiteDatabase</code> 的源码中，<code>getWriteableDatebase()</code> 方法的注释说明：一旦打开数据库，该链接就会被缓存，供下次使用，只有当真不需要时，调用 <code>close</code> 关闭即可。</p>
+<p>因为数据库的开启是要给耗时的过程，每次打开数据库，同时会有一些 I/O 操作，且不建议在主线程中进行。那么我们可以在数据库打开后，先不要关闭，在应用程序退出时再关闭。</p>
+<h4 id="AUTOINCREMENT"><a href="#AUTOINCREMENT" class="headerlink" title="AUTOINCREMENT"></a>AUTOINCREMENT</h4><p>针对数据库 INTEGER 型主键使用。其作用是保证主键是严格单调递增的，但如果出现删除或设置最大值，就会导致旧值被复用等问题。严格上来说，也不是很安全。</p>
+<p>SQLite 创建一个叫 sqlite_sequence 的内部表来记录该表使用的最大行数。如果指定使用 UTOINCREMENT 来创建表，则 sqlite_sequence 也随之创建， UPDATE、INSERT、DELETE 语句都会修改 sqlite_sequence 的内容。因为维护 sqlite_sequence 表带来的额外开销会导致 INSERT 的效率降低。</p>
+<h4 id="Bitmap-解吗"><a href="#Bitmap-解吗" class="headerlink" title="Bitmap 解吗"></a>Bitmap 解吗</h4><p>随着 Android SDK 升级， Google 修改了 Bitmap 解码的实现。</p>
 <ul>
-<li>调度器本质上就是协程上下文的实现</li>
-<li>调度器的作用是用来实现线程的切换</li>
-<li>过度使用线程，同样会造成线程安全问题</li>
-<li>suspendMain 是有一个空的上下文，因此不会产生线程的调度</li>
-<li>系统提供的调度器实现，Default, Main, Unconfined, IO</li>
+<li>解码 Bitmap 不要使用 decodeFile，在 4.4 以上系统效率不高</li>
+<li>解码 Bitmap 使用 decodeStream，同时传入 BufferedInputStream</li>
+<li>decodeResource 同样存在性能问题，可以使用 decodeResourseStream</li>
 </ul>
-<h2 id="协程上下文（CoroutineContext）"><a href="#协程上下文（CoroutineContext）" class="headerlink" title="协程上下文（CoroutineContext）"></a>协程上下文（CoroutineContext）</h2><p>调度器本质上就是协程上下文的实现</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CoroutineContext</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;E: Element&gt;</span> <span class="title">get</span><span class="params">(key: <span class="type">Key</span>&lt;<span class="type">E</span>&gt;)</span></span>:E?</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;R&gt;</span> <span class="title">fold</span><span class="params">(initial:  <span class="type">R</span>, operation:(<span class="type">R</span>, Element)</span></span> -&gt; R):R</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(context: <span class="type">CoroutineContext</span>)</span></span>: CorountineContext = ...</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">minusKey</span><span class="params">(key: <span class="type">Key</span>&lt;*&gt;)</span></span>: CoroutineContext</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Key</span>&lt;<span class="type">E: Element</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Element</span> : <span class="type">CoroutineContext &#123;</span></span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">val</span> key: Key&lt;*&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>本质上，上下文就是一个以 <code>key</code> 为索引的  <code>List</code> </p>
-<p><code>CoroutineContext</code> 作为一个集合，它的元素就是源码中看到的 <code>Element</code> ， 每一个 <code>Element</code> 都有一个 <code>Key</code> ，因此它可以作为元素出现，同时它也是 <code>CoroutineContext</code>  的子接口，因此也可以作为集合出现。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="class"><span class="keyword">class</span> <span class="title">CombinedContext</span> </span>(</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> left: CoroutineContext,</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> element: Element) : CoroutineContext, Serializable &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>CombinedContext</code> 前面是一个集合，后面是一个单独的元素。我们在协程体里面访问到的<code>coroutineContext</code> 大多是这个 <code>CombinedContext</code> 类型，表示有多个具体的上下文实现的集合，我们如果想要找到某一个特别的上下文，就需要用对应的 <code>key</code> 来查找</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    GlobalScope.launch&#123;</span><br><span class="line">        println(coroutineContext[Job]) <span class="comment">// “coroutine#1: StandaloneCoroutine&#123;Active&#125;@1ff5025</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    println(coroutineContext[Job]) <span class="comment">// null， suspend main 虽然也是协程体，但它是更底层的逻辑，因此没有 Job 实例</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里的<code>Job</code> 实际上是对它的 <code>companion object</code> 的引用</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Job</span>: <span class="type">CoroutineContext.Element &#123;</span></span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Key for [job] instance in the coroutine context.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">companion</span> <span class="keyword">object</span> Key: CoroutineContext.Key&lt;Job&gt; &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>仿照<code>Thread.currentThread()</code> 来获取当前 <code>Job</code> 的方法 </p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> Job.Key.<span class="title">currentJob</span><span class="params">()</span></span> = coroutineContext[Job]</span><br><span class="line"></span><br><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">coroutineJob</span><span class="params">()</span></span> &#123;</span><br><span class="line">    GlobalScope.launch &#123;</span><br><span class="line">        log(Job.currentJob())</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    log(Job.currentJob())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>获取协程名字</strong></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch(CoroutineName(<span class="string">"Hello"</span>)) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>如果有多个上下文，需要添加 <code>+</code> 就可以了</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch(Dispatcher.Main + CoroutineName(<span class="string">"Hello"</span>)) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="协程拦截器"><a href="#协程拦截器" class="headerlink" title="协程拦截器"></a>协程拦截器</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ContinuationInterception</span>: <span class="type">CoroutineContext.Element &#123;</span></span></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> Key: CoroutineContext.Key&lt;ContinuationInterceptor&gt;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">interceptContinuation</span><span class="params">(continuation: <span class="type">Continuation</span>&lt;<span class="type">T</span>&gt;)</span></span>: Continuation&lt;T&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>拦截器也是一个上下文的实现方向，拦截器可以左右协程的执行，同时为了保证它功能的正确性，协程上下文集合永远将他放在最后面，</p>
-<p>协程的拦截方法也很简单，因为协程的本质就是回调+黑魔法，而这个回调就是被拦截的<code>Continuation</code>，调度器就是基于拦截器实现的，换句话说，调度器就是拦截器的一种。</p>
-<p>我们可以自己定义一个拦截器放到我们协程的上下问中。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyContinuationInterceptor</span>: <span class="type">ContinuationInterceptor &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> key = ContinuationInterceptor</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">interceptContinuation</span><span class="params">(continuation:<span class="type">Continuation</span>&lt;<span class="type">T</span>&gt;)</span></span> = MyContinuation(continuation)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCOntinuation</span>&lt;<span class="type">T</span>&gt; </span>(<span class="keyword">val</span> continuation: Continuation&lt;T&gt;): Continuation&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> context = continuation.context</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWith</span><span class="params">(result:<span class="type">Result</span>&lt;<span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">        log(<span class="string">"&lt;MyContinuation&gt;<span class="variable">$result</span>"</span>)</span><br><span class="line">        continuation.resumeWith(result)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    GlobalScope.launch(MyContinuationInterceptor()) &#123;</span><br><span class="line">        log(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">val</span> job = async &#123;</span><br><span class="line">            log(<span class="number">2</span>)</span><br><span class="line">            delay(<span class="number">1000</span>)</span><br><span class="line">            log(<span class="number">3</span>)</span><br><span class="line">            <span class="string">"Hello"</span></span><br><span class="line">        &#125;</span><br><span class="line">        log(<span class="number">4</span>)</span><br><span class="line">        <span class="keyword">val</span> result = job.await()</span><br><span class="line">        log(<span class="string">"5.<span class="variable">$result</span>"</span>)</span><br><span class="line">    &#125;.join()</span><br><span class="line">    log(<span class="number">6</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过 <code>launch</code> 启动了一个协程，为他指定了我们的拦截器上下文，紧接着在其内部用<code>async</code> 启动了一个协程，<code>async</code> 和 <code>launch</code>从功能上是同等类型的函数，不同之处在于 <code>async</code> 启动的 <code>Job</code> 也就是实际上的 <code>Deferred</code> 可以有返回结果。可以通过 <code>await</code> 方法获取。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[main] &lt;MyContinuation&gt; Success(kotlin.Unit)</span><br><span class="line">[main] 1</span><br><span class="line">[main] &lt;MyContinuation&gt; Success(kotlin.Unit)</span><br><span class="line">[main] 2</span><br><span class="line">[main] 4</span><br><span class="line">[kotlinx.coroutines.DefaultExecutor] &lt;MyContinuation&gt; Success(kotlin.Unit)</span><br><span class="line">[kotlinx.coroutines.DefaultExecutor] 3</span><br><span class="line">[kotlinx.coroutines.DefaultExecutor] &lt;MyContinuation&gt; Success(Hello)</span><br><span class="line">[kotlinx.coroutines.DefaultExecutor] 5.Hello</span><br><span class="line">[kotlinx.coroutines.DefaultExecutor] 6</span><br></pre></td></tr></table></figure>
-<p>首先，所有协程启动的时候，都会有一次<code>Continuation.resumeWith</code> 的操作，这一次操作对于调度器来说就是一次调度的机会，我们的协程有机会调度到其他线程的关键之处就在于这里。</p>
-<p>其次 <code>delay</code> 是挂起点， 1000ms 之后需要继续调度执行该协程，因此就有了 3 的日志。</p>
-<p>最后，正是我们需要的结果。</p>
-<p>而协程真正切换线程的逻辑源自于 <code>delay</code>  在 JVM 上，<code>delay</code> 实际上是一个 <code>ScheduledExcecutor</code> 里面添加了一个延时任务，因此会发生线程切换</p>
-<h2 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CoroutineDispatcher</span> : <span class="type">AbstractCoroutineContextElement</span></span>(ContinuationInterceptor), ContinuationInterceptor &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">dispatch</span><span class="params">(context: <span class="type">CoroutineContext</span>, block: <span class="type">Runnable</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调度器本身也是协程上下文的子类，同时实现了拦截器的接口， <code>dispatch</code> 方法会在拦截器的方法 <code>interceptContinuation</code> 中调用，进而实现协程的调用。所以如果我们香要自己实现自己的调度器，继承这个类<code>AbstracoroutineContextElement</code> 就可以</p>
-<ul>
-<li>Default: 线程池</li>
-<li>Main： UI 线程</li>
-<li>Unconfined：直接执行</li>
-<li>IO：线程池</li>
-</ul>
-<h3 id="UI-相关程序"><a href="#UI-相关程序" class="headerlink" title="UI  相关程序"></a>UI  相关程序</h3><p>Kotlin 的用户绝大部分是 Android 开发者，举一些常见的场景，点击一个按钮做异步任务回调刷新 UI </p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getUserBtn.setOnClickListener &#123;</span><br><span class="line">    getUser&#123;user-&gt; &#123;</span><br><span class="line">        handler.post&#123;</span><br><span class="line">            userNameView.text = user.name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> Callback = (User) -&gt; <span class="built_in">Unit</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getUser</span><span class="params">(callback: <span class="type">Callback</span>)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因为 <code>getUser</code> 需要切换到其他线程执行，因此回调通常也会在这个非 UI 线程中使用，确保 UI 可以刷新，需要 <code>handler.post</code> 切换到 UI 线程。</p>
-<p>过度到协程的写法；</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">getUserCoroutine</span><span class="params">()</span></span>= suspendCoroutine&lt;User&gt; &#123;</span><br><span class="line">    continuation -&gt; </span><br><span class="line">    getUser &#123;</span><br><span class="line">        continuation.resume(it)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getUserBtn.setOnClickListener &#123;</span><br><span class="line">    GlobalScope.launch(Dispathcer.Main) &#123;</span><br><span class="line">        userNameVite.text = getUserCoroutine().name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>suspendCoroutine</strong></p>
-<p>它运行在协程当中，并且帮助我们获取当前协程的 <code>Continuation</code> 实例，也就是拿到回调，方柏霓我们调用它的 <code>resume</code> 和 <code>resumeWithException</code> 来返回结果或者抛出异常</p>
-<p><strong>Dispatchers.Main</strong></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="keyword">object</span> MainDispatcherLoader &#123;</span><br><span class="line">    <span class="meta">@JvmField</span></span><br><span class="line">    <span class="keyword">val</span> dispatcher:MainCoroutineDispatcher = loadMainDispatcher()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">loadMainDispatcher</span><span class="params">()</span></span> :MainCoroutineDispatcher &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">val</span> factories = MainDispatcherFactory::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>.<span class="title">let</span> </span>&#123;cle -&gt; </span><br><span class="line">				ServiceLoader.load(clz, clz.classLoader).toList()</span><br><span class="line">		   &#125;</span><br><span class="line">            factories.maxBy&#123;it.loadPriority&#125;?.tryCreateDispatcher(factories) ?: MissingMainCoroutineDispatcher(<span class="literal">null</span>)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e: Throwable) &#123;</span><br><span class="line">            MissingMainCoroutineDispatcher(e)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在 Android 当中，协程框架通过注册 <code>AndroidDispatcherFactory</code> 是的 <code>Main</code> 最终被赋值为 <code>HandlerDispatcher</code> 的实例。</p>
-<h3 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h3>
+
       
     </div>
 
@@ -645,7 +655,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-调度器/" title="协程调度器">http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-调度器/</a>
+    <a href="http://xiaoman.ren/2021/02/02/Android 基础/性能优化/磁盘空间优化/" title="Android 磁盘空间优化">http://xiaoman.ren/2021/02/02/Android 基础/性能优化/磁盘空间优化/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
@@ -658,7 +668,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+            <a href="/tags/Android-性能优化/" rel="tag"># Android,性能优化</a>
           
         </div>
       
@@ -671,8 +681,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/01/Kotlin/协程/协程-异常处理/" rel="next" title="协程异常处理">
-                <i class="fa fa-chevron-left"></i> 协程异常处理
+              <a href="/2021/02/01/数据结构/算法/" rel="next" title="算法">
+                <i class="fa fa-chevron-left"></i> 算法
               </a>
             
           </div>
@@ -680,10 +690,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/02/01/Kotlin/协程/协程/" rel="prev" title="协程">
-                协程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -913,7 +919,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#协程上下文（CoroutineContext）"><span class="nav-number">1.</span> <span class="nav-text">协程上下文（CoroutineContext）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程拦截器"><span class="nav-number">2.</span> <span class="nav-text">协程拦截器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度器"><span class="nav-number">3.</span> <span class="nav-text">调度器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UI-相关程序"><span class="nav-number">3.1.</span> <span class="nav-text">UI  相关程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程安全问题"><span class="nav-number">3.2.</span> <span class="nav-text">线程安全问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘"><span class="nav-number">1.</span> <span class="nav-text">磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具"><span class="nav-number">1.2.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#STRICTMODE"><span class="nav-number">1.2.1.</span> <span class="nav-text">STRICTMODE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化点"><span class="nav-number">1.3.</span> <span class="nav-text">优化点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#冗余的文件读写"><span class="nav-number">1.3.1.</span> <span class="nav-text">冗余的文件读写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主线程写入文件"><span class="nav-number">1.3.2.</span> <span class="nav-text">主线程写入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-O-效率低"><span class="nav-number">1.3.3.</span> <span class="nav-text">I/O 效率低</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复开关数据库"><span class="nav-number">1.3.4.</span> <span class="nav-text">重复开关数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUTOINCREMENT"><span class="nav-number">1.3.5.</span> <span class="nav-text">AUTOINCREMENT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bitmap-解吗"><span class="nav-number">1.3.6.</span> <span class="nav-text">Bitmap 解吗</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1589,13 +1595,13 @@
       var articles = db.collection('articles')
 
       //https://hexo.io/docs/variables.html
-      var isPost = '协程调度器'.length > 0
+      var isPost = 'Android 磁盘空间优化'.length > 0
       var isArchive = '' === 'true'
       var isCategory = ''.length > 0
       var isTag = ''.length > 0
 
       if (isPost) { //is article page
-        var title = '协程调度器'
+        var title = 'Android 磁盘空间优化'
         var doc = articles.doc(title)
 
         getCount(doc, true).then(appendCountTo($('.post-meta')))
