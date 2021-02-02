@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Java/Java 中文件 Copy 的几种方式/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Java/Java 内存管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -434,7 +434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Java/Java 中文件 Copy 的几种方式/" class="post-title-link" itemprop="url">Untitled</a>
+                <a href="/2021/02/01/Java/Java 内存管理/" class="post-title-link" itemprop="url">Java 内存管理</a>
               
             
           </h1>
@@ -474,7 +474,7 @@
 
           
           
-            <span id="/2021/02/01/Java/Java 中文件 Copy 的几种方式/" class="leancloud_visitors" data-flag-title>
+            <span id="/2021/02/01/Java/Java 内存管理/" class="leancloud_visitors" data-flag-title="Java 内存管理">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -506,11 +506,12 @@
 
       
         
-          <h1 id="Java-中文件-Copy-的几种方式"><a href="#Java-中文件-Copy-的几种方式" class="headerlink" title="Java 中文件 Copy 的几种方式"></a>Java 中文件 Copy 的几种方式</h1><h2 id="Java-io"><a href="#Java-io" class="headerlink" title="Java.io"></a>Java.io</h2><p>利用 <code>java.io</code> 类库。直接为源文件创建一个 <code>FileInputStream</code> 负责读取，然后再为目标文件创建一个 <code>FileOutputStream</code> 负责写入:</p>
+          <p>对于 Java 程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个 new 操作区写配对的 <code>delete/free</code> 代码，而且不容易出现内存泄漏和内存移除问题，看起来一切由虚拟机管理内存一切都很美好。不过也正是 Java 程序员把内存控制的权力交给了 Java 虚拟机，一旦出现内存泄漏和溢出的问题，如果不了解续集及是怎么使用内存的，排查问题就很艰难。</p>
+<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/java_runtime_data_area.png?raw=true" alt="java runtime"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Java/Java 中文件 Copy 的几种方式/#more" rel="contents">
+              <a class="btn" href="/2021/02/01/Java/Java 内存管理/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -921,6 +922,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/原理/Handler 消息机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Android 基础/原理/Handler 消息机制/" class="post-title-link" itemprop="url">Handler 消息机制</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Handler/" itemprop="url" rel="index"><span itemprop="name">Handler</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Android 基础/原理/Handler 消息机制/" class="leancloud_visitors" data-flag-title="Handler 消息机制">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Handler 消息机制，在整个 Android 系统中，有着很重要的地位。</p>
+<p>他可以帮助我们实现，子线程和主线程的跨线程通信；可以帮助我们发送一些延时任务，帮助我们很好的实现一个 App.</p>
+<p>本文旨在对源码进行预览分析。</p>
+<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h2><p>先来一张结构图，让我们清晰的了解一下，我们下面都会分析到哪些内容；也了解一下 <code>Handler</code> 机制的核心秘密。</p>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/Handler%20%E6%9C%BA%E5%88%B6.png?raw=true" alt="Handler 类图"></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Android 基础/原理/Handler 消息机制/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/View/自定义 ViewGroup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1062,184 +1241,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2021/02/01/Android 基础/View/自定义 ViewGroup/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/原理/Handler 消息机制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/原理/Handler 消息机制/" class="post-title-link" itemprop="url">Handler 消息机制</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Handler/" itemprop="url" rel="index"><span itemprop="name">Handler</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/原理/Handler 消息机制/" class="leancloud_visitors" data-flag-title="Handler 消息机制">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Handler 消息机制，在整个 Android 系统中，有着很重要的地位。</p>
-<p>他可以帮助我们实现，子线程和主线程的跨线程通信；可以帮助我们发送一些延时任务，帮助我们很好的实现一个 App.</p>
-<p>本文旨在对源码进行预览分析。</p>
-<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h2><p>先来一张结构图，让我们清晰的了解一下，我们下面都会分析到哪些内容；也了解一下 <code>Handler</code> 机制的核心秘密。</p>
-<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/Handler%20%E6%9C%BA%E5%88%B6.png?raw=true" alt="Handler 类图"></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/原理/Handler 消息机制/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -3120,7 +3121,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("自定义 ViewGroup");titles.push("Handler 消息机制");titles.push("RecyclerView 总结");titles.push("Android自定义View");titles.push("Android WebView");titles.push("Activity 横竖屏");titles.push("Android Q 文件权限适配");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Java 内存管理");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("Handler 消息机制");titles.push("自定义 ViewGroup");titles.push("RecyclerView 总结");titles.push("Android自定义View");titles.push("Android WebView");titles.push("Activity 横竖屏");titles.push("Android Q 文件权限适配");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

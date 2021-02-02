@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="View Group 的测量布局流程View Group绘制和布局流程中的重点  View 在 onMeasure 方法中进行自我测量和保存。  ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置  关注 onMeasure 和 onLayout  父 View">
-<meta name="keywords" content="Android">
+  <meta name="description" content="区别Java 中堆和栈的区别具体由一下几点 各司其职栈： 用来存储局部变量和方法调用 堆：  用来存储 Java 中的对象，无论是成员变量，局部变量，还是类，他们指向的对象都存储再堆内存中。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义 ViewGroup">
-<meta property="og:url" content="http://xiaoman.ren/2021/02/01/Android 基础/View/自定义 ViewGroup/index.html">
+<meta property="og:title" content="Java 中堆和栈的区别">
+<meta property="og:url" content="http://xiaoman.ren/2021/02/02/Java/Java 中堆和栈的区别/index.html">
 <meta property="og:site_name" content="茶白白在胡说">
-<meta property="og:description" content="View Group 的测量布局流程View Group绘制和布局流程中的重点  View 在 onMeasure 方法中进行自我测量和保存。  ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置  关注 onMeasure 和 onLayout  父 View">
+<meta property="og:description" content="区别Java 中堆和栈的区别具体由一下几点 各司其职栈： 用来存储局部变量和方法调用 堆：  用来存储 Java 中的对象，无论是成员变量，局部变量，还是类，他们指向的对象都存储再堆内存中。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-02-01T12:47:12.902Z">
+<meta property="og:updated_time" content="2021-02-02T14:49:46.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义 ViewGroup">
-<meta name="twitter:description" content="View Group 的测量布局流程View Group绘制和布局流程中的重点  View 在 onMeasure 方法中进行自我测量和保存。  ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置  关注 onMeasure 和 onLayout  父 View">
+<meta name="twitter:title" content="Java 中堆和栈的区别">
+<meta name="twitter:description" content="区别Java 中堆和栈的区别具体由一下几点 各司其职栈： 用来存储局部变量和方法调用 堆：  用来存储 Java 中的对象，无论是成员变量，局部变量，还是类，他们指向的对象都存储再堆内存中。">
 
 
 
@@ -161,7 +161,7 @@
 
   
   
-  <link rel="canonical" href="http://xiaoman.ren/2021/02/01/Android 基础/View/自定义 ViewGroup/">
+  <link rel="canonical" href="http://xiaoman.ren/2021/02/02/Java/Java 中堆和栈的区别/">
 
 
 
@@ -171,7 +171,7 @@
   };
 </script>
 
-  <title>自定义 ViewGroup | 茶白白在胡说</title>
+  <title>Java 中堆和栈的区别 | 茶白白在胡说</title>
   
 
 
@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/View/自定义 ViewGroup/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/02/Java/Java 中堆和栈的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -431,7 +431,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自定义 ViewGroup
+          <h1 class="post-title" itemprop="name headline">Java 中堆和栈的区别
 
               
             
@@ -457,31 +457,13 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-02-02 22:49:46" itemprop="dateCreated datePublished" datetime="2021-02-02T22:49:46+08:00">2021-02-02</time>
             
 
             
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/View/" itemprop="url" rel="index"><span itemprop="name">View</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -490,7 +472,7 @@
 
           
           
-            <span id="/2021/02/01/Android 基础/View/自定义 ViewGroup/" class="leancloud_visitors" data-flag-title="自定义 ViewGroup">
+            <span id="/2021/02/02/Java/Java 中堆和栈的区别/" class="leancloud_visitors" data-flag-title="Java 中堆和栈的区别">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -528,52 +510,15 @@
       
 
       
-        <h2 id="View-Group-的测量布局流程"><a href="#View-Group-的测量布局流程" class="headerlink" title="View Group 的测量布局流程"></a>View Group 的测量布局流程</h2><p><strong>View Group绘制和布局流程中的重点</strong></p>
-<ol>
-<li><p>View 在 <code>onMeasure</code> 方法中进行自我测量和保存。</p>
-</li>
-<li><p>ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置</p>
-</li>
-<li><p>关注 onMeasure 和 onLayout</p>
-</li>
-<li><p>父 View 调用子 View 的layout 方法的时候，会把之前 measure 阶段确定的位置和大小都传递给子 View</p>
-</li>
-<li><p>自定义 View/ViewGroup，只需要关注下面三种需求：</p>
-<ol>
-<li>对于已有的 Android 自带 View，我们只需要重写他的 <code>onMeasure</code> 方法即可,<strong>修改一下这个尺寸就完成需求</strong></li>
-<li>对于 Android 系统没有的，属于我们自定义的 View，需要完全重写 <code>onMeasure</code></li>
-<li>需要重写 <code>onMeasure</code> 和 <code>onLayout</code> 2个方法，来完成一个复杂的 <code>ViewGroup</code> 的测量和布局。</li>
-</ol>
-</li>
-<li><p>onMeasure 的说明</p>
-<p>widthMeasureSpec, heightMeasureSpec  两个参数主要是 父 view 对子view 的尺寸限制</p>
-</li>
-<li><p>理解父 view 对子 view 的限制</p>
-<p>实际上，父 View 对子 View 的限制据大多数就来自于我们开发者所设置的 layout 开头的这些属性。<strong>这些以 layout 开头的属性，都是设置给父 view 看的</strong></p>
-<blockquote>
-<p>父 View 要知道这些属性以后，才知道要对子view 的测量加以什么限制</p>
-</blockquote>
-</li>
-</ol>
+        <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>Java 中堆和栈的区别具体由一下几点</p>
+<h3 id="各司其职"><a href="#各司其职" class="headerlink" title="各司其职"></a>各司其职</h3><p><strong>栈：</strong> 用来存储局部变量和方法调用</p>
+<p><strong>堆： </strong> 用来存储 Java 中的对象，无论是成员变量，局部变量，还是类，他们指向的对象都存储再堆内存中。</p>
 <a id="more"></a>
-<h2 id="自定义-BannerView"><a href="#自定义-BannerView" class="headerlink" title="自定义 BannerView"></a>自定义 BannerView</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BannerImageView</span> <span class="keyword">extends</span> <span class="title">ImageView</span></span>&#123;</span><br><span class="line">    <span class="comment">// 宽高比</span></span><br><span class="line">    <span class="keyword">float</span> ratio;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BannerImageView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BannerImageView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.BannerImageView);</span><br><span class="line">        ratio = array.getFloat(R.styleable.BannerImageView_ratio, <span class="number">1.0f</span>);</span><br><span class="line">        array.recycle();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 自己的测量走一遍，因为这个方法内部会调用 setMEasureDimension() 来保存测量结果</span></span><br><span class="line">        <span class="comment">// 只有保存了以后，才能取得这个测量结果，否则获取不到</span></span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取测量结果</span></span><br><span class="line">        <span class="keyword">int</span> tempWidth = getMeasureWidth();</span><br><span class="line">        <span class="keyword">int</span> tempHeight = (<span class="keyword">int</span>) (tempWidth * ratio);</span><br><span class="line">        <span class="comment">// 保存以后，父 view 可以拿到这个测量的宽高了。不保存是拿不到的</span></span><br><span class="line">        setMeasureDimension(tempWidth, tempHeight);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="自定义-View-，完全自己写-onMeasure-方法"><a href="#自定义-View-，完全自己写-onMeasure-方法" class="headerlink" title="自定义 View ，完全自己写 onMeasure 方法"></a>自定义 View ，完全自己写 onMeasure 方法</h2><p>对于完全自定义  View ，完全自己写的 onMeasure 方法，保存的宽高必须符合父 View 的限制，否则会发生 bug，保存父 View 对子 View 的限制的方法就是直接调用 <code>resolveSize</code> 方法即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">resolveSizeAndState</span><span class="params">(<span class="keyword">int</span> size, <span class="keyword">int</span> measureSpec, <span class="keyword">int</span> childMeasureState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> specSize = MeasureSpec.getSize(measureSpec);</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> result;</span><br><span class="line">    <span class="keyword">switch</span>(specMode) &#123;</span><br><span class="line">        <span class="keyword">case</span> MeasureSpce.AT_MOST:</span><br><span class="line">            <span class="keyword">if</span>(specSize &lt; size) &#123;</span><br><span class="line">                result = specSize | MEASURED_STATE_TOO_SMALL;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result = size;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">            result = specSize;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            result = size;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result | (childMeasureState * MEASURED_STATE_MASK);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完全自定义 view onMeasure 方法：</p>
-<ol>
-<li>先算自己想要的宽高</li>
-<li>直接拿 <code>resolveSize</code> 方法处理一下</li>
-<li>最后 <code>setMeasuredDimension</code> 保存</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoadingView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 圆的半径</span></span><br><span class="line">    <span class="keyword">int</span> radius;</span><br><span class="line">    <span class="comment">// 外部矩形的起点</span></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">10</span>, top = <span class="number">30</span>;</span><br><span class="line">    </span><br><span class="line">    Paint mPaint = <span class="keyword">new</span> Paint();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LoadingView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LoadingView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LoadingView);</span><br><span class="line">        radius = typedArray.getInt(R.styleable.LoadingView_radius, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> width = left + radius * <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> height = top + radius * <span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 一定要用 resolveSize 方法来格式化 View 的宽高，否则遇到某些 layout 的时候一定会出现器官的 bug</span></span><br><span class="line">        <span class="comment">// 不用这个，就完全没有父 View 的感受</span></span><br><span class="line">        width = resolveSize(width, widthMeasureSpec);</span><br><span class="line">        height = resolveSize(height, heightMeasureSpec);</span><br><span class="line">        setMeasuredDimension(width, height);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 画矩形</span></span><br><span class="line">        RectF oval = <span class="keyword">new</span> Rectf(left, top ,left + radius * <span class="number">2</span>, top + radius * <span class="number">2</span>);</span><br><span class="line">        mPaint.setColor(Color.BLUE);</span><br><span class="line">        canvas.drawRect(oval, mPaint);</span><br><span class="line">        <span class="comment">// 画圆弧</span></span><br><span class="line">        mPaint.setColor(Color.RED);</span><br><span class="line">        mPaint.setStyle(Paint.Style.STROKE);</span><br><span class="line">        mPaint.setStrokeWidth(<span class="number">2</span>);</span><br><span class="line">        canvas.drawArc(oval, -<span class="number">90</span>, <span class="number">360</span>, <span class="keyword">false</span>, mPaint);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="自定义-ViewGroup"><a href="#自定义-ViewGroup" class="headerlink" title="自定义 ViewGroup"></a>自定义 ViewGroup</h2><p>注意以下几点：</p>
-<ol>
-<li>一定要先重写 onMeasure 确定子 View 的宽高和自己的宽高以后，才可以继续写 onLayout 对这些子 View 进行布局</li>
-<li>ViewGroup 的 onMeasure 其实就是遍历自己的 view ，对自己的每一个子 View 进行 measure，据大多数的时候对子 View 的measure 都可以直接调用  measureChild() 这个方法</li>
-<li>计算出 View Group 自己的尺寸并保存，<code>onMeasuredDinmension</code></li>
-<li>逼不得已需要重写<code>measureChild</code> 的时候，无非就是对父 view 的测量和子 View 的测量，做一个取舍关系而已，可参照 <code>measureChild</code> 方法。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从左到右布局，如果不够放，就直接另起一行layout</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFlowLayout</span> <span class="keyword">extends</span> <span class="title">ViewGroup</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SimpleFlowLayout</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SimpleFlowLayout</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *	layout 算法，就是不够放，就另外放一行</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">	 *  无非就是前面 onMeasure 结束以后，你可以拿到所有子 View和自己的测量宽高，</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> childTop = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> childLeft = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> childRight = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> childBottom = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 已使用的 width</span></span><br><span class="line">        <span class="keyword">int</span> usedWidth = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// customlayout 自己可使用的宽度</span></span><br><span class="line">        <span class="keyword">int</span> layoutWidth = getMeasuredWidth();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; getChildCount(); i++) &#123;</span><br><span class="line">            View childView = getChildAt(i);</span><br><span class="line">            <span class="comment">// 取得这个子 View 要求的宽度和高度</span></span><br><span class="line">            <span class="keyword">int</span> childWidth = childView.getMeasuredWidth();</span><br><span class="line">            <span class="keyword">int</span> childHeight = childView.getMeasuredHeight();</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 如果宽度不够，就另外启动一行</span></span><br><span class="line">            <span class="keyword">if</span>(layoutWidth - usedWidth &lt; childWidth) &#123;</span><br><span class="line">                childLeft = <span class="number">0</span>;</span><br><span class="line">                usedWidth = <span class="number">0</span>;</span><br><span class="line">                childTop += childHeight;</span><br><span class="line">                childBottom = childTop + childHeight;</span><br><span class="line">                childView.layout(<span class="number">0</span>, childTop, childRight, childBottom);</span><br><span class="line">                usedWidth = usedWidth + childWidth;</span><br><span class="line">                childLeft = childWidth;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            childRight = childLeft + childWidth;</span><br><span class="line">            childBottom = childTop + childHeight;</span><br><span class="line">            childView.layout(childLeft, childTop, childRight, childBottom);</span><br><span class="line">            childLeft += childWidth;</span><br><span class="line">            usedWidth += childWidth;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 先取出 SimpleFlowLayout 的父 View 对他的测量限制</span></span><br><span class="line">        <span class="comment">// 只有知道了自己的宽高，才能限制子 View 的宽高</span></span><br><span class="line">        <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line">        <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> usedWidth = <span class="number">0</span>; <span class="comment">// 已使用宽度</span></span><br><span class="line">        <span class="keyword">int</span> remaining = <span class="number">0</span>;	<span class="comment">// 剩余可用宽度</span></span><br><span class="line">        <span class="keyword">int</span> totalHeight = <span class="number">0</span>; <span class="comment">// 总高度</span></span><br><span class="line">        <span class="keyword">int</span> lineHeight = <span class="number">0</span>; <span class="comment">// 当前行高</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; getChildCount(); i++) &#123;</span><br><span class="line">            View childView = getChildAt(i);</span><br><span class="line">            LayoutParams lp = childView.getLayoutParams();</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 先测量子View</span></span><br><span class="line">            measureChild(childView, widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">            <span class="comment">// 然后计算以下宽度里面，还有多少是可用的，也就是剩余可用宽度</span></span><br><span class="line">            remaining = widthSize - usedWidth;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 如果一行不够放，也就是说这个子 View 测量的宽度，大于这一行剩下的宽度时，我们要另外启动一行</span></span><br><span class="line">            <span class="keyword">if</span>(childView.getMeasuredWidth &gt; remaining) &#123;</span><br><span class="line">                <span class="comment">// 另外启动一行</span></span><br><span class="line">                usedWidth = <span class="number">0</span>;</span><br><span class="line">                totalHeight += lineHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 已使用 width 进行累加</span></span><br><span class="line">            usedWidth += childView.getMeasuredWidth();</span><br><span class="line">            <span class="comment">// 当前 view 的高度</span></span><br><span class="line">			lineHeight = childView.getMeasuredHeight();</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">        <span class="comment">// 如果 SimpleFlowLayout 的高度为 wrap_content  的时候，采用我们叠加的高度，否则我们当然用父对其的限制高度</span></span><br><span class="line">        <span class="keyword">if</span>(heightMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">            heightSize = totalHeight;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        setMeasuredDimension(widthSize, heightSize);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内存："><a href="#内存：" class="headerlink" title="内存："></a>内存：</h3><p><strong>栈：</strong> 内存归属于单个线程，每个线程都会由一个栈内存，其存储的变量只能再其所属线程中可见，即占内存可以理解成线程的私有内存</p>
+<p><strong>堆： </strong> 内存中的对象堆所有线程可见。堆内存中的对象可以被所有线程访问。</p>
+<h3 id="异常错误"><a href="#异常错误" class="headerlink" title="异常错误"></a>异常错误</h3><p>如果栈内存没有可用空间存储方法调用和局部变量， JVM 会抛出 <code>java.lang.StackOverFlowError</code> </p>
+<p>如果堆内存没有可用空间存储 生成的对象，  JVM 会抛出 <code>Java.lang.OutOfMemoryError</code></p>
+<h3 id="空间大小"><a href="#空间大小" class="headerlink" title="空间大小"></a>空间大小</h3><p>栈的内存要远远小于堆内存，如果使用递归的话，那么栈很快就会充满。如果递归没有及时跳出，很可能发生 <code>StackOverFlowError</code> 问题</p>
 
       
     </div>
@@ -637,7 +582,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2021/02/01/Android 基础/View/自定义 ViewGroup/" title="自定义 ViewGroup">http://xiaoman.ren/2021/02/01/Android 基础/View/自定义 ViewGroup/</a>
+    <a href="http://xiaoman.ren/2021/02/02/Java/Java 中堆和栈的区别/" title="Java 中堆和栈的区别">http://xiaoman.ren/2021/02/02/Java/Java 中堆和栈的区别/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
@@ -650,7 +595,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -663,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/01/Android 基础/View/RecyclerView 总结/" rel="next" title="RecyclerView 总结">
-                <i class="fa fa-chevron-left"></i> RecyclerView 总结
+              <a href="/2021/02/02/Android 基础/性能优化/磁盘空间优化/" rel="next" title="Android 磁盘空间优化">
+                <i class="fa fa-chevron-left"></i> Android 磁盘空间优化
               </a>
             
           </div>
@@ -673,8 +618,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/02/01/Android 基础/原理/Handler 消息机制/" rel="prev" title="Handler 消息机制">
-                Handler 消息机制 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/02/02/Jetpack/WorkManager 源码/" rel="prev" title="WorkManager 源码">
+                WorkManager 源码 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -905,7 +850,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#View-Group-的测量布局流程"><span class="nav-number">1.</span> <span class="nav-text">View Group 的测量布局流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义-BannerView"><span class="nav-number">2.</span> <span class="nav-text">自定义 BannerView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义-View-，完全自己写-onMeasure-方法"><span class="nav-number">3.</span> <span class="nav-text">自定义 View ，完全自己写 onMeasure 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义-ViewGroup"><span class="nav-number">4.</span> <span class="nav-text">自定义 ViewGroup</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">1.</span> <span class="nav-text">区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各司其职"><span class="nav-number">1.1.</span> <span class="nav-text">各司其职</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存："><span class="nav-number">1.2.</span> <span class="nav-text">内存：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常错误"><span class="nav-number">1.3.</span> <span class="nav-text">异常错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间大小"><span class="nav-number">1.4.</span> <span class="nav-text">空间大小</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1581,13 +1526,13 @@
       var articles = db.collection('articles')
 
       //https://hexo.io/docs/variables.html
-      var isPost = '自定义 ViewGroup'.length > 0
+      var isPost = 'Java 中堆和栈的区别'.length > 0
       var isArchive = '' === 'true'
       var isCategory = ''.length > 0
       var isTag = ''.length > 0
 
       if (isPost) { //is article page
-        var title = '自定义 ViewGroup'
+        var title = 'Java 中堆和栈的区别'
         var doc = articles.doc(title)
 
         getCount(doc, true).then(appendCountTo($('.post-meta')))
