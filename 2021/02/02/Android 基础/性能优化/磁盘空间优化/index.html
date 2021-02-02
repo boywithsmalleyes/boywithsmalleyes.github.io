@@ -148,7 +148,7 @@
 <meta property="og:site_name" content="茶白白在胡说">
 <meta property="og:description" content="资源类性能就像是撑起冰山一角的下面的冰层，我们称之为 3 + 1 + 1 。 3 + 1  时传统的 -磁盘、cpu 和 内存，加 1 是与环境密切相关的网络；最后一个加 1 则是因为移动网络而显得特别重要的电池（耗电）。 因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-02-01T16:29:59.428Z">
+<meta property="og:updated_time" content="2021-02-01T16:37:29.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 磁盘空间优化">
 <meta name="twitter:description" content="资源类性能就像是撑起冰山一角的下面的冰层，我们称之为 3 + 1 + 1 。 3 + 1  时传统的 -磁盘、cpu 和 内存，加 1 是与环境密切相关的网络；最后一个加 1 则是因为移动网络而显得特别重要的电池（耗电）。 因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD,">
@@ -457,7 +457,7 @@
                 
               
 
-              <time title="Created: 2021-02-02 00:29:59" itemprop="dateCreated datePublished" datetime="2021-02-02T00:29:59+08:00">2021-02-02</time>
+              <time title="Created: 2021-02-02 00:37:29" itemprop="dateCreated datePublished" datetime="2021-02-02T00:37:29+08:00">2021-02-02</time>
             
 
             
@@ -532,6 +532,7 @@
 <p>因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD, 又可以是 CPU 问题， decode 图片开了过多的子线程，导致主线程的 CPU  资源被争抢；更可以是再主线程中读/写磁盘，磁盘读/写耗时抖一抖、页面也就跟着卡一下。所以关注资源类性能，其实是关注问题的本质去解决问题的方式。</p>
 <h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>再没有SSD 磁盘前，大家都觉着 HDD 很好用。对于外行来说，磁盘 I/0 性能总是最容易被忽略的，经理会更集中再 CPU 上。但内行人都知道，性能无非是 CPU 密集型和 I/O 密集型，磁盘 I/O 就是其中之一。</p>
 <p>在设备长时间使用，磁盘空间不足。应用触发大量随机写操作，都会导致磁盘的负载，磁盘 I/O 的耗时会产生剧烈的波动， App 能做的只有一件事儿，即减少磁盘 I/O d 操作量，特别是主线程的操作量。</p>
+<a id="more"></a>
 <h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>那么我们要如何发现、定位、解决这些磁盘 I/O 的性能问题呢？</p>
 <table>
 <thead>

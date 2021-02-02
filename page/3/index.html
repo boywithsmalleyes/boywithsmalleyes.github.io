@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Jetpack/Android Room/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Java/阻塞队列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -434,7 +434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Jetpack/Android Room/" class="post-title-link" itemprop="url">Android Room</a>
+                <a href="/2021/02/01/Java/阻塞队列/" class="post-title-link" itemprop="url">阻塞队列</a>
               
             
           </h1>
@@ -474,7 +474,7 @@
 
           
           
-            <span id="/2021/02/01/Jetpack/Android Room/" class="leancloud_visitors" data-flag-title="Android Room">
+            <span id="/2021/02/01/Java/阻塞队列/" class="leancloud_visitors" data-flag-title="阻塞队列">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -506,17 +506,13 @@
 
       
         
-          <p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvYXJjaC9wZXJzaXN0ZW5jZS9yb29tL3BhY2thZ2Utc3VtbWFyeT9obD16aC1jbg==" title="https://developer.android.com/reference/android/arch/persistence/room/package-summary?hl=zh-cn">翻译自官网文档<i class="fa fa-external-link"></i></span></p>
-<p>Room 是一个关系映射对象库，可以使我们很方便的访问 App 数据库</p>
-<ul>
-<li><strong>Database:</strong> 注解用来标记问数据库，该类须继承 RoomDatabase,运行时，可以通过 Room.databaseBuilder 或者获取他的实例 Room.inMemoryDatabasebuilder</li>
-<li><strong>Entity:</strong> 将 Model 或 pojo 类，标记为数据库行，每个 Entity 都会创建一个数据库表来保存项目。实体类必须在 Database#entities  数组中引用。除非另有说明，否则 Entity 的每个字段（及其父类）都将 Entity 保留在数据库中</li>
-<li><strong>Dao:</strong> 将类或接口标记为数据访问对象。数据访问对象负责定义访问数据库的方法。带有注释的类 Database 必须具有一个带有 0 个参数的抽象方法，并返回带有 Dao 注释的类。</li>
-</ul>
+          <h2 id="什么是阻塞队列"><a href="#什么是阻塞队列" class="headerlink" title="什么是阻塞队列"></a>什么是阻塞队列</h2><p><code>BlockingQueue</code> 是一个支持两个附加操作的队列。</p>
+<p>在队列为空时，获取元素的线程会等待队列变为非空；当队列满时，存储元素的线程会等待队列可用。</p>
+<p>阻塞队列常用于生产消费者模的场景中，生产者是往队列里添加元素的线程；消费者是从队列里拿元素的线程。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Jetpack/Android Room/#more" rel="contents">
+              <a class="btn" href="/2021/02/01/Java/阻塞队列/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -3002,7 +2998,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Android Room");titles.push("代理模式");titles.push("Object 类");titles.push("Java 注解");titles.push("Java 泛型");titles.push("Java 反射");titles.push("Java 异常");titles.push("Java 枚举");titles.push("Java 内存管理");titles.push("");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("阻塞队列");titles.push("代理模式");titles.push("Object 类");titles.push("Java 注解");titles.push("Java 泛型");titles.push("Java 反射");titles.push("Java 异常");titles.push("Java 枚举");titles.push("Java 内存管理");titles.push("");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
