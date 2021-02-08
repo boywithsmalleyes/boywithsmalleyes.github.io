@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/08/Jetpack/WorkManager 源码/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/08/Android 基础/View/RandomLayout/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -434,7 +434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/08/Jetpack/WorkManager 源码/" class="post-title-link" itemprop="url">WorkManager 源码</a>
+                <a href="/2021/02/08/Android 基础/View/RandomLayout/" class="post-title-link" itemprop="url">Untitled</a>
               
             
           </h1>
@@ -459,31 +459,13 @@
                 
               
 
-              <time title="Created: 2021-02-08 16:48:29" itemprop="dateCreated datePublished" datetime="2021-02-08T16:48:29+08:00">2021-02-08</time>
+              <time title="Created: 2021-02-08 16:52:53" itemprop="dateCreated datePublished" datetime="2021-02-08T16:52:53+08:00">2021-02-08</time>
             
 
             
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/WorkManager/" itemprop="url" rel="index"><span itemprop="name">WorkManager</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -492,7 +474,7 @@
 
           
           
-            <span id="/2021/02/08/Jetpack/WorkManager 源码/" class="leancloud_visitors" data-flag-title="WorkManager 源码">
+            <span id="/2021/02/08/Android 基础/View/RandomLayout/" class="leancloud_visitors" data-flag-title>
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -524,21 +506,29 @@
 
       
         
-          <p>WorkManager 的工作主要分为两个部分，</p>
-<ol>
-<li>初始化</li>
-<li>加入队列</li>
+          
+            <hr>
+<p>title:RandomLayout 随机摆放布局<br>tag:Android</p>
+<h2 id="category-View"><a href="#category-View" class="headerlink" title="category:View"></a>category:View</h2><p>随机摆放布局，先上效果</p>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210208162638517.png" alt="image-20210208162638517"></p>
+<p>在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 <code>LinearLayout</code> <code>RelateLayout</code> 或者是 <code>RecyclerView</code> 这些。因为他们都不满足随机性。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先，我们需要一个容器，<code>ViewGroup</code> <code>LinearLayout</code> 都可以给我们选择</p>
+<p>然后，重写布局函数，确认宽高、测量子 View 等</p>
+<p>其次，我们要保证随机性，那么就需要一个 <code>Random</code> 函数，并存储各个子 View 的坐标，确认重复性</p>
+<p>最后，布局子 View</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li>创建一个 <code>RandomLayout</code> 继承 <code>LinearLayout</code></li>
+<li>重写 <code>onMeasure</code> 计算父布局及子布局的宽高和模式，并存储</li>
+<li>重写 <code>onLayout</code> ，计算子 View 位置以及判定是否重合<ol>
+<li>创建一个 <code>ArrayList&lt;Point&gt;</code> 用来存储子 View 的左顶点坐标，摆放时，遍历集合，找到重合立即重新生成，没有则继续</li>
+<li>重合判定条件； <code>abs(rPoint.x - oPoint.x) &lt;= childWidth &amp;&amp; abs(rPoint.y - oPoint.y) &lt;= childHeight</code>, 意思是说：两个点的横纵距离均小于当前 View 的 宽和高 </li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WorkManager.getInstance(mContext).enqueue(workRequest)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
+</li>
+<li>布局子 View</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RandomLayout</span></span>(context: Context, attributes: AttributeSet) : LinearLayout(context, attributes) &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mWidth: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mHeight: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> childWidth: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> childHeight: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> childPointList = ArrayList&lt;Point&gt;(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * onMeasure 获得上下容器的宽和高及计算模式</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onMeasure</span><span class="params">(widthMeasureSpec: <span class="type">Int</span>, heightMeasureSpec: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec)</span><br><span class="line">        mWidth = MeasureSpec.getSize(widthMeasureSpec)</span><br><span class="line">        mHeight = mWidth<span class="comment">/* * 3 / 2*/</span></span><br><span class="line">        <span class="comment">// 测量所有的 childView 宽和高</span></span><br><span class="line">        setMeasuredDimension(mWidth, mHeight)</span><br><span class="line">        measureChildren(widthMeasureSpec, heightMeasureSpec)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 布局，循环子 view ，并为其布局</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onLayout</span><span class="params">(changed: <span class="type">Boolean</span>, left: <span class="type">Int</span>, top: <span class="type">Int</span>, right: <span class="type">Int</span>, bottom: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onLayout(changed, left, top, right, bottom)</span><br><span class="line">        <span class="comment">// 获取所有子 View 的总数</span></span><br><span class="line">        <span class="comment">// 循环设置每一个子View的位置</span></span><br><span class="line">        <span class="keyword">for</span> (index <span class="keyword">in</span> <span class="number">0</span> until childCount) &#123;</span><br><span class="line">            <span class="keyword">val</span> child = getChildAt(index)</span><br><span class="line">            childWidth = child.measuredWidth</span><br><span class="line">            childHeight = child.measuredHeight</span><br><span class="line">            <span class="comment">// 获取 xy 坐标</span></span><br><span class="line">            layoutChild(child, index)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 子 View 布局</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">layoutChild</span><span class="params">(child: <span class="type">View</span>, index: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 先随机生成一个坐标点，然后判断是否有重叠，重叠则重新生成新的点</span></span><br><span class="line">        <span class="keyword">var</span> rPoint = randomPointFactory()</span><br><span class="line">        <span class="keyword">if</span> (index &gt; <span class="number">0</span>) &#123;<span class="comment">// 第一个点不需要处理</span></span><br><span class="line">            <span class="keyword">while</span> (isOverLapping(rPoint)) &#123;</span><br><span class="line">                <span class="comment">// 判断有没有重叠的部分，如果有就返回 true， 重新创建并比较</span></span><br><span class="line">                rPoint = randomPointFactory()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (childPointList.size != childCount) &#123;</span><br><span class="line">            <span class="comment">// 把没有重合的店放到集合中去</span></span><br><span class="line">            childPointList.add(rPoint)</span><br><span class="line">        &#125;</span><br><span class="line">        child.layout(rPoint.x, rPoint.y, rPoint.x + childWidth, rPoint.y + childHeight)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">randomPointFactory</span><span class="params">()</span></span>: Point &#123;</span><br><span class="line">        <span class="comment">// 随机获取俩个数，作为每个子View的左上角坐标，最大为父布局的 XY 最小为 0</span></span><br><span class="line">        <span class="keyword">val</span> random = Random</span><br><span class="line">        <span class="keyword">val</span> x: <span class="built_in">Int</span> = random.nextInt(mWidth - childWidth) % ((mWidth - childWidth) - <span class="number">1</span> + <span class="number">1</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">val</span> y: <span class="built_in">Int</span> = random.nextInt(mHeight - childHeight) % ((mHeight - childHeight) - <span class="number">1</span> + <span class="number">1</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> Point(x, y)</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 重叠判定</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">isOverLapping</span><span class="params">(rPoint: <span class="type">Point</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">        childPointList.indices.forEach &#123; index -&gt;</span><br><span class="line">            <span class="keyword">val</span> oPoint = childPointList[index]</span><br><span class="line">            <span class="keyword">if</span> (abs(rPoint.x - oPoint.x) &lt;= childWidth &amp;&amp; abs(rPoint.y - oPoint.y) &lt;= childHeight) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDetachedFromWindow</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDetachedFromWindow()</span><br><span class="line">        childPointList.clear()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">addChildView</span><span class="params">(item: <span class="type">View</span>)</span></span> &#123;</span><br><span class="line">        addView(item)</span><br><span class="line">        invalidate()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/08/Jetpack/WorkManager 源码/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2995,7 +2985,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("WorkManager 源码");titles.push("Java 中文件 Copy 的方式");titles.push("Java 中堆和栈的区别");titles.push("Android 磁盘空间优化");titles.push("算法");titles.push("数据结构");titles.push("Glide 源码");titles.push("Typora 设置图床");titles.push("Markdown 数学公式编辑");titles.push("协程知识点");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("");titles.push("Java 中文件 Copy 的方式");titles.push("Java 中堆和栈的区别");titles.push("Android 磁盘空间优化");titles.push("算法");titles.push("数据结构");titles.push("Glide 源码");titles.push("Typora 设置图床");titles.push("Markdown 数学公式编辑");titles.push("协程知识点");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

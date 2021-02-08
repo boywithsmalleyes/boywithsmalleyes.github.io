@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Jetpack/Android架构组件/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Jetpack/Data Binding/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -434,7 +434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Jetpack/Android架构组件/" class="post-title-link" itemprop="url">Android 架构组件</a>
+                <a href="/2021/02/01/Jetpack/Data Binding/" class="post-title-link" itemprop="url">Android Data Binding</a>
               
             
           </h1>
@@ -474,7 +474,7 @@
 
           
           
-            <span id="/2021/02/01/Jetpack/Android架构组件/" class="leancloud_visitors" data-flag-title="Android 架构组件">
+            <span id="/2021/02/01/Jetpack/Data Binding/" class="leancloud_visitors" data-flag-title="Android Data Binding">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -506,19 +506,11 @@
 
       
         
-          <h2 id="应用架构指南"><a href="#应用架构指南" class="headerlink" title="应用架构指南"></a>应用架构指南</h2><ul>
-<li>当您在自己喜欢的社交网络应用中分享照片时会发生什么：<ol>
-<li>该应用将触发相机 Intent。 Android 操作系统随后会启动相机应用来处理请求。此时，用户已离开社交应用，但他们的体验仍然是无缝的</li>
-<li>相机应用可能会触发其他 intent（如启动文件选择器），而这可能会再启动一个应用</li>
-<li>最后，用户返回社交网络应用并分享照片</li>
-</ol>
-</li>
-</ul>
-<p>此过程中，用户随时可能会被电话或通知打断。处理之后，用户希望能够返回并继续分享照片。这种应用跳跃行为再移动设备上很常见，因此应用必须正确处理这些流程。</p>
+          <h1 id="Data-Binding"><a href="#Data-Binding" class="headerlink" title="Data Binding"></a>Data Binding</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="布局和绑定表达式"><a href="#布局和绑定表达式" class="headerlink" title="布局和绑定表达式"></a>布局和绑定表达式</h3><p>借助表达式语言，可以编写将变量关联到布局中的视图的表达式。数据绑定库会自动生成将布局中的视图与数据对象绑定所需的类。该库提供了可在布局中使用的导入、变量和包含等功能。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Jetpack/Android架构组件/#more" rel="contents">
+              <a class="btn" href="/2021/02/01/Jetpack/Data Binding/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -3011,7 +3003,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Android 架构组件");titles.push("阻塞队列");titles.push("Android Room");titles.push("代理模式");titles.push("Object 类");titles.push("Java 注解");titles.push("Java 泛型");titles.push("Java 反射");titles.push("Java 异常");titles.push("Java 枚举");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Android Data Binding");titles.push("阻塞队列");titles.push("Android Room");titles.push("代理模式");titles.push("Object 类");titles.push("Java 注解");titles.push("Java 泛型");titles.push("Java 反射");titles.push("Java 异常");titles.push("Java 枚举");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
