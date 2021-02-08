@@ -140,19 +140,19 @@
 
 
 
-  <meta name="description" content="随机摆放布局，先上效果  在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 LinearLayout RelateLayout 或者是 RecyclerView 这些。因为他们都不满足随机性。 分析首先，我们需要一个容器，ViewGroup LinearLayout 都可以给我们选择 然后，重写布局函数">
+  <meta name="description" content="随机摆放布局，先上效果  在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 LinearLayout RelateLayout 或者是 RecyclerView 这些。因为他们都不满足随机性。">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RandomLayout 随机摆放布局">
 <meta property="og:url" content="http://xiaoman.ren/2021/02/08/Android 基础/View/RandomLayout/index.html">
 <meta property="og:site_name" content="茶白白在胡说">
-<meta property="og:description" content="随机摆放布局，先上效果  在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 LinearLayout RelateLayout 或者是 RecyclerView 这些。因为他们都不满足随机性。 分析首先，我们需要一个容器，ViewGroup LinearLayout 都可以给我们选择 然后，重写布局函数">
+<meta property="og:description" content="随机摆放布局，先上效果  在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 LinearLayout RelateLayout 或者是 RecyclerView 这些。因为他们都不满足随机性。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210208162638517.png">
-<meta property="og:updated_time" content="2021-02-08T08:57:09.537Z">
+<meta property="og:updated_time" content="2021-02-08T09:02:36.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RandomLayout 随机摆放布局">
-<meta name="twitter:description" content="随机摆放布局，先上效果  在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 LinearLayout RelateLayout 或者是 RecyclerView 这些。因为他们都不满足随机性。 分析首先，我们需要一个容器，ViewGroup LinearLayout 都可以给我们选择 然后，重写布局函数">
+<meta name="twitter:description" content="随机摆放布局，先上效果  在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 LinearLayout RelateLayout 或者是 RecyclerView 这些。因为他们都不满足随机性。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210208162638517.png">
 
 
@@ -459,9 +459,13 @@
                 
               
 
-              <time title="Created: 2021-02-08 16:57:09" itemprop="dateCreated datePublished" datetime="2021-02-08T16:57:09+08:00">2021-02-08</time>
+              <time title="Created: 2021-02-08 16:57:09 / Modified: 17:02:36" itemprop="dateCreated datePublished" datetime="2021-02-08T16:57:09+08:00">2021-02-08</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -533,6 +537,7 @@
         <p>随机摆放布局，先上效果</p>
 <p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210208162638517.png" alt="image-20210208162638517"></p>
 <p>在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 <code>LinearLayout</code> <code>RelateLayout</code> 或者是 <code>RecyclerView</code> 这些。因为他们都不满足随机性。</p>
+<a id="more"></a>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先，我们需要一个容器，<code>ViewGroup</code> <code>LinearLayout</code> 都可以给我们选择</p>
 <p>然后，重写布局函数，确认宽高、测量子 View 等</p>
 <p>其次，我们要保证随机性，那么就需要一个 <code>Random</code> 函数，并存储各个子 View 的坐标，确认重复性</p>

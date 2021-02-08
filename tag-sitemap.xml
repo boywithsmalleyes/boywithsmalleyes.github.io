@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>http://xiaoman.ren/tags/Android/</loc>
+        <lastmod>2021-02-08T09:02:36.623Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://xiaoman.ren/tags/Jetpack/</loc>
+        <lastmod>2021-02-08T08:57:09.537Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://xiaoman.ren/tags/Git/</loc>
+        <lastmod>2021-02-02T15:17:21.281Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://xiaoman.ren/tags/Java/</loc>
         <lastmod>2021-02-02T15:02:56.996Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,13 +38,6 @@
     </url>
 
     <url>
-        <loc>http://xiaoman.ren/tags/Jetpack/</loc>
-        <lastmod>2021-02-02T14:49:46.728Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://xiaoman.ren/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
         <lastmod>2021-02-01T12:47:12.938Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -33,20 +47,6 @@
     <url>
         <loc>http://xiaoman.ren/tags/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/</loc>
         <lastmod>2021-02-01T12:47:12.936Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/tags/Git/</loc>
-        <lastmod>2021-02-01T12:47:12.934Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/tags/Android/</loc>
-        <lastmod>2021-02-01T12:47:12.934Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
