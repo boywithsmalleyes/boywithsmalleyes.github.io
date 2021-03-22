@@ -314,6 +314,25 @@
         
         
           
+          <li class="menu-item menu-item-分类">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-友情链接">
 
     
@@ -767,7 +786,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/原理/Handler 消息机制/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/自定义 ViewGroup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -787,7 +806,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/03/12/Android 基础/原理/Handler 消息机制/" class="post-title-link" itemprop="url">Handler 消息机制</a>
+                <a href="/2021/03/12/Android 基础/View/自定义 ViewGroup/" class="post-title-link" itemprop="url">自定义 ViewGroup</a>
               
             
           </h1>
@@ -845,7 +864,7 @@
 
           
           
-            <span id="/2021/03/12/Android 基础/原理/Handler 消息机制/" class="leancloud_visitors" data-flag-title="Handler 消息机制">
+            <span id="/2021/03/12/Android 基础/View/自定义 ViewGroup/" class="leancloud_visitors" data-flag-title="自定义 ViewGroup">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -877,15 +896,37 @@
 
       
         
-          <p>Handler 消息机制，在整个 Android 系统中，有着很重要的地位。</p>
-<p>他可以帮助我们实现，子线程和主线程的跨线程通信；可以帮助我们发送一些延时任务，帮助我们很好的实现一个 App.</p>
-<p>本文旨在对源码进行预览分析。</p>
-<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h2><p>先来一张结构图，让我们清晰的了解一下，我们下面都会分析到哪些内容；也了解一下 <code>Handler</code> 机制的核心秘密。</p>
-<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/Handler%20%E6%9C%BA%E5%88%B6.png?raw=true" alt="Handler 类图"></p>
+          <h2 id="View-Group-的测量布局流程"><a href="#View-Group-的测量布局流程" class="headerlink" title="View Group 的测量布局流程"></a>View Group 的测量布局流程</h2><p><strong>View Group绘制和布局流程中的重点</strong></p>
+<ol>
+<li><p>View 在 <code>onMeasure</code> 方法中进行自我测量和保存。</p>
+</li>
+<li><p>ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置</p>
+</li>
+<li><p>关注 onMeasure 和 onLayout</p>
+</li>
+<li><p>父 View 调用子 View 的layout 方法的时候，会把之前 measure 阶段确定的位置和大小都传递给子 View</p>
+</li>
+<li><p>自定义 View/ViewGroup，只需要关注下面三种需求：</p>
+<ol>
+<li>对于已有的 Android 自带 View，我们只需要重写他的 <code>onMeasure</code> 方法即可,<strong>修改一下这个尺寸就完成需求</strong></li>
+<li>对于 Android 系统没有的，属于我们自定义的 View，需要完全重写 <code>onMeasure</code></li>
+<li>需要重写 <code>onMeasure</code> 和 <code>onLayout</code> 2个方法，来完成一个复杂的 <code>ViewGroup</code> 的测量和布局。</li>
+</ol>
+</li>
+<li><p>onMeasure 的说明</p>
+<p>widthMeasureSpec, heightMeasureSpec  两个参数主要是 父 view 对子view 的尺寸限制</p>
+</li>
+<li><p>理解父 view 对子 view 的限制</p>
+<p>实际上，父 View 对子 View 的限制据大多数就来自于我们开发者所设置的 layout 开头的这些属性。<strong>这些以 layout 开头的属性，都是设置给父 view 看的</strong></p>
+<blockquote>
+<p>父 View 要知道这些属性以后，才知道要对子view 的测量加以什么限制</p>
+</blockquote>
+</li>
+</ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/03/12/Android 基础/原理/Handler 消息机制/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/View/自定义 ViewGroup/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1140,7 +1181,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/自定义 ViewGroup/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/原理/Handler 消息机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -1160,7 +1201,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/03/12/Android 基础/View/自定义 ViewGroup/" class="post-title-link" itemprop="url">自定义 ViewGroup</a>
+                <a href="/2021/03/12/Android 基础/原理/Handler 消息机制/" class="post-title-link" itemprop="url">Handler 消息机制</a>
               
             
           </h1>
@@ -1218,7 +1259,7 @@
 
           
           
-            <span id="/2021/03/12/Android 基础/View/自定义 ViewGroup/" class="leancloud_visitors" data-flag-title="自定义 ViewGroup">
+            <span id="/2021/03/12/Android 基础/原理/Handler 消息机制/" class="leancloud_visitors" data-flag-title="Handler 消息机制">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1250,37 +1291,15 @@
 
       
         
-          <h2 id="View-Group-的测量布局流程"><a href="#View-Group-的测量布局流程" class="headerlink" title="View Group 的测量布局流程"></a>View Group 的测量布局流程</h2><p><strong>View Group绘制和布局流程中的重点</strong></p>
-<ol>
-<li><p>View 在 <code>onMeasure</code> 方法中进行自我测量和保存。</p>
-</li>
-<li><p>ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置</p>
-</li>
-<li><p>关注 onMeasure 和 onLayout</p>
-</li>
-<li><p>父 View 调用子 View 的layout 方法的时候，会把之前 measure 阶段确定的位置和大小都传递给子 View</p>
-</li>
-<li><p>自定义 View/ViewGroup，只需要关注下面三种需求：</p>
-<ol>
-<li>对于已有的 Android 自带 View，我们只需要重写他的 <code>onMeasure</code> 方法即可,<strong>修改一下这个尺寸就完成需求</strong></li>
-<li>对于 Android 系统没有的，属于我们自定义的 View，需要完全重写 <code>onMeasure</code></li>
-<li>需要重写 <code>onMeasure</code> 和 <code>onLayout</code> 2个方法，来完成一个复杂的 <code>ViewGroup</code> 的测量和布局。</li>
-</ol>
-</li>
-<li><p>onMeasure 的说明</p>
-<p>widthMeasureSpec, heightMeasureSpec  两个参数主要是 父 view 对子view 的尺寸限制</p>
-</li>
-<li><p>理解父 view 对子 view 的限制</p>
-<p>实际上，父 View 对子 View 的限制据大多数就来自于我们开发者所设置的 layout 开头的这些属性。<strong>这些以 layout 开头的属性，都是设置给父 view 看的</strong></p>
-<blockquote>
-<p>父 View 要知道这些属性以后，才知道要对子view 的测量加以什么限制</p>
-</blockquote>
-</li>
-</ol>
+          <p>Handler 消息机制，在整个 Android 系统中，有着很重要的地位。</p>
+<p>他可以帮助我们实现，子线程和主线程的跨线程通信；可以帮助我们发送一些延时任务，帮助我们很好的实现一个 App.</p>
+<p>本文旨在对源码进行预览分析。</p>
+<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h2><p>先来一张结构图，让我们清晰的了解一下，我们下面都会分析到哪些内容；也了解一下 <code>Handler</code> 机制的核心秘密。</p>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/Handler%20%E6%9C%BA%E5%88%B6.png?raw=true" alt="Handler 类图"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/03/12/Android 基础/View/自定义 ViewGroup/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/原理/Handler 消息机制/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1340,7 +1359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/RandomLayout/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/WebView 使用篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -1360,7 +1379,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/03/12/Android 基础/View/RandomLayout/" class="post-title-link" itemprop="url">RandomLayout 随机摆放布局</a>
+                <a href="/2021/03/12/Android 基础/View/WebView 使用篇/" class="post-title-link" itemprop="url">WebView 使用篇</a>
               
             
           </h1>
@@ -1388,6 +1407,22 @@
               <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-03-22 23:59:20" itemprop="dateModified" datetime="2021-03-22T23:59:20+08:00">2021-03-22</time>
+              
             
           </span>
 
@@ -1418,7 +1453,7 @@
 
           
           
-            <span id="/2021/03/12/Android 基础/View/RandomLayout/" class="leancloud_visitors" data-flag-title="RandomLayout 随机摆放布局">
+            <span id="/2021/03/12/Android 基础/View/WebView 使用篇/" class="leancloud_visitors" data-flag-title="WebView 使用篇">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1450,13 +1485,21 @@
 
       
         
-          <p>随机摆放布局，先上效果</p>
-<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210208162638517.png" alt="image-20210208162638517"></p>
-<p>在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 <code>LinearLayout</code> <code>RelateLayout</code> 或者是 <code>RecyclerView</code> 这些。因为他们都不满足随机性。<br>
+          <h2 id="交互方式"><a href="#交互方式" class="headerlink" title="交互方式"></a>交互方式</h2><p><strong>Android 调用 JS</strong> </p>
+<ul>
+<li>通过 <code>WebView</code> 的 <code>loadUrl()</code></li>
+<li>通过 <code>WebView</code> 的 <code>evaluateJavascript()</code></li>
+</ul>
+<p><strong>JS 调用 Android</strong></p>
+<ul>
+<li>通过 <code>WebView</code> 的 <code>addJavascriptInterface()</code> 进行对象映射</li>
+<li>通过 <code>WebView</code> 的 <code>shouldOverrideUrlLoading()</code> 方法回调拦截 <code>Url</code></li>
+<li>通过 <code>WebChromeClient</code> 的 <code>onAlert(),onJsConfirm(), onJsPrompt()</code> 方法回调拦截 JS 对话框 <code>alert(),confrim(),permpt()</code>  的消息</li>
+</ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/03/12/Android 基础/View/RandomLayout/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/View/WebView 使用篇/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1464,7 +1507,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     
 
@@ -1701,7 +1744,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/WebView 使用篇/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/RandomLayout/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -1721,7 +1764,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/03/12/Android 基础/View/WebView 使用篇/" class="post-title-link" itemprop="url">WebView 使用篇</a>
+                <a href="/2021/03/12/Android 基础/View/RandomLayout/" class="post-title-link" itemprop="url">RandomLayout 随机摆放布局</a>
               
             
           </h1>
@@ -1749,22 +1792,6 @@
               <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2021-03-22 23:59:20" itemprop="dateModified" datetime="2021-03-22T23:59:20+08:00">2021-03-22</time>
-              
             
           </span>
 
@@ -1795,7 +1822,7 @@
 
           
           
-            <span id="/2021/03/12/Android 基础/View/WebView 使用篇/" class="leancloud_visitors" data-flag-title="WebView 使用篇">
+            <span id="/2021/03/12/Android 基础/View/RandomLayout/" class="leancloud_visitors" data-flag-title="RandomLayout 随机摆放布局">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1827,21 +1854,13 @@
 
       
         
-          <h2 id="交互方式"><a href="#交互方式" class="headerlink" title="交互方式"></a>交互方式</h2><p><strong>Android 调用 JS</strong> </p>
-<ul>
-<li>通过 <code>WebView</code> 的 <code>loadUrl()</code></li>
-<li>通过 <code>WebView</code> 的 <code>evaluateJavascript()</code></li>
-</ul>
-<p><strong>JS 调用 Android</strong></p>
-<ul>
-<li>通过 <code>WebView</code> 的 <code>addJavascriptInterface()</code> 进行对象映射</li>
-<li>通过 <code>WebView</code> 的 <code>shouldOverrideUrlLoading()</code> 方法回调拦截 <code>Url</code></li>
-<li>通过 <code>WebChromeClient</code> 的 <code>onAlert(),onJsConfirm(), onJsPrompt()</code> 方法回调拦截 JS 对话框 <code>alert(),confrim(),permpt()</code>  的消息</li>
-</ul>
+          <p>随机摆放布局，先上效果</p>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210208162638517.png" alt="image-20210208162638517"></p>
+<p>在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 <code>LinearLayout</code> <code>RelateLayout</code> 或者是 <code>RecyclerView</code> 这些。因为他们都不满足随机性。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/03/12/Android 基础/View/WebView 使用篇/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/View/RandomLayout/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1849,7 +1868,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -3149,7 +3168,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Android 版本适配");titles.push("Android 磁盘空间优化");titles.push("Handler 消息机制");titles.push("WebView 异常篇");titles.push("自定义 ViewGroup");titles.push("RandomLayout 随机摆放布局");titles.push("RecyclerView 总结");titles.push("WebView 使用篇");titles.push("WebView 性能篇");titles.push("Android自定义View");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Android 版本适配");titles.push("Android 磁盘空间优化");titles.push("自定义 ViewGroup");titles.push("WebView 异常篇");titles.push("Handler 消息机制");titles.push("WebView 使用篇");titles.push("RecyclerView 总结");titles.push("RandomLayout 随机摆放布局");titles.push("WebView 性能篇");titles.push("Android自定义View");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

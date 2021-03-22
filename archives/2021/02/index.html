@@ -313,6 +313,25 @@
         
         
           
+          <li class="menu-item menu-item-分类">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-友情链接">
 
     
@@ -394,6 +413,9 @@
             
 
     
+    
+      
+      
     
       
       
@@ -769,9 +791,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-异常处理/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-挂起/" itemprop="url">
             
-              <span itemprop="name">协程异常处理</span>
+              <span itemprop="name">协程挂起</span>
             
           </a>
         
@@ -804,9 +826,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-挂起/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-异常处理/" itemprop="url">
             
-              <span itemprop="name">协程挂起</span>
+              <span itemprop="name">协程异常处理</span>
             
           </a>
         
@@ -2076,7 +2098,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("协程调度器");titles.push("Binder 机制");titles.push("WorkManager 源码");titles.push("Java 中文件 Copy 的方式");titles.push("Java 中堆和栈的区别");titles.push("Typora 设置图床");titles.push("Markdown 数学公式编辑");titles.push("协程知识点");titles.push("协程");titles.push("协程异常处理");titles.push("协程挂起");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");titles.push("WorkManager 基础");titles.push("Android Lifecycle");titles.push("Android 架构组件");titles.push("Android Data Binding");titles.push("阻塞队列");titles.push("Android Room");titles.push("代理模式");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("协程调度器");titles.push("Binder 机制");titles.push("WorkManager 源码");titles.push("Java 中文件 Copy 的方式");titles.push("Java 中堆和栈的区别");titles.push("Typora 设置图床");titles.push("Markdown 数学公式编辑");titles.push("协程知识点");titles.push("协程");titles.push("协程挂起");titles.push("协程异常处理");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");titles.push("WorkManager 基础");titles.push("Android Lifecycle");titles.push("Android 架构组件");titles.push("Android Data Binding");titles.push("阻塞队列");titles.push("Android Room");titles.push("代理模式");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

@@ -313,6 +313,25 @@
         
         
           
+          <li class="menu-item menu-item-分类 menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-友情链接">
 
     
@@ -394,6 +413,9 @@
             
 
     
+    
+      
+      
     
       
       
@@ -539,9 +561,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/03/12/Android 基础/原理/Handler 消息机制/" itemprop="url">
+          <a class="post-title-link" href="/2021/03/12/Android 基础/View/自定义 ViewGroup/" itemprop="url">
             
-              <span itemprop="name">Handler 消息机制</span>
+              <span itemprop="name">自定义 ViewGroup</span>
             
           </a>
         
@@ -591,9 +613,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/03/12/Android 基础/View/自定义 ViewGroup/" itemprop="url">
+          <a class="post-title-link" href="/2021/03/12/Android 基础/原理/Handler 消息机制/" itemprop="url">
             
-              <span itemprop="name">自定义 ViewGroup</span>
+              <span itemprop="name">Handler 消息机制</span>
             
           </a>
         
@@ -617,9 +639,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/03/12/Android 基础/View/RandomLayout/" itemprop="url">
+          <a class="post-title-link" href="/2021/03/12/Android 基础/View/WebView 使用篇/" itemprop="url">
             
-              <span itemprop="name">RandomLayout 随机摆放布局</span>
+              <span itemprop="name">WebView 使用篇</span>
             
           </a>
         
@@ -669,9 +691,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/03/12/Android 基础/View/WebView 使用篇/" itemprop="url">
+          <a class="post-title-link" href="/2021/03/12/Android 基础/View/RandomLayout/" itemprop="url">
             
-              <span itemprop="name">WebView 使用篇</span>
+              <span itemprop="name">RandomLayout 随机摆放布局</span>
             
           </a>
         
@@ -1850,7 +1872,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("行为统计 SDK 结构设计");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("Android 磁盘空间优化");titles.push("Handler 消息机制");titles.push("WebView 异常篇");titles.push("自定义 ViewGroup");titles.push("RandomLayout 随机摆放布局");titles.push("RecyclerView 总结");titles.push("WebView 使用篇");titles.push("WebView 性能篇");titles.push("Android自定义View");titles.push("MVC、MVP、MVVM 的详解和区别");titles.push("Activity 横竖屏");titles.push("ANR");titles.push("Binder 机制");titles.push("Android Q 文件权限适配");titles.push("Handler 线程通信基础流程");titles.push("Android 中设置全屏的方法");titles.push("Android 在一个应用中启动另外一个应用");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("行为统计 SDK 结构设计");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("Android 磁盘空间优化");titles.push("自定义 ViewGroup");titles.push("WebView 异常篇");titles.push("Handler 消息机制");titles.push("WebView 使用篇");titles.push("RecyclerView 总结");titles.push("RandomLayout 随机摆放布局");titles.push("WebView 性能篇");titles.push("Android自定义View");titles.push("MVC、MVP、MVVM 的详解和区别");titles.push("Activity 横竖屏");titles.push("ANR");titles.push("Binder 机制");titles.push("Android Q 文件权限适配");titles.push("Handler 线程通信基础流程");titles.push("Android 中设置全屏的方法");titles.push("Android 在一个应用中启动另外一个应用");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
