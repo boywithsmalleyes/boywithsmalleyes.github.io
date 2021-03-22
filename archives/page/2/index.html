@@ -546,9 +546,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-挂起/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-异常处理/" itemprop="url">
             
-              <span itemprop="name">协程挂起</span>
+              <span itemprop="name">协程异常处理</span>
             
           </a>
         
@@ -581,9 +581,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-异常处理/" itemprop="url">
+          <a class="post-title-link" href="/2021/02/01/Kotlin/协程/协程-挂起/" itemprop="url">
             
-              <span itemprop="name">协程异常处理</span>
+              <span itemprop="name">协程挂起</span>
             
           </a>
         
@@ -1036,7 +1036,7 @@
 
         
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-三方" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h2 class="post-title">
@@ -1587,6 +1587,10 @@
                 <div class="site-state-item site-state-categories">
                   
                     
+                      <a href="/categories/">
+                    
+                  
+                    
                     
                       
                     
@@ -1604,7 +1608,7 @@
                     
                     <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
-                  
+                  </a>
                 </div>
               
 
@@ -2427,7 +2431,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("协程知识点");titles.push("协程");titles.push("协程挂起");titles.push("协程异常处理");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");titles.push("WorkManager 基础");titles.push("Android Lifecycle");titles.push("Android 架构组件");titles.push("Android Data Binding");titles.push("阻塞队列");titles.push("Android Room");titles.push("代理模式");titles.push("Android Q 文件权限适配");titles.push("ASpectJ 初识");titles.push("OKHttp 重定向拦截器");titles.push("Android 常用工具和插件");titles.push("清香木养殖（四）");titles.push("Linux 下配置 Android Studio 中文输入");titles.push("Java Reference");titles.push("Handler 线程通信基础流程");titles.push("清香木养殖（三）");titles.push("清香木养殖（二）");titles.push("清香木养殖（一）");titles.push("OkHttp Intercept");titles.push("多个 Ssh 公钥提交代码到不同平台");titles.push("Java 判断字符串是否是数字的方法");titles.push("Android 中设置全屏的方法");titles.push("Android 在一个应用中启动另外一个应用");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("协程知识点");titles.push("协程");titles.push("协程异常处理");titles.push("协程挂起");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");titles.push("WorkManager 基础");titles.push("Android Lifecycle");titles.push("Android 架构组件");titles.push("Android Data Binding");titles.push("阻塞队列");titles.push("Android Room");titles.push("代理模式");titles.push("Android Q 文件权限适配");titles.push("ASpectJ 初识");titles.push("OKHttp 重定向拦截器");titles.push("Android 常用工具和插件");titles.push("清香木养殖（四）");titles.push("Linux 下配置 Android Studio 中文输入");titles.push("Java Reference");titles.push("Handler 线程通信基础流程");titles.push("清香木养殖（三）");titles.push("清香木养殖（二）");titles.push("清香木养殖（一）");titles.push("OkHttp Intercept");titles.push("多个 Ssh 公钥提交代码到不同平台");titles.push("Java 判断字符串是否是数字的方法");titles.push("Android 中设置全屏的方法");titles.push("Android 在一个应用中启动另外一个应用");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
