@@ -151,7 +151,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/bg2015020105.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/bg2015020108.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/bg2015020110.png">
-<meta property="og:updated_time" content="2021-03-12T06:59:30.431Z">
+<meta property="og:updated_time" content="2021-03-22T16:00:04.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVC、MVP、MVVM 的详解和区别">
 <meta name="twitter:description" content="MVC、MVP、MVVM  图示MVC  视图层（View） 对应 XML 布局和 Java 代码动态 View 部分 控制层（Controller） MVC 中 Android 的控制层是由 Activity 来承担的， Activity 本来主要是作为初始化页面，展示数据的操作，但是因为 XML 视图功能太弱，所以 Activity 既要负责视图的显示，又要加入控制逻辑，承担的功能过多 模型层">
@@ -465,6 +465,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-03-23 00:00:04" itemprop="dateModified" datetime="2021-03-23T00:00:04+08:00">2021-03-23</time>
+              
+            
           </span>
 
           
@@ -540,6 +556,7 @@
 </ul>
 <p><strong>总结：</strong></p>
 <p>具有一定的分层， model 彻底解耦， controller  和 view 并没有解耦，层与层之间的监护尽量使用回调或者去使用消息机制去完成，尽量避免直接持有 controller  和 view 在 Android 中无法做到彻底分离，但在代码逻辑层面要分清业务逻辑被放在 model 层，能够更好的复用和修改、增加业务。</p>
+<a id="more"></a>
 <h3 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h3><p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/bg2015020108.png" alt="MVP"></p>
 <p>通过引用接口 <code>BaseView</code> ，让相应的试图组件如 Activity, Fragment 去实现 <code>BaseView</code> ，实现视图层的独立，通过中间层 Presenter 实现 Model 和 View 的完全解耦。使得更层级之间的通信都是双向的</p>
 <p>MVP 彻底解决了 MVC 中 View 和 Controller 分不清楚的问题，但是随着业务的增加，一个页面可能会非常复杂，UI 的改变是非常多的，会有非常多的 case，这样会造成 View 的接口会很庞大。</p>
@@ -650,8 +667,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/03/12/Android 基础/View/Android 自定义 View/" rel="prev" title="Android自定义View">
-                Android自定义View <i class="fa fa-chevron-right"></i>
+              <a href="/2021/03/12/Android 基础/View/Android WebView/" rel="prev" title="WebView 性能篇">
+                WebView 性能篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -723,7 +740,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -811,7 +828,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

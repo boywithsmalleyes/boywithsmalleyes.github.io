@@ -140,18 +140,18 @@
 
 
 
-  <meta name="description" content="为什么选用 Binder 作为进程间通信的工具相比于传统的 IPC 机制，Binder 具有  性能上只对数据进行一次 copy （mmap 关系映射） 稳定性上基于 C/S 架构，使得业务上相互独立 安全上Android 为每一个App 提供了 UID 和 PID， 有效防止流氓软件的侵袭 语言层面上更符合 Java 的面向对象思想  Binder 机制的构成 Client: 负责发起请求，获取">
+  <meta name="description" content="为什么选用 Binder 作为进程间通信的工具相比于传统的 IPC 机制，Binder 具有  性能上只对数据进行一次 copy （mmap 关系映射） 稳定性上基于 C/S 架构，使得业务上相互独立 安全上Android 为每一个App 提供了 UID 和 PID， 有效防止流氓软件的侵袭 语言层面上更符合 Java 的面向对象思想">
 <meta name="keywords" content="Binder">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binder 机制">
 <meta property="og:url" content="http://xiaoman.ren/2021/02/24/Android 基础/Binder 机制/index.html">
 <meta property="og:site_name" content="茶白白在胡说">
-<meta property="og:description" content="为什么选用 Binder 作为进程间通信的工具相比于传统的 IPC 机制，Binder 具有  性能上只对数据进行一次 copy （mmap 关系映射） 稳定性上基于 C/S 架构，使得业务上相互独立 安全上Android 为每一个App 提供了 UID 和 PID， 有效防止流氓软件的侵袭 语言层面上更符合 Java 的面向对象思想  Binder 机制的构成 Client: 负责发起请求，获取">
+<meta property="og:description" content="为什么选用 Binder 作为进程间通信的工具相比于传统的 IPC 机制，Binder 具有  性能上只对数据进行一次 copy （mmap 关系映射） 稳定性上基于 C/S 架构，使得业务上相互独立 安全上Android 为每一个App 提供了 UID 和 PID， 有效防止流氓软件的侵袭 语言层面上更符合 Java 的面向对象思想">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-02-24T15:31:32.895Z">
+<meta property="og:updated_time" content="2021-03-22T15:59:52.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binder 机制">
-<meta name="twitter:description" content="为什么选用 Binder 作为进程间通信的工具相比于传统的 IPC 机制，Binder 具有  性能上只对数据进行一次 copy （mmap 关系映射） 稳定性上基于 C/S 架构，使得业务上相互独立 安全上Android 为每一个App 提供了 UID 和 PID， 有效防止流氓软件的侵袭 语言层面上更符合 Java 的面向对象思想  Binder 机制的构成 Client: 负责发起请求，获取">
+<meta name="twitter:description" content="为什么选用 Binder 作为进程间通信的工具相比于传统的 IPC 机制，Binder 具有  性能上只对数据进行一次 copy （mmap 关系映射） 稳定性上基于 C/S 架构，使得业务上相互独立 安全上Android 为每一个App 提供了 UID 和 PID， 有效防止流氓软件的侵袭 语言层面上更符合 Java 的面向对象思想">
 
 
 
@@ -461,6 +461,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-03-22 23:59:52" itemprop="dateModified" datetime="2021-03-22T23:59:52+08:00">2021-03-22</time>
+              
+            
           </span>
 
           
@@ -535,6 +551,7 @@
 <li>安全上Android 为每一个App 提供了 UID 和 PID， 有效防止流氓软件的侵袭</li>
 <li>语言层面上更符合 Java 的面向对象思想</li>
 </ol>
+<a id="more"></a>
 <h2 id="Binder-机制的构成"><a href="#Binder-机制的构成" class="headerlink" title="Binder 机制的构成"></a>Binder 机制的构成</h2><ol>
 <li><p>Client:</p>
 <p>负责发起请求，获取数据</p>
@@ -735,7 +752,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -823,7 +840,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

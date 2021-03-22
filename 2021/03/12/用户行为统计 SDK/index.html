@@ -140,19 +140,19 @@
 
 
 
-  <meta name="description" content="结构 API：  初始化配置策略（上报策略，压缩方案） 对应不同业务，分类设计 api  数据加工：  根据不同业务，给收集上来的数据绑定不同的业务数据，以及相同的设备等信息  持久层：  对加工后的数据进行存储，选用 Sqlite 数据库，原生好用，效率高，吞吐量大，比文件优秀。且是原生，不对 app 增加额外的包体积  数据上报：  采用单线程的方式，逐一从数据库中读取数据，并压缩处理，上传至">
-<meta name="keywords" content="Android,Java,Kotlin">
+  <meta name="description" content="结构">
+<meta name="keywords" content="软件架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="茶白白在胡说">
+<meta property="og:title" content="行为统计 SDK 结构设计">
 <meta property="og:url" content="http://xiaoman.ren/2021/03/12/用户行为统计 SDK/index.html">
 <meta property="og:site_name" content="茶白白在胡说">
-<meta property="og:description" content="结构 API：  初始化配置策略（上报策略，压缩方案） 对应不同业务，分类设计 api  数据加工：  根据不同业务，给收集上来的数据绑定不同的业务数据，以及相同的设备等信息  持久层：  对加工后的数据进行存储，选用 Sqlite 数据库，原生好用，效率高，吞吐量大，比文件优秀。且是原生，不对 app 增加额外的包体积  数据上报：  采用单线程的方式，逐一从数据库中读取数据，并压缩处理，上传至">
+<meta property="og:description" content="结构">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/%E7%BB%9F%E8%AE%A1SDK.jpg">
-<meta property="og:updated_time" content="2021-03-12T06:59:30.448Z">
+<meta property="og:updated_time" content="2021-03-22T16:09:16.237Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="茶白白在胡说">
-<meta name="twitter:description" content="结构 API：  初始化配置策略（上报策略，压缩方案） 对应不同业务，分类设计 api  数据加工：  根据不同业务，给收集上来的数据绑定不同的业务数据，以及相同的设备等信息  持久层：  对加工后的数据进行存储，选用 Sqlite 数据库，原生好用，效率高，吞吐量大，比文件优秀。且是原生，不对 app 增加额外的包体积  数据上报：  采用单线程的方式，逐一从数据库中读取数据，并压缩处理，上传至">
+<meta name="twitter:title" content="行为统计 SDK 结构设计">
+<meta name="twitter:description" content="结构">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/%E7%BB%9F%E8%AE%A1SDK.jpg">
 
 
@@ -173,7 +173,7 @@
   };
 </script>
 
-  <title> | 茶白白在胡说</title>
+  <title>行为统计 SDK 结构设计 | 茶白白在胡说</title>
   
 
 
@@ -433,7 +433,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">行为统计 SDK 结构设计
 
               
             
@@ -463,9 +463,43 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-03-23 00:09:16" itemprop="dateModified" datetime="2021-03-23T00:09:16+08:00">2021-03-23</time>
+              
+            
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -474,7 +508,7 @@
 
           
           
-            <span id="/2021/03/12/用户行为统计 SDK/" class="leancloud_visitors" data-flag-title>
+            <span id="/2021/03/12/用户行为统计 SDK/" class="leancloud_visitors" data-flag-title="行为统计 SDK 结构设计">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -513,6 +547,7 @@
 
       
         <h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/%E7%BB%9F%E8%AE%A1SDK.jpg" alt="统计SDK"></p>
+<a id="more"></a>
 <p><strong>API：</strong></p>
 <ul>
 <li>初始化配置策略（上报策略，压缩方案）</li>
@@ -599,7 +634,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://xiaoman.ren/2021/03/12/用户行为统计 SDK/">http://xiaoman.ren/2021/03/12/用户行为统计 SDK/</a>
+    <a href="http://xiaoman.ren/2021/03/12/用户行为统计 SDK/" title="行为统计 SDK 结构设计">http://xiaoman.ren/2021/03/12/用户行为统计 SDK/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
@@ -610,6 +645,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/软件架构/" rel="tag"># 软件架构</a>
+          
+        </div>
+      
 
       
       
@@ -619,8 +660,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/03/12/三方框架/Ok Http 是什么/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2021/03/12/三方框架/Glide 源码分析/" rel="next" title="Glide 源码">
+                <i class="fa fa-chevron-left"></i> Glide 源码
               </a>
             
           </div>
@@ -698,7 +739,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -786,7 +827,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1543,13 +1590,13 @@
       var articles = db.collection('articles')
 
       //https://hexo.io/docs/variables.html
-      var isPost = ''.length > 0
+      var isPost = '行为统计 SDK 结构设计'.length > 0
       var isArchive = '' === 'true'
       var isCategory = ''.length > 0
       var isTag = ''.length > 0
 
       if (isPost) { //is article page
-        var title = ''
+        var title = '行为统计 SDK 结构设计'
         var doc = articles.doc(title)
 
         getCount(doc, true).then(appendCountTo($('.post-meta')))

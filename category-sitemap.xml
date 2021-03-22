@@ -8,50 +8,43 @@
     </url>
 
     <url>
-        <loc>http://xiaoman.ren/categories/View/</loc>
-        <lastmod>2021-02-08T09:02:36.623Z</lastmod>
+        <loc>http://xiaoman.ren/categories/Android/</loc>
+        <lastmod>2021-03-22T16:09:16.237Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://xiaoman.ren/categories/WorkManager/</loc>
-        <lastmod>2021-02-08T08:57:09.537Z</lastmod>
+        <loc>http://xiaoman.ren/categories/Jetpack/</loc>
+        <lastmod>2021-03-22T16:03:59.159Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://xiaoman.ren/categories/Java/</loc>
+        <lastmod>2021-03-22T16:01:51.683Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://xiaoman.ren/categories/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/</loc>
+        <lastmod>2021-03-22T15:55:50.729Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://xiaoman.ren/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2021-02-02T15:17:21.281Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/categories/%E8%B5%84%E6%BA%90%E7%B1%BB%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
-        <lastmod>2021-02-02T14:59:18.714Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/categories/OkHttp/</loc>
-        <lastmod>2021-02-01T12:47:12.936Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/categories/Glide/</loc>
-        <lastmod>2021-02-01T12:47:12.935Z</lastmod>
+        <lastmod>2021-02-24T15:31:32.901Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://xiaoman.ren/categories/%E5%8D%8F%E7%A8%8B/</loc>
-        <lastmod>2021-02-01T12:47:12.927Z</lastmod>
+        <lastmod>2021-02-24T15:31:32.900Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -59,34 +52,6 @@
     <url>
         <loc>http://xiaoman.ren/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
         <lastmod>2021-02-01T12:47:12.916Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/categories/Java-%E5%9F%BA%E7%A1%80/</loc>
-        <lastmod>2021-02-01T12:47:12.915Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/categories/Java-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
-        <lastmod>2021-02-01T12:47:12.910Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/categories/%E9%80%82%E9%85%8D/</loc>
-        <lastmod>2021-02-01T12:47:12.905Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://xiaoman.ren/categories/Handler/</loc>
-        <lastmod>2021-02-01T12:47:12.903Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

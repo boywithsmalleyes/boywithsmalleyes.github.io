@@ -434,7 +434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/03/12/用户行为统计 SDK/" class="post-title-link" itemprop="url">Untitled</a>
+                <a href="/2021/03/12/用户行为统计 SDK/" class="post-title-link" itemprop="url">行为统计 SDK 结构设计</a>
               
             
           </h1>
@@ -463,9 +463,43 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-03-23 00:09:16" itemprop="dateModified" datetime="2021-03-23T00:09:16+08:00">2021-03-23</time>
+              
+            
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -474,7 +508,7 @@
 
           
           
-            <span id="/2021/03/12/用户行为统计 SDK/" class="leancloud_visitors" data-flag-title>
+            <span id="/2021/03/12/用户行为统计 SDK/" class="leancloud_visitors" data-flag-title="行为统计 SDK 结构设计">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -506,209 +540,16 @@
 
       
         
+          <h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/%E7%BB%9F%E8%AE%A1SDK.jpg" alt="统计SDK"></p>
+          <!--noindex-->
           
-            <h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/%E7%BB%9F%E8%AE%A1SDK.jpg" alt="统计SDK"></p>
-<p><strong>API：</strong></p>
-<ul>
-<li>初始化配置策略（上报策略，压缩方案）</li>
-<li>对应不同业务，分类设计 api</li>
-</ul>
-<p><strong>数据加工：</strong></p>
-<ul>
-<li>根据不同业务，给收集上来的数据绑定不同的业务数据，以及相同的设备等信息</li>
-</ul>
-<p><strong>持久层：</strong></p>
-<ul>
-<li>对加工后的数据进行存储，选用 Sqlite 数据库，原生好用，效率高，吞吐量大，比文件优秀。且是原生，不对 app 增加额外的包体积</li>
-</ul>
-<p><strong>数据上报：</strong></p>
-<ul>
-<li>采用单线程的方式，逐一从数据库中读取数据，并压缩处理，上传至服务器，成功后清除数据库中对应数据。上传失败，则取消上报保留数据。</li>
-</ul>
-<p><strong>异常采集</strong></p>
-<ul>
-<li>对于线上的异常问题，我们可以追踪采集数据的页面流转信息，以及报错信息，可以快速定位异常点、以及产生异常的流程</li>
-<li>针对项目的主流程、核心路径监控，计算真实转化率。</li>
-<li>被 catch 住的异常，虽然没有导致 app 崩溃，但程序的功能已经变的不可用，所以这些 catch 的异常也是需要上报的</li>
-</ul>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/03/12/用户行为统计 SDK/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/三方框架/Ok Http 是什么/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/03/12/三方框架/Ok Http 是什么/" class="post-title-link" itemprop="url">Untitled</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-03-12 14:59:30 / Modified: 15:41:03" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/03/12/三方框架/Ok Http 是什么/" class="leancloud_visitors" data-flag-title>
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="为什么选用-OKHTTP"><a href="#为什么选用-OKHTTP" class="headerlink" title="为什么选用 OKHTTP"></a>为什么选用 OKHTTP</h2><ol>
-<li>OKHTTP 提供了最新的 HTTP 协议版本 HTTP 2.0 和 SPDY 的支持，使得对同一个主机发出的所有请求都可以共享相同的链接</li>
-<li>如果 HTTP 2.0 和 SPDY 不可用， OKHTTP 会使用连接池来复用链接提高效率</li>
-<li>OKHTTP 提供了对 GZIP 的默认支持来降低传输内容的大小</li>
-<li>OKHTTP 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求</li>
-<li>当网络出现问题时， OKHTTP 会自动重试一个主机的多个 IP 地址</li>
-</ol>
-<h2 id="各拦截器的作用"><a href="#各拦截器的作用" class="headerlink" title="各拦截器的作用"></a>各拦截器的作用</h2><ul>
-<li>interceptor 用户自定义拦截器</li>
-<li>retryAndFollowUpInterceptor: 负责失败重试和重定向</li>
-<li>BridgeInterceptor: 请求时，对必要的 Header 进行一些添加，接收响应时，移除必要的 Header</li>
-<li>CacheInterceptor： 负责读取缓存直接返回（根据请求的信息和缓存响应的信息判断是否存在可用缓存）、更新缓存</li>
-<li>ConnectInterceptor： 负责和服务器建立链接</li>
-<li>CallServerInterceptor：负责向服务器发送请求数据、从服务器读取响应数据</li>
-</ul>
-<h2 id="ConnectionPool"><a href="#ConnectionPool" class="headerlink" title="ConnectionPool"></a>ConnectionPool</h2><ol>
-<li>判断 链接是否可用，不可用则从 ConnectionPool 获取链接，ConnectionPool 中无连接，则创建、握手、再存入 ConnectionPool 中</li>
-<li>内部有一个 Deque， add 添加 Connection，是的线程池负责定时清理缓存</li>
-<li>使用链接复用省去了进行 TCP 和 TLS 握手的一个过程</li>
-</ol>
-<h2 id="与其他网络框架对比"><a href="#与其他网络框架对比" class="headerlink" title="与其他网络框架对比"></a>与其他网络框架对比</h2><ul>
-<li>Volloy：支持 HTTPS，缓存、异步请求，不支持同步请求。</li>
-</ul>
-
-          
+          <!--/noindex-->
         
       
     </div>
@@ -2053,8 +1894,42 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-03-22 23:53:56" itemprop="dateModified" datetime="2021-03-22T23:53:56+08:00">2021-03-22</time>
+              
+            
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2102,6 +1977,181 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2021/03/12/Java/Java 内存管理/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/适配/Android 屏幕适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/03/12/Android 基础/适配/Android 屏幕适配/" class="post-title-link" itemprop="url">Android 屏幕适配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/03/12/Android 基础/适配/Android 屏幕适配/" class="leancloud_visitors" data-flag-title="Android 屏幕适配">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="为什么要适配"><a href="#为什么要适配" class="headerlink" title="为什么要适配"></a>为什么要适配</h2><p>由于 Android 系统的开放性，任何用户、开发者、 OEM 厂商、运营商都可以对 Android 进行定制，于是导致运行 Android 的设备多种多样，他们有着不同的屏幕尺寸和像素密度。</p>
+<p>尽管系统可以通过基本的缩放和调整大小使得界面适配不同的屏幕，但进一步优化，可以确保界面能够在各类屏幕上美观的呈现。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/03/12/Android 基础/适配/Android 屏幕适配/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2194,7 +2244,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2282,7 +2332,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -3040,7 +3096,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("");titles.push("");titles.push("Glide 源码");titles.push("Object 类");titles.push("Java 注解");titles.push("Java 异常");titles.push("Java 泛型");titles.push("Java 枚举");titles.push("Java 反射");titles.push("Java 内存管理");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("行为统计 SDK 结构设计");titles.push("Glide 源码");titles.push("Object 类");titles.push("Java 注解");titles.push("Java 异常");titles.push("Java 泛型");titles.push("Java 枚举");titles.push("Java 反射");titles.push("Java 内存管理");titles.push("Android 屏幕适配");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

@@ -154,7 +154,7 @@
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/zKFJDM5V3WwSgQpdYibHPDEAF1AmWbpMOtrM4NPTqqgBTibicpWfccd6wBgFhdcExNRdVZa1MyQiat8iaK2tRuaMshw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/zKFJDM5V3WwSgQpdYibHPDEAF1AmWbpMOSkMp3HibHkSTRQm7Hza8XYpPJpGFC6B4PibboL7JiabCkc2YamDgkyZvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/zKFJDM5V3WwSgQpdYibHPDEAF1AmWbpMOvBTj1XwhT2q6p0wngUdZiaCCmpErHNCoUic0FMib2LJAichFjqtqRoKibnw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:updated_time" content="2021-03-12T06:59:30.430Z">
+<meta property="og:updated_time" content="2021-03-22T15:59:46.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ANR">
 <meta name="twitter:description" content="转载自 ANR 概述首先，ANR(Application Not responding)是指应用程序未响应，Android系统对于一些事件需要在一定的时间范围内完成，如果超过预定时间能未能得到有效响应或者响应时间过长，都会造成ANR。ANR由消息处理机制保证，Android在系统层实现了一套精密的机制来发现ANR，核心原理是消息调度和超时处理。 其次，ANR机制主体实现在系统层。所有与ANR相关的">
@@ -468,6 +468,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-03-22 23:59:46" itemprop="dateModified" datetime="2021-03-22T23:59:46+08:00">2021-03-22</time>
+              
+            
           </span>
 
           
@@ -538,6 +554,7 @@
         <p><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3M/X19iaXo9TXpJd01UQXpNVE14TWc9PSZhbXA7bWlkPTI2NDk0OTM2NDMmYW1wO2lkeD0xJmFtcDtzbj0zNGI1MWQxZjYxYmQyZWNhYThmZDBhMmQzOWM0ZDFkMSZhbXA7Y2hrc209OGVlYzliNzRiOTliMTI2MjQ2YWNjNDU0NzU5N2RmZTU1YzgzNmI4ZjY4OWIyZDFhNjViZGYxZWUyMDU0Y2VkMmZjMDcwYmZhMjY3OCZhbXA7bXBzaGFyZT0xJmFtcDtzY2VuZT0yNCZhbXA7c3JjaWQ9MDExNnZ6TmZNTXYyZExpemhBVDhtRVlx" title="https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649493643&amp;idx=1&amp;sn=34b51d1f61bd2ecaa8fd0a2d39c4d1d1&amp;chksm=8eec9b74b99b126246acc4547597dfe55c836b8f689b2d1a65bdf1ee2054ced2fc070bfa2678&amp;mpshare=1&amp;scene=24&amp;srcid=0116vzNfMMv2dLizhAT8mEYq">转载自<i class="fa fa-external-link"></i></span></p>
 <h2 id="ANR-概述"><a href="#ANR-概述" class="headerlink" title="ANR 概述"></a>ANR 概述</h2><p>首先，ANR(Application Not responding)是指应用程序未响应，Android系统对于一些事件需要在一定的时间范围内完成，如果超过预定时间能未能得到有效响应或者响应时间过长，都会造成ANR。ANR由消息处理机制保证，Android在系统层实现了一套精密的机制来发现ANR，核心原理是消息调度和超时处理。</p>
 <p>其次，ANR机制主体实现在系统层。所有与ANR相关的消息，都会经过系统进程(system_server)调度，然后派发到应用进程完成对消息的实际处理，同时，系统进程设计了不同的超时限制来跟踪消息的处理。 一旦应用程序处理消息不当，超时限制就起作用了，它收集一些系统状态，譬如CPU/IO使用情况、进程函数调用栈，并且报告用户有进程无响应了(ANR对话框)。</p>
+<a id="more"></a>
 <p>然后，ANR问题本质是一个性能问题。ANR机制实际上对应用程序主线程的限制，要求主线程在限定的时间内处理完一些最常见的操作(启动服务、处理广播、处理输入)， 如果处理超时，则认为主线程已经失去了响应其他操作的能力。主线程中的耗时操作，譬如密集CPU运算、大量IO、复杂界面布局等，都会降低应用程序的响应能力。</p>
 <h2 id="哪些场景会造成-ANR"><a href="#哪些场景会造成-ANR" class="headerlink" title="哪些场景会造成 ANR"></a>哪些场景会造成 ANR</h2><ol>
 <li>发生ANR时会调用AppNotRespondingDialog.show()方法弹出对话框提示用户，该对话框的依次调用关系如下图所示：</li>
@@ -778,7 +795,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -866,7 +883,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
