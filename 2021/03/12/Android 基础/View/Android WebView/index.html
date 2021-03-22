@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","Muse | Mist":320,"display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="问题：为什么 WebView 的加载速度那么慢? js 解析效率 如果 js 文件较多、解析比较复杂，就会导致渲染速度较慢。或者手机硬件性能比较差的花，也会导致渲染速度比较慢  页面资源的下载 一般加载一个 H5 页面，都会产生比较多的 串行 网络请求，如图片、js 文件、css 文件等，需要将这些资源都下载完成之后才能完成渲染，这样也会导致页面渲染速度变慢  耗费流量 每次 H5 页面加载时，都">
+<meta name="keywords" content="WebView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebView 性能篇">
+<meta property="og:url" content="http://xiaoman.ren/2021/03/12/Android 基础/View/Android WebView/index.html">
+<meta property="og:site_name" content="茶白白在胡说">
+<meta property="og:description" content="问题：为什么 WebView 的加载速度那么慢? js 解析效率 如果 js 文件较多、解析比较复杂，就会导致渲染速度较慢。或者手机硬件性能比较差的花，也会导致渲染速度比较慢  页面资源的下载 一般加载一个 H5 页面，都会产生比较多的 串行 网络请求，如图片、js 文件、css 文件等，需要将这些资源都下载完成之后才能完成渲染，这样也会导致页面渲染速度变慢  耗费流量 每次 H5 页面加载时，都">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/image-20201027164335807.png?raw=true">
+<meta property="og:updated_time" content="2021-03-12T06:59:30.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebView 性能篇">
+<meta name="twitter:description" content="问题：为什么 WebView 的加载速度那么慢? js 解析效率 如果 js 文件较多、解析比较复杂，就会导致渲染速度较慢。或者手机硬件性能比较差的花，也会导致渲染速度比较慢  页面资源的下载 一般加载一个 H5 页面，都会产生比较多的 串行 网络请求，如图片、js 文件、css 文件等，需要将这些资源都下载完成之后才能完成渲染，这样也会导致页面渲染速度变慢  耗费流量 每次 H5 页面加载时，都">
+<meta name="twitter:image" content="https://github.com/xiaomanwong/static_file/blob/master/images/image-20201027164335807.png?raw=true">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="茶白白在胡说" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://xiaoman.ren/2021/03/12/Android 基础/View/Android WebView/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>WebView 性能篇 | 茶白白在胡说</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">茶白白在胡说</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-首页">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-标签">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友情链接">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <span class="exturl" data-url="aHR0cHM6XFxmaWlzc2gudGVjaC8="><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友情链接</span>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/Android WebView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebView 性能篇
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/03/12/Android 基础/View/Android WebView/" class="leancloud_visitors" data-flag-title="WebView 性能篇">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a><strong>问题</strong>：</h2><h3 id="为什么-WebView-的加载速度那么慢"><a href="#为什么-WebView-的加载速度那么慢" class="headerlink" title="为什么 WebView 的加载速度那么慢?"></a><strong>为什么</strong> <strong>WebView 的加载速度那么慢?</strong></h3><ol>
+<li><p>js 解析效率</p>
+<p>如果 js 文件较多、解析比较复杂，就会导致渲染速度较慢。或者手机硬件性能比较差的花，也会导致渲染速度比较慢</p>
+</li>
+<li><p>页面资源的下载</p>
+<p>一般加载一个 H5 页面，都会产生比较多的 <strong>串行</strong> 网络请求，如图片、js 文件、css 文件等，需要将这些资源都下载完成之后才能完成渲染，这样也会导致页面渲染速度变慢</p>
+</li>
+<li><p>耗费流量</p>
+<p>每次 H5 页面加载时，都需要重新加载 Android WebView 的 H5 页面，每加载一个页面，就会产生很多请求，导致同一个页面被加载多次</p>
+</li>
+</ol>
+<a id="more"></a>
+<h3 id="那如何解决呢？"><a href="#那如何解决呢？" class="headerlink" title="那如何解决呢？"></a><strong>那如何解决呢？</strong></h3><ul>
+<li>前端H5 缓存机制（WebView 自带）</li>
+<li>资源预加载</li>
+<li>资源拦截</li>
+</ul>
+<h4 id="前端-H5-缓存机制"><a href="#前端-H5-缓存机制" class="headerlink" title="前端 H5 缓存机制"></a>前端 H5 缓存机制</h4><p><strong>定义：</strong> 缓存、离线存储</p>
+<ul>
+<li>意味着 H5 网页加载后会存储在缓存区域，在无网络情况下也可以访问</li>
+<li>WebView 的本质时在 Android 中嵌入 H5 页面，所以 Android  WebView 自带的缓存机制就是 H5 页面的缓存机制</li>
+<li>Android WebView 除了新的 file_system 缓存机制还不支持，其他的都支持</li>
+</ul>
+<p><strong>作用：</strong></p>
+<ul>
+<li>离线浏览：用户可以在没有网络时，访问 H5 页面</li>
+<li>提高页面加载速度 &amp; 减少流量消耗：直接使用已缓存的资源，不需要重新请求和加载</li>
+</ul>
+<p><strong>应用：</strong></p>
+<ul>
+<li>缓存机制：如何将加载过的网页数据保存到本地（保存）</li>
+<li>缓存模式：加载网页时如何读取之前保存到本地的网页缓存（读取）</li>
+</ul>
+<h5 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h5><p>Android WebView 自带的缓存机制有 5 种：</p>
+<ol>
+<li>浏览器缓存机制</li>
+<li>Application Cache 缓存机制</li>
+<li>Dom Storage 缓存机制</li>
+<li>Web Sql Database 缓存机制</li>
+<li>Indexed Database 缓存机制</li>
+<li>File System 缓存机制（H5 页面新加入的缓存机制）</li>
+</ol>
+<h5 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h5><p><strong>原理：</strong>根据 HTTP 协议头里的 <code>cache-control</code> 或 <code>Expires</code> 和 <code>Last-Modified</code> 和 <code>Etag</code> 等字段来控制文件缓存的机制</p>
+<ol>
+<li><p><code>Cache-Control</code> 用于控制文件在本地缓存有效时长<br>如服务器返回 <code>Cache-Control:max-age=600</code>，则表示文件在本地应该缓存，且有效时长是  600s。在接下来的 600s 内，如果有请求这个资源，浏览器不会发出 HTTP 请求，而是直接使用本地缓存的文件</p>
+</li>
+<li><p><code>Expires</code>: 与 <code>Cache-Control</code> 功能相同，即控制缓存的有效时间</p>
+<ol>
+<li>Expires 是 Http 1.0 标准中的字段， Cache-Control 是 Http 1.1 中新增字段</li>
+<li>当这两个同时出现时， Cache-Control 优先级高</li>
+</ol>
+</li>
+<li><p><code>Last-Modified</code> 标识文件在服务器上的最新更新时间<br>下次请求时，如果文件缓存过期，浏览器通过 <code>If-Modified-Since</code> 字段带上这个时间，发送给服务器，由服务器比较时间戳来判断文件是否有修改。如果没有修改，服务器返回 304 告诉前端继续使用缓存；如果有修改，则返回 200， 同时返回新文件。</p>
+</li>
+<li><p>Etag 功能和 <code>Last-Modified</code> 一样，标识文件再服务器上的最新更新时间</p>
+<p>不同的是， Etag 的取值是一个对文件进行标识的特征字串</p>
+<p>再向服务器查询文件是否有更新时，浏览器通过 <code>If-None-Match</code>  字段把特征字串发送给服务器，由服务器和文件的最新特征字串进行匹配，来判断文件是否有更新。</p>
+<p>Etag 和 Last-Modified 可根据需求使用一个或两个同时使用。两个同时使用时，只要满足其中要给就可以。</p>
+</li>
+</ol>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li>Cache-Control 与 Last-Modified 一起使用</li>
+<li>Expires 和 Etag 一起使用</li>
+</ul>
+<p>即 一个控制缓存有效时间，一个用户在缓存失效后，向服务器查询是否有更新</p>
+<p><strong><em>浏览器缓存机制是浏览器内核的机制，一般都是标准的实现</em></strong>, 缓存的内容，受存储空间约束，同时也有被清除的风险</p>
+<h5 id="Application-Cache-缓存机制"><a href="#Application-Cache-缓存机制" class="headerlink" title="Application Cache 缓存机制"></a>Application Cache 缓存机制</h5><p><strong>原理：</strong></p>
+<ul>
+<li><p>以文件为单位进行缓存，且文件有一定更新机制（类似于浏览器缓存机制）</p>
+</li>
+<li><p>AppCache 有啷个关键点 manifest 属性和 manifest 文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"demo_html.appcache"</span>&gt;</span></span><br><span class="line">// HTML 在头中通过 manifest 属性引用 manifest 文件</span><br><span class="line">// manifest 文件：就是上面以 appcache 结尾的文件，是一个普通文件文件，列出了需要缓存的文件</span><br><span class="line">// 浏览器在首次加载 HTML 文件时，会解析 manifest 属性，并读取 manifest 文件，获取 Section：CACHE MANIFEST 下要缓存的文件列表，再对文件缓存</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 原理说明如下：</span><br><span class="line">// AppCache 在首次加载生成后，也有更新机制。被缓存的文件如果要更新，需要更新 manifest 文件</span><br><span class="line">// 因为浏览器在下次加载时，除了会默认使用缓存外，还会在后台检查 manifest 文件有没有修改（byte by byte)</span><br><span class="line">发现有修改，就会重新获取 manifest 文件，对 Section：CACHE MANIFEST 下文件列表检查更新</span><br><span class="line">// manifest 文件与缓存文件的检查更新也遵守浏览器缓存机制</span><br><span class="line">// 如用户手动清了 AppCache 缓存，下次加载时，浏览器会重新生成缓存，也可算是一种缓存的更新</span><br><span class="line">// AppCache 的缓存文件，与浏览器的缓存文件分开存储的，因为 AppCache 在本地有 5MB（分 HOST）的空间限制</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>特点：</strong></p>
+<p>方便构建 WebApp 的缓存， 准们为 WebApp 离线使用而开发的缓存机制</p>
+<p><strong>应用场景：</strong></p>
+<p>存储静态文件（js， css，字体文件等）</p>
+<p>是对浏览器缓存机制的补充，不是替代</p>
+<p><strong>实现方案：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过设置WebView的settings来实现</span></span><br><span class="line">WebSettings settings = getSettings();</span><br><span class="line"></span><br><span class="line">String cacheDirPath = context.getFilesDir().getAbsolutePath()+<span class="string">"cache/"</span>;</span><br><span class="line">settings.setAppCachePath(cacheDirPath);</span><br><span class="line"><span class="comment">// 1. 设置缓存路径</span></span><br><span class="line"></span><br><span class="line">settings.setAppCacheMaxSize(<span class="number">20</span>*<span class="number">1024</span>*<span class="number">1024</span>);</span><br><span class="line"><span class="comment">// 2. 设置缓存大小</span></span><br><span class="line"></span><br><span class="line">settings.setAppCacheEnabled(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 3. 开启Application Cache存储机制</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 特别注意</span></span><br><span class="line"><span class="comment">// 每个 Application 只调用一次 WebSettings.setAppCachePath() 和</span></span><br><span class="line">WebSettings.setAppCacheMaxSize()</span><br></pre></td></tr></table></figure>
+<h5 id="Dom-Storage-缓存机制"><a href="#Dom-Storage-缓存机制" class="headerlink" title="Dom Storage 缓存机制"></a>Dom Storage 缓存机制</h5><p><strong>原理：</strong></p>
+<p>通过存储 key - value 来提供</p>
+<blockquote>
+<p>Dom Storage 分为 sessiongStorage 和 localStorae, 两者基本相同，区别于作用范围</p>
+<p>sessionStorage：具备临时性，即存储与页面相关的数据，在离开页面后无法使用</p>
+<p>localStorage：具备持久性，即保存的数据在页面关闭后还可以使用</p>
+</blockquote>
+<p><strong>特点：</strong></p>
+<p>存储空间大（5mb）存储空间对于不同浏览器不同</p>
+<p>存储安全、边界：Dom Storage 存储的数据在本地，不需要经常和服务器交互</p>
+<p><strong>应用场景：</strong></p>
+<p>存储临时，简单的数据，类似于 Android 的 SharedPreference 机制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getSettings().setDomStorageEnabled(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="Web-SQL-Database-缓存机制"><a href="#Web-SQL-Database-缓存机制" class="headerlink" title="Web SQL Database 缓存机制"></a>Web SQL Database 缓存机制</h5><p><strong>原理：</strong></p>
+<p>基于 SQL 的数据库存储机制</p>
+<p><strong>特点：</strong></p>
+<p>充分利用数据库的有时，可方便对数据进行 CUDA</p>
+<p><strong>场景</strong></p>
+<p>适合数据库的结构化数据</p>
+<p><strong>实现：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过设置WebView的settings实现</span></span><br><span class="line">WebSettings settings = getSettings();</span><br><span class="line"></span><br><span class="line">String cacheDirPath = context.getFilesDir().getAbsolutePath()+<span class="string">"cache/"</span>;</span><br><span class="line">settings.setDatabasePath(cacheDirPath);</span><br><span class="line"><span class="comment">// 设置缓存路径</span></span><br><span class="line"></span><br><span class="line">settings.setDatabaseEnabled(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 开启 数据库存储机制</span></span><br></pre></td></tr></table></figure>
+<h5 id="IndexDB-缓存机制"><a href="#IndexDB-缓存机制" class="headerlink" title="IndexDB 缓存机制"></a>IndexDB 缓存机制</h5><p>属于 NoSQL 数据库，通过存储字符串的 Key - Value 来提供。</p>
+<p><strong>特点</strong></p>
+<p>可存储复杂，数据量大的结构化数据</p>
+<p><strong>实现</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过设置WebView的settings实现</span></span><br><span class="line">WebSettings settings = getSettings();</span><br><span class="line"></span><br><span class="line">settings.setJavaScriptEnabled(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 只需设置支持JS就自动打开IndexedDB存储机制</span></span><br><span class="line"><span class="comment">// Android 在4.4开始加入对 IndexedDB 的支持，只需打开允许 JS 执行的开关就好了。</span></span><br></pre></td></tr></table></figure>
+<h5 id="File-System"><a href="#File-System" class="headerlink" title="File System"></a>File System</h5><p><strong>原理：</strong></p>
+<p>为 H5 页面的数据，提供一个虚拟的文件系统</p>
+<ul>
+<li>可进行文件的 CUDA，就像 Native App 访问本地文件系统一样</li>
+<li>虚拟的文件系统运行在沙盒中</li>
+<li>不同 WebApp 的虚拟文件系统的互相隔离的，虚拟文件系统与本地文件系统也是互相隔离的。</li>
+</ul>
+<p>虚拟文件系统提供了两种类型的存储空间：临时和持久</p>
+<ul>
+<li>临时的存储空间：由浏览器自动分配，但可能被浏览器回收</li>
+<li>持久性存储空间：需要显示申请；自己管理（浏览器不会回收，也不会清除内容）；内存空间大小通过配额管理，首次申请时会一个初始的配额，配额用完需要再次申请。</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li>可存储数据体积较大的二进制数据</li>
+<li>可预加载资源文件</li>
+<li>可直接编辑文件</li>
+</ul>
+<p><strong>场景：</strong></p>
+<p>通过文件系统管理数据</p>
+<p><strong>使用</strong></p>
+<p>由于 file system 时 H5 新加入的缓存机制， Android WebView 暂时不支持</p>
+<h5 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h5><table>
+<thead>
+<tr>
+<th>存储静态资源文件（js等）</th>
+<th>浏览器缓存机制<br>Application Cache 存储机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存储，临时、简单的数据</td>
+<td>Dom Stroage 缓存机制</td>
+</tr>
+<tr>
+<td>存储复杂、数据量大的结构化数据</td>
+<td>indexedDB缓存机制</td>
+</tr>
+<tr>
+<td>在 Android WebView 中进行设置</td>
+</tr>
+</tbody>
+</table>
+<h5 id="缓存模式"><a href="#缓存模式" class="headerlink" title="缓存模式"></a>缓存模式</h5><p><strong>WebView 的 5 种缓存模式</strong></p>
+<ul>
+<li>LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据</li>
+<li>LOAD_DEFAULT: 根据 cache-control 决定是否从网络上取数据</li>
+<li>LOAD_CACHE_NORMAL: API Level 17 中已废弃，从 API Level 11 开始作用同 LOAD_DEFAULT 模式</li>
+<li>LOAD_NO_CACHE： 不使用缓存，只从网络获取</li>
+<li>LOCA_CACHE_ELSE_NETWORK: 只要本地有，无论是否过期，或者 no-cache 都使用缓存的数据。本地没有缓存时才从网络上获取</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WebSettings settings = mWebView.getSettings();</span><br><span class="line">settings.setCacheMode(WebSettings.LOAD_DEFAULT);</span><br></pre></td></tr></table></figure>
+<h4 id="资源预加载"><a href="#资源预加载" class="headerlink" title="资源预加载"></a>资源预加载</h4><p><strong>定义：</strong></p>
+<p>提早加载将需要使用的 H5 页面，即 <em>提前构建缓存</em></p>
+<p>使用时直接取过来用，而不是用时才加载</p>
+<h5 id="预加载-WebView-对象"><a href="#预加载-WebView-对象" class="headerlink" title="预加载 WebView 对象"></a>预加载 WebView 对象</h5><ul>
+<li>此处主要分为 2 方面，首次使用 WebView 对象 和 后续使用 WebView 对象</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>原因</th>
+<th>思路</th>
+<th>实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首次使用 WebView 对象</td>
+<td>首次初始化 WebView 会比第二次初始化慢很多<br>初始化后，即使 WebView 已释放，但一些多个 WebView 公用的全局服务 / 资源对象仍未释放<br>第二次初始化时则不需要在生成，从而快。</td>
+<td>1. 用用启动时初始化一个全局的 WebView 对象<br>2. 当用户需要加载 H5 页面时，则直接使用该 WebView 对象加载并显示</td>
+<td>在 Android  的 BaseApplication 里初始化要给 web View 对象</td>
+</tr>
+<tr>
+<td>后续使用 WebView 对象</td>
+<td>多次创建 WebView 对象会耗费很多时间和资源</td>
+<td>1. 自身构建 WebView 服用池<br>2. 当用户需要使用 WebView 加载 H5 时，直接使用该 WebView 对象池加载和展示</td>
+<td>采用  2个/多个 webView 重复使用，而不需要每次打开 H5 都新建</td>
+</tr>
+</tbody>
+</table>
+<p>对于第一点，其实主要是由前端代码和手机硬件决定，因为我们这里讨论的是对于 app 的性能优化，暂时不考虑；</p>
+<p>所以我们可以从第二点做文章，主要思路就是一些资源文件都使用 App 本地资源，而不需要从网络下载，从而提高页面的打开速度</p>
+<ol>
+<li><p>首先将一些资源文件放在本地的 <code>assets</code> 目录，然后重写 WebViewClient 的 <code>shouldInterceptRequest(WebView view, String url)</code> 和  <code>shouleInterceptRequest(WebView view, WebResourceRequest request)</code> 这两个方法，对访问地址进行拦截，当 <code>url</code> 地址命中本地配置的 <code>url</code> 时，使用本地资源替代，否则就使用网络上的资源。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">mWebView.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</span><br><span class="line">    <span class="comment">// 设置不使用系统浏览器打开，直接显示在当前 WebView</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</span><br><span class="line">        view.loadUrl(url);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldIntercepteReqeuest</span><span class="params">(WebView view, String url)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果命中本地资源，使用本地资源替代</span></span><br><span class="line">        <span class="keyword">if</span>(mDataHelper.hasLocalResource(url))&#123;</span><br><span class="line">            WebResourceResponse response = mDataHelper.getReplaceWebResourceResponse(getApplicationContext(), url);</span><br><span class="line">            <span class="keyword">if</span>(response != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> response;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.shouldInterceptRequest(view, url);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 兼容 5.0 以上的设备</span></span><br><span class="line">    <span class="meta">@TargetApi</span>(VERSION_CODE.LOLLIPOP)</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldInterceptRequest</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</span><br><span class="line">        String url = request.getUrl().toString();</span><br><span class="line">        <span class="keyword">if</span>(mDataHelper.hasLocalResource(url)) &#123;</span><br><span class="line">            WebResourceResponse response = mDataHelper.getReplaceWebResourceResponse(getApplicationContext(), url);</span><br><span class="line">            <span class="keyword">if</span>(response != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> response;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.shouleInterceptRequest(view, request);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>DataHelper 是一个工具类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataHelper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; mMap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataHelper</span><span class="params">()</span></span>&#123;</span><br><span class="line">        mMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        initData();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String imageDir = <span class="string">"images/"</span>;</span><br><span class="line">        String pngSuffix = <span class="string">".png"</span>;</span><br><span class="line">        mMap.put(<span class="string">"http://renyugang.io/wp-content/themes/twentyseventeen/style.css?ver=4.9.8"</span>, <span class="string">"css/style.css"</span>);</span><br><span class="line">        mMap.put(<span class="string">"http://renyugang.io/wp-content/uploads/2018/06/cropped-ryg.png"</span>,imageDir + <span class="string">"cropped-ryg.png"</span>);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasLocalResource</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mMap.containsKey(url);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebResourceResponce <span class="title">getReplacedWebResourceResponse</span><span class="params">(Context context, String url)</span> </span>&#123;</span><br><span class="line">        String localResourcePath = mMap.get(url);</span><br><span class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(localResourcePath)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = context.getApplicationContext().getAssets().open(localResourcePath);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String mimeType;</span><br><span class="line">        <span class="keyword">if</span>(url.contans(<span class="string">"css"</span>)) &#123;</span><br><span class="line">            mimeType = <span class="string">"text/css"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.contains(<span class="string">".jpg"</span>)) &#123;</span><br><span class="line">            mimeType = <span class="string">"image/jpeg"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mimeType = <span class="string">"image/png"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        WebResourceResponse response = <span class="keyword">new</span> WebResourceResponse(mimeType, <span class="string">"utf-8"</span>, is);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="WebView-的缓存"><a href="#WebView-的缓存" class="headerlink" title="WebView 的缓存"></a><strong>WebView 的缓存</strong></h3><p>在不配置本地资源的时候，我们第一次打开页面，产生了 n  多请求。但是当我们退出后再次打开这个页面（没有设置加载本地资源）的时候，居然只发生了一次请求，这现象与加载本地资源十分相似。<img src="https://github.com/xiaomanwong/static_file/blob/master/images/image-20201027164335807.png?raw=true" alt="image-20201027164335807"></p>
+<p>我们观察到，这个请求的 response 的 headers 中的参数，<code>Last-Modified,ETag, Expires, Cache-Control</code> </p>
+<p><strong>Cache-Control：</strong> 例如 Cache-Control:max-age=2592000, 表示缓存时长为 2592000 秒，也就是一个月30天的时间，如果30天内需要再次请求这个文件，那么浏览器不会发生出请求，直接使用本地缓存的文件。这是 <code>Http/1.1</code>  标准中的字段。</p>
+<p><strong>Expires：</strong> 例如 Expires:Tue, 25 Sep 2018 07L17L34 GMT, 表示这个文件的过期时间是格林尼治时间2018年9月25日7点17分。因为我们是北京时间 2018年8月26日15点请求的，所以可以看出也是差不多一个月的有效期。在这个事件之前浏览器都不会再次发出请求去获取这个文件。Expires 是 <code>HTTP/1.0</code> 中的字段，如果客户端和服务器事件不同步会导致话u农村出现问题，因此才有了上面的 Cache-Control 。当他们同时出现时， Cache-Control 的优先级会更高。</p>
+<p><strong>Last-Modified:</strong> 标识文件在服务器上的最新更新时间，下次请求时，如果文件缓存过期，浏览器通过 <code>If-Modified-Since</code> 字段带上这个时间，发送给服务器，由服务器比较时间戳来判断文件是否由修改。如果没有修改，服务器范围 304 （未修改）告诉浏览器继续使用缓存；如果有修改，则返回 200， 同时返回最新的文件。</p>
+<p><strong>ETag：</strong> ETag 的取值时一个对文件进行标识的特征字段，在向服务器查询文件是否有更新时，浏览器通过 <code>If-None-Match</code> 字段把特征字串发送给服务器，由服务器和文件最新特征字串进行匹配，来判断文件是否有更新：没有返回 304， 有返回 200。 ETag 和 Last-Modified 可根据需求使用一个或两个同时使用。两个同时使用时，只要满足其中一个条件，就可以认为有更新。</p>
+<blockquote>
+<p>常见用法是， <code>Cache-Control</code> 与 <code>Last-Modified</code> 一起使用， <code>Expires</code> 和 <code>ETag</code> 一起使用。但实际情况可能并不是这样</p>
+</blockquote>
+<p><strong>设置 WebView 使用这些内容</strong></p>
+<p>想要 WebView 使用上面说到的缓存机制配置（答案是，不配置或手动设置）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WebSettings settings = mWebView.getSettings();</span><br><span class="line">settings.setCacheMode(WebSettings.LOAD_DEFAULT);</span><br></pre></td></tr></table></figure>
+<p><strong>WebView 的 5 种缓存模式</strong></p>
+<ul>
+<li>LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据</li>
+<li>LOAD_DEFAULT: 根据 cache-control 决定是否从网络上取数据</li>
+<li>LOAD_CACHE_NORMAL: API Level 17 中已废弃，从 API Level 11 开始作用同 LOAD_DEFAULT 模式</li>
+<li>LOAD_NO_CACHE： 不使用缓存，只从网络获取</li>
+<li>LOCA_CACHE_ELSE_NETWORK: 只要本地有，无论是否过期，或者 no-cache 都使用缓存的数据。本地没有缓存时才从网络上获取</li>
+</ul>
+<p>在移动端，我们一般设置为默认的缓存模式就可以了，关于缓存的配置，主要还是靠 web 前端和后台设置。</p>
+<h2 id="WebView-的速度方案"><a href="#WebView-的速度方案" class="headerlink" title="WebView 的速度方案"></a>WebView 的速度方案</h2><h3 id="WebView-的初始化"><a href="#WebView-的初始化" class="headerlink" title="WebView 的初始化"></a>WebView 的初始化</h3><p>本地 WebView 初始化都要不少时间，首次初始化 webview 与第二次初始化不同，首次会比第二次慢很多。原因第一次初始化是初始化浏览器的内核引擎，第二次则是可以直接拿来使用，并且一些已经初始化好，还没有被回收和销毁的对象也可以直接复用。</p>
+<h3 id="预加载数据"><a href="#预加载数据" class="headerlink" title="预加载数据"></a>预加载数据</h3><p>就是在客户端初始化 WebView 的同时，直接由 native 开始网络请求数据，当页面初始化完成后，向 native 获取其代理请求的数据，数据请求和 WebView 初始化可以并行进行，缩短总体的页面加载时间。‘</p>
+<p>简单来说就是配置一个预加载列表，在 APP 启动或者默写时机提前去请求，这个预加载列表需要包含所有 H5 模块的页面和资源，客户端可以接管所有请求的缓存，不走 webview 默认缓存逻辑，自行实现缓存机制，原理其实就是拦截 WebViewClient 的那两个 <code>shouleInterceptRequest</code> 方法。</p>
+<h3 id="离线包"><a href="#离线包" class="headerlink" title="离线包"></a>离线包</h3><p>离线包的意思就是将 H5 的页面和资源进行打包后下发到客户端，并由客户端直接解压到本次存储中。优点是由于其本地化，首屏加载速度快，用户体验更接近原生，可以不依赖网络，离线运行，缺点就是开发流程/更新机制复杂，需要客户端、甚至服务端的共同协作。</p>
+<p><strong>资源：</strong></p>
+<ul>
+<li>H5： 每个代码包都有一个唯一且递增的版本号</li>
+<li>Native：提供包下载且解压资源文件到对应目录</li>
+<li>服务端：提供一个接口，可以获取线商最新代码包的版本号和下载地址</li>
+</ul>
+<p><strong>流程：</strong></p>
+<ul>
+<li>前端更新代码打包后按版本号上传至指定的服务器上</li>
+<li>每次打开页面时， H5 请求接口获取线商最新代码包版本号，并与本地包进行版本号比对，当线商版本号大于本地包版本号时，调用原生下载离线包</li>
+<li>客户端直接去线商地址下载最新的代码包，并解压替换到当前目录文件</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        
+          
+        
+      </div>
+      <div>
+        <div id="reward-container">
+  <div>打赏点这里</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/IMG_4730.JPG" alt="茶白 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>茶白</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://xiaoman.ren/2021/03/12/Android 基础/View/Android WebView/" title="WebView 性能篇">http://xiaoman.ren/2021/03/12/Android 基础/View/Android WebView/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><i class="fa fa-fw fa-creative-commons"></i>ZERO</span> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WebView/" rel="tag"># WebView</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/12/Android 基础/View/Android 自定义 View/" rel="next" title="Android自定义View">
+                <i class="fa fa-chevron-left"></i> Android自定义View
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/12/Android 基础/View/WebView 使用篇/" rel="prev" title="WebView 使用篇">
+                WebView 使用篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true" alt="茶白">
+            
+              <p class="site-author-name" itemprop="name">茶白</p>
+              <div class="site-description motion-element" itemprop="description">个人技术积累,Android 工程师</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW9tYW53b25n" title="GitHub &rarr; https://github.com/xiaomanwong"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOnpodWFuZ2J1ZG9uZ0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:zhuangbudong@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC96aC1jbg=="><img src="/images/cc-zero.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题："><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-WebView-的加载速度那么慢"><span class="nav-number">1.1.</span> <span class="nav-text">为什么 WebView 的加载速度那么慢?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那如何解决呢？"><span class="nav-number">1.2.</span> <span class="nav-text">那如何解决呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前端-H5-缓存机制"><span class="nav-number">1.2.1.</span> <span class="nav-text">前端 H5 缓存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#缓存机制"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">缓存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器缓存机制"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">浏览器缓存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Application-Cache-缓存机制"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Application Cache 缓存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dom-Storage-缓存机制"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Dom Storage 缓存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Web-SQL-Database-缓存机制"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">Web SQL Database 缓存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IndexDB-缓存机制"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">IndexDB 缓存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#File-System"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">File System</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用建议"><span class="nav-number">1.2.1.8.</span> <span class="nav-text">使用建议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缓存模式"><span class="nav-number">1.2.1.9.</span> <span class="nav-text">缓存模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源预加载"><span class="nav-number">1.2.2.</span> <span class="nav-text">资源预加载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#预加载-WebView-对象"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">预加载 WebView 对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebView-的缓存"><span class="nav-number">1.3.</span> <span class="nav-text">WebView 的缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView-的速度方案"><span class="nav-number">2.</span> <span class="nav-text">WebView 的速度方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WebView-的初始化"><span class="nav-number">2.1.</span> <span class="nav-text">WebView 的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预加载数据"><span class="nav-number">2.2.</span> <span class="nav-text">预加载数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线包"><span class="nav-number">2.3.</span> <span class="nav-text">离线包</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">茶白</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="10" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+  
+  <script>
+    (function () {
+
+      firebase.initializeApp({
+        apiKey: '',
+        projectId: ''
+      })
+
+      function getCount(doc, increaseCount) {
+        //increaseCount will be false when not in article page
+
+        return doc.get().then(function (d) {
+          var count
+          if (!d.exists) { //has no data, initialize count
+            if (increaseCount) {
+              doc.set({
+                count: 1
+              })
+              count = 1
+            }
+            else {
+              count = 0
+            }
+          }
+          else { //has data
+            count = d.data().count
+            if (increaseCount) {
+              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
+                doc.set({ //increase count
+                  count: count + 1
+                })
+                count++
+              }
+            }
+          }
+          if (window.localStorage && increaseCount) { //mark as visited
+            localStorage.setItem(title, true)
+          }
+
+          return count
+        })
+      }
+
+      function appendCountTo(el) {
+        return function (count) {
+          $(el).append(
+            $('<span>').addClass('post-visitors-count').append(
+              $('<span>').addClass('post-meta-divider').text('|')
+            ).append(
+              $('<span>').addClass('post-meta-item-icon').append(
+                $('<i>').addClass('fa fa-users')
+              )
+              ).append($('<span>').text('Views ' + count))
+          )
+        }
+      }
+
+      var db = firebase.firestore()
+      var articles = db.collection('articles')
+
+      //https://hexo.io/docs/variables.html
+      var isPost = 'WebView 性能篇'.length > 0
+      var isArchive = '' === 'true'
+      var isCategory = ''.length > 0
+      var isTag = ''.length > 0
+
+      if (isPost) { //is article page
+        var title = 'WebView 性能篇'
+        var doc = articles.doc(title)
+
+        getCount(doc, true).then(appendCountTo($('.post-meta')))
+      }
+      else if (!isArchive && !isCategory && !isTag) { //is index page
+        var titles = [] //array to titles
+
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
+        eval(postsstr)
+
+        var promises = titles.map(function (title) {
+          return articles.doc(title)
+        }).map(function (doc) {
+          return getCount(doc)
+        })
+        Promise.all(promises).then(function (counts) {
+          var metas = $('.post-meta')
+          counts.forEach(function (val, idx) {
+            appendCountTo(metas[idx])(val)
+          })
+        })
+      }
+    })()
+  </script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = '';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
+
+  
+
+</body>
+</html>

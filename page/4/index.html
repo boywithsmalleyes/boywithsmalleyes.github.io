@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Java/基础知识/Java 枚举/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/数据结构/数据结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -434,7 +434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Java/基础知识/Java 枚举/" class="post-title-link" itemprop="url">Java 枚举</a>
+                <a href="/2021/02/01/数据结构/数据结构/" class="post-title-link" itemprop="url">数据结构</a>
               
             
           </h1>
@@ -466,24 +466,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java-基础/" itemprop="url" rel="index"><span itemprop="name">Java 基础</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -492,7 +474,7 @@
 
           
           
-            <span id="/2021/02/01/Java/基础知识/Java 枚举/" class="leancloud_visitors" data-flag-title="Java 枚举">
+            <span id="/2021/02/01/数据结构/数据结构/" class="leancloud_visitors" data-flag-title="数据结构">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -524,19 +506,13 @@
 
       
         
-          <p>枚举是一种特殊类，他和普通类一样可以使用构造器、定义成员变量和方法，也嫩南瓜实现一个或多个接口，但枚举不能继承其他类。</p>
-<p><strong>使用<code>enum</code> 来标识枚举类</strong></p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
-<li>必须使用 <code>enum</code> 关键字声明</li>
-<li>除了初始化，不能通过任何方式手动创建枚举实例</li>
-<li>不可以被继承</li>
-<li>JVM 保证线程安全</li>
-<li>无法继承其他类</li>
-</ol>
+          <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>是一片物理上连续的大小确定的存储空间</p>
+<p>数组查询速度快，是因为其在内存上是一段连续的内存空间，因此会有一个内存地址指向，每创建一个对象（Object），也就是要存储的值，占 4 个字节，通过 index * 4，在加上初始地址，计算的来的值，可以快速的定位到目标值，获取相应数据。</p>
+<p>利用索引进行查询速度快，无法真正的删除</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Java/基础知识/Java 枚举/#more" rel="contents">
+              <a class="btn" href="/2021/02/01/数据结构/数据结构/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -596,7 +572,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Java/Java 内存管理/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Tools/Typora 自动图床设置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -616,7 +592,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Java/Java 内存管理/" class="post-title-link" itemprop="url">Java 内存管理</a>
+                <a href="/2021/02/01/Tools/Typora 自动图床设置/" class="post-title-link" itemprop="url">Typora 设置图床</a>
               
             
           </h1>
@@ -648,6 +624,24 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发工具/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -656,7 +650,7 @@
 
           
           
-            <span id="/2021/02/01/Java/Java 内存管理/" class="leancloud_visitors" data-flag-title="Java 内存管理">
+            <span id="/2021/02/01/Tools/Typora 自动图床设置/" class="leancloud_visitors" data-flag-title="Typora 设置图床">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -688,12 +682,11 @@
 
       
         
-          <p>对于 Java 程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个 new 操作区写配对的 <code>delete/free</code> 代码，而且不容易出现内存泄漏和内存移除问题，看起来一切由虚拟机管理内存一切都很美好。不过也正是 Java 程序员把内存控制的权力交给了 Java 虚拟机，一旦出现内存泄漏和溢出的问题，如果不了解续集及是怎么使用内存的，排查问题就很艰难。</p>
-<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/java_runtime_data_area.png?raw=true" alt="java runtime"></p>
+          <p>自动图床设置，在我们撰写文档时，会自动将图片保存到图库，并转化 URL 展示出来，最终我们在分享 MD 文档时，避免了本地相对目录，无法引用的情况发生。
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Java/Java 内存管理/#more" rel="contents">
+              <a class="btn" href="/2021/02/01/Tools/Typora 自动图床设置/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -701,7 +694,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -753,7 +746,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/适配/Android 屏幕适配/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Tools/Markdown 公式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -773,7 +766,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Android 基础/适配/Android 屏幕适配/" class="post-title-link" itemprop="url">Android 屏幕适配</a>
+                <a href="/2021/02/01/Tools/Markdown 公式/" class="post-title-link" itemprop="url">Markdown 数学公式编辑</a>
               
             
           </h1>
@@ -816,7 +809,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/适配/" itemprop="url" rel="index"><span itemprop="name">适配</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发工具/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a></span>
 
                 
                 
@@ -831,7 +824,7 @@
 
           
           
-            <span id="/2021/02/01/Android 基础/适配/Android 屏幕适配/" class="leancloud_visitors" data-flag-title="Android 屏幕适配">
+            <span id="/2021/02/01/Tools/Markdown 公式/" class="leancloud_visitors" data-flag-title="Markdown 数学公式编辑">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -863,1328 +856,1278 @@
 
       
         
-          <h2 id="为什么要适配"><a href="#为什么要适配" class="headerlink" title="为什么要适配"></a>为什么要适配</h2><p>由于 Android 系统的开放性，任何用户、开发者、 OEM 厂商、运营商都可以对 Android 进行定制，于是导致运行 Android 的设备多种多样，他们有着不同的屏幕尺寸和像素密度。</p>
-<p>尽管系统可以通过基本的缩放和调整大小使得界面适配不同的屏幕，但进一步优化，可以确保界面能够在各类屏幕上美观的呈现。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/适配/Android 屏幕适配/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/适配/Android 版本适配/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/适配/Android 版本适配/" class="post-title-link" itemprop="url">Android 版本适配</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/适配/" itemprop="url" rel="index"><span itemprop="name">适配</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/适配/Android 版本适配/" class="leancloud_visitors" data-flag-title="Android 版本适配">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h3><p><code>targetSdkVersion</code>： 目标 SDK 版本，也就是我们最高适配的 SDK 版本</p>
-<p>不同版本的 SDK ，为我们提供了不同的 API 接口使用，丰富以及方便开发者。</p>
-<p>旧的接口行为发生了变化，为了保证 APK 的行为还是和以前兼容，在源码中多了很多类似于 <code>ctx.getApplicatioinInfo().targetSdkVersion()</code> 的判断，因此只要 APK 的 <code>targetSdkVersion</code> 不变，即使 APK 安装在新的 Android 系统上，其行为也不会发生变化。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/适配/Android 版本适配/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/View/自定义 ViewGroup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/View/自定义 ViewGroup/" class="post-title-link" itemprop="url">自定义 ViewGroup</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/View/" itemprop="url" rel="index"><span itemprop="name">View</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/View/自定义 ViewGroup/" class="leancloud_visitors" data-flag-title="自定义 ViewGroup">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="View-Group-的测量布局流程"><a href="#View-Group-的测量布局流程" class="headerlink" title="View Group 的测量布局流程"></a>View Group 的测量布局流程</h2><p><strong>View Group绘制和布局流程中的重点</strong></p>
-<ol>
-<li><p>View 在 <code>onMeasure</code> 方法中进行自我测量和保存。</p>
-</li>
-<li><p>ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置</p>
-</li>
-<li><p>关注 onMeasure 和 onLayout</p>
-</li>
-<li><p>父 View 调用子 View 的layout 方法的时候，会把之前 measure 阶段确定的位置和大小都传递给子 View</p>
-</li>
-<li><p>自定义 View/ViewGroup，只需要关注下面三种需求：</p>
-<ol>
-<li>对于已有的 Android 自带 View，我们只需要重写他的 <code>onMeasure</code> 方法即可,<strong>修改一下这个尺寸就完成需求</strong></li>
-<li>对于 Android 系统没有的，属于我们自定义的 View，需要完全重写 <code>onMeasure</code></li>
-<li>需要重写 <code>onMeasure</code> 和 <code>onLayout</code> 2个方法，来完成一个复杂的 <code>ViewGroup</code> 的测量和布局。</li>
-</ol>
-</li>
-<li><p>onMeasure 的说明</p>
-<p>widthMeasureSpec, heightMeasureSpec  两个参数主要是 父 view 对子view 的尺寸限制</p>
-</li>
-<li><p>理解父 view 对子 view 的限制</p>
-<p>实际上，父 View 对子 View 的限制据大多数就来自于我们开发者所设置的 layout 开头的这些属性。<strong>这些以 layout 开头的属性，都是设置给父 view 看的</strong></p>
-<blockquote>
-<p>父 View 要知道这些属性以后，才知道要对子view 的测量加以什么限制</p>
-</blockquote>
-</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/View/自定义 ViewGroup/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/原理/Handler 消息机制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/原理/Handler 消息机制/" class="post-title-link" itemprop="url">Handler 消息机制</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Handler/" itemprop="url" rel="index"><span itemprop="name">Handler</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/原理/Handler 消息机制/" class="leancloud_visitors" data-flag-title="Handler 消息机制">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Handler 消息机制，在整个 Android 系统中，有着很重要的地位。</p>
-<p>他可以帮助我们实现，子线程和主线程的跨线程通信；可以帮助我们发送一些延时任务，帮助我们很好的实现一个 App.</p>
-<p>本文旨在对源码进行预览分析。</p>
-<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h2><p>先来一张结构图，让我们清晰的了解一下，我们下面都会分析到哪些内容；也了解一下 <code>Handler</code> 机制的核心秘密。</p>
-<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/Handler%20%E6%9C%BA%E5%88%B6.png?raw=true" alt="Handler 类图"></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/原理/Handler 消息机制/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/View/RecyclerView 总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/View/RecyclerView 总结/" class="post-title-link" itemprop="url">RecyclerView 总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/View/" itemprop="url" rel="index"><span itemprop="name">View</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/View/RecyclerView 总结/" class="leancloud_visitors" data-flag-title="RecyclerView 总结">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="List-View-的局限性"><a href="#List-View-的局限性" class="headerlink" title="List View 的局限性"></a>List View 的局限性</h2><ol>
-<li>只有纵向列表一种布局</li>
-<li>没有支持动画的  API</li>
-<li>接口设计和系统不一致<ol>
-<li>setOnItemClickListener()</li>
-<li>setOnItemLongClickListener()</li>
-<li>setSelection()</li>
-</ol>
-</li>
-<li>没有强制实现 ViewHolder</li>
-<li>性能不如 RecyclerView</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/View/RecyclerView 总结/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/View/Android 自定义 View/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/View/Android 自定义 View/" class="post-title-link" itemprop="url">Android自定义View</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/View/" itemprop="url" rel="index"><span itemprop="name">View</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/View/Android 自定义 View/" class="leancloud_visitors" data-flag-title="Android自定义View">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="Android开发进阶的必经之路"><a href="#Android开发进阶的必经之路" class="headerlink" title="Android开发进阶的必经之路"></a>Android开发进阶的必经之路</h3><h3 id="为什么要自定义View"><a href="#为什么要自定义View" class="headerlink" title="为什么要自定义View"></a>为什么要自定义View</h3><h3 id="自定义View的基本方法"><a href="#自定义View的基本方法" class="headerlink" title="自定义View的基本方法"></a>自定义View的基本方法</h3><p>自定义View的最基本的三个方法分别是： onMeasure()、onLayout()、onDraw();<br>View在Activity中显示出来，要经历测量、布局和绘制三个步骤，分别对应三个动作：measure、layout和draw。</p>
+          <h1 id="Markdown中公式编辑教程"><a href="#Markdown中公式编辑教程" class="headerlink" title="Markdown中公式编辑教程"></a>Markdown中公式编辑教程</h1><h1 id="markdown中公式编辑教程"><a href="#markdown中公式编辑教程" class="headerlink" title="markdown中公式编辑教程"></a>markdown中公式编辑教程</h1><p>标签： Mathjax 公式编辑 markdown</p>
+<p>一般公式分为两种形式，行内公式和行间公式。</p>
 <ul>
-<li>测量：onMeasure()决定View的大小；</li>
-<li>布局：onLayout()决定View在ViewGroup中的位置；</li>
-<li>绘制：onDraw()决定绘制这个View。</li>
+<li>行内公式：<img src="https://math.jianshu.com/math?formula=\Gamma(z" alt="\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,."> %3D \int_0^\infty t^{z-1}e^{-t}dt\%2C.)</li>
+<li>行间公式：<img src="https://math.jianshu.com/math?formula=\Gamma(z" alt="\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,."> %3D \int_0^\infty t^{z-1}e^{-t}dt\%2C.)</li>
+</ul>
+<p>  对应的代码块为：
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Tools/Markdown 公式/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程知识点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Kotlin/协程/协程知识点/" class="post-title-link" itemprop="url">协程知识点</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Kotlin/协程/协程知识点/" class="leancloud_visitors" data-flag-title="协程知识点">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="什么是协程"><a href="#什么是协程" class="headerlink" title="什么是协程"></a>什么是协程</h2><ol>
+<li><strong>轻量级的线程</strong>，并不完全是线程</li>
+<li>可以<strong>顺序的写异步代码</strong>， 降低异步编程带来的负担</li>
+<li><strong>更高效</strong>，<strong>多个协程可以公用一个线程</strong>。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的</li>
+<li><strong>运行在协程中的可中断的方法不会阻塞当前线程</strong></li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Kotlin/协程/协程知识点/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Kotlin/协程/协程/" class="post-title-link" itemprop="url">协程</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Kotlin/协程/协程/" class="leancloud_visitors" data-flag-title="协程">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    GlobalScope.launch &#123;<span class="comment">// 后台启动一个新的协程并继续， launch 协程的构建器</span></span><br><span class="line">        delay(<span class="number">1000L</span>) <span class="comment">// 非阻塞的等待1s，</span></span><br><span class="line">        println(<span class="string">"World!"</span>) <span class="comment">// 延时后，输出 </span></span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"Hello"</span>) <span class="comment">// 协程已再等待时，主线程还在继续</span></span><br><span class="line">    Thread.sleep(<span class="number">2000L</span>) <span class="comment">// 阻塞主线程 2s 保证， JVM 存活</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>协程是轻量级的线程。 <code>CoroutineScope</code> 通常与 <code>launch</code> 协程构建器一起启动。</p>
+<p><strong>GlobalScope</strong>： 意味着新协程的生命周期与应用程序的生命周期一致</p>
+<p><code>delay</code> 是一个特殊的挂起函数，不会造成线程阻塞，但是会挂起协程，并且只能再协程中使用。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Kotlin/协程/协程/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-异常处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Kotlin/协程/协程-异常处理/" class="post-title-link" itemprop="url">协程异常处理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Kotlin/协程/协程-异常处理/" class="leancloud_visitors" data-flag-title="协程异常处理">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
+<li><p><strong>协程内部异常处理流程</strong>： </p>
+<p><code>launch</code> 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 <code>CoroutineExceptionHandler</code> 中，如果没有配置，会查找全局（JVM）上的<code>CoroutineExceptionHandler</code> 处理，</p>
+<p> <code>async</code> 在未捕获异常的出现时同样会尝试取消其父协程，但不管是否能够取消成功都不会进行后续的异常处理，直到用户主动调用 <code>await</code> 时抛出</p>
+</li>
+<li><p><strong>异常在作用域内传播</strong></p>
+<p>当协程出现异常时，会根据当前作用域触发异常传递</p>
+<p><code>GlobalScope</code> 会创建一个独立的作用域，<strong>自成一派</strong></p>
+<p><code>coroutineScope</code>  当中的协程异常会触发父协程的取消，将整个协程作用域取消掉，如果对 <code>coroutineScope</code> 整体进行捕获，也可以捕获到该异常，<strong>一损俱损</strong></p>
+<p><code>supervisorScope</code> 子协程的异常不会向上传递， <strong>自作自受</strong>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-异常处理/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></li></ol></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-挂起/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Kotlin/协程/协程-挂起/" class="post-title-link" itemprop="url">协程挂起</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Kotlin/协程/协程-挂起/" class="leancloud_visitors" data-flag-title="协程挂起">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Delay"><a href="#Delay" class="headerlink" title="Delay"></a>Delay</h2><ul>
+<li><p>线程: <code>Thread.sleep()</code></p>
+<p><code>sleep</code> 让线程进入休眠状态,直到指定的时间之后某种信号或者达到某个条件,线程就会尝试恢复执行</p>
+</li>
+<li><p>协程: <code>delay</code>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-挂起/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></li></ul></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-取消/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Kotlin/协程/协程-取消/" class="post-title-link" itemprop="url">协程取消</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Kotlin/协程/协程-取消/" class="leancloud_visitors" data-flag-title="协程取消">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>协程的任务取消需要协程内部调用的协作支持，类似于线程中断中对中断状态的响应一样</p>
+</blockquote>
+<h2 id="线程的中断"><a href="#线程的中断" class="headerlink" title="线程的中断"></a>线程的中断</h2><p>当我们执行一个任务时,很快就后悔了,怎么办?
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-取消/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-启动/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Kotlin/协程/协程-启动/" class="post-title-link" itemprop="url">协程启动</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Kotlin/协程/协程-启动/" class="leancloud_visitors" data-flag-title="协程启动">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="协程-启动"><a href="#协程-启动" class="headerlink" title="协程-启动"></a>协程-启动</h1><p><strong>启动模式</strong></p>
+<ol>
+<li>DEFAULT： 立即执行</li>
+<li>LAZY： 需要时执行</li>
+<li>ATOMIC： 立即执行，但开始前不会被取消</li>
+<li>UNDISPATCHED： 立即执行，直到第一个 suspend 挂起</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-启动/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/01/Kotlin/协程/协程-入门/" class="post-title-link" itemprop="url">协程入门</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/02/01/Kotlin/协程/协程-入门/" class="leancloud_visitors" data-flag-title="协程入门">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li>协程是一种非抢占式或者说是协作式的计算机程序并发调度的实现方案，程序可以主动挂起或者回复执行。</li>
+<li>线程当中的代码逻辑在线程抢占到 CPU 的时间片的时候才可以执行，否则就写着</li>
+<li>协程更轻量的意思是，协程并不会映射成内核线程或者其他资源，他的调用在用户态就可以搞定，任务之间是协作式，并非抢占式。</li>
+<li>协程的三要素：上下文、启动模式、协程体</li>
+<li><p>多个协程可以共用一个线程</p>
+</li>
+<li><p>协程的本质</p>
+<ul>
+<li>协程的挂起函数本质上就是一个回调，回调类型就是<code>Continuation</code></li>
+<li>协程体的执行就是一个<em>状态机</em>，每一次遇到挂起函数，都是一次状态转移</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/View/Android 自定义 View/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/View/Android WebView/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/View/Android WebView/" class="post-title-link" itemprop="url">Android WebView</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/View/" itemprop="url" rel="index"><span itemprop="name">View</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/View/Android WebView/" class="leancloud_visitors" data-flag-title="Android WebView">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a><strong>问题</strong>：</h2><h3 id="为什么-WebView-的加载速度那么慢"><a href="#为什么-WebView-的加载速度那么慢" class="headerlink" title="为什么 WebView 的加载速度那么慢?"></a><strong>为什么</strong> <strong>WebView 的加载速度那么慢?</strong></h3><ol>
-<li><p>js 解析效率</p>
-<p>如果 js 文件较多、解析比较复杂，就会导致渲染速度较慢。或者手机硬件性能比较差的花，也会导致渲染速度比较慢</p>
-</li>
-<li><p>页面资源的下载</p>
-<p>一般加载一个 H5 页面，都会产生比较多的网络请求，如图片、js 文件、css 文件等，需要将这些资源都下载完成之后才能完成渲染，这样也会导致页面渲染速度变慢</p>
-</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/View/Android WebView/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Android 基础/Android 横竖屏的事儿/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Android 基础/Android 横竖屏的事儿/" class="post-title-link" itemprop="url">Activity 横竖屏</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Android 基础/Android 横竖屏的事儿/" class="leancloud_visitors" data-flag-title="Activity 横竖屏">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="设置屏幕的方向"><a href="#设置屏幕的方向" class="headerlink" title="设置屏幕的方向"></a>设置屏幕的方向</h2><table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>unspecified</td>
-<td>默认值，系统自动选择屏幕方向</td>
-</tr>
-<tr>
-<td>behind</td>
-<td>跟 Activity 堆栈中的下面一个 activity 方向一致</td>
-</tr>
-<tr>
-<td>landscape</td>
-<td>横屏方向，</td>
-</tr>
-<tr>
-<td>portraint</td>
-<td>竖屏方向</td>
-</tr>
-<tr>
-<td>sensor</td>
-<td>由设备的物理方向传感器决定，如果用户旋转设备，着屏幕就会横竖切换</td>
-</tr>
-<tr>
-<td>nosensor</td>
-<td>忽略物理传感器，这样就会不会随着用户旋转设备而横竖屏切换了</td>
-</tr>
-<tr>
-<td>user</td>
-<td>用户当前首选方向</td>
-</tr>
-<tr>
-<td>reverseLandscape</td>
-<td>反向横屏</td>
-</tr>
-<tr>
-<td>reversePortrait</td>
-<td>反向竖屏</td>
-</tr>
-<tr>
-<td>sensorLandscape</td>
-<td>横屏，但可以根据物理传感器方向来切换正反向横屏</td>
-</tr>
-<tr>
-<td>sensorPortraint</td>
-<td>竖屏，但可以根据物理传感器方向来切换真反向竖屏</td>
-</tr>
-<tr>
-<td>fullSensor</td>
-<td>上下左右四个方向，由物理方向传感器决定</td>
-</tr>
-<tr>
-<td>locked</td>
-<td>锁死当前屏幕方向</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Android 基础/Android 横竖屏的事儿/#more" rel="contents">
+              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-入门/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2277,7 +2220,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2304,17 +2247,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -2355,7 +2288,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -3113,7 +3066,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Java 枚举");titles.push("Java 内存管理");titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("自定义 ViewGroup");titles.push("Handler 消息机制");titles.push("RecyclerView 总结");titles.push("Android自定义View");titles.push("Android WebView");titles.push("Activity 横竖屏");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("数据结构");titles.push("Typora 设置图床");titles.push("Markdown 数学公式编辑");titles.push("协程知识点");titles.push("协程");titles.push("协程异常处理");titles.push("协程挂起");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

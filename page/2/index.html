@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程知识点/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/适配/Android 屏幕适配/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -434,7 +434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Kotlin/协程/协程知识点/" class="post-title-link" itemprop="url">协程知识点</a>
+                <a href="/2021/03/12/Android 基础/适配/Android 屏幕适配/" class="post-title-link" itemprop="url">Android 屏幕适配</a>
               
             
           </h1>
@@ -459,7 +459,7 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
             
@@ -477,7 +477,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -492,7 +492,7 @@
 
           
           
-            <span id="/2021/02/01/Kotlin/协程/协程知识点/" class="leancloud_visitors" data-flag-title="协程知识点">
+            <span id="/2021/03/12/Android 基础/适配/Android 屏幕适配/" class="leancloud_visitors" data-flag-title="Android 屏幕适配">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -524,16 +524,565 @@
 
       
         
-          <h2 id="什么是协程"><a href="#什么是协程" class="headerlink" title="什么是协程"></a>什么是协程</h2><ol>
-<li><strong>轻量级的线程</strong>，并不完全是线程</li>
-<li>可以<strong>顺序的写异步代码</strong>， 降低异步编程带来的负担</li>
-<li><strong>更高效</strong>，<strong>多个协程可以公用一个线程</strong>。一个 APP 可以使用的线程数量是有限的，但可以使用的协程是几乎无限的</li>
-<li><strong>运行在协程中的可中断的方法不会阻塞当前线程</strong></li>
+          <h2 id="为什么要适配"><a href="#为什么要适配" class="headerlink" title="为什么要适配"></a>为什么要适配</h2><p>由于 Android 系统的开放性，任何用户、开发者、 OEM 厂商、运营商都可以对 Android 进行定制，于是导致运行 Android 的设备多种多样，他们有着不同的屏幕尺寸和像素密度。</p>
+<p>尽管系统可以通过基本的缩放和调整大小使得界面适配不同的屏幕，但进一步优化，可以确保界面能够在各类屏幕上美观的呈现。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/03/12/Android 基础/适配/Android 屏幕适配/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/适配/Android 版本适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/03/12/Android 基础/适配/Android 版本适配/" class="post-title-link" itemprop="url">Android 版本适配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/03/12/Android 基础/适配/Android 版本适配/" class="leancloud_visitors" data-flag-title="Android 版本适配">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h3><p><code>targetSdkVersion</code>： 目标 SDK 版本，也就是我们最高适配的 SDK 版本</p>
+<p>不同版本的 SDK ，为我们提供了不同的 API 接口使用，丰富以及方便开发者。</p>
+<p>旧的接口行为发生了变化，为了保证 APK 的行为还是和以前兼容，在源码中多了很多类似于 <code>ctx.getApplicatioinInfo().targetSdkVersion()</code> 的判断，因此只要 APK 的 <code>targetSdkVersion</code> 不变，即使 APK 安装在新的 Android 系统上，其行为也不会发生变化。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/03/12/Android 基础/适配/Android 版本适配/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/性能优化/磁盘空间优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/03/12/Android 基础/性能优化/磁盘空间优化/" class="post-title-link" itemprop="url">Android 磁盘空间优化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/03/12/Android 基础/性能优化/磁盘空间优化/" class="leancloud_visitors" data-flag-title="Android 磁盘空间优化">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>资源类性能就像是撑起冰山一角的下面的冰层，我们称之为 <code>3 + 1 + 1</code> 。 <code>3 + 1</code>  时传统的 -磁盘、cpu 和 内存，加 1 是与环境密切相关的网络；最后一个加 1 则是因为移动网络而显得特别重要的电池（耗电）。</p>
+<p>因为冰山一角体现出来的交互类性能，包括流畅度、时延等，实际上都是资源问题。例如流畅度问题，可以是内存的垃圾回收太频繁导致的，因为有些 GC 会 STOP THE WORLD, 又可以是 CPU 问题， decode 图片开了过多的子线程，导致主线程的 CPU  资源被争抢；更可以是再主线程中读/写磁盘，磁盘读/写耗时抖一抖、页面也就跟着卡一下。所以关注资源类性能，其实是关注问题的本质去解决问题的方式。</p>
+<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>再没有SSD 磁盘前，大家都觉着 HDD 很好用。对于外行来说，磁盘 I/0 性能总是最容易被忽略的，经理会更集中再 CPU 上。但内行人都知道，性能无非是 CPU 密集型和 I/O 密集型，磁盘 I/O 就是其中之一。</p>
+<p>在设备长时间使用，磁盘空间不足。应用触发大量随机写操作，都会导致磁盘的负载，磁盘 I/O 的耗时会产生剧烈的波动， App 能做的只有一件事儿，即减少磁盘 I/O d 操作量，特别是主线程的操作量。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/03/12/Android 基础/性能优化/磁盘空间优化/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/自定义 ViewGroup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/03/12/Android 基础/View/自定义 ViewGroup/" class="post-title-link" itemprop="url">自定义 ViewGroup</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/03/12/Android 基础/View/自定义 ViewGroup/" class="leancloud_visitors" data-flag-title="自定义 ViewGroup">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="View-Group-的测量布局流程"><a href="#View-Group-的测量布局流程" class="headerlink" title="View Group 的测量布局流程"></a>View Group 的测量布局流程</h2><p><strong>View Group绘制和布局流程中的重点</strong></p>
+<ol>
+<li><p>View 在 <code>onMeasure</code> 方法中进行自我测量和保存。</p>
+</li>
+<li><p>ViewGroup 循环遍历调用所有子 view 的 onMeasure 方法，利用 onMeasure 方法计算出来的大小，来确定这些 子 View 最终可以占用的大小和所处布局的位置</p>
+</li>
+<li><p>关注 onMeasure 和 onLayout</p>
+</li>
+<li><p>父 View 调用子 View 的layout 方法的时候，会把之前 measure 阶段确定的位置和大小都传递给子 View</p>
+</li>
+<li><p>自定义 View/ViewGroup，只需要关注下面三种需求：</p>
+<ol>
+<li>对于已有的 Android 自带 View，我们只需要重写他的 <code>onMeasure</code> 方法即可,<strong>修改一下这个尺寸就完成需求</strong></li>
+<li>对于 Android 系统没有的，属于我们自定义的 View，需要完全重写 <code>onMeasure</code></li>
+<li>需要重写 <code>onMeasure</code> 和 <code>onLayout</code> 2个方法，来完成一个复杂的 <code>ViewGroup</code> 的测量和布局。</li>
+</ol>
+</li>
+<li><p>onMeasure 的说明</p>
+<p>widthMeasureSpec, heightMeasureSpec  两个参数主要是 父 view 对子view 的尺寸限制</p>
+</li>
+<li><p>理解父 view 对子 view 的限制</p>
+<p>实际上，父 View 对子 View 的限制据大多数就来自于我们开发者所设置的 layout 开头的这些属性。<strong>这些以 layout 开头的属性，都是设置给父 view 看的</strong></p>
+<blockquote>
+<p>父 View 要知道这些属性以后，才知道要对子view 的测量加以什么限制</p>
+</blockquote>
+</li>
 </ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程知识点/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/View/自定义 ViewGroup/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -593,7 +1142,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/原理/Handler 消息机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -613,7 +1162,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Kotlin/协程/协程/" class="post-title-link" itemprop="url">协程</a>
+                <a href="/2021/03/12/Android 基础/原理/Handler 消息机制/" class="post-title-link" itemprop="url">Handler 消息机制</a>
               
             
           </h1>
@@ -638,7 +1187,7 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
             
@@ -656,7 +1205,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -671,7 +1220,7 @@
 
           
           
-            <span id="/2021/02/01/Kotlin/协程/协程/" class="leancloud_visitors" data-flag-title="协程">
+            <span id="/2021/03/12/Android 基础/原理/Handler 消息机制/" class="leancloud_visitors" data-flag-title="Handler 消息机制">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -703,14 +1252,15 @@
 
       
         
-          <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    GlobalScope.launch &#123;<span class="comment">// 后台启动一个新的协程并继续， launch 协程的构建器</span></span><br><span class="line">        delay(<span class="number">1000L</span>) <span class="comment">// 非阻塞的等待1s，</span></span><br><span class="line">        println(<span class="string">"World!"</span>) <span class="comment">// 延时后，输出 </span></span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"Hello"</span>) <span class="comment">// 协程已再等待时，主线程还在继续</span></span><br><span class="line">    Thread.sleep(<span class="number">2000L</span>) <span class="comment">// 阻塞主线程 2s 保证， JVM 存活</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>协程是轻量级的线程。 <code>CoroutineScope</code> 通常与 <code>launch</code> 协程构建器一起启动。</p>
-<p><strong>GlobalScope</strong>： 意味着新协程的生命周期与应用程序的生命周期一致</p>
-<p><code>delay</code> 是一个特殊的挂起函数，不会造成线程阻塞，但是会挂起协程，并且只能再协程中使用。</p>
+          <p>Handler 消息机制，在整个 Android 系统中，有着很重要的地位。</p>
+<p>他可以帮助我们实现，子线程和主线程的跨线程通信；可以帮助我们发送一些延时任务，帮助我们很好的实现一个 App.</p>
+<p>本文旨在对源码进行预览分析。</p>
+<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h2><p>先来一张结构图，让我们清晰的了解一下，我们下面都会分析到哪些内容；也了解一下 <code>Handler</code> 机制的核心秘密。</p>
+<p><img src="https://github.com/xiaomanwong/static_file/blob/master/images/Handler%20%E6%9C%BA%E5%88%B6.png?raw=true" alt="Handler 类图"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/原理/Handler 消息机制/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -770,7 +1320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-调度器/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/WebView 异常篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -790,7 +1340,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Kotlin/协程/协程-调度器/" class="post-title-link" itemprop="url">协程调度器</a>
+                <a href="/2021/03/12/Android 基础/View/WebView 异常篇/" class="post-title-link" itemprop="url">WebView 异常篇</a>
               
             
           </h1>
@@ -815,7 +1365,7 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
             
@@ -833,7 +1383,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -848,7 +1398,7 @@
 
           
           
-            <span id="/2021/02/01/Kotlin/协程/协程-调度器/" class="leancloud_visitors" data-flag-title="协程调度器">
+            <span id="/2021/03/12/Android 基础/View/WebView 异常篇/" class="leancloud_visitors" data-flag-title="WebView 异常篇">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -880,549 +1430,291 @@
 
       
         
-          <p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/18062676-f99f572eee860a04.jpg" alt="协程调度器"></p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-调度器/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-异常处理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Kotlin/协程/协程-异常处理/" class="post-title-link" itemprop="url">协程异常处理</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Kotlin/协程/协程-异常处理/" class="leancloud_visitors" data-flag-title="协程异常处理">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ol>
-<li><p><strong>协程内部异常处理流程</strong>： </p>
-<p><code>launch</code> 会在内部出现未捕获的异常时尝试触发对父协程的取消，能否取消要看其作用域的定义，如果取消成功，那么异常传递给其父协程，否则传递给启动时上下文配置的 <code>CoroutineExceptionHandler</code> 中，如果没有配置，会查找全局（JVM）上的<code>CoroutineExceptionHandler</code> 处理，</p>
-<p> <code>async</code> 在未捕获异常的出现时同样会尝试取消其父协程，但不管是否能够取消成功都不会进行后续的异常处理，直到用户主动调用 <code>await</code> 时抛出</p>
-</li>
-<li><p><strong>异常在作用域内传播</strong></p>
-<p>当协程出现异常时，会根据当前作用域触发异常传递</p>
-<p><code>GlobalScope</code> 会创建一个独立的作用域，<strong>自成一派</strong></p>
-<p><code>coroutineScope</code>  当中的协程异常会触发父协程的取消，将整个协程作用域取消掉，如果对 <code>coroutineScope</code> 整体进行捕获，也可以捕获到该异常，<strong>一损俱损</strong></p>
-<p><code>supervisorScope</code> 子协程的异常不会向上传递， <strong>自作自受</strong>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-异常处理/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></li></ol></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-挂起/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Kotlin/协程/协程-挂起/" class="post-title-link" itemprop="url">协程挂起</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Kotlin/协程/协程-挂起/" class="leancloud_visitors" data-flag-title="协程挂起">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Delay"><a href="#Delay" class="headerlink" title="Delay"></a>Delay</h2><ul>
-<li><p>线程: <code>Thread.sleep()</code></p>
-<p><code>sleep</code> 让线程进入休眠状态,直到指定的时间之后某种信号或者达到某个条件,线程就会尝试恢复执行</p>
-</li>
-<li><p>协程: <code>delay</code>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-挂起/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></li></ul></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-取消/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Kotlin/协程/协程-取消/" class="post-title-link" itemprop="url">协程取消</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Kotlin/协程/协程-取消/" class="leancloud_visitors" data-flag-title="协程取消">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>协程的任务取消需要协程内部调用的协作支持，类似于线程中断中对中断状态的响应一样</p>
+            <h2 id="WebView-漏洞"><a href="#WebView-漏洞" class="headerlink" title="WebView 漏洞"></a>WebView 漏洞</h2><h3 id="主要问题"><a href="#主要问题" class="headerlink" title="主要问题"></a>主要问题</h3><p>WebView 中，主要有三种漏洞问题</p>
+<ol>
+<li>任意代码执行漏洞</li>
+<li>密码明文存储漏洞</li>
+<li>域控制不严格漏洞</li>
+</ol>
+<h3 id="WebView-任意代码执行漏洞"><a href="#WebView-任意代码执行漏洞" class="headerlink" title="WebView 任意代码执行漏洞"></a>WebView 任意代码执行漏洞</h3><p>产生漏洞原因有三</p>
+<ol>
+<li>WebView 中 <code>addJavascriptInterface()</code> 接口</li>
+<li>WebView 内置导出的 <code>searchBoxJavaBridge_</code> 对象</li>
+<li>WebView 内置导出的 <code>accessibility</code> 和 <code>accessibilityTraversal</code> Object 对象</li>
+</ol>
+<h4 id="addJavascriptInterface-引起远程代码执行漏洞"><a href="#addJavascriptInterface-引起远程代码执行漏洞" class="headerlink" title="addJavascriptInterface() 引起远程代码执行漏洞"></a>addJavascriptInterface() 引起远程代码执行漏洞</h4><p><strong>产生原因：</strong></p>
+<p>JS 调用 Android 的其中一个方式通过 <code>addJavascriptInterface</code> 接口进行映射</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">webview.addJavascriptInterface(<span class="keyword">new</span> JsCallAndroidInterface(), <span class="string">"JsCallAndroidInterface"</span>);</span><br><span class="line"><span class="comment">// 参数一： Android 本地对象</span></span><br><span class="line"><span class="comment">// 参数二： JS 对象</span></span><br><span class="line"><span class="comment">// 通过对象映射将 Android 中的本地对象和 JS  中的对象进行关联，从而实现 JS 调用 Android 对象和方法</span></span><br></pre></td></tr></table></figure>
+<p><strong>当 JS 拿到 Android 对象后，可以调用这对象中所有的方法，包括系统类（java.lang.Runtime), 从而进行任意代码执行</strong></p>
+<blockquote>
+<p>可以执行命令获取本地设备的 SD卡中的文件等信息，造成信息泄漏</p>
 </blockquote>
-<h2 id="线程的中断"><a href="#线程的中断" class="headerlink" title="线程的中断"></a>线程的中断</h2><p>当我们执行一个任务时,很快就后悔了,怎么办?
+<p>结合 Java 反射机制，具体获取系统类的描述</p>
+<ul>
+<li><p>Android 中的对象有一个公共方法， getClass()</p>
+</li>
+<li><p>该方法可以获取到当前类类型</p>
+</li>
+<li><p>该类有关键方法,Class.forName();</p>
+</li>
+<li><p>使用这个方法可以加载一个类</p>
+</li>
+<li><p>获取到类对象后，可以执行本地命令</p>
+<p>JS 攻击本地核心代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params">cmd</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// 遍历 Window 对象</span></span><br><span class="line">	<span class="comment">// 目的是为了找到包含 getClass() 的对象</span></span><br><span class="line">	<span class="comment">// 因为 Android 映射的 JS 对象也在 Window 中，一定会拿到</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> obj <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="string">"getClass"</span> <span class="keyword">in</span> <span class="built_in">window</span>[obj]) &#123;</span><br><span class="line">			<span class="comment">// 利用反射调用 forName() 得到 Runtime 类</span></span><br><span class="line">			alert(obj);</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">window</span>[obj].getClass().forName(<span class="string">"java.lang.Runtime"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 之后，可以调用静态方法来执行一些命令，比如访问文件</span></span><br><span class="line">        getMethod(<span class="string">"getRuntime"</span>, <span class="literal">null</span>).invoke(<span class="literal">null</span>, <span class="literal">null</span>).exec(cmd);</span><br><span class="line">        <span class="comment">// 从执行命令后返回的输入流中得到字符串，有很严重暴露隐私信息的危险</span></span><br><span class="line">        <span class="comment">// 如果执行完访问文件的命令后，就可以得到文件名信息等</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当一些 APP 通过扫描二维码打开一个外部网页时，攻击者就可以执行这段 js 代码进行漏洞攻击</p>
+</li>
+</ul>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>在 Android 4.2 版本之后<br>Google 在 Android 4.2 版本中规定对被调用的函数以 <code>@JavascriptInterface</code> 进行注解，从而避免漏洞攻击</li>
+<li>在 Android 4.2 版本之前<br>在 Android 4.2 之前采用拦截 <code>prompt()</code> 进行漏洞修复<ol>
+<li>继承 WebView ，重写 <code>addJavascriptInterface()</code> ，然后内部自己维护一个对象映射关系的 Map，将需要添加的 JS 接口放入 Map 中</li>
+<li>每次当 WebView 加载页面前加载一段本地的 JS 代码<ol>
+<li>让 JS 调用 Javascript 方法：通过调用 prompt() 把 js 中的信息（含特定表示、方法名等）传递到 Android 端</li>
+<li>在 Android 的 onJsPrompt() 中，解析参数信息，再通过反射机制调用 Java 对象的方法，来实现 JS 调用 Android 的安全性</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="searchBoxJavaBridge-接口引起的远程代码执行漏洞"><a href="#searchBoxJavaBridge-接口引起的远程代码执行漏洞" class="headerlink" title="searchBoxJavaBridge_接口引起的远程代码执行漏洞"></a>searchBoxJavaBridge_接口引起的远程代码执行漏洞</h4><p><strong>产生原因</strong></p>
+<ul>
+<li>Android 3.0 以下， Android 系统默认通过 searchBoxJavaBridge_ 的 Js 接口给WebView 添加一个 JS映射对象， searchBoxJavaBridge_</li>
+<li>该接口可能被利用，实现远程任意代码</li>
+</ul>
+<p><strong>解决方案：</strong></p>
+<p>删除 searchBoxJavaBridge_ 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过调用该方法移除</span></span><br><span class="line">removeJavascriptInterface();</span><br></pre></td></tr></table></figure>
+<h4 id="accessibility-和-accessibilityTraversal-接口引起远程代码执行漏洞"><a href="#accessibility-和-accessibilityTraversal-接口引起远程代码执行漏洞" class="headerlink" title="accessibility 和 accessibilityTraversal 接口引起远程代码执行漏洞"></a>accessibility 和 accessibilityTraversal 接口引起远程代码执行漏洞</h4><p>与上述基本相同</p>
+<h3 id="密码明文存储漏洞"><a href="#密码明文存储漏洞" class="headerlink" title="密码明文存储漏洞"></a>密码明文存储漏洞</h3><p><strong>问题分析：</strong></p>
+<p>WebView 默认开启密码保存功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mWebView.setSavePassword(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开启后，再用户输入密码时，会弹出提示框，询问用户是否保存密码</li>
+<li>如果选择”是”，密码会被明文保存到 <code>/data/data/com.package.name/databases/webview.db</code> 中，这样就有被盗取密码的危险</li>
+</ul>
+<p><strong>解决方案:</strong></p>
+<p>关闭密码保存提醒</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebSettings.setSavePassword(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="域控制不严格漏洞"><a href="#域控制不严格漏洞" class="headerlink" title="域控制不严格漏洞"></a>域控制不严格漏洞</h3><p><strong>问题分析：</strong></p>
+<p>再Android里的 <code>WebViewActrivity.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebViewActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> WebView webView;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_webview);</span><br><span class="line">        webView = findViewById(R.id.webview);</span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// webView.getSettings().setAllowFileAccess(false);</span></span><br><span class="line">        <span class="comment">// webView.getSettings().setAllowFileAccessFromFileURLs(true);</span></span><br><span class="line">        <span class="comment">// webView.getSettings().setAllowUniversalAccessFromFileURLs(true);</span></span><br><span class="line">        <span class="comment">// url = file://data/local/tmp/attack.html</span></span><br><span class="line">        String url = i.getData().toString();</span><br><span class="line">        webView.loadUrl(url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将这个 WebViewActivity 再 Manifest.xml 设置 exported 属性，表示：当前 Activity 是否可以被另外一个 Application  的组件启动</p>
+<p><code>android:exported=&quot;true&quot;</code></p>
+<p>即 A 应用可以通过 B 应用到处的 Activity 让 B 应用加载一个恶意的 file 协议的 url，从而可以获取 B 应用的内部私有文件，从而带来数据泄漏威胁</p>
+<blockquote>
+<p>具体：当其他应用启动此 Activity 时，intent 中的 data  直接被当作 url 来加载（假设传入来的 url 时 file://data/local/tmp/attack.html），其他 App 通过使用显式 ComponentName 或者其他类似方式就可以轻松启动该 web ViewActivity，并加载恶意 url</p>
+</blockquote>
+<p>那么 WebView 中 getSettings（）函数对 WebView 安全性的影响</p>
+<ul>
+<li>setAllowFileAccess()</li>
+<li>setAllowFileAccessFromFileURLs()</li>
+<li>setAllowUniversalAccessFromFileURLs()</li>
+</ul>
+<ol>
+<li><p><strong>setAllowFileAccess()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置是否允 WebView 使用 file 协议</span></span><br><span class="line">webView.getSettings().setAllowFileAccess(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 默认设置为 true，即允许再 File 域下任意执行 JavaScript 代码</span></span><br></pre></td></tr></table></figure>
+<p>使用 File 域加载的 js 代码能够使用进行 <em>同源策略跨域访问</em>，从而导致隐私信息泄漏</p>
+<blockquote>
+<ol>
+<li>同源策略跨域访问：对私有目录文件进行访问</li>
+<li>针对 IM 类产品，泄漏的是聊天信息、联系人等等</li>
+<li>针对浏览器类软件， 泄漏的是 cookie 信息</li>
+</ol>
+</blockquote>
+<p>如果不允许使用 file 协议，则不会出现上述威胁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.getSettings().setAllowFileAccess(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<p>但同时也限制了 WebView 的功能，使得不能加载本地的 HTML 文件</p>
+</li>
+</ol>
+<p>   <strong>解决方案</strong></p>
+<ol>
+<li><p>对于不需要使用 file 协议的应用，禁用 file 协议</p>
+<p><strong>setAllowFileAccess(false);</strong></p>
+</li>
+<li><p>对于需要使用 file 协议的用用，禁止 file 协议加载 JavaScript</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setAllowFileAccess(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 禁用文件协议使用 JavaScript</span></span><br><span class="line">setJavaScriptEnabled(!url.startsWith(<span class="string">"file://"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li>setAllowFileAccessFromFileURLs()</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/RandomLayout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="茶白">
+      <meta itemprop="description" content="个人技术积累,Android 工程师">
+      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茶白白在胡说">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/03/12/Android 基础/View/RandomLayout/" class="post-title-link" itemprop="url">RandomLayout 随机摆放布局</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/03/12/Android 基础/View/RandomLayout/" class="leancloud_visitors" data-flag-title="RandomLayout 随机摆放布局">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>随机摆放布局，先上效果</p>
+<p><img src="https://raw.githubusercontent.com/xiaomanwong/static_file/master/images/image-20210208162638517.png" alt="image-20210208162638517"></p>
+<p>在有效空间内，随机摆放子 View ，并保障子 View 不会重叠。类似的需求，在开发过程中也会经常遇到。从图中看，随机摆放，那就不能使用常规的 <code>LinearLayout</code> <code>RelateLayout</code> 或者是 <code>RecyclerView</code> 这些。因为他们都不满足随机性。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-取消/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/View/RandomLayout/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1482,7 +1774,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-启动/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/RecyclerView 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -1502,7 +1794,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Kotlin/协程/协程-启动/" class="post-title-link" itemprop="url">协程启动</a>
+                <a href="/2021/03/12/Android 基础/View/RecyclerView 总结/" class="post-title-link" itemprop="url">RecyclerView 总结</a>
               
             
           </h1>
@@ -1527,7 +1819,7 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
             
@@ -1545,7 +1837,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1560,7 +1852,7 @@
 
           
           
-            <span id="/2021/02/01/Kotlin/协程/协程-启动/" class="leancloud_visitors" data-flag-title="协程启动">
+            <span id="/2021/03/12/Android 基础/View/RecyclerView 总结/" class="leancloud_visitors" data-flag-title="RecyclerView 总结">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1592,17 +1884,22 @@
 
       
         
-          <h1 id="协程-启动"><a href="#协程-启动" class="headerlink" title="协程-启动"></a>协程-启动</h1><p><strong>启动模式</strong></p>
-<ol>
-<li>DEFAULT： 立即执行</li>
-<li>LAZY： 需要时执行</li>
-<li>ATOMIC： 立即执行，但开始前不会被取消</li>
-<li>UNDISPATCHED： 立即执行，直到第一个 suspend 挂起</li>
+          <h2 id="List-View-的局限性"><a href="#List-View-的局限性" class="headerlink" title="List View 的局限性"></a>List View 的局限性</h2><ol>
+<li>只有纵向列表一种布局</li>
+<li>没有支持动画的  API</li>
+<li>接口设计和系统不一致<ol>
+<li>setOnItemClickListener()</li>
+<li>setOnItemLongClickListener()</li>
+<li>setSelection()</li>
+</ol>
+</li>
+<li>没有强制实现 ViewHolder</li>
+<li>性能不如 RecyclerView</li>
 </ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-启动/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/View/RecyclerView 总结/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1662,7 +1959,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Kotlin/协程/协程-入门/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/WebView 使用篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -1682,7 +1979,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Kotlin/协程/协程-入门/" class="post-title-link" itemprop="url">协程入门</a>
+                <a href="/2021/03/12/Android 基础/View/WebView 使用篇/" class="post-title-link" itemprop="url">WebView 使用篇</a>
               
             
           </h1>
@@ -1707,7 +2004,7 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
             
@@ -1725,7 +2022,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/协程/" itemprop="url" rel="index"><span itemprop="name">协程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1740,7 +2037,7 @@
 
           
           
-            <span id="/2021/02/01/Kotlin/协程/协程-入门/" class="leancloud_visitors" data-flag-title="协程入门">
+            <span id="/2021/03/12/Android 基础/View/WebView 使用篇/" class="leancloud_visitors" data-flag-title="WebView 使用篇">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1772,29 +2069,223 @@
 
       
         
-          <ul>
-<li>协程是一种非抢占式或者说是协作式的计算机程序并发调度的实现方案，程序可以主动挂起或者回复执行。</li>
-<li>线程当中的代码逻辑在线程抢占到 CPU 的时间片的时候才可以执行，否则就写着</li>
-<li>协程更轻量的意思是，协程并不会映射成内核线程或者其他资源，他的调用在用户态就可以搞定，任务之间是协作式，并非抢占式。</li>
-<li>协程的三要素：上下文、启动模式、协程体</li>
-<li><p>多个协程可以共用一个线程</p>
-</li>
-<li><p>协程的本质</p>
+          
+            <h2 id="交互方式"><a href="#交互方式" class="headerlink" title="交互方式"></a>交互方式</h2><p><strong>Android 调用 JS</strong> </p>
 <ul>
-<li>协程的挂起函数本质上就是一个回调，回调类型就是<code>Continuation</code></li>
-<li>协程体的执行就是一个<em>状态机</em>，每一次遇到挂起函数，都是一次状态转移</li>
+<li>通过 <code>WebView</code> 的 <code>loadUrl()</code></li>
+<li>通过 <code>WebView</code> 的 <code>evaluateJavascript()</code></li>
 </ul>
-</li>
+<p><strong>JS 调用 Android</strong></p>
+<ul>
+<li>通过 <code>WebView</code> 的 <code>addJavascriptInterface()</code> 进行对象映射</li>
+<li>通过 <code>WebView</code> 的 <code>shouldOverrideUrlLoading()</code> 方法回调拦截 <code>Url</code></li>
+<li>通过 <code>WebChromeClient</code> 的 <code>onAlert(),onJsConfirm(), onJsPrompt()</code> 方法回调拦截 JS 对话框 <code>alert(),confrim(),permpt()</code>  的消息</li>
 </ul>
-          <!--noindex-->
+<h2 id="Android-调用-WebView"><a href="#Android-调用-WebView" class="headerlink" title="Android 调用 WebView"></a>Android 调用 WebView</h2><h3 id="方式一：-WebView-loadUrl"><a href="#方式一：-WebView-loadUrl" class="headerlink" title="方式一： WebView.loadUrl()"></a>方式一： WebView.loadUrl()</h3><ul>
+<li>点击 Android 按钮，调用 WebView JS 中的 callJs()</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">chartset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>xxxxx<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    	function callJs()&#123;</span></span><br><span class="line"><span class="undefined">            alert("Android 调用 JS 的 callJs（）");</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</span><br><span class="line">    WebView webView;</span><br><span class="line">    Button button;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.test_activity);</span><br><span class="line">        webView = (WebView)findViewById(R.id.webview);</span><br><span class="line">        WebSettings setting = webView.getSettings();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 设置 JS 交互权限</span></span><br><span class="line">        setting.setJavaScriptEnabled(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// 允许 JS 弹窗</span></span><br><span class="line">        setting.setJavaScriptCanOpenWindowsAutomatically(<span class="keyword">true</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 载入 js 代码</span></span><br><span class="line">        webView.loadUrl(<span class="string">"file://android_asset/javascript.html"</span>);</span><br><span class="line">        button = (Button)findViewById(R.id.buttong);</span><br><span class="line">        button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">                webView.post(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">                   <span class="comment">// 调用 JS 方法名要对应上</span></span><br><span class="line">                    webView.loadUrl(<span class="string">"javascript::callJs()"</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 由于设置了弹窗检查调用结果，所以需要支持 js 对话框</span></span><br><span class="line">        <span class="comment">// webview 只是载体，内容的渲染需要使用 webviewChromeClient 类去实现</span></span><br><span class="line">        <span class="comment">// 通过设置 WebChromeClient 对象处理 JavaScript 的对话框</span></span><br><span class="line">        <span class="comment">// 设置 JS 的 Alert 函数</span></span><br><span class="line">        webView.setWebChromeClient(<span class="keyword">new</span> WebChromeClient()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onJsAlert</span><span class="params">(WebView view, String url, String message, <span class="keyword">final</span> JsResult result)</span> </span>&#123;</span><br><span class="line">                AlertDialog.Builder dialog = AlertDialog.Builder(TestActivity.<span class="keyword">this</span>);</span><br><span class="line">                dialog.setTitle(<span class="string">"alert"</span>);</span><br><span class="line">                dialog.setMessage(message);</span><br><span class="line">                dialog.setPositiveButton(android.R.string.ok, <span class="keyword">new</span> DialogInterface.OnClickListener()&#123;</span><br><span class="line">                   <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</span><br><span class="line">                        result.confirm();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                dialog.setCancelable(<span class="keyword">false</span>);</span><br><span class="line">                dialog.create().show();</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方式二：-WebView-evaluateJavascript"><a href="#方式二：-WebView-evaluateJavascript" class="headerlink" title="方式二： WebView.evaluateJavascript()"></a>方式二： WebView.evaluateJavascript()</h3><p>优点：比第一种效率高，使用更简洁</p>
+<blockquote>
+<ol>
+<li>该方法的执行不会使页面刷新， <code>loadUrl()</code> 则会执行刷新</li>
+<li>Android 4.4 版本后才可以使用</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">webView.evluateJavascript(<span class="string">"javascript:callJs()"</span>, <span class="keyword">new</span> ValueCallback&lt;String&gt;()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceiveValue</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 此处为 JS 返回结果</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="方法对比"><a href="#方法对比" class="headerlink" title="方法对比"></a>方法对比</h3><table>
+<thead>
+<tr>
+<th>调用方法</th>
+<th>优点</th>
+<th>缺点</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用 loadUrl()</td>
+<td>方便，简洁</td>
+<td>效率低<br>获取返回值麻煩</td>
+<td>不需要获取返回值，对性能要求不高时</td>
+</tr>
+<tr>
+<td>使用 evluateJavascript()</td>
+<td>效率高</td>
+<td>向下兼容性差，仅 Android 4.4 以上可用</td>
+<td>Android 4.4 以上</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>两种混合使用，可保证 Android 4.4 上下都可以使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Android 版本变量</span></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> version = Build.VERSION.SDK_INT;</span><br><span class="line"><span class="keyword">if</span>(version &lt; <span class="number">18</span>) &#123;</span><br><span class="line">    webView.loadUrl(<span class="string">"javascript:callJs()"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    webView.evluateJavascript(<span class="string">"javascript:callJs()"</span>, <span class="keyword">new</span> ValueCallback&lt;String&gt;()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceiveValue</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// js 返回结果</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS-调用-Android"><a href="#JS-调用-Android" class="headerlink" title="JS 调用 Android"></a>JS 调用 Android</h2><ol>
+<li>通过 <code>WebView</code> 的  <code>addJavascriptInterface()</code> 进行映射</li>
+<li>通过 <code>WebChromeClient</code> 的 <code>shouldOverrideUrlLoading()</code> 方法拦截 Url</li>
+<li>通过 <code>WebChromeClient</code> 的 <code>onJsAlert(), onJsConfirm(), onJsPrompt()</code> 方法拦截 JS 对话框 <code>alert(), confirm(), pormpt()</code> 消息</li>
+</ol>
+<h3 id="方式一：addJavascriptInterface-进行映射"><a href="#方式一：addJavascriptInterface-进行映射" class="headerlink" title="方式一：addJavascriptInterface() 进行映射"></a>方式一：<code>addJavascriptInterface()</code> 进行映射</h3><p><strong>定义一个与 JS 对象映射关系的 Android 类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsCallAndroidInterface</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 定义 JS 需要调用的方法</span></span><br><span class="line">    <span class="comment">// 被 JS 调用的方法必须加入 @JavascriptInterface 注解</span></span><br><span class="line">    <span class="comment">// 这部分代码执行在异步线程中</span></span><br><span class="line">    <span class="meta">@JavascriptInterface</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>加载 JS 代码</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        	function callAndroid()&#123;</span></span><br><span class="line"><span class="undefined">                // 由于对象映射，所以需要调用 test 对象等于调用 Android 映射对象</span></span><br><span class="line"><span class="undefined">                test.hello("js 调用 Android 的 hello");</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"button1"</span> "<span class="attr">callAndroid</span>()"&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>在  Android 里通过 WebView 设置 Android 类和 JS 代码的映射</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setting.setJavascriptEnable(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// Android to js 类对象映射到 js 对象</span></span><br><span class="line">webView.addJavascriptIntercept(<span class="keyword">new</span> JsCallAndroidInterface(), <span class="string">"test"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用简单，仅将 Android 对象和 JS 对象映射即可</p>
+<p>存在严重的漏洞问题，容易造成系统信息的泄漏</p>
+</blockquote>
+<h3 id="方式二：-shouldOverrideUrlLoading-方法拦截-Url"><a href="#方式二：-shouldOverrideUrlLoading-方法拦截-Url" class="headerlink" title="方式二： shouldOverrideUrlLoading() 方法拦截 Url"></a>方式二： <code>shouldOverrideUrlLoading()</code> 方法拦截 Url</h3><p>原理：</p>
+<ul>
+<li>Android 通过 WebViewClient 的回调方法 <code>shouldOverriderUrlLoading()</code> 拦截 URL</li>
+<li>解析此 URL 的协议</li>
+<li>如果检测到了预先约定好的协议，就回调相关方法</li>
+</ul>
+<blockquote>
+<p>也就是 JS 调用 Android 的方法</p>
+</blockquote>
+<p><strong>一：在 JS 中约定所需要的 URL 协议</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        	function callAndroid()&#123;</span></span><br><span class="line"><span class="undefined">                document.location = "js://webview?arg1=111%arg2=112";</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span> = <span class="string">"button1"</span> <span class="attr">onclick</span>=<span class="string">"callAndroid()"</span>&gt;</span></span><br><span class="line">            </span><br><span class="line">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当 JS 通过 Android 的 <code>webView.loadUrl(&quot;file:///android_asset/javascript.html&quot;);</code> 加载后，就会回调 <code>shouldOverrideUrlLoading()</code> </p>
+<p><strong>二：在 Android 通过 WebViewClient 重写 shouldOverrideUrlLoading()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</span><br><span class="line">    WebView mWebView;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.test_activity);</span><br><span class="line">        mWebView = findViewById(R.id.webview);</span><br><span class="line">        </span><br><span class="line">        WebSettings settings = mWebView.getSettings();</span><br><span class="line">        <span class="comment">// 设置于 JS 交互权限</span></span><br><span class="line">        settings.setJavascriptEnabled(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// 允许 JS 弹框</span></span><br><span class="line">        settings.setJavascriptCanOpenWindowsAutomatically(<span class="keyword">true</span>);</span><br><span class="line">        </span><br><span class="line">        mWebView.loadUrl(<span class="string">"file:///android_asset/javascript.html"</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        mWebView.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span></span>&#123;</span><br><span class="line">                <span class="comment">// 根据协议参数，判断是否由需要的 url</span></span><br><span class="line">                <span class="comment">// 一般根据 scheme（协议格式） 和 authority（协议名）判断</span></span><br><span class="line">                <span class="comment">// 假设传入的时 url ="js://webview?arg1=111&amp;arg2=222"</span></span><br><span class="line">                </span><br><span class="line">                Uri uri = Uri.parse(url);</span><br><span class="line">                <span class="comment">// 如果 url 的协议为事先约定好的 JS 协议， 就解析参数</span></span><br><span class="line">                <span class="keyword">if</span>(uri.getScheme().equals(<span class="string">"js"</span>)) &#123;</span><br><span class="line">                    <span class="comment">// 如果 authority 为事先约定好的 webview，表示符合约定协议</span></span><br><span class="line">                    <span class="comment">// 拦截 url ，执行 Android 的放法</span></span><br><span class="line">                    <span class="keyword">if</span>( url.getAuthority().equals(<span class="string">"webview"</span>)) &#123;</span><br><span class="line">                        <span class="comment">// 执行 js 需要的调用逻辑</span></span><br><span class="line">                        Log.d(TAG,<span class="string">"js 调用了 Android 的方法"</span>);</span><br><span class="line">                        HashMap&lt;String, String&gt; param = <span class="keyword">new</span> HashMap();</span><br><span class="line">                        Set&lt;String&gt; collection = uri.getQueryParameterNames();</span><br><span class="line">                    &#125;</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">super</span>.shouldOverrideUrlLoading(view, url);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不存在方式 1 的漏洞</p>
+<p>缺点：JS 获取 Android 方法的返回值复杂</p>
+<p>​        如果 JS 想要 Android 方法的返回值，只能通过 webView.loadUrl() 去执行 js 方法，把返回值传递回去</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// Android: TestActivity</span></span><br><span class="line">&gt; mWebView.loadUrl(<span class="string">"javascript:returnResult("</span> + result + <span class="string">")"</span>);</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment">// js: Javascript.html</span></span><br><span class="line">&gt; <span class="function">function <span class="title">returnResult</span><span class="params">(result)</span> </span>&#123;</span><br><span class="line">&gt;     alert(result);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="方式三：-onJsAlert-onJsConfirm-onJsPrompt-方法拦截-JS-对话框-alert-confirm-pormpt-消息"><a href="#方式三：-onJsAlert-onJsConfirm-onJsPrompt-方法拦截-JS-对话框-alert-confirm-pormpt-消息" class="headerlink" title="方式三： onJsAlert(), onJsConfirm(), onJsPrompt() 方法拦截 JS 对话框 alert(), confirm(), pormpt() 消息"></a>方式三： <code>onJsAlert(), onJsConfirm(), onJsPrompt()</code> 方法拦截 JS 对话框 <code>alert(), confirm(), pormpt()</code> 消息</h3><p>JS 中，有三个常用的对话框方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+<th>返回值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alert()</td>
+<td>弹出警告框</td>
+<td>没有</td>
+<td>在文本中加入 \n 可换行</td>
+</tr>
+<tr>
+<td>confirm()</td>
+<td>弹出确认框</td>
+<td>两个返回值</td>
+<td>1. 返回布尔值<br>2. 通过该值判断点击的是确认还是取消： true 表示确认， false 表示取消</td>
+</tr>
+<tr>
+<td>prompt()</td>
+<td>弹出输入框</td>
+<td>任意设置返回值</td>
+<td>1. 点击 “确认”： 返回输入框中的值<br>2. 点击 “取消”： 返回 null</td>
+</tr>
+</tbody>
+</table>
+<p>通过 Android 的 <code>WebChromeClient</code> 中 <code>onJsAlert(), onJsConfirm(), onJsPrompt()</code> 方法拦截 JS 对话框 <code>alert(), confirm(), pormpt()</code> 消息，并解析</p>
+<p>如拦截 <code>prompt()</code></p>
+<blockquote>
+<p>常用的拦截是： 拦截 JS 的输入框 prompt() 方法</p>
+<p>因为只有 prompt() 方法可以返回任意类型值，操作最全面、方便、灵活。alert() 没有返回值; confirm() 只能返回两种</p>
+</blockquote>
+<p><strong>加载 js 代码</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>Carson_Ho<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">     <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="undefined">	function clickprompt()&#123;</span></span><br><span class="line"><span class="undefined">    // 调用prompt（）</span></span><br><span class="line"><span class="undefined">    var result=prompt("js://demo?arg1=111&amp;arg2=222");</span></span><br><span class="line"><span class="undefined">    alert("demo " + result);</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">      </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 点击按钮则调用clickprompt()  --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"button1"</span> "<span class="attr">clickprompt</span>()"&gt;</span>点击调用Android代码<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当使用 <code>mWebView.loadUrl(&quot;file:///android_asset/javascript.html&quot;)</code> 加载 JS 代码后，就会触发 <code>onJsPrompt()</code> </p>
+<blockquote>
+<p>如果拦截警告框 <code>alert()</code> ，则触发 <code>onJsAlert()</code></p>
+<p>如果拦截确认框 <code>confirm()</code> 则触发 <code>onJsConfirm()</code></p>
+</blockquote>
+<p><strong>在 Android 中通过 WebChromeClient  重写 onJsPrompt()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mWebView.setWebChromeClient(<span class="keyword">new</span> WebChromeClient()&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onJsPrompt</span><span class="params">(WebView view, String url, String message, String defaultValue, JsPromptResult result)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 根据协议参数，判断是否是需要的 URL</span></span><br><span class="line">        <span class="comment">// 与 方法二相同</span></span><br><span class="line">        Uri uri = Uri.parse(url);</span><br><span class="line">        <span class="keyword">if</span>(uri.getScheme().equals(<span class="string">"js"</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>(uri.getAuthority().equalse(<span class="string">"webview"</span>)) &#123;</span><br><span class="line">		       <span class="comment">// 执行 js 需要的逻辑</span></span><br><span class="line">                Log.d(TAG, message);</span><br><span class="line">                HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">                Set&lt;String&gt; collection = uri.getQueryParameterNames();</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 参数 result: 代表消息框的返回值（输入值）</span></span><br><span class="line">                result.confirm(<span class="string">"js 调用了 Android 方法"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onJsPrompt(view, url, message, defaultValue, result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="方法对比-1"><a href="#方法对比-1" class="headerlink" title="方法对比"></a>方法对比</h3><table>
+<thead>
+<tr>
+<th>调用方式</th>
+<th>优点</th>
+<th>缺点</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addJavascriptInterface() 映射关系</td>
+<td>方便简洁</td>
+<td>Android 4.2 一下存在漏洞</td>
+<td>Android 4.2 以上相对简单的互调场景</td>
+</tr>
+<tr>
+<td>重写 shouldOverrideUrlLoading()</td>
+<td>不存在漏洞问题</td>
+<td>使用复杂，需要进行协议约束；从 Native 层往 web 层传递数据比较麻煩</td>
+<td>不需要返回值情况下的互调场景（ios 使用的比较多）</td>
+</tr>
+<tr>
+<td>拦截 JS 对话框</td>
+<td>不存在漏洞</td>
+<td>需要近些协议约束</td>
+<td>能满足大多数情况下的互调情况</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>调用方式</th>
+<th>优点</th>
+<th>缺点</th>
+<th>使用场景</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android 调用 JS</td>
+<td>loadUrl()</td>
+<td>简单</td>
+<td>效率低，获取返回值麻煩</td>
+<td>不需要获取返回值，对性能要求不高</td>
+<td>混合使用</td>
+</tr>
+<tr>
+<td></td>
+<td>evaluateJavascript()</td>
+<td>效率高</td>
+<td>仅支持 Android 4.4 以上</td>
+<td>Android 4.4 以上</td>
+<td></td>
+</tr>
+<tr>
+<td>JS 调用 Android</td>
+<td>addJavascriptInterface()</td>
+<td>简洁</td>
+<td>Android 4.2 以下存在漏洞</td>
+<td>Android 4.2 以上相对简单的调用场景</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>shouldOverrideUrlLoading()</td>
+<td>不存在漏洞问题</td>
+<td>使用复杂，需要进行协议约束；从 Native 层往 web 层传递数据比较麻煩</td>
+<td>不需要返回值的情况下</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>拦截 JS 弹框</td>
+<td>不存在漏洞问题</td>
+<td>需要进行协议约束；从 Native 层往 web 层传递数据比较麻煩</td>
+<td>能满足大多数情况下的调用场景</td>
+</tr>
+</tbody>
+</table>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Kotlin/协程/协程-入门/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1849,7 +2340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Jetpack/WorkManager 基础/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/03/12/Android 基础/View/Android WebView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茶白">
@@ -1869,7 +2360,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/02/01/Jetpack/WorkManager 基础/" class="post-title-link" itemprop="url">WorkManager 基础</a>
+                <a href="/2021/03/12/Android 基础/View/Android WebView/" class="post-title-link" itemprop="url">WebView 性能篇</a>
               
             
           </h1>
@@ -1894,7 +2385,7 @@
                 
               
 
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
+              <time title="Created: 2021-03-12 14:59:30" itemprop="dateCreated datePublished" datetime="2021-03-12T14:59:30+08:00">2021-03-12</time>
             
 
             
@@ -1912,7 +2403,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/WorkManager/" itemprop="url" rel="index"><span itemprop="name">WorkManager</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1927,7 +2418,7 @@
 
           
           
-            <span id="/2021/02/01/Jetpack/WorkManager 基础/" class="leancloud_visitors" data-flag-title="WorkManager 基础">
+            <span id="/2021/03/12/Android 基础/View/Android WebView/" class="leancloud_visitors" data-flag-title="WebView 性能篇">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1959,167 +2450,21 @@
 
       
         
-          <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p><code>WorkManager</code> 是要给 API,  可让您轻松的调度那些<strong>即使在退出应用或重启设备后仍可运行的可延期异步任务。</strong>也就是说，只要是我们创建好了一个后台任务，交给 <code>WorkManager</code> 后，系统会保证它一定被执行。</p>
+          <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a><strong>问题</strong>：</h2><h3 id="为什么-WebView-的加载速度那么慢"><a href="#为什么-WebView-的加载速度那么慢" class="headerlink" title="为什么 WebView 的加载速度那么慢?"></a><strong>为什么</strong> <strong>WebView 的加载速度那么慢?</strong></h3><ol>
+<li><p>js 解析效率</p>
+<p>如果 js 文件较多、解析比较复杂，就会导致渲染速度较慢。或者手机硬件性能比较差的花，也会导致渲染速度比较慢</p>
+</li>
+<li><p>页面资源的下载</p>
+<p>一般加载一个 H5 页面，都会产生比较多的 <strong>串行</strong> 网络请求，如图片、js 文件、css 文件等，需要将这些资源都下载完成之后才能完成渲染，这样也会导致页面渲染速度变慢</p>
+</li>
+<li><p>耗费流量</p>
+<p>每次 H5 页面加载时，都需要重新加载 Android WebView 的 H5 页面，每加载一个页面，就会产生很多请求，导致同一个页面被加载多次</p>
+</li>
+</ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Jetpack/WorkManager 基础/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoman.ren/2021/02/01/Jetpack/Lifecycle 源码分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="茶白">
-      <meta itemprop="description" content="个人技术积累,Android 工程师">
-      <meta itemprop="image" content="https://github.com/xiaomanwong/static_file/blob/master/images/img_avator.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茶白白在胡说">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/01/Jetpack/Lifecycle 源码分析/" class="post-title-link" itemprop="url">Android Lifecycle</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-01 20:47:12" itemprop="dateCreated datePublished" datetime="2021-02-01T20:47:12+08:00">2021-02-01</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2021/02/01/Jetpack/Lifecycle 源码分析/" class="leancloud_visitors" data-flag-title="Android Lifecycle">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="开始是废话（翻译自源码）"><a href="#开始是废话（翻译自源码）" class="headerlink" title="开始是废话（翻译自源码）"></a>开始是废话（翻译自源码）</h2><p>定义了一个 Android 生命周期的对象。 <code>Fragment</code>和<code>FragmentActivity</code>类实现<code>LifecycleOwner</code>接口， 并可以通过 <code>getLifecycle()</code> 方法来访问生命周期。 我们也可以实现<code>LifecycleOwner</code>在自己的类。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2021/02/01/Jetpack/Lifecycle 源码分析/#more" rel="contents">
+              <a class="btn" href="/2021/03/12/Android 基础/View/Android WebView/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2212,7 +2557,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2239,17 +2584,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   
                 </div>
@@ -2290,7 +2625,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -3048,7 +3403,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("协程知识点");titles.push("协程");titles.push("协程调度器");titles.push("协程异常处理");titles.push("协程挂起");titles.push("协程取消");titles.push("协程启动");titles.push("协程入门");titles.push("WorkManager 基础");titles.push("Android Lifecycle");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Android 屏幕适配");titles.push("Android 版本适配");titles.push("Android 磁盘空间优化");titles.push("自定义 ViewGroup");titles.push("Handler 消息机制");titles.push("WebView 异常篇");titles.push("RandomLayout 随机摆放布局");titles.push("RecyclerView 总结");titles.push("WebView 使用篇");titles.push("WebView 性能篇");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
